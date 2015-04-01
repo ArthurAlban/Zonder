@@ -22,6 +22,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 .animateTriangles{
-	-webkit-transform: translateY(-20vh);
-	-webkit-transition: all 0.5s ease;
+	-webkit-transform: translateY(-17vh);
+	-webkit-transition: all 1s ease;
+}
+
+.hideImage{
+	opacity: 0;
+	-webkit-transition: all 1s linear;
+}
+
+.showImage{
+	opacity: 1;
+	-webkit-transition: all 1s linear;
+}
+
+.hideInstantImage{
+	opacity: 0;
 }
