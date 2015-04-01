@@ -7695,9 +7695,6 @@ a.button {
   font-family: 'OpenSansSemiboldItalic';
   src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype"); }
 
-div {
-  font-family: 'OpenSansRegular'; }
-
 .splashscreenBackground {
   background-image: url('../img/background.jpg');
   background-size: cover;
