@@ -7606,3 +7606,105 @@ a.button {
 .animateTriangles {
   -webkit-transform: translateY(-20vh);
   -webkit-transition: all 0.5s ease; }
+
+@font-face {
+  font-family: 'BrandonBoldIt';
+  src: url('../fonts/brandon-grotesque/Brandon_bld_it.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonBold';
+  src: url('../fonts/brandon-grotesque/Brandon_bld.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonBlackIt';
+  src: url('../fonts/brandon-grotesque/Brandon_blk_it.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonBlack';
+  src: url('../fonts/brandon-grotesque/Brandon_blk.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonLightIt';
+  src: url('../fonts/brandon-grotesque/Brandon_light_it.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonLight';
+  src: url('../fonts/brandon-grotesque/Brandon_light.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonMediumIt';
+  src: url('../fonts/brandon-grotesque/Brandon_med_it.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonMedium';
+  src: url('../fonts/brandon-grotesque/Brandon_med.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonRegularIt';
+  src: url('../fonts/brandon-grotesque/Brandon_reg_it.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonRegular';
+  src: url('../fonts/brandon-grotesque/Brandon_reg.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonThintIt';
+  src: url('../fonts/brandon-grotesque/Brandon_thin_it.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'BrandonThin';
+  src: url('../fonts/brandon-grotesque/Brandon_thin.otf') format("opentype"); }
+
+@font-face {
+  font-family: 'OpenSansBoldIt';
+  src: url('../fonts/open-sans/OpenSans-BoldItalic.ttf') format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSansBold';
+  src: url('../fonts/open-sans/OpenSans-Bold.ttf') format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSansExtraBoldIt';
+  src: url('../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf') format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSansExtraBold';
+  src: url('../fonts/open-sans/OpenSans-ExtraBold.ttf') format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSansIt';
+  src: url('../fonts/open-sans/OpenSans-Italic.ttf') format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSansLight';
+  src: url('../fonts/open-sans/OpenSans-Light.ttf') format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSansLightItalic';
+  src: url('../fonts/open-sans/OpenSans-LightItalic.ttf') format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSansRegular';
+  src: url('../fonts/open-sans/OpenSans-Regular.ttf') format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSansSemibold';
+  src: url('../fonts/open-sans/OpenSans-Semibold.ttf') format("truetype"); }
+
+@font-face {
+  font-family: 'OpenSansSemiboldItalic';
+  src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype"); }
+
+div {
+  font-family: 'OpenSansRegular'; }
+
+.splashscreenBackground {
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+  background-position: center; }
+
+@media screen and (device-aspect-ratio: 2/3) {
+  .splashscreenBackground {
+    background-image: url('../img/backgroundIphone4.jpg');
+    background-size: cover;
+    background-position: center; } }
