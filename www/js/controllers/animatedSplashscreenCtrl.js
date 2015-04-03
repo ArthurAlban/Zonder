@@ -10,6 +10,10 @@ zonder.controller('animatedSplashscreenCtrl', function($scope, $rootScope, $stat
    $ionicSlideBoxDelegate.slide(3);
   };
 
+  $scope.toRegister = function() {
+    $state.go("register");
+  };
+
   // Called each time the slide changes
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;

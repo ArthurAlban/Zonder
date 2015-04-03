@@ -173,6 +173,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	background-position:center;
 }
 
+.resgisterBackground {
+  background-image: url('../img/background.jpg');
+  background-size:cover;
+  background-position:center;
+}
+
+.registerTriangles{
+  position:relative;
+  top:0;
+  margin-top: -17vh;
+}
+
 @media screen and (device-aspect-ratio: 2/3) {
   .splashscreenBackground{
   	background-image: url('../img/backgroundIphone4.jpg');
