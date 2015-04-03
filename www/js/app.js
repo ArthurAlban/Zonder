@@ -7,6 +7,7 @@
 var zonder = angular.module('zonder', ['ionic', 'ngCordova'])
 
 zonder.run(function($ionicPlatform, $cordovaSplashscreen) {
+
   $ionicPlatform.ready(function() {
     console.log("hidebefore");
     $cordovaSplashscreen.hide();
@@ -30,6 +31,10 @@ zonder.config(function($stateProvider, $urlRouterProvider) {
   .state('animatedSplashscreen', {
     url: "/animatedSplashscreen",
     templateUrl: "templates/animatedSplashscreen.html"
+  })
+  .state('register', {
+    url: "/register",
+    templateUrl: "templates/register.html"
   });
 
   // if none of the above states are matched, use this as the fallback
