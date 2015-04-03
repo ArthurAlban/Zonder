@@ -7605,6 +7605,55 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.centeredContent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center; }
+
+.labelZonder {
+  border: 0 none;
+  height: 60px;
+  margin-top: 3px;
+  background: #ffffff;
+  width: 100%;
+  color: #adafbc; }
+
+.labelZonder div {
+  width: 55px;
+  height: 100%; }
+
+.labelZonder label {
+  position: relative;
+  left: 60px;
+  line-height: 1.313;
+  font-size: 19px;
+  font-family: 'OpenSansRegular'; }
+
+.labelZonder input {
+  position: relative;
+  line-height: 1.313;
+  font-size: 19px;
+  font-family: 'OpenSansRegular';
+  left: 60px; }
+
 .fontTitreTooltip {
   color: #ffffff;
   font-size: 8vw;

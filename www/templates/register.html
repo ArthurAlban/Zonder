@@ -5,10 +5,8 @@
 
 <ion-slide>
 <div style="position:absolute;top:27%;width:100%">
-<label class="item item-icon-left item-input" style="border: 0 none;height:60px;margin-top:3px;background: #ffffff;width:100%;color: rgb(173, 175, 188);">
-<i class="icon" style="margin-top:3px;margin-left:13px;">
-<img src="img/mail.png" style="width:22px;height:22px;">
-</i>
+<label class="item item-input" style="border: 0 none;height:60px;margin-top:3px;background: #ffffff;width:100%;color: rgb(173, 175, 188);">
+<img src="img/mail.png" style="width:22px;height:22px;margin-top:3px;margin-left:13px;">
 <input name="email" type="email" ng-model="" style="line-height: 1.313;font-size:18px;font-family:'OpenSansRegular';margin-left:55px;margin-top:5px;" placeholder="email address" required>
 </label>
 
@@ -25,10 +23,11 @@
 <input name="confirmpassword" type="password" ng-model="" style="line-height: 1.313;font-size:18px;font-family:'OpenSansRegular';margin-left:55px;margin-top:5px;" placeholder="confirm password" required>
 </label>
 
-<label class="item item-icon-left item-input" style="border: 0 none;height:60px;margin-top:3px;background: #ffffff;width:100%;color: rgb(173, 175, 188);">
-<i class="icon" style="margin-top:3px;margin-left:12px;">
-<img src="img/username.png" style="width:22px;height:22px;">
-</i><input name="username" type="text" ng-model="" style="line-height: 1.313;font-size:18px;font-family:'OpenSansRegular';margin-left:55px;margin-top:5px;" placeholder="username" required>
+<label class="item labelZonder">
+<div class="centeredContent" style="width:60px">
+<img src="img/username.png" style="width:23px">
+</div>
+<input name="username" type="text" ng-model="" placeholder="username" required>
 </label>
 
 </div>
@@ -37,19 +36,19 @@
 
 <ion-slide>
 <div style="position:absolute;top:27%;width:100%">
-
-<label class="item item-icon-left item-label" style="border: 0 none;height:60px;margin-top:3px;background: #ffffff;width:100%;color: rgb(173, 175, 188);">
-<i class="icon" style="margin-left:10px;">
-<img src="img/camera.png" style="width:27px;height:22px;">
-</i>
-<label style="line-height: 1.313;font-size:18px;font-family:'OpenSansRegular';margin-left:15px;margin-top:12px;">choose a profile picture </label>
+	
+<label class="item labelZonder">
+<div class="centeredContent">
+<img src="img/camera.png" style="width:25px;">
+</div>
+<label>choose a profile picture </label>
 </label>
 
-<label class="item item-icon-left item-label" style="border: 0 none;height:60px;margin-top:3px;background: #ffffff;width:100%;color: rgb(173, 175, 188);">
-<i class="icon" style="margin-left:13px;">
-<img src="img/gender.png" style="width:25px;height:25px;">
-</i>
-<label style="line-height: 1.313;font-size:18px;font-family:'OpenSansRegular';margin-left:15px;margin-top:12px;">are you a male/female</label>
+<label class="item labelZonder">
+	<div class="centeredContent">
+		<img src="img/gender.png" style="width:25px;">
+	</div>
+<label>are you a male/female</label>
 </label>
 
 </div>
