@@ -1,44 +1,67 @@
 <ion-view hide-nav-bar="true" ng-controller="animatedSplashscreenCtrl" class="splashscreenBackground">
 <img src="img/splashTriangles.png" style="z-index:10;width:100%;" ng-class="{animateTriangles: animateTriangles}">
 
-<img src="img/logoBandeau.png" ng-class="{hideImage:animateLogo}" style="position:absolute;top:43.5%;left:0;width:100%;z-index:10;">
+<img src="img/logoBandeau.png" class="fade-out" style="position:absolute;top:43.5%;left:0;width:100%;z-index:10;">
 
-<ion-slide-box ng-class="{hideInstantImage:!animateTooltip, showImage:animateTooltip}" on-slide-changed="slideChanged(index)" show-pager="true" style="position:absolute;top:0;width:100%;height:100%;">
+<ion-slide-box class="fade-in tooltip" on-slide-changed="slideChanged(index)" show-pager="true" style="position:absolute;top:0;width:100%;height:100%;z-index:15;">
 
 <ion-slide>
 
-<p style="position:absolute;top:30%;color:#ffffff;font-size:2em;font-family:'BrandonBold';margin-left:10%;margin-right:10%;text-align:left;line-height:1;">ASK ALL OF YOUR FRIENDS TO HELP YOU MAKE A BETTER CHOICE</p>
+<p class="fontTitreTooltip" style="width:100%;position:absolute;top:30%;">ASK ALL OF YOUR FRIENDS TO HELP YOU MAKE A BETTER CHOICE</p>
 
 
-<p style="position:absolute;top:65%;color:#ffffff;font-size:1.2em;font-family:'BrandonLight';margin-left:10%;margin-right:20%;line-height:1.2;text-align:left;">Sensitive question ? Secret gift ? Movie plans ? Add your friends and send them private polls and questions</p>
+<p style="width:100%;position:absolute;top:65%;color:#ffffff;font-size:16px;font-size:5vw;font-family:'BrandonLight';padding-left:10%;padding-right:22%;line-height:1.2;text-align:left;">Sensitive question ? Secret gift ? Movie plans ? Add your friends and send them private polls and questions</p>
+
+
+<p ng-click="toLogin()" style="width:100%;position:absolute;top:95%;color:#ffffff;font-size:8px;font-size:3vw;font-family:'BrandonLight';letter-spacing:0.075em;line-height:1.711;text-align:center;">Skip the explanations</p>
 
 </ion-slide>
 
 <ion-slide>
-<div style="position:absolute;top:30%;">
-<p style="color:#ffffff;font-size:120%;margin-left:10%;margin-right:10%">VOTE AND WATCH REAL TIME STATS ABOUT YOUR ZONDER</p>
-</div>
+<p style="width:100%;position:absolute;top:30%;color:#ffffff;font-size:28px;font-size:8vw;font-family:'BrandonBold';padding-left:10%;padding-right:15%;text-align:left;line-height:1;">VOTE AND WATCH REAL TIME STATS ABOUT YOUR ZONDER</p>
 
-<div style="position:absolute;top:65%;">
-<p style="color:#ffffff;font-size:16px;margin-left:10%;margin-right:20%">Watch the world vote for your versus in real time and get direct answers to your questions</p>
-</div>
+
+<p style="width:100%;position:absolute;top:65%;color:#ffffff;font-size:16px;font-size:5vw;font-family:'BrandonLight';padding-left:10%;padding-right:22%;line-height:1.2;text-align:left;">Watch the world vote for your versus in real time and get direct answers to your questions</p>
+
 </ion-slide> 
 
 <ion-slide>
-<div style="position:absolute;top:30%;">
-<p style="color:#ffffff;font-size:120%;margin-left:10%;margin-right:10%">CREATE YOUR OWN ZONDER QUESTION OR POLL</p>
+<p style="width:100%;position:absolute;top:30%;color:#ffffff;font-size:28px;font-size:8vw;font-family:'BrandonBold';padding-left:10%;padding-right:17%;text-align:left;line-height:1;">CREATE YOUR OWN ZONDER QUESTION OR POLL</p>
+
+<p style="width:100%;position:absolute;top:65%;color:#ffffff;font-size:16px;font-size:5vw;font-family:'BrandonLight';padding-left:10%;padding-right:23%;line-height:1.2;text-align:left;">Ask your question, add your choices, set an expiration date and privacy. Wondering has never been simplier</p>
+
+</ion-slide>
+
+<ion-slide>
+
+  <form name="loginForm" ng-submit="validLogin(user)" novalidate>
+    <div class="list" style="position:absolute;width:100%;left:1px;top:30%;">
+      <label class="item item-icon-left item-input" style="border: 0 none;height:60px;background: #ffffff">
+        <input name="mail" type="email" ng-model="" style="line-height: 1.313;font-size:18px;font-family:'OpenSansRegular'" required placeholder="email address">
+      </label>
+      <label class="item item-icon-left item-input" style="border: 0 none;height:60px;margin-top:3px;background: #ffffff">
+        <input name="password" type="password" ng-model="" style="line-height: 1.313;font-size:18px;font-family:'OpenSansRegular'" placeholder="password" required>
+      </label>
+  </div>
+  </form>
+
+<div style="position:absolute;top:80%;left:50%;margin-left:-40%;;width:80%;">
+<div class="row" style="position:relative;padding:0;margin:0;height:20px;width:100%;">
+    <a class="col" style="margin-right:2px;color:#ffffff;font-size:2.5vw;font-family:'BrandonMedium';line-height:1.4;text-align:right;letter-spacing:0.075em;" ng-click=""><b>PASSWORD ?</b></a>
+    <div style="height:50%;margin-top:6px;border-left:1px solid #FFFFFF;"></div>
+    <a class="col" style="margin-left:2px;color:#ffffff;font-size:25px;font-size:2.5vw;font-family:'BrandonMedium';line-height:1.4;text-align:left;letter-spacing:0.075em;" ng-click=""><b>REGISTER NOW</b></a>
+  </div>
+<button class="button" style="margin-top:5px;position:relative;height:50px;border-radius: 4px;border:0 none;width:100%;background-color:rgb(247, 159, 3);color:rgb(252, 249, 240);font-size:18px;font-family:'BrandonBold';letter-spacing:0.075em;line-height: 1.026;">
+  SIGN IN
+</button>
 </div>
 
-<div style="position:absolute;top:65%;">
-<p style="color:#ffffff;font-size:16px;margin-left:10%;margin-right:20%">Ask your question, add your choices, set an expiration date and privacy. Wondering has never been simplier</p>
-</div>
-</ion-slide> 
+</ion-slide>  
 
 </ion-slide-box>
 
-
-<div ng-class="{hideInstantImage:!animateTooltip, showImage:animateTooltip}" class="bar bar-footer bar-light" style="height:12%;padding:0;background-color: rgba(0,0,0,0);border: 0 none;border-top:1px solid #e8eaf1;">
-  <button class="button button-full" style="margin:0;color:#ffffff;background-color: rgba(0,0,0,0);border: 0 none;"><b>NEXT STEP</b></button>
-</div>
+<!-- <div class="bar bar-footer bar-light fade-in tooltip" style="height:50px;padding:0;background-color: rgba(0,0,0,0);border: 0 none;border-top:1px solid #e8eaf1;">
+  <button class="button button-full" style="font-size:14px; line-height: 1.5;font-family:'BrandonBold';margin:0;color:#ffffff;background-color: rgba(0,0,0,0);border: 0 none;"><b>NEXT STEP</b></button>
+</div> -->
 
 </ion-view>

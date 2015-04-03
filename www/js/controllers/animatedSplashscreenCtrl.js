@@ -1,14 +1,18 @@
-zonder.controller('animatedSplashscreenCtrl', function($scope, $state, $ionicPlatform) {
+zonder.controller('animatedSplashscreenCtrl', function($scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate) {
 	$scope.animateTriangles = false;
-	$scope.animateLogo = false;
-	$scope.animateTooltip = false;
 	$ionicPlatform.ready(function() {
 		$scope.animateTriangles = true;
-		$scope.animateLogo = true;
 		$scope.$apply();
-		setTimeout(function(){
-			$scope.animateTooltip = true;
-			$scope.$apply();
-		}, 600);
 	});
+
+	// Called to navigate to the main app
+   $scope.toLogin = function() {
+   $ionicSlideBoxDelegate.slide(3);
+  };
+
+  // Called each time the slide changes
+  $scope.slideChanged = function(index) {
+    $scope.slideIndex = index;
+
+  };
 });

@@ -6,8 +6,9 @@
 // 'starter.controllers' is found in controllers.js
 var zonder = angular.module('zonder', ['ionic', 'ngCordova'])
 
-zonder.run(function($ionicPlatform, $cordovaSplashscreen) {
-
+zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
+  $rootScope.animateTooltip = false;
+  
   $ionicPlatform.ready(function() {
     console.log("hidebefore");
     $cordovaSplashscreen.hide();
