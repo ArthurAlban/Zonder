@@ -22,7 +22,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 
-.fontTitreTooltip{
+.titleTooltip{
+	width:100%;
+	position:absolute;
+	top:30%;
 	color:#ffffff;
 	font-size:8vw;
 	font-family:'BrandonBold';
@@ -30,6 +33,67 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	padding-left:10%;
 	padding-right:15%;
 	text-align:left;
+	letter-spacing:-0.075em;
+}
+
+.subtitleTooltip{
+	width:100%;
+	position:absolute;
+	top:65%;
+	color:#ffffff;
+	font-size:16px;
+	font-size:5vw;
+	font-family:'BrandonLight';
+	padding-left:10%;
+	padding-right:23%;
+	line-height:1.2;
+	text-align:left;
+}
+
+.footerTooltip{
+	width:100%;
+	position:absolute;
+	top:95%;
+	color:#ffffff;
+	font-size:8px;
+	font-size:3vw;
+	font-family:'BrandonLight';
+	letter-spacing:0.075em;
+	line-height:1.711;
+	text-align:center;
+}
+
+.fontSmallBrandonMedium{
+	color:#ffffff;
+	font-size:2.5vw;
+	font-family:'BrandonMedium';
+	line-height:1.4;
+	letter-spacing:0.075em;
+}
+
+.footerRegister{
+	width:100%;
+	position:absolute;
+	top:95%;
+	text-align:center;
+	color:#ffffff;
+	font-size:8px;
+	font-family:'BrandonRegular';
+	line-height: 1.667;
+	letter-spacing:0.075em;
+}
+
+.buttonZonder{
+	height:50px;
+	width:80%;
+	border-radius: 4px;
+	border:0 none;
+	background-color:rgb(247, 159, 3);
+	color:rgb(252, 249, 240);
+	font-size:20px;
+	font-family:'BrandonBold';
+	letter-spacing:0.075em;
+	line-height: 1.026;
 }
 
 .animateTriangles{
