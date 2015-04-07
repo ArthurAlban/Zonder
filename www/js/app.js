@@ -26,7 +26,9 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
   });
 });
 
-zonder.config(function($stateProvider, $urlRouterProvider) {
+zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  $httpProvider.interceptors.push('TokenInterceptor');
+
   $stateProvider
 
   .state('animatedSplashscreen', {
@@ -36,8 +38,11 @@ zonder.config(function($stateProvider, $urlRouterProvider) {
   .state('register', {
     url: "/register",
     templateUrl: "templates/register.html"
+  })
+  .state('forgotPassword', {
+    url: "/forgotPassword",
+    templateUrl: "templates/forgotPassword.html"
   });
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/animatedSplashscreen');
 });
