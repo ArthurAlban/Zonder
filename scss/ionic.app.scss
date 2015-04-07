@@ -51,11 +51,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   margin-top:3px;
   background: #ffffff;
   width:100%;
-  color: rgb(173, 175, 188);
+  color:#adafbc;
 }
 
 .labelZonder div{
-  width:55px;
+  width:60px;
   height:100%;
 }
 
@@ -70,9 +70,81 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .labelZonder input{
   position: relative;
   line-height: 1.313;
+  font-size: 19px;
+  font-family: 'OpenSansRegular';
+  left: 60px;
+  color: #adafbc;
+}
+
+.footerZonder {
+  position:absolute;
+  top:95%;
+  text-align:center;
+  width:100%;
+  line-height: 1.711;
+  font-size:8.184px;
+  font-family:'BrandonMedium';
+  color:#ffffff;
+}
+
+.termsAndConditions {
+  position:relative;
+  text-align:center;
+  width:100%;
+  line-height: 1.711;
+  font-size:8.184px;
+  font-family:'OpenSansRegular';
+  color:#ffffff;
+}
+
+.termsAndConditions a {
+  color:#ffffff;
+}
+
+.checkBoxZonderMale {
+  border: none !important;
+  position:absolute !important;
+  top:0 !important;
+  left:160px !important;
+  width:40px !important;
+  height:100% !important;
+  background-color:rgba(0,0,0,0) !important;
+  padding:0 !important;
+}
+
+.divCheckBoxZonderMale {
+  position:absolute;
+  top:0;
+  left:182px;
+  width:40px;
+  text-align:center;
+  line-height:54px;
   font-size:19px;
   font-family:'OpenSansRegular';
-  left: 60px;
+  color:#adafbc;
+}
+
+.checkBoxZonderFemale {
+  border: none !important;
+  position:absolute !important;
+  top:0 !important;
+  left:235px !important;
+  width:40px !important;
+  height:100% !important;
+  background-color:rgba(0,0,0,0) !important;
+  padding:0 !important;
+}
+
+.divCheckBoxZonderFemale {
+  position:absolute;
+  top:0;
+  left:265px;
+  width:50px;
+  text-align:center;
+  line-height:54px;
+  font-size:19px;
+  font-family:'OpenSansRegular';
+  color:#adafbc;
 }
 
 .fontTitreTooltip{
@@ -241,7 +313,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @media screen and (device-aspect-ratio: 2/3) {
   .splashscreenBackground{
   	background-image: url('../img/backgroundIphone4.jpg');
-	background-size:cover;
-	background-position:center;
-  }
+   background-size:cover;
+   background-position:center;
+ }
 }
