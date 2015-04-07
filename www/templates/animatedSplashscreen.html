@@ -32,19 +32,27 @@
 
 <ion-slide>
 
-  <form name="loginForm" ng-submit="validLogin(user)" novalidate>
+  <form name="loginForm" ng-submit="validLogin()" style="height:100%" novalidate>
     <div style="position:absolute;width:100%;left:1px;top:27.6%;">
-      <label class="item item-icon-left item-input" style="border: 0 none;height:60px;background: #ffffff">
-        <input name="mail" type="email" ng-model="user.mail" style="line-height: 1.313;font-size:18px;font-family:'OpenSansRegular'" required placeholder="email address">
+      <label class="item labelZonder">
+        <div class="centeredContent" ng-switch on="displayMailError">
+         <img ng-switch-when="false" src="img/mail.png" style="width:22px">
+         <img ng-switch-when="true" src="img/mailRed.png" style="width:22px">
+        </div>
+         <input name="mail" type="email" ng-model="user.mail" placeholder="email address" required>
       </label>
-      <label class="item item-icon-left item-input" style="border: 0 none;height:60px;margin-top:3px;background: #ffffff">
-        <input name="password" type="password" ng-model="user.pass" style="line-height: 1.313;font-size:18px;font-family:'OpenSansRegular'" placeholder="password" required>
+      <label class="item labelZonder">
+        <div class="centeredContent" ng-switch on="displayMailError">
+         <img ng-switch-when="false" src="img/lock.png" style="width:17px;height:22px;">
+         <img ng-switch-when="true" src="img/lockerRed.png" style="width:17px;height:22px;">
+        </div>
+         <input name="password" type="password" ng-model="user.pass" placeholder="password" required>
       </label>
   </div>
 
 <div style="position:relative;top:76.5%;margin: 0 auto;width:80%;">
 <div class="row" style="position:relative;padding:0;margin:0;height:20px;width:100%;">
-    <a class="col fontSmallBrandonMedium" style="margin-right:2px;text-align:right;" ng-click=""><b>PASSWORD ?</b></a>
+    <a class="col fontSmallBrandonMedium" style="margin-right:2px;text-align:right;" ng-click="toforgotPassword()"><b>PASSWORD ?</b></a>
     <div style="height:50%;margin-top:6px;border-left:1px solid #FFFFFF;"></div>
     <a class="col fontSmallBrandonMedium" style="margin-left:2px;text-align:left;" ng-click="toRegister()"><b>REGISTER NOW</b></a>
   </div>

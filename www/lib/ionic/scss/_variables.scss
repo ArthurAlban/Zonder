@@ -99,9 +99,9 @@ $button-light-active-bg:          #fafafa !default;
 $button-light-active-border:      #ccc !default;
 
 $button-stable-bg:                $stable !default;
-$button-stable-text:              #444 !default;
+$button-stable-text:              #fff !default;
 $button-stable-border:            #b2b2b2 !default;
-$button-stable-active-bg:         #e5e5e5 !default;
+$button-stable-active-bg:         #f9c711 !default;
 $button-stable-active-border:     #a2a2a2 !default;
 
 $button-positive-bg:              $positive !default;
@@ -433,7 +433,7 @@ $input-color:                     #111 !default;
 $input-border:                    $item-default-border !default;
 $input-border-width:              $item-border-width !default;
 $input-label-color:               $dark !default;
-$input-color-placeholder:         lighten($dark, 40%) !default;
+$input-color-placeholder:         rgb(173, 175, 188) !default;
 
 
 // Progress

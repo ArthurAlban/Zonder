@@ -21,6 +21,62 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.colorError{
+	color:#ec7149;
+}
+
+.centeredContent{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+}
+
+.labelZonder{
+  border: 0 none;
+  height:60px;
+  margin-top:3px;
+  background: #ffffff;
+  width:100%;
+}
+
+.labelZonder div{
+  width:60px;
+  height:100%;
+}
+
+.labelZonder label{
+  position:relative;
+  left:60px;
+  line-height: 1.313;
+  font-size:19px;
+  font-family:'OpenSansRegular';
+}
+
+.labelZonder input{
+  position: relative;
+  line-height: 1.313;
+  font-size:19px;
+  font-family:'OpenSansRegular';
+  left: 60px;
+}
 
 .titleTooltip{
 	width:100%;
@@ -119,6 +175,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
 @-webkit-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+
+.imgClick:active{
+  opacity: 1;
+  -webkit-animation: fadeOut 0.6s linear;
+}
 
 
 @font-face {
@@ -237,7 +298,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	background-position:center;
 }
 
-.resgisterBackground {
+.registerBackground {
   background-image: url('../img/background.jpg');
   background-size:cover;
   background-position:center;
