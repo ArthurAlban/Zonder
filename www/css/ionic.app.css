@@ -7638,6 +7638,9 @@ a.button {
 .fullHeight {
   height: 100%; }
 
+.roundImage {
+  border-radius: 100%; }
+
 .background {
   background-image: url('../img/background.jpg');
   background-size: cover;
@@ -7872,6 +7875,32 @@ a.button {
 
 .termsAndConditions a {
   color: #ffffff; }
+
+#registerSlideBox {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%; }
+
+#divRegisterFirstStep {
+  position: absolute;
+  top: 27%;
+  width: 100%; }
+
+#divRegisterSecondStep {
+  position: absolute;
+  top: 27%;
+  width: 100%; }
+
+#divTermsAndConditionButton {
+  position: absolute;
+  top: 75%;
+  width: 100%; }
+
+.buttonRegister {
+  position: absolute;
+  left: 50%;
+  margin-left: -40%; }
 
 #profilImg {
   z-index: 11;

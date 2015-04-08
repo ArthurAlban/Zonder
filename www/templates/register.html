@@ -1,45 +1,44 @@
 <ion-view hide-nav-bar="true" ng-controller="registerCtrl" class="background">
 <img src="img/splashTriangles.png" id="triangles">
 
-<ion-slide-box on-slide-changed="slideChanged(index)" ng-init="disableSwipe()" show-pager="true" style="position:absolute;top:0;width:100%;height:100%;">
+<ion-slide-box on-slide-changed="slideChanged(index)" ng-init="disableSwipe()" show-pager="true" id="registerSlideBox">
 
 <ion-slide>
 
 <form name="registerFirstStepForm" novalidate>
-	<div style="position:absolute;top:27%;width:100%">
+	<div id="divRegisterFirstStep">
 
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img ng-if="mailIsValid" src="img/mail.png" style="width:22px;">
-				<img ng-if="!mailIsValid" src="img/mailRed.png" style="width:22px;">
+				<img ng-if="mailIsValid" src="img/mail.png" width="22">
+				<img ng-if="!mailIsValid" src="img/mailRed.png" width="22">
 			</div>
 			<input name="email" type="email" ng-model="userData.email" ng-class="{colorError: !mailIsValid}" placeholder="email address" ng-maxlength="50" ng-change="checkEmail()" required>
 		</label>
 
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img ng-if="identicPasswords" src="img/lock.png" style="width:17px;height:22px;">
-				<img ng-if="!identicPasswords" src="img/lockerRed.png" style="width:17px;height:22px;">
+				<img ng-if="identicPasswords" src="img/lock.png" width="17" height="22">
+				<img ng-if="!identicPasswords" src="img/lockerRed.png" width="17" height="22">
 			</div>
 			<input name="password" type="password" ng-model="userData.password"  placeholder="password" ng-minlength="6" ng-pattern="/^[A-z][A-z0-9]*$/" ng-maxlength="20" ng-class="{colorError: !identicPasswords}" required>
 		</label>
 
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img ng-if="identicPasswords" src="img/lock.png" style="width:17px;height:22px;">
-				<img ng-if="!identicPasswords" src="img/lockerRed.png" style="width:17px;height:22px;">
+				<img ng-if="identicPasswords" src="img/lock.png" width="17" height="22">
+				<img ng-if="!identicPasswords" src="img/lockerRed.png" width="17" height="22">
 			</div>
 			<input name="confirmpassword" type="password" ng-minlength="6" ng-pattern="/^[A-z][A-z0-9]*$/" ng-model="userData.confirmPassword" placeholder="confirm password" ng-maxlength="20" ng-class="{colorError: !identicPasswords}"  required>
 		</label>
 
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img ng-if="pseudoIsValid" src="img/username.png" style="width:23px">
-				<img ng-if="!pseudoIsValid" src="img/usernameRed.png" style="width:23px">
+				<img ng-if="pseudoIsValid" src="img/username.png" width="23">
+				<img ng-if="!pseudoIsValid" src="img/usernameRed.png" width="23">
 			</div>
 			<input name="pseudo" type="text" ng-model="userData.pseudo" maxlength="15" minlength="4" ng-pattern="/^[A-z][A-z0-9]*$/" placeholder="pseudo" ng-class="{colorError: !pseudoIsValid}" ng-change="checkPseudo()" required>
 		</label>
-
 	</div>
 </form>
 
@@ -47,21 +46,19 @@
 
 <ion-slide>
 <form name="registerSecondStepForm" novalidate>
-
-	<div style="position:absolute;top:27%;width:100%">
-
+	<div id="divRegisterSecondStep">
 		<label class="item labelZonder" ng-click="showActionSheetPhotoSource()">
 			<div class="centeredContent">
-				<img ng-if="!photoHaschanged" src={{userData.photo}} style="width:25px;">
-				<img ng-if="photoHaschanged" src={{userData.photo}} style="width:25px;height:25px;border-radius:100%;">
+				<img ng-if="!photoHaschanged" src={{userData.photo}} width="25">
+				<img ng-if="photoHaschanged" src={{userData.photo}} width="25" height="25" class="roundImage">
 			</div>
 			<label>choose a profile picture </label>
 		</label>
 
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img ng-if="genderIsValid" src="img/gender.png" style="width:25px;">
-				<img ng-if="!genderIsValid" src="img/genderRed.png" style="width:25px;">
+				<img ng-if="genderIsValid" src="img/gender.png" width="25">
+				<img ng-if="!genderIsValid" src="img/genderRed.png" width="25">
 			</div>
 			<label>are you a </label>
 			<ion-checkbox class="checkBoxZonderMale" ng-model="userData.isMale" ng-click="checkMale()"></ion-checkbox>
@@ -75,18 +72,19 @@
 
 </ion-slide-box>
 
-<div style="position:absolute;top:75%;width:100%;">
+<div id="divTermsAndConditionButton">
 	<p class="termsAndConditions">
 		I accept <a href="#">«Terms and Conditions»</a>
 	</p>
 
-	<button class="button buttonZonder" ng-show="displayNextButton" ng-click="nextStepRegister()" style="position:absolute;left:50%;margin-left:-40%;">
+	<button class="button buttonZonder buttonRegister" ng-show="displayNextButton" ng-click="nextStepRegister()">
 		NEXT STEP
 	</button>
 
-	<button class="button buttonZonder" ng-show="!displayNextButton" ng-click="previousStepRegister()" style="position:absolute;left:50%;margin-left:-40%;">
+	<button class="button buttonZonder buttonRegister" ng-show="!displayNextButton" ng-click="previousStepRegister()">
 		REGISTER NOW
 	</button>
+
 	
 </div>
 
