@@ -47,20 +47,17 @@
 </ion-side-menu>
 
 
-<ion-side-menu-content ng-controller="homeCtrl" class="splashscreenBackground">
-
-<!-- <div style=padding:0;position:relative;height:70px;">
-</div> -->
-<img src="img/splashTriangles.png" style="position:absolute;z-index:10;width:100%;" class="triangles">
-<!-- <div class="row" style="position:relative;padding:0;margin:0;top:74px;height:50px;">
+<ion-side-menu-content ng-controller="homeCtrl" class="background">
+<img src="img/splashTriangles.png" id="triangles">
+ <img src="img/menu.png" menu-toggle="left" class="imgClick" style="width:20px;z-index:11;position:absolute;left:5vw;top:32px;">
+  <img src="img/profilTest.png" id="profilImg" class="imgClick">
+  <label class="fontBrandonBlack" style="z-index:11;text-transform:uppercase;position:absolute;right:20vw;top:40px;">Manuel</label>
+<div class="row" style="position:relative;padding:0;margin:0;top:90px;height:50px;">
     <a class="col button button-clear" style="border:1px solid red;font-size:16px;color:#ffffff;"><b>Vote</b></a>
     <a class="col button button-clear" style="border:1px solid blue;font-size:16px;color:#ffffff;" ><b>Polls</b></a>
     <a class="col button button-clear" style="border:1px solid yellow;font-size:16px;color:#ffffff;"><b>Friends</b></a>
-</div> -->
+</div>
 <!-- <div  style="width:100%;height:10px;background-color:#fcdd86"></div> -->
-<img src="img/menu.png" menu-toggle="left" class="imgClick" style="width:20px;z-index:11;position:absolute;left:5vw;top:32px;">
-<img src="img/profilTest.png" class="imgClick profilImg">
-<label class="fontBrandonBlack" style="z-index:11;text-transform:uppercase;position:absolute;right:20vw;top:40px;">Manuel</label>
 
 <!-- <ion-slide-box show-pager="false"> -->
 

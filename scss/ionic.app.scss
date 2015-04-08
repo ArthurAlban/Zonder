@@ -21,10 +21,119 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-.colorError{
-	color:#ec7149;
+///////////////////// Media (difference entre les différents model d'iphone) /////////////////////////////////
+
+
+/////////////// iphone 5 //////////////////
+
+@media screen and (device-aspect-ratio: 40/71) {
+
+  ////////////////////// home ////////////////////////
+  #profilImg{
+  z-index:11;
+  position:absolute;
+  right:13px;
+  top:22px;
+  height:46px;
+  width:46px;
+  }
+
 }
 
+///////////// iphone 4 ////////////////////
+@media screen and (device-aspect-ratio: 2/3) {
+
+  ///////////////////// générique de fin //////////////////////////
+  .background{
+  background-image: url('../img/backgroundIphone4.jpg');
+  background-size:cover;
+  background-position:center;
+  }
+
+  #triangles{
+  z-index:10;
+  position:absolute;
+  width:100%;
+  margin-top: -19vh;
+  }
+
+  .animateTriangles{
+  -webkit-transform: translateY(-19vh);
+  -webkit-transition: all 1s ease;
+  }
+
+  ////////////////////// home ////////////////////////
+  #profilImg{
+  z-index:11;
+  position:absolute;
+  right:13px;
+  top:22px;
+  height:46px;
+  width:46px;
+  }
+
+}
+
+///////////////////// générique de fin //////////////////////////
+
+.fullHeight{
+  height:100%;
+}
+
+// image de fond d'écran étoilé (sauf iphone 4)
+.background {
+  background-image: url('../img/background.jpg');
+  background-size:cover;
+  background-position:center;
+}
+
+// position des triangles en haut (sauf iphone 4 et 5)
+#triangles{
+  z-index:10;
+  position:absolute;
+  width:100%;
+  margin-top: -16vh;
+  }
+
+// type de font brandonMedium (text au dessus du bouton)
+.fontSmallBrandonMedium{
+  color:#ffffff;
+  font-size:2.5vw;
+  font-family:'BrandonMedium';
+  line-height:1.4;
+  letter-spacing:0.075em;
+}
+
+// type de font brandonBlack (text lié au pseudo)
+.fontBrandonBlack{
+  color:#ffffff;
+  font-size:10px;
+  font-family:'BrandonBlack';
+  line-height:1.265;
+  letter-spacing:0.075em;
+}
+
+// button de l'application
+.buttonZonder{
+  height:50px;
+  width:80%;
+  border-radius: 4px;
+  border:0 none;
+  background-color:rgb(247, 159, 3);
+  color:rgb(252, 249, 240);
+  font-size:20px;
+  font-family:'BrandonBold';
+  letter-spacing:0.075em;
+  line-height: 1.026;
+}
+
+
+// couleur d'erreur pour le text 
+  .colorError{
+  color:#ec7149;
+}
+
+// permet de centrer un element à l'interieur d'une div
 .centeredContent{
   position: absolute;
   left: 0;
@@ -49,6 +158,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   align-items: center;
 }
 
+// à faire label dynamique (test)
 .labelZonder{
   border: 0 none;
   height:60px;
@@ -78,31 +188,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   font-family: 'OpenSansRegular';
   left: 60px;
   color: #adafbc;
-}
-
-.footerZonder {
-  position:absolute;
-  top:95%;
-  text-align:center;
-  width:100%;
-  line-height: 1.711;
-  font-size:8.184px;
-  font-family:'BrandonMedium';
-  color:#ffffff;
-}
-
-.termsAndConditions {
-  position:relative;
-  text-align:center;
-  width:100%;
-  line-height: 1.711;
-  font-size:8.184px;
-  font-family:'OpenSansRegular';
-  color:#ffffff;
-}
-
-.termsAndConditions a {
-  color:#ffffff;
 }
 
 .checkBoxZonderMale {
@@ -135,118 +220,264 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .divCheckBoxZonderFemale {
   margin-left:27px;
 }
+///////////////////// splashscreen and tooltip /////////////////////
+
+// div qui contient le bouton et son text au dessus
+#divTextAndButton{
+  position:relative;
+  top:76.5%;
+  margin: 0 auto;
+  width:80%;
+}
+
+// row pour register and password
+#rowText{
+ position:relative;
+ padding:0;
+ margin:0;
+ height:20px;
+ width:100%;
+}
+
+#divSeparateurRow{
+  height:50%;
+  margin-top:6px;
+  border-left:1px solid #FFFFFF;
+}
+
+#textLeftInRow{
+margin-right:2px;
+text-align:right;
+}
+
+#textRightInRow{
+  margin-right:2px;
+text-align:left;
+}
+
+#buttonSignIn{
+  margin-top:4px;
+  width:100%;
+}
+
+// div qui contient la form du login
+#divFormLogin{
+  position:absolute;
+  left:1px;
+  top:27.6%;
+  width:100%;
+}
+
+// taille et index pour les triangles du haut
+#posTriangleTop{
+  z-index:10;
+  width:100%;
+}
+
+// logo en bandeau pour pourvoir le positionner au bon endroit de l'écran
+#logoBandeau{
+  z-index:10;
+  position:absolute;
+  top:43.5%;
+  left:0;
+  width:100%;
+}
+
+// slide box in the tooltip
+#slideBoxTooltip{
+  z-index:15;
+  position:absolute;
+  top:0;
+  width:100%;
+  height:100%;
+}
+
+// titre tooltip
+
+.posTitleTooltip{
+  position:absolute;
+  top:30%;
+  width:100%;
+  padding-left:10%;
+  padding-right:22%;
+  text-align:left;
+}
 
 .titleTooltip{
-	width:100%;
-	position:absolute;
-	top:30%;
-	color:#ffffff;
-	font-size:8vw;
-	font-family:'BrandonBold';
-	line-height:1;
-	padding-left:10%;
-	padding-right:15%;
-	text-align:left;
-	letter-spacing:-0.075em;
+  font-family:'BrandonBold';
+  font-size:8.5vw;
+  line-height:1;
+  letter-spacing:-0.075em;
+  color:#ffffff;
+}
+
+// sous titre tooltip
+
+.posSubtitleTooltip{
+  position:absolute;
+  top:65%;
+  width:100%;
+  padding-left:10%;
+  padding-right:23%;
+  text-align:left;
 }
 
 .subtitleTooltip{
-	width:100%;
-	position:absolute;
-	top:65%;
-	color:#ffffff;
-	font-size:16px;
-	font-size:5vw;
-	font-family:'BrandonLight';
-	padding-left:10%;
-	padding-right:23%;
-	line-height:1.2;
-	text-align:left;
-}
-
-.footerTooltip{
-	width:100%;
-	position:absolute;
-	top:95%;
-	color:#ffffff;
-	font-size:8px;
-	font-size:3vw;
-	font-family:'BrandonLight';
-	letter-spacing:0.075em;
-	line-height:1.711;
-	text-align:center;
-}
-
-.fontSmallBrandonMedium{
-	color:#ffffff;
-	font-size:2.5vw;
-	font-family:'BrandonMedium';
-	line-height:1.4;
-	letter-spacing:0.075em;
-}
-
-.footerRegister{
-	width:100%;
-	position:absolute;
-	top:95%;
-	text-align:center;
-	color:#ffffff;
-	font-size:8px;
-	font-family:'BrandonRegular';
-	line-height: 1.667;
-	letter-spacing:0.075em;
-}
-
-.buttonZonder{
-	height:50px;
-	width:80%;
-	border-radius: 4px;
-	border:0 none;
-	background-color:rgb(247, 159, 3);
-	color:rgb(252, 249, 240);
-	font-size:20px;
-	font-family:'BrandonBold';
-	letter-spacing:0.075em;
-	line-height: 1.026;
-}
-
-.fontBrandonBlack{
+  font-family:'BrandonLight';
+  font-size:16px;
+  font-size:5vw;
+  line-height:1.2;
   color:#ffffff;
-  font-size:10px;
-  font-family:'BrandonBlack';
-  line-height:1.265;
+}
+
+// text Skip the explanations tooltip
+.footerTooltip{
+  width:100%;
+  position:absolute;
+  top:95%;
+  color:#ffffff;
+  font-size:8px;
+  font-size:3vw;
+  font-family:'BrandonLight';
   letter-spacing:0.075em;
+  line-height:1.711;
+  text-align:center;
 }
 
+///////////////////// forgotPassword /////////////////////
+
+///////////////////// register /////////////////////
+
+// text already have an account
+.footerRegister {
+  position:absolute;
+  top:95%;
+  text-align:center;
+  width:100%;
+  line-height: 1.711;
+  font-size:8.184px;
+  font-family:'BrandonMedium';
+  color:#ffffff;
+}
+
+// text terms and conditions + hyperlien
+.termsAndConditions {
+  position:relative;
+  text-align:center;
+  width:100%;
+  line-height: 1.711;
+  font-size:8.184px;
+  font-family:'OpenSansRegular';
+  color:#ffffff;
+}
+.termsAndConditions a {
+  color:#ffffff;
+}
+
+////////////////////// home ////////////////////////
+
+// position de l'image de profil (sauf iphone 4 et 5)
+ #profilImg{
+  z-index:11;
+  position:absolute;
+  right:22px;
+  top:22px;
+  height:46px;
+  width:46px;
+  }
+
+
+///////////////////// animation /////////////////////
+
+// animation des triangles du haut, translation vers le haut
 .animateTriangles{
-	-webkit-transform: translateY(-16vh);
-	-webkit-transition: all 1s ease;
+  -webkit-transform: translateY(-16vh);
+  -webkit-transition: all 1s ease;
 }
 
+// animation de fade out 
 .fade-out{
-	opacity: 1;
-	-webkit-animation-delay: 1s;
-	-webkit-animation: fadeOut 1s forwards linear;
+  opacity: 1;
+  -webkit-animation-delay: 1s;
+  -webkit-animation: fadeOut 1s forwards linear;
 }
 
+// animation de fade in
 .fade-in{
-	opacity:0;
-	-webkit-animation:fadeIn 1s forwards linear;
+  opacity:0;
+  -webkit-animation:fadeIn 1s forwards linear;
 }
 
+//fade in tooltip (délai pour faire apparaitre le text après l'animation de fade out du logo)
 .fade-in.tooltip{
-	-webkit-animation-delay: 1.1s;
+  -webkit-animation-delay: 1.1s;
 }
 
+//effet de fade in 
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
+//effet de fade out
 @-webkit-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
 
+//animation de fade sur une image pour avoir le meme effet qu'un clique sur un bouton
 .imgClick:active{
   opacity: 1;
   -webkit-animation: fadeOut 0.6s linear;
 }
 
+// transition entre des modaux
+.slide-in-right {
+-webkit-transform: translate3d(100%, 0, 0);
+transform: translate3d(100%, 0, 0); }
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+-webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+-webkit-transform: translate3d(0, 0, 0);
+transform: translate3d(0, 0, 0); }
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+-webkit-transition: all ease-in-out 250ms;
+transition: all ease-in-out 250ms; }
+
+@-webkit-keyframes scaleOut {
+from {
+-webkit-transform: scale(1);
+opacity: 1; }
+
+to {
+-webkit-transform: scale(0.8);
+opacity: 0; } }
+
+@keyframes scaleOut {
+from {
+transform: scale(1);
+opacity: 1; }
+
+to {
+transform: scale(0.8);
+opacity: 0; } }
+
+@-webkit-keyframes superScaleIn {
+from {
+-webkit-transform: scale(1.2);
+opacity: 0; }
+
+to {
+-webkit-transform: scale(1);
+opacity: 1; } }
+
+@keyframes superScaleIn {
+from {
+transform: scale(1.2);
+opacity: 0; }
+
+to {
+transform: scale(1);
+opacity: 1; } }
+///////////////////// font /////////////////////
 
 @font-face {
   font-family: 'BrandonBoldIt';
@@ -358,117 +589,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype");
 }
 
-.splashscreenBackground {
-	background-image: url('../img/background.jpg');
-	background-size:cover;
-	background-position:center;
-}
 
-.registerBackground {
-  background-image: url('../img/background.jpg');
-  background-size:cover;
-  background-position:center;
-}
 
-.triangles{
-  position:relative;
-  top:0;
-  margin-top: -16vh;
-}
 
-.profilImg{
-  height:46px;
-  width:46px;
-  z-index:11;
-  position:absolute;
-  right:22px;
-  top:22px;
-  }
 
-@media screen and (device-aspect-ratio: 40/71) {
-  .profilImg{
-  height:46px;
-  width:46px;
-  z-index:11;
-  position:absolute;
-  right:13px;
-  top:22px;
-  }
-}
-
-@media screen and (device-aspect-ratio: 2/3) {
-  .splashscreenBackground{
-  background-image: url('../img/backgroundIphone4.jpg');
-  background-size:cover;
-  background-position:center;
-  }
-  .triangles{
-  position:relative;
-  top:0;
-  margin-top: -19vh;
-  }
-  .animateTriangles{
-  -webkit-transform: translateY(-19vh);
-  -webkit-transition: all 1s ease;
-  }
-  .profilImg{
-  height:46px;
-  width:46px;
-  z-index:11;
-  position:absolute;
-  right:13px;
-  top:22px;
-  }
-}
-
-.slide-in-right {
--webkit-transform: translate3d(100%, 0, 0);
-transform: translate3d(100%, 0, 0); }
-
-.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
--webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
-
-.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
--webkit-transform: translate3d(0, 0, 0);
-transform: translate3d(0, 0, 0); }
-
-.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
--webkit-transition: all ease-in-out 250ms;
-transition: all ease-in-out 250ms; }
-
-@-webkit-keyframes scaleOut {
-from {
--webkit-transform: scale(1);
-opacity: 1; }
-
-to {
--webkit-transform: scale(0.8);
-opacity: 0; } }
-
-@keyframes scaleOut {
-from {
-transform: scale(1);
-opacity: 1; }
-
-to {
-transform: scale(0.8);
-opacity: 0; } }
-
-@-webkit-keyframes superScaleIn {
-from {
--webkit-transform: scale(1.2);
-opacity: 0; }
-
-to {
--webkit-transform: scale(1);
-opacity: 1; } }
-
-@keyframes superScaleIn {
-from {
-transform: scale(1.2);
-opacity: 0; }
-
-to {
-transform: scale(1);
-opacity: 1; } }
