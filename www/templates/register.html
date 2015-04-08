@@ -7,34 +7,38 @@
 <ion-slide>
 
 <form name="registerFirstStepForm" novalidate>
-
 	<div style="position:absolute;top:27%;width:100%">
+
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img src="img/mail.png" style="width:22px;">
+				<img ng-if="mailIsValid" src="img/mail.png" style="width:22px;">
+				<img ng-if="!mailIsValid" src="img/mailRed.png" style="width:22px;">
 			</div>
-			<input name="email" type="email" ng-model="userData.mail" placeholder="email address" ng-maxlength="50" required>
+			<input name="email" type="email" ng-model="userData.email" ng-class="{colorError: !mailIsValid}" placeholder="email address" ng-maxlength="50" ng-change="checkEmail()" required>
 		</label>
 
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img src="img/lock.png" style="width:17px;height:22px;">
+				<img ng-if="identicPasswords" src="img/lock.png" style="width:17px;height:22px;">
+				<img ng-if="!identicPasswords" src="img/lockerRed.png" style="width:17px;height:22px;">
 			</div>
-			<input name="password" type="password" ng-model="userData.password"  placeholder="password" ng-minlength="6" ng-pattern="/^[A-z][A-z0-9]*$/" ng-maxlength="20" required>
+			<input name="password" type="password" ng-model="userData.password"  placeholder="password" ng-minlength="6" ng-pattern="/^[A-z][A-z0-9]*$/" ng-maxlength="20" ng-class="{colorError: !identicPasswords}" required>
 		</label>
 
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img src="img/lock.png" style="width:17px;height:22px;">
+				<img ng-if="identicPasswords" src="img/lock.png" style="width:17px;height:22px;">
+				<img ng-if="!identicPasswords" src="img/lockerRed.png" style="width:17px;height:22px;">
 			</div>
-			<input name="confirmpassword" type="password" ng-minlength="6" ng-pattern="/^[A-z][A-z0-9]*$/" ng-model="userData.confirmPassword" placeholder="confirm password" ng-maxlength="20" required>
+			<input name="confirmpassword" type="password" ng-minlength="6" ng-pattern="/^[A-z][A-z0-9]*$/" ng-model="userData.confirmPassword" placeholder="confirm password" ng-maxlength="20" ng-class="{colorError: !identicPasswords}"  required>
 		</label>
 
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img src="img/username.png" style="width:23px">
+				<img ng-if="pseudoIsValid" src="img/username.png" style="width:23px">
+				<img ng-if="!pseudoIsValid" src="img/usernameRed.png" style="width:23px">
 			</div>
-			<input name="username" type="text" ng-model="userData.username" maxlength="15" minlength="4" ng-pattern="/^[A-z][A-z0-9]*$/" placeholder="username" required>
+			<input name="pseudo" type="text" ng-model="userData.pseudo" maxlength="15" minlength="4" ng-pattern="/^[A-z][A-z0-9]*$/" placeholder="pseudo" ng-class="{colorError: !pseudoIsValid}" ng-change="checkPseudo()" required>
 		</label>
 
 	</div>
@@ -47,22 +51,24 @@
 
 	<div style="position:absolute;top:27%;width:100%">
 
-		<label class="item labelZonder">
+		<label class="item labelZonder" ng-click="showActionSheetPhotoSource()">
 			<div class="centeredContent">
-				<img src="img/camera.png" style="width:25px;">
+				<img ng-if="!photoHaschanged" src={{userData.photo}} style="width:25px;">
+				<img ng-if="photoHaschanged" src={{userData.photo}} style="width:25px;height:25px;border-radius:100%;">
 			</div>
 			<label>choose a profile picture </label>
 		</label>
 
 		<label class="item labelZonder">
 			<div class="centeredContent">
-				<img src="img/gender.png" style="width:25px;">
+				<img ng-if="genderIsValid" src="img/gender.png" style="width:25px;">
+				<img ng-if="!genderIsValid" src="img/genderRed.png" style="width:25px;">
 			</div>
 			<label>are you a </label>
-			<ion-checkbox class="checkBoxZonderMale" ng-model="userData.isMale"></ion-checkbox>
-			<div class="divCheckBoxZonderMale">male</div>
-			<ion-checkbox class="checkBoxZonderFemale" ng-model="userData.isFemale"></ion-checkbox>
-			<div class="divCheckBoxZonderFemale">female</div>
+			<ion-checkbox class="checkBoxZonderMale" ng-model="userData.isMale" ng-click="checkMale()"></ion-checkbox>
+			<label class="divCheckBoxZonderMale">male</label>
+			<ion-checkbox class="checkBoxZonderFemale" ng-model="userData.isFemale" ng-click="checkFemale()"></ion-checkbox>
+			<label class="divCheckBoxZonderFemale">female</label>
 		</label>
 	</div>
 </form>
@@ -82,7 +88,7 @@
 	<button class="button buttonZonder" ng-show="!displayNextButton" ng-click="previousStepRegister()" style="position:absolute;left:50%;margin-left:-40%;">
 		REGISTER NOW
 	</button>
-
+	
 </div>
 
 <p ng-click="login()" class="footerZonder">

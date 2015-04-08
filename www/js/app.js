@@ -23,6 +23,8 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
+    $rootScope.destinationType = Camera.DestinationType.DATA_URL;
   });
 });
 

@@ -66,15 +66,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .labelZonder label{
   position:relative;
   left:60px;
-  line-height: 1.313;
-  font-size:19px;
+  line-height: 1.52;
+  font-size:5.3vw;
   font-family:'OpenSansRegular';
 }
 
-.labelZonder input{
+.labelZonder input {
   position: relative;
   line-height: 1.313;
-  font-size: 19px;
+  font-size:5.3vw;
   font-family: 'OpenSansRegular';
   left: 60px;
   color: #adafbc;
@@ -108,31 +108,24 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .checkBoxZonderMale {
   border: none !important;
   position:absolute !important;
-  top:0 !important;
-  left:160px !important;
+  top:1px !important;
+  left:140px !important;
   width:40px !important;
   height:100% !important;
   background-color:rgba(0,0,0,0) !important;
   padding:0 !important;
+  font-size:2px !important;
 }
 
 .divCheckBoxZonderMale {
-  position:absolute;
-  top:0;
-  left:182px;
-  width:40px;
-  text-align:center;
-  line-height:54px;
-  font-size:19px;
-  font-family:'OpenSansRegular';
-  color:#adafbc;
+  margin-left:31px;
 }
 
 .checkBoxZonderFemale {
   border: none !important;
   position:absolute !important;
-  top:0 !important;
-  left:235px !important;
+  top:1px !important;
+  left:220px !important;
   width:40px !important;
   height:100% !important;
   background-color:rgba(0,0,0,0) !important;
@@ -140,15 +133,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 .divCheckBoxZonderFemale {
-  position:absolute;
-  top:0;
-  left:265px;
-  width:50px;
-  text-align:center;
-  line-height:54px;
-  font-size:19px;
-  font-family:'OpenSansRegular';
-  color:#adafbc;
+  margin-left:27px;
 }
 
 .titleTooltip{

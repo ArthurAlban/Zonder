@@ -5863,7 +5863,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 .checkbox {
   position: relative;
   display: inline-block;
-  padding: 4px 4px;
+  padding: 4.5px 4.5px;
   cursor: pointer; }
   .checkbox input:before, .checkbox .checkbox-icon:before {
     border-color: #ddd; }
@@ -5936,8 +5936,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 
 .checkbox input, .checkbox-icon {
   position: relative;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   display: block;
   border: 0;
   background: transparent;
@@ -5949,7 +5949,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     height: 100%;
     border-width: 1px;
     border-style: solid;
-    border-radius: 16px;
+    border-radius: 18px;
     background: #e5e7ea;
     content: ' ';
     -webkit-transition: background-color 20ms ease-in-out;
@@ -5967,8 +5967,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   top: 33%;
   left: 25%;
   display: table;
-  width: 8px;
-  height: 3px;
+  width: 9px;
+  height: 3.5px;
   border: 1px solid #fff;
   border-top: 0;
   border-right: 0;
@@ -5987,7 +5987,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   border-width: 2px;
   top: 19%;
   left: 25%;
-  width: 7px;
+  width: 8px;
   height: 7px; }
 
 .grade-c .checkbox input:after, .grade-c .checkbox-icon:after {
@@ -6005,7 +6005,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   opacity: 1; }
 
 .item-checkbox {
-  padding-left: 48px; }
+  padding-left: 50px; }
   .item-checkbox.active {
     box-shadow: none; }
 
@@ -6015,10 +6015,10 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   right: 8px;
   left: 8px;
   z-index: 3;
-  margin-top: -12px; }
+  margin-top: -13.5px; }
 
 .item-checkbox.item-checkbox-right {
-  padding-right: 48px;
+  padding-right: 50px;
   padding-left: 16px; }
 
 .item-checkbox-right .checkbox input, .item-checkbox-right .checkbox-icon {
@@ -7646,14 +7646,14 @@ a.button {
 .labelZonder label {
   position: relative;
   left: 60px;
-  line-height: 1.313;
-  font-size: 19px;
+  line-height: 1.52;
+  font-size: 5.3vw;
   font-family: 'OpenSansRegular'; }
 
 .labelZonder input {
   position: relative;
   line-height: 1.313;
-  font-size: 19px;
+  font-size: 5.3vw;
   font-family: 'OpenSansRegular';
   left: 60px;
   color: #adafbc; }
@@ -7683,44 +7683,29 @@ a.button {
 .checkBoxZonderMale {
   border: none !important;
   position: absolute !important;
-  top: 0 !important;
-  left: 160px !important;
+  top: 1px !important;
+  left: 140px !important;
   width: 40px !important;
   height: 100% !important;
   background-color: transparent !important;
-  padding: 0 !important; }
+  padding: 0 !important;
+  font-size: 2px !important; }
 
 .divCheckBoxZonderMale {
-  position: absolute;
-  top: 0;
-  left: 182px;
-  width: 40px;
-  text-align: center;
-  line-height: 54px;
-  font-size: 19px;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
+  margin-left: 31px; }
 
 .checkBoxZonderFemale {
   border: none !important;
   position: absolute !important;
-  top: 0 !important;
-  left: 235px !important;
+  top: 1px !important;
+  left: 220px !important;
   width: 40px !important;
   height: 100% !important;
   background-color: transparent !important;
   padding: 0 !important; }
 
 .divCheckBoxZonderFemale {
-  position: absolute;
-  top: 0;
-  left: 265px;
-  width: 50px;
-  text-align: center;
-  line-height: 54px;
-  font-size: 19px;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
+  margin-left: 27px; }
 
 .titleTooltip {
   width: 100%;
