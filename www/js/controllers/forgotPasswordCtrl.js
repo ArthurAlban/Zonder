@@ -3,43 +3,35 @@ zonder.controller('forgotPasswordCtrl', function($scope, $state, UserService, $w
 $scope.data = {};
 $scope.displayMailerror = false;
 
-// $scope.loadingForgotPasswordBlur = false;
-// $scope.loadingForgotPassword = false;
-
 $scope.setDisplayMailErrorFalse = function(){
+	console.log("hiha31");
   $scope.displayMailerror = false;
 };
 
-$scope.login = function() {
+$scope.toLogin = function() {
     $state.go("animatedSplashscreen");
   };
 
 $scope.sendNewPassword = function(mail){
-  // $scope.loadingForgotPassword = true;
-  // $scope.loadingForgotPasswordBlur = true;
+  console.log("hiha1");
   UserService.checkEmail(mail).then(function(data){
     if(data.result == "notFound")  {
+    	console.log("hiha2");
       $scope.displayMailerror = true;
-      // $scope.loadingForgotPassword = false;
-      // $scope.loadingForgotPasswordBlur = false;
     }
     if(data.result == "found"){ 
+    	console.log("hiha3");
     	UserService.resetPassword(mail).then(function(data){
-      // $scope.loadingForgotPassword = false;
-      $window.setTimeout(function() { 
-        // $scope.loadingForgotPasswordBlur = false;
+    	console.log("hiha4");
         $scope.toLogin();
-      }, 1000);
     }, function(msg){
+      $scope.displayMailerror = true;
       console.log("msg " + msg);
-      // $scope.loadingForgotPassword = false;
-      // $scope.loadingForgotPasswordBlur = false;
     });
   }
 },function(status) {
+  $scope.displayMailerror = true;
   console.log("impossible de vérifier l'email");
-  // $scope.loadingForgotPassword = false;
-  // $scope.loadingForgotPasswordBlur = false;
 });
 };
 

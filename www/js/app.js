@@ -37,14 +37,14 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     url: "/animatedSplashscreen",
     templateUrl: "templates/animatedSplashscreen.html"
   })
+  .state('home', {
+    url: "/home",
+    templateUrl: "templates/home.html"
+  })
   .state('register', {
     url: "/register",
     templateUrl: "templates/register.html"
-  })
-  .state('forgotPassword', {
-    url: "/forgotPassword",
-    templateUrl: "templates/forgotPassword.html"
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/animatedSplashscreen');
+  $urlRouterProvider.otherwise('/home');
 });

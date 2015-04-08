@@ -1,4 +1,4 @@
-zonder.controller('animatedSplashscreenCtrl', function($window,$scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService) {
+zonder.controller('animatedSplashscreenCtrl', function($window,$scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal) {
 	$scope.animateTriangles = false;
 	$ionicPlatform.ready(function() {
 		$scope.animateTriangles = true;
@@ -14,9 +14,9 @@ zonder.controller('animatedSplashscreenCtrl', function($window,$scope, $rootScop
     $state.go("register");
   };
 
-   $scope.toforgotPassword = function() {
-    $state.go("forgotPassword");
-  };
+  //  $scope.toforgotPassword = function() {
+  //   $state.go("forgotPassword");
+  // };
 
   // Called each time the slide changes
   $scope.slideChanged = function(index) {
@@ -99,7 +99,72 @@ $scope.isUnchanged = function (user){
 
 $scope.toAnswer = function(){
   console.log("log");
-  // $state.go('home');
+  $state.go('home');
+};
+
+///////////// forgot pass /////////////////
+$ionicModal.fromTemplateUrl('modals/forgotPassword.html', {
+  scope: $scope,
+  animation: 'slide-in-right'
+}).then(function(modal) {
+  $scope.forgotPassword = modal;
+});
+
+$scope.openForgotPasswordModal = function() {
+  $scope.forgotPassword.show();
+};
+
+$scope.closeForgotPasswordModal = function() {
+  $scope.forgotPassword.hide();
+  $scope.clearForgotPasswordModal();
+};
+
+$scope.$on('$destroy', function() {
+  $scope.forgotPassword.remove();
+});
+
+$scope.$on('modal.hidden', function() {
+});
+
+$scope.$on('modal.removed', function() {
+});
+
+$scope.clearForgotPasswordModal = function(){
+  $scope.data.mail = "";
+  $scope.displayMailerror = false;
+};
+
+$scope.data = new Array();
+$scope.data.mail = "";
+
+$scope.displayMailerror = false;
+
+$scope.setDisplayMailErrorFalse = function(){
+  console.log("hiha31");
+  $scope.displayMailerror = false;
+};
+
+$scope.sendNewPassword = function(mail){
+  console.log("hiha1");
+  UserService.checkEmail(mail).then(function(data){
+    if(data.result == "notFound")  {
+      console.log("hiha2");
+      $scope.displayMailerror = true;
+    }
+    if(data.result == "found"){ 
+      console.log("hiha3");
+      UserService.resetPassword(mail).then(function(data){
+      console.log("hiha4");
+        $scope.closeForgotPasswordModal();
+    }, function(msg){
+      $scope.displayMailerror = true;
+      console.log("msg " + msg);
+    });
+  }
+},function(status) {
+  $scope.displayMailerror = true;
+  console.log("impossible de vérifier l'email");
+});
 };
 
 });

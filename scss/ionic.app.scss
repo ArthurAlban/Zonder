@@ -210,8 +210,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	line-height: 1.026;
 }
 
+.fontBrandonBlack{
+  color:#ffffff;
+  font-size:10px;
+  font-family:'BrandonBlack';
+  line-height:1.265;
+  letter-spacing:0.075em;
+}
+
 .animateTriangles{
-	-webkit-transform: translateY(-17vh);
+	-webkit-transform: translateY(-16vh);
 	-webkit-transition: all 1s ease;
 }
 
@@ -356,16 +364,111 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	background-position:center;
 }
 
-.registerTriangles{
+.registerBackground {
+  background-image: url('../img/background.jpg');
+  background-size:cover;
+  background-position:center;
+}
+
+.triangles{
   position:relative;
   top:0;
-  margin-top: -17vh;
+  margin-top: -16vh;
+}
+
+.profilImg{
+  height:46px;
+  width:46px;
+  z-index:11;
+  position:absolute;
+  right:22px;
+  top:22px;
+  }
+
+@media screen and (device-aspect-ratio: 40/71) {
+  .profilImg{
+  height:46px;
+  width:46px;
+  z-index:11;
+  position:absolute;
+  right:13px;
+  top:22px;
+  }
 }
 
 @media screen and (device-aspect-ratio: 2/3) {
   .splashscreenBackground{
-  	background-image: url('../img/backgroundIphone4.jpg');
-   background-size:cover;
-   background-position:center;
- }
+  background-image: url('../img/backgroundIphone4.jpg');
+  background-size:cover;
+  background-position:center;
+  }
+  .triangles{
+  position:relative;
+  top:0;
+  margin-top: -19vh;
+  }
+  .animateTriangles{
+  -webkit-transform: translateY(-19vh);
+  -webkit-transition: all 1s ease;
+  }
+  .profilImg{
+  height:46px;
+  width:46px;
+  z-index:11;
+  position:absolute;
+  right:13px;
+  top:22px;
+  }
 }
+
+.slide-in-right {
+-webkit-transform: translate3d(100%, 0, 0);
+transform: translate3d(100%, 0, 0); }
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+-webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+-webkit-transform: translate3d(0, 0, 0);
+transform: translate3d(0, 0, 0); }
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+-webkit-transition: all ease-in-out 250ms;
+transition: all ease-in-out 250ms; }
+
+@-webkit-keyframes scaleOut {
+from {
+-webkit-transform: scale(1);
+opacity: 1; }
+
+to {
+-webkit-transform: scale(0.8);
+opacity: 0; } }
+
+@keyframes scaleOut {
+from {
+transform: scale(1);
+opacity: 1; }
+
+to {
+transform: scale(0.8);
+opacity: 0; } }
+
+@-webkit-keyframes superScaleIn {
+from {
+-webkit-transform: scale(1.2);
+opacity: 0; }
+
+to {
+-webkit-transform: scale(1);
+opacity: 1; } }
+
+@keyframes superScaleIn {
+from {
+transform: scale(1.2);
+opacity: 0; }
+
+to {
+transform: scale(1);
+opacity: 1; } }

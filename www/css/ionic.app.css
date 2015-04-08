@@ -6084,8 +6084,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   transition-property: background-color, border;
   display: inline-block;
   box-sizing: border-box;
-  width: 51px;
-  height: 31px;
+  width: 36px;
+  height: 21px;
   border: solid 2px #e6e6e6;
   border-radius: 20px;
   background-color: #fff;
@@ -6107,9 +6107,9 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   transition-property: background-color, transform;
   position: absolute;
   display: block;
-  width: 27px;
-  height: 27px;
-  border-radius: 27px;
+  width: 17px;
+  height: 17px;
+  border-radius: 17px;
   background-color: #fff;
   top: 7px;
   left: 7px;
@@ -6117,20 +6117,20 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   .toggle .handle:before {
     position: absolute;
     top: -4px;
-    left: -21.5px;
-    padding: 18.5px 34px;
+    left: -16.5px;
+    padding: 13.5px 24px;
     content: " "; }
 
 .toggle input:checked + .track .handle {
-  -webkit-transform: translate3d(20px, 0, 0);
-  transform: translate3d(20px, 0, 0);
+  -webkit-transform: translate3d(15px, 0, 0);
+  transform: translate3d(15px, 0, 0);
   background-color: #fff; }
 
 .item-toggle.active {
   box-shadow: none; }
 
 .item-toggle, .item-toggle.item-complex .item-content {
-  padding-right: 99px; }
+  padding-right: 84px; }
 
 .item-toggle.item-complex {
   padding-right: 0; }
@@ -7775,8 +7775,15 @@ a.button {
   letter-spacing: 0.075em;
   line-height: 1.026; }
 
+.fontBrandonBlack {
+  color: #ffffff;
+  font-size: 10px;
+  font-family: 'BrandonBlack';
+  line-height: 1.265;
+  letter-spacing: 0.075em; }
+
 .animateTriangles {
-  -webkit-transform: translateY(-17vh);
+  -webkit-transform: translateY(-16vh);
   -webkit-transition: all 1s ease; }
 
 .fade-out {
@@ -7902,13 +7909,101 @@ a.button {
   background-size: cover;
   background-position: center; }
 
-.registerTriangles {
+.registerBackground {
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+  background-position: center; }
+
+.triangles {
   position: relative;
   top: 0;
-  margin-top: -17vh; }
+  margin-top: -16vh; }
+
+.profilImg {
+  height: 46px;
+  width: 46px;
+  z-index: 11;
+  position: absolute;
+  right: 22px;
+  top: 22px; }
+
+@media screen and (device-aspect-ratio: 40/71) {
+  .profilImg {
+    height: 46px;
+    width: 46px;
+    z-index: 11;
+    position: absolute;
+    right: 13px;
+    top: 22px; } }
 
 @media screen and (device-aspect-ratio: 2/3) {
   .splashscreenBackground {
     background-image: url('../img/backgroundIphone4.jpg');
     background-size: cover;
-    background-position: center; } }
+    background-position: center; }
+  .triangles {
+    position: relative;
+    top: 0;
+    margin-top: -19vh; }
+  .animateTriangles {
+    -webkit-transform: translateY(-19vh);
+    -webkit-transition: all 1s ease; }
+  .profilImg {
+    height: 46px;
+    width: 46px;
+    z-index: 11;
+    position: absolute;
+    right: 13px;
+    top: 22px; } }
+
+.slide-in-right {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0); }
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms; }
+
+@-webkit-keyframes scaleOut {
+  from {
+    -webkit-transform: scale(1);
+    opacity: 1; }
+
+  to {
+    -webkit-transform: scale(0.8);
+    opacity: 0; } }
+
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+    opacity: 1; }
+
+  to {
+    transform: scale(0.8);
+    opacity: 0; } }
+
+@-webkit-keyframes superScaleIn {
+  from {
+    -webkit-transform: scale(1.2);
+    opacity: 0; }
+
+  to {
+    -webkit-transform: scale(1);
+    opacity: 1; } }
+
+@keyframes superScaleIn {
+  from {
+    transform: scale(1.2);
+    opacity: 0; }
+
+  to {
+    transform: scale(1);
+    opacity: 1; } }
