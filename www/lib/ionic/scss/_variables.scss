@@ -11,6 +11,8 @@ $energized:                       #ffc900 !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
+$orangeZonder:					  #f79f03 !default;
+$grisZonder: 					  #e5e7ea !default;
 
 
 // Base
@@ -491,12 +493,12 @@ $toggle-hit-area-expansion:   5px;
 // Checkbox
 // -------------------------------
 
-$checkbox-width:                  28px !default;
-$checkbox-height:                 28px !default;
+$checkbox-width:                  16px !default;
+$checkbox-height:                 16px !default;
 $checkbox-border-radius:          $checkbox-width !default;
 $checkbox-border-width:           1px !default;
 
-$checkbox-off-bg-color:           #fff !default;
+$checkbox-off-bg-color:           $grisZonder !default;
 $checkbox-off-border-light:       $button-light-border !default;
 $checkbox-on-bg-light:            $button-light-border !default;
 $checkbox-off-border-stable:      $button-stable-border !default;
@@ -516,8 +518,8 @@ $checkbox-on-bg-royal:            $royal !default;
 $checkbox-off-border-dark:        $dark !default;
 $checkbox-on-bg-dark:             $dark !default;
 $checkbox-off-border-default:     $button-light-border !default;
-$checkbox-on-bg-default:          $positive !default;
-$checkbox-on-border-default:      $positive !default;
+$checkbox-on-bg-default:          $orangeZonder !default;
+$checkbox-on-border-default:      $orangeZonder !default;
 
 $checkbox-check-width:            1px !default;
 $checkbox-check-color:            #fff !default;
