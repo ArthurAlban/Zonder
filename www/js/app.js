@@ -23,6 +23,8 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
+    $rootScope.destinationType = Camera.DestinationType.DATA_URL;
   });
 });
 
@@ -44,5 +46,5 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     templateUrl: "templates/register.html"
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/animatedSplashscreen');
 });

@@ -1,62 +1,62 @@
-<ion-view hide-nav-bar="true" ng-controller="animatedSplashscreenCtrl" class="splashscreenBackground">
-<img src="img/splashTriangles.png" style="z-index:10;width:100%;" ng-class="{animateTriangles: animateTriangles}">
+<ion-view hide-nav-bar="true" ng-controller="animatedSplashscreenCtrl" class="background">
+<img src="img/splashTriangles.png" id="posTriangleTop" ng-class="{animateTriangles: animateTriangles}">
 
-<img src="img/logoBandeau.png" class="fade-out" style="position:absolute;top:43.5%;left:0;width:100%;z-index:10;">
+<img src="img/logoBandeau.png" class="fade-out" id="logoBandeau">
 
-<ion-slide-box class="fade-in tooltip" on-slide-changed="slideChanged(index)" show-pager="true" style="position:absolute;top:0;width:100%;height:100%;z-index:15;">
+<ion-slide-box class="fade-in tooltip" on-slide-changed="slideChanged(index)" show-pager="true" id="slideBoxTooltip">
 
 <ion-slide>
 
-<p class="titleTooltip">ASK ALL OF YOUR FRIENDS TO HELP YOU MAKE A BETTER CHOICE</p>
+<p class="titleTooltip posTitleTooltip">ASK ALL OF YOUR FRIENDS TO HELP YOU MAKE A BETTER CHOICE</p>
 
-<p class="subtitleTooltip">Sensitive question ? Secret gift ? Movie plans ? Add your friends and send them private polls and questions</p>
+<p class="posSubtitleTooltip subtitleTooltip">Sensitive question ? Secret gift ? Movie plans ? Add your friends and send them private polls and questions</p>
 
 <p ng-click="toLogin()" class="footerTooltip">Skip the explanations</p>
 
 </ion-slide>
 
 <ion-slide>
-<p class="titleTooltip">VOTE AND WATCH REAL TIME STATS ABOUT YOUR ZONDER</p>
+<p class="titleTooltip posTitleTooltip">VOTE AND WATCH REAL TIME STATS ABOUT YOUR ZONDER</p>
 
 
-<p class="subtitleTooltip">Watch the world vote for your versus in real time and get direct answers to your questions</p>
+<p class="posSubtitleTooltip subtitleTooltip">Watch the world vote for your versus in real time and get direct answers to your questions</p>
 
 </ion-slide> 
 
 <ion-slide>
-<p class="titleTooltip">CREATE YOUR OWN ZONDER QUESTION OR POLL</p>
+<p class="titleTooltip posTitleTooltip">CREATE YOUR OWN ZONDER QUESTION OR POLL</p>
 
-<p class="subtitleTooltip">Ask your question, add your choices, set an expiration date and privacy. Wondering has never been simplier</p>
+<p class="posSubtitleTooltip subtitleTooltip">Ask your question, add your choices, set an expiration date and privacy. Wondering has never been simplier</p>
 
 </ion-slide>
 
 <ion-slide>
 
-  <form name="loginForm" ng-submit="validLogin()" style="height:100%" novalidate>
-    <div style="position:absolute;width:100%;left:1px;top:27.6%;">
+  <form name="loginForm" class="fullHeight" ng-submit="validLogin()" novalidate>
+    <div id="divFormLogin">
       <label class="item labelZonder">
         <div class="centeredContent" ng-switch on="displayMailError">
-         <img ng-switch-when="false" src="img/mail.png" style="width:22px">
-         <img ng-switch-when="true" src="img/mailRed.png" style="width:22px">
+         <img ng-switch-when="false" src="img/mail.png" width="22">
+         <img ng-switch-when="true" src="img/mailRed.png" width="22">
         </div>
          <input name="mail" type="email" ng-model="user.mail" placeholder="email address" required>
       </label>
       <label class="item labelZonder">
         <div class="centeredContent" ng-switch on="displayMailError">
-         <img ng-switch-when="false" src="img/lock.png" style="width:17px;height:22px;">
-         <img ng-switch-when="true" src="img/lockerRed.png" style="width:17px;height:22px;">
+         <img ng-switch-when="false" src="img/lock.png" width="17" height="22">
+         <img ng-switch-when="true" src="img/lockerRed.png" width="17" height="22">
         </div>
          <input name="password" type="password" ng-model="user.pass" placeholder="password" required>
       </label>
   </div>
 
-<div style="position:relative;top:76.5%;margin: 0 auto;width:80%;">
-<div class="row" style="position:relative;padding:0;margin:0;height:20px;width:100%;">
-    <a class="col fontSmallBrandonMedium" style="margin-right:2px;text-align:right;" ng-click="openForgotPasswordModal()"><b>PASSWORD ?</b></a>
-    <div style="height:50%;margin-top:6px;border-left:1px solid #FFFFFF;"></div>
-    <a class="col fontSmallBrandonMedium" style="margin-left:2px;text-align:left;" ng-click="toRegister()"><b>REGISTER NOW</b></a>
+<div id="divTextAndButton">
+<div class="row" id="rowText">
+    <a class="col fontSmallBrandonMedium" id="textLeftInRow" ng-click="openForgotPasswordModal()"><b>PASSWORD ?</b></a>
+    <div id="divSeparateurRow"></div>
+    <a class="col fontSmallBrandonMedium" id="textRightInRow" ng-click="toRegister()"><b>REGISTER NOW</b></a>
   </div>
-<button class="button buttonZonder" type="submit" style="margin-top:4px;width:100%">
+<button class="button buttonZonder" type="submit" id="buttonSignIn">
   SIGN IN
 </button>
 </div>
@@ -64,9 +64,5 @@
 </ion-slide>  
 
 </ion-slide-box>
-
-<!-- <div class="bar bar-footer bar-light fade-in tooltip" style="height:50px;padding:0;background-color: rgba(0,0,0,0);border: 0 none;border-top:1px solid #e8eaf1;">
-  <button class="button button-full" style="font-size:14px; line-height: 1.5;font-family:'BrandonBold';margin:0;color:#ffffff;background-color: rgba(0,0,0,0);border: 0 none;"><b>NEXT STEP</b></button>
-</div> -->
 
 </ion-view>

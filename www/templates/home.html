@@ -2,21 +2,55 @@
 
 <ion-side-menu width="225" style="background-image:url('img/background.jpg');background-size:cover;" side="left">
 
-<ion-content>
-<!-- <button style="position:relative;margin-top:70px;width:100%;" ng-click="openProfilModal()" class="button button-clear">
-	<span style="font-size:22px;position:absolute;left:70px;">Profil</span>
-	<i class="icon ion-person energized" style="position:absolute;left:30px;margin-top:1px"></i>
-  <i class="icon ion-ios7-arrow-right energized" style="position:absolute;right:8px;margin-top:2px"></i>
-</button> -->
+<img style="position:absolute;top:32px;width:50px;" src="img/close.png">
+<p style="position:absolute;">MENU</p>
+<div style="border: 1px solid red;position: absolute;top:65px;width:100%;">
+	<div style="position:relative;height:50px;">
+		<img src="img/username.png" style="width:20px;">
+		<label> Text </label>
+		<i class="icon ion-chevron-right"></i>
+	</div>
+	<div style="position:relative;top:20px;height:50px;">
+		<img src="img/username.png" style="width:20px;">
+		<label> Text </label>
+		<i class="icon ion-chevron-right"></i>
+	</div>
+	<div style="position:relative;top:20px;height:50px;">
+		<img src="img/username.png" style="width:20px;">
+		<label> Text </label>
+		<i class="icon ion-chevron-right"></i>
+	</div>
+</div>
+<div style="position:absolute;bottom:0px;border: 1px solid blue;width:100%;">
+	<div style="border:1px solid purple;position:relative;height:40px;" >
+		<label>Text</label>
+		<label class="toggle toggle-assertive">
+			<input type="checkbox">
+			<div class="track">
+				<div class="handle"></div>
+			</div>
+		</label>
+	</div>
+	<div style="border:1px solid black;position:relative;height:40px;top:30px;">
+		<label> Text</label>
+		<label class="toggle toggle-assertive">
+			<input type="checkbox">
+			<div class="track">
+				<div class="handle"></div>
+			</div>
+		</label>
+	</div>
+	<img style="position:relative;height:30px;width:30px;top:60px;border:1px solid green;" src="img/close.png">
+</div>
 
-</ion-content>
+
 </ion-side-menu>
 
 
-<ion-side-menu-content ng-controller="homeCtrl" class="splashscreenBackground">
-<img src="img/splashTriangles.png" style="position:absolute;z-index:10;width:100%;" class="triangles">
+<ion-side-menu-content ng-controller="homeCtrl" class="background">
+<img src="img/splashTriangles.png" id="triangles">
  <img src="img/menu.png" menu-toggle="left" class="imgClick" style="width:20px;z-index:11;position:absolute;left:5vw;top:32px;">
-  <img src="img/profilTest.png" class="imgClick profilImg">
+  <img src="img/profilTest.png" id="profilImg" class="imgClick">
   <label class="fontBrandonBlack" style="z-index:11;text-transform:uppercase;position:absolute;right:20vw;top:40px;">Manuel</label>
 <div class="row" style="position:relative;padding:0;margin:0;top:90px;height:50px;">
     <a class="col button button-clear" style="border:1px solid red;font-size:16px;color:#ffffff;"><b>Vote</b></a>
@@ -24,7 +58,6 @@
     <a class="col button button-clear" style="border:1px solid yellow;font-size:16px;color:#ffffff;"><b>Friends</b></a>
 </div>
 <!-- <div  style="width:100%;height:10px;background-color:#fcdd86"></div> -->
- 
 
 <!-- <ion-slide-box show-pager="false"> -->
 

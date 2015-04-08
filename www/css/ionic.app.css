@@ -5863,7 +5863,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 .checkbox {
   position: relative;
   display: inline-block;
-  padding: 4px 4px;
+  padding: 4.5px 4.5px;
   cursor: pointer; }
   .checkbox input:before, .checkbox .checkbox-icon:before {
     border-color: #ddd; }
@@ -5936,8 +5936,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 
 .checkbox input, .checkbox-icon {
   position: relative;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   display: block;
   border: 0;
   background: transparent;
@@ -5949,7 +5949,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     height: 100%;
     border-width: 1px;
     border-style: solid;
-    border-radius: 16px;
+    border-radius: 18px;
     background: #e5e7ea;
     content: ' ';
     -webkit-transition: background-color 20ms ease-in-out;
@@ -5967,8 +5967,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   top: 33%;
   left: 25%;
   display: table;
-  width: 8px;
-  height: 3px;
+  width: 9px;
+  height: 3.5px;
   border: 1px solid #fff;
   border-top: 0;
   border-right: 0;
@@ -5987,7 +5987,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   border-width: 2px;
   top: 19%;
   left: 25%;
-  width: 7px;
+  width: 8px;
   height: 7px; }
 
 .grade-c .checkbox input:after, .grade-c .checkbox-icon:after {
@@ -6005,7 +6005,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   opacity: 1; }
 
 .item-checkbox {
-  padding-left: 48px; }
+  padding-left: 50px; }
   .item-checkbox.active {
     box-shadow: none; }
 
@@ -6015,10 +6015,10 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   right: 8px;
   left: 8px;
   z-index: 3;
-  margin-top: -12px; }
+  margin-top: -13.5px; }
 
 .item-checkbox.item-checkbox-right {
-  padding-right: 48px;
+  padding-right: 50px;
   padding-left: 16px; }
 
 .item-checkbox-right .checkbox input, .item-checkbox-right .checkbox-icon {
@@ -6084,8 +6084,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   transition-property: background-color, border;
   display: inline-block;
   box-sizing: border-box;
-  width: 51px;
-  height: 31px;
+  width: 36px;
+  height: 21px;
   border: solid 2px #e6e6e6;
   border-radius: 20px;
   background-color: #fff;
@@ -6107,9 +6107,9 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   transition-property: background-color, transform;
   position: absolute;
   display: block;
-  width: 27px;
-  height: 27px;
-  border-radius: 27px;
+  width: 17px;
+  height: 17px;
+  border-radius: 17px;
   background-color: #fff;
   top: 7px;
   left: 7px;
@@ -6117,20 +6117,20 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   .toggle .handle:before {
     position: absolute;
     top: -4px;
-    left: -21.5px;
-    padding: 18.5px 34px;
+    left: -16.5px;
+    padding: 13.5px 24px;
     content: " "; }
 
 .toggle input:checked + .track .handle {
-  -webkit-transform: translate3d(20px, 0, 0);
-  transform: translate3d(20px, 0, 0);
+  -webkit-transform: translate3d(15px, 0, 0);
+  transform: translate3d(15px, 0, 0);
   background-color: #fff; }
 
 .item-toggle.active {
   box-shadow: none; }
 
 .item-toggle, .item-toggle.item-complex .item-content {
-  padding-right: 99px; }
+  padding-right: 84px; }
 
 .item-toggle.item-complex {
   padding-right: 0; }
@@ -7605,6 +7605,76 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+@media screen and (device-aspect-ratio: 40/71) {
+  #profilImg {
+    z-index: 11;
+    position: absolute;
+    right: 13px;
+    top: 22px;
+    height: 46px;
+    width: 46px; } }
+
+@media screen and (device-aspect-ratio: 2/3) {
+  .background {
+    background-image: url('../img/backgroundIphone4.jpg');
+    background-size: cover;
+    background-position: center; }
+  #triangles {
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    margin-top: -19vh; }
+  .animateTriangles {
+    -webkit-transform: translateY(-19vh);
+    -webkit-transition: all 1s ease; }
+  #profilImg {
+    z-index: 11;
+    position: absolute;
+    right: 13px;
+    top: 22px;
+    height: 46px;
+    width: 46px; } }
+
+.fullHeight {
+  height: 100%; }
+
+.background {
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+  background-position: center; }
+
+#triangles {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  margin-top: -16vh; }
+
+.fontSmallBrandonMedium {
+  color: #ffffff;
+  font-size: 2.5vw;
+  font-family: 'BrandonMedium';
+  line-height: 1.4;
+  letter-spacing: 0.075em; }
+
+.fontBrandonBlack {
+  color: #ffffff;
+  font-size: 10px;
+  font-family: 'BrandonBlack';
+  line-height: 1.265;
+  letter-spacing: 0.075em; }
+
+.buttonZonder {
+  height: 50px;
+  width: 80%;
+  border-radius: 4px;
+  border: 0 none;
+  background-color: #f79f03;
+  color: #fcf9f0;
+  font-size: 20px;
+  font-family: 'BrandonBold';
+  letter-spacing: 0.075em;
+  line-height: 1.026; }
+
 .colorError {
   color: #ec7149; }
 
@@ -7646,19 +7716,142 @@ a.button {
 .labelZonder label {
   position: relative;
   left: 60px;
-  line-height: 1.313;
-  font-size: 19px;
+  line-height: 1.52;
+  font-size: 5.3vw;
   font-family: 'OpenSansRegular'; }
 
 .labelZonder input {
   position: relative;
   line-height: 1.313;
-  font-size: 19px;
+  font-size: 5.3vw;
   font-family: 'OpenSansRegular';
   left: 60px;
   color: #adafbc; }
 
-.footerZonder {
+.checkBoxZonderMale {
+  border: none !important;
+  position: absolute !important;
+  top: 1px !important;
+  left: 140px !important;
+  width: 40px !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  font-size: 2px !important; }
+
+.divCheckBoxZonderMale {
+  margin-left: 31px; }
+
+.checkBoxZonderFemale {
+  border: none !important;
+  position: absolute !important;
+  top: 1px !important;
+  left: 220px !important;
+  width: 40px !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  padding: 0 !important; }
+
+.divCheckBoxZonderFemale {
+  margin-left: 27px; }
+
+#divTextAndButton {
+  position: relative;
+  top: 76.5%;
+  margin: 0 auto;
+  width: 80%; }
+
+#rowText {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  height: 20px;
+  width: 100%; }
+
+#divSeparateurRow {
+  height: 50%;
+  margin-top: 6px;
+  border-left: 1px solid #FFFFFF; }
+
+#textLeftInRow {
+  margin-right: 2px;
+  text-align: right; }
+
+#textRightInRow {
+  margin-right: 2px;
+  text-align: left; }
+
+#buttonSignIn {
+  margin-top: 4px;
+  width: 100%; }
+
+#divFormLogin {
+  position: absolute;
+  left: 1px;
+  top: 27.6%;
+  width: 100%; }
+
+#posTriangleTop {
+  z-index: 10;
+  width: 100%; }
+
+#logoBandeau {
+  z-index: 10;
+  position: absolute;
+  top: 43.5%;
+  left: 0;
+  width: 100%; }
+
+#slideBoxTooltip {
+  z-index: 15;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%; }
+
+.posTitleTooltip {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 22%;
+  text-align: left; }
+
+.titleTooltip {
+  font-family: 'BrandonBold';
+  font-size: 8.5vw;
+  line-height: 1;
+  letter-spacing: -0.075em;
+  color: #ffffff; }
+
+.posSubtitleTooltip {
+  position: absolute;
+  top: 65%;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 23%;
+  text-align: left; }
+
+.subtitleTooltip {
+  font-family: 'BrandonLight';
+  font-size: 16px;
+  font-size: 5vw;
+  line-height: 1.2;
+  color: #ffffff; }
+
+.footerTooltip {
+  width: 100%;
+  position: absolute;
+  top: 95%;
+  color: #ffffff;
+  font-size: 8px;
+  font-size: 3vw;
+  font-family: 'BrandonLight';
+  letter-spacing: 0.075em;
+  line-height: 1.711;
+  text-align: center; }
+
+.footerRegister {
   position: absolute;
   top: 95%;
   text-align: center;
@@ -7680,122 +7873,13 @@ a.button {
 .termsAndConditions a {
   color: #ffffff; }
 
-.checkBoxZonderMale {
-  border: none !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 160px !important;
-  width: 40px !important;
-  height: 100% !important;
-  background-color: transparent !important;
-  padding: 0 !important; }
-
-.divCheckBoxZonderMale {
+#profilImg {
+  z-index: 11;
   position: absolute;
-  top: 0;
-  left: 182px;
-  width: 40px;
-  text-align: center;
-  line-height: 54px;
-  font-size: 19px;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
-
-.checkBoxZonderFemale {
-  border: none !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 235px !important;
-  width: 40px !important;
-  height: 100% !important;
-  background-color: transparent !important;
-  padding: 0 !important; }
-
-.divCheckBoxZonderFemale {
-  position: absolute;
-  top: 0;
-  left: 265px;
-  width: 50px;
-  text-align: center;
-  line-height: 54px;
-  font-size: 19px;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
-
-.titleTooltip {
-  width: 100%;
-  position: absolute;
-  top: 30%;
-  color: #ffffff;
-  font-size: 8vw;
-  font-family: 'BrandonBold';
-  line-height: 1;
-  padding-left: 10%;
-  padding-right: 15%;
-  text-align: left;
-  letter-spacing: -0.075em; }
-
-.subtitleTooltip {
-  width: 100%;
-  position: absolute;
-  top: 65%;
-  color: #ffffff;
-  font-size: 16px;
-  font-size: 5vw;
-  font-family: 'BrandonLight';
-  padding-left: 10%;
-  padding-right: 23%;
-  line-height: 1.2;
-  text-align: left; }
-
-.footerTooltip {
-  width: 100%;
-  position: absolute;
-  top: 95%;
-  color: #ffffff;
-  font-size: 8px;
-  font-size: 3vw;
-  font-family: 'BrandonLight';
-  letter-spacing: 0.075em;
-  line-height: 1.711;
-  text-align: center; }
-
-.fontSmallBrandonMedium {
-  color: #ffffff;
-  font-size: 2.5vw;
-  font-family: 'BrandonMedium';
-  line-height: 1.4;
-  letter-spacing: 0.075em; }
-
-.footerRegister {
-  width: 100%;
-  position: absolute;
-  top: 95%;
-  text-align: center;
-  color: #ffffff;
-  font-size: 8px;
-  font-family: 'BrandonRegular';
-  line-height: 1.667;
-  letter-spacing: 0.075em; }
-
-.buttonZonder {
-  height: 50px;
-  width: 80%;
-  border-radius: 4px;
-  border: 0 none;
-  background-color: #f79f03;
-  color: #fcf9f0;
-  font-size: 20px;
-  font-family: 'BrandonBold';
-  letter-spacing: 0.075em;
-  line-height: 1.026; }
-
-.fontBrandonBlack {
-  color: #ffffff;
-  font-size: 10px;
-  font-family: 'BrandonBlack';
-  line-height: 1.265;
-  letter-spacing: 0.075em; }
+  right: 22px;
+  top: 22px;
+  height: 46px;
+  width: 46px; }
 
 .animateTriangles {
   -webkit-transform: translateY(-16vh);
@@ -7830,6 +7914,58 @@ a.button {
 .imgClick:active {
   opacity: 1;
   -webkit-animation: fadeOut 0.6s linear; }
+
+.slide-in-right {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0); }
+
+.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
+
+.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+  -webkit-transition: all ease-in-out 250ms;
+  transition: all ease-in-out 250ms; }
+
+@-webkit-keyframes scaleOut {
+  from {
+    -webkit-transform: scale(1);
+    opacity: 1; }
+
+  to {
+    -webkit-transform: scale(0.8);
+    opacity: 0; } }
+
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+    opacity: 1; }
+
+  to {
+    transform: scale(0.8);
+    opacity: 0; } }
+
+@-webkit-keyframes superScaleIn {
+  from {
+    -webkit-transform: scale(1.2);
+    opacity: 0; }
+
+  to {
+    -webkit-transform: scale(1);
+    opacity: 1; } }
+
+@keyframes superScaleIn {
+  from {
+    transform: scale(1.2);
+    opacity: 0; }
+
+  to {
+    transform: scale(1);
+    opacity: 1; } }
 
 @font-face {
   font-family: 'BrandonBoldIt';
@@ -7918,107 +8054,3 @@ a.button {
 @font-face {
   font-family: 'OpenSansSemiboldItalic';
   src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype"); }
-
-.splashscreenBackground {
-  background-image: url('../img/background.jpg');
-  background-size: cover;
-  background-position: center; }
-
-.registerBackground {
-  background-image: url('../img/background.jpg');
-  background-size: cover;
-  background-position: center; }
-
-.triangles {
-  position: relative;
-  top: 0;
-  margin-top: -16vh; }
-
-.profilImg {
-  height: 46px;
-  width: 46px;
-  z-index: 11;
-  position: absolute;
-  right: 22px;
-  top: 22px; }
-
-@media screen and (device-aspect-ratio: 40/71) {
-  .profilImg {
-    height: 46px;
-    width: 46px;
-    z-index: 11;
-    position: absolute;
-    right: 13px;
-    top: 22px; } }
-
-@media screen and (device-aspect-ratio: 2/3) {
-  .splashscreenBackground {
-    background-image: url('../img/backgroundIphone4.jpg');
-    background-size: cover;
-    background-position: center; }
-  .triangles {
-    position: relative;
-    top: 0;
-    margin-top: -19vh; }
-  .animateTriangles {
-    -webkit-transform: translateY(-19vh);
-    -webkit-transition: all 1s ease; }
-  .profilImg {
-    height: 46px;
-    width: 46px;
-    z-index: 11;
-    position: absolute;
-    right: 13px;
-    top: 22px; } }
-
-.slide-in-right {
-  -webkit-transform: translate3d(100%, 0, 0);
-  transform: translate3d(100%, 0, 0); }
-
-.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
-  -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
-  transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
-
-.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0); }
-
-.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
-  -webkit-transition: all ease-in-out 250ms;
-  transition: all ease-in-out 250ms; }
-
-@-webkit-keyframes scaleOut {
-  from {
-    -webkit-transform: scale(1);
-    opacity: 1; }
-
-  to {
-    -webkit-transform: scale(0.8);
-    opacity: 0; } }
-
-@keyframes scaleOut {
-  from {
-    transform: scale(1);
-    opacity: 1; }
-
-  to {
-    transform: scale(0.8);
-    opacity: 0; } }
-
-@-webkit-keyframes superScaleIn {
-  from {
-    -webkit-transform: scale(1.2);
-    opacity: 0; }
-
-  to {
-    -webkit-transform: scale(1);
-    opacity: 1; } }
-
-@keyframes superScaleIn {
-  from {
-    transform: scale(1.2);
-    opacity: 0; }
-
-  to {
-    transform: scale(1);
-    opacity: 1; } }
