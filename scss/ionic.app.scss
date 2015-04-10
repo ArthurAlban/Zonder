@@ -21,65 +21,56 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-///////////////////// Media (difference entre les différents model d'iphone) /////////////////////////////////
-
-
-/////////////// iphone 5 //////////////////
-
-@media screen and (device-aspect-ratio: 40/71) {
-
-  ////////////////////// home ////////////////////////
-  #profilImg{
-  z-index:11;
-  position:absolute;
-  right:13px;
-  top:22px;
-  height:46px;
-  width:46px;
-  }
-
+div.conteneur {
+  position:relative;
+  top:100px;
+  height:50px;
+  line-height:50px;
+  text-align:left; /* centrage horizontal */
+  border:1px solid #ccc;
 }
 
-///////////// iphone 4 ////////////////////
-@media screen and (device-aspect-ratio: 2/3) {
-
-  ///////////////////// générique de fin //////////////////////////
-  .background{
-  background-image: url('../img/backgroundIphone4.jpg');
-  background-size:cover;
-  background-position:center;
-  }
-
-  #triangles{
-  z-index:10;
-  position:absolute;
-  width:100%;
-  margin-top: -19vh;
-  }
-
-  .animateTriangles{
-  -webkit-transform: translateY(-19vh);
-  -webkit-transition: all 1s ease;
-  }
-
-  ////////////////////// home ////////////////////////
-  #profilImg{
-  z-index:11;
-  position:absolute;
-  right:13px;
-  top:22px;
-  height:46px;
-  width:46px;
-  }
-
+div.bloc {
+  margin-left:15px;
+  width:110px;
+  border:1px solid #fff;
+  vertical-align:middle;
+  display:inline-block;
+  line-height:normal; /* on rétablit le line-height */
+  text-align:left; /* ... et l'alignement du texte */
 }
+
+img.bloc{
+  margin-left:15px;
+  border:1px solid #fff;
+  vertical-align:middle;
+  display:inline-block;
+}
+
 
 ///////////////////// générique de fin //////////////////////////
 
+//font bouton du bottom
+.brandonBold{
+  color:#ffffff;
+  font-size:12px;
+  font-family:'BrandonBold';
+  line-height:1.265;
+  text-transform: uppercase;;
+  letter-spacing:0.075em;
+}
+
+//permet de mettre en full height un element
 .fullHeight{
   height:100%;
 }
 
+// taille en px d'un bouton image (close / menu etc)
+.sizeButtonImage{
+  width:24px;
+}
+
+// permet de mettre une image en rond 
 .roundImage {
   border-radius:100%;
 }
@@ -111,6 +102,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // type de font brandonBlack (text lié au pseudo)
 .fontBrandonBlack{
+  color:#ffffff;
+  font-size:10px;
+  font-family:'BrandonBlack';
+  line-height:1.265;
+  letter-spacing:0.075em;
+}
+
+// type de font brandonBlack (text lié au menu)
+.fontBrandonBlackMenu{
   color:#ffffff;
   font-size:10px;
   font-family:'BrandonBlack';
@@ -298,7 +298,6 @@ text-align:left;
 }
 
 // titre tooltip
-
 .posTitleTooltip{
   position:absolute;
   top:30%;
@@ -317,7 +316,6 @@ text-align:left;
 }
 
 // sous titre tooltip
-
 .posSubtitleTooltip{
   position:absolute;
   top:65%;
@@ -411,14 +409,118 @@ text-align:left;
 }
 ////////////////////// home ////////////////////////
 
+// div de selection des onglets
+.divSelectorTab{
+position:relative;
+width:100%;
+height:7px;
+}
+
+//position ion slide
+.heightIonSlide{
+height:calc( 100vh - 170px );
+}
+
+//button footer find friends and create poll
+.buttonfooter{
+z-index:25;
+position:absolute;
+bottom:0;
+height:35px;
+width:100%;
+background-color:#f79f03;
+display:-webkit-flex;
+-webkit-flex-direction:row;
+-webkit-justify-content:flex-start;
+-webkit-align-items:center;
+}
+
+.buttonfooter img{
+  margin-left:15px;
+}
+
+#createPoll{
+  margin-left:60%;
+}
+
+#findFriend{
+  margin-left:65%
+}
+
+//slider box position
+#sliderBoxHome{
+position:relative;
+top:0px;
+background:rgb(255,255,255);
+}
+
+// design du Header dans la page home à 3 onglets
+.divHeader{
+  position:absolute;
+  width:100%;
+  top:104px;
+} 
+.divHeader .rowHeader{
+  height:59px;
+  padding:0;
+  margin:0;
+} 
+.colHeader{
+  height:100%;
+  color:#ffffff;
+} 
+.colorJaunePale{
+  background-color:#fcdd86;
+}
+.colorJaunePoussin{
+  background-color:#f9cc3d;
+}
+.colorJauneOrange{
+  background-color:#e8b000;
+}
+.ongletHeader{
+  display:-webkit-flex;
+  -webkit-flex-direction:column;
+  -webkit-justify-content:flex-start;
+  -webkit-align-items:center;
+} 
+.imgHeader{
+  margin-top:5px;
+} 
+.spanHeader{
+  margin-top:5px;
+  text-transform:uppercase;
+} 
+.spanHeaderFriends{
+  margin-top:10px;
+  text-transform:uppercase;
+} 
+
 // position de l'image de profil (sauf iphone 4 et 5)
- #profilImg{
+ .profilImg{
   z-index:11;
   position:absolute;
   right:22px;
   top:22px;
   height:46px;
   width:46px;
+  }
+
+  //Position du bouton Menu de la page home
+  #posButtonMenu{
+    z-index:11;
+    position:absolute;
+    left:20px;
+    top:32px;
+  }
+
+  //Position du bouton Menu de la page home
+  #posPseudoUser{
+    z-index:11;
+    position:absolute;
+    right:20vw;
+    top:40px;
+    text-transform:uppercase;
   }
 
 
@@ -624,7 +726,94 @@ opacity: 1; } }
   src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype");
 }
 
+///////////////////// Media (difference entre les différents model d'iphone) /////////////////////////////////
 
+
+/////////////// iphone 5 //////////////////
+
+@media screen and (device-aspect-ratio: 40/71) {
+
+  .divHeader{
+  position:absolute;
+  width:100%;
+  top:84px;
+} 
+
+  // position des triangles en haut (que iphone 5)
+  #triangles{
+  z-index:10;
+  position:absolute;
+  width:100%;
+  margin-top: -16vh;
+  }
+
+  // animation des triangles dans la view splashscreen (que iphone 4)
+  .animateTriangles{
+  -webkit-transform: translateY(-16vh);
+  -webkit-transition: all 1s ease;
+  }
+
+  // position de l'image de profil (que iphone 5)
+  .profilImg{
+  z-index:11;
+  position:absolute;
+  right:13px;
+  top:22px;
+  height:46px;
+  width:46px;
+  }
+
+}
+
+///////////// iphone 4 ////////////////////
+@media screen and (device-aspect-ratio: 2/3) {
+
+ .divHeader{
+  position:absolute;
+  width:100%;
+  top:84px;
+} 
+
+  // logo en bandeau pour pourvoir le positionner au bon endroit de l'écran
+  #logoBandeau{
+  z-index:10;
+  position:absolute;
+  top:45.5%;
+  left:0;
+  width:100%;
+}
+
+  // position de l'image de profil (que iphone 4)
+  .profilImg{
+  z-index:11;
+  position:absolute;
+  right:13px;
+  top:22px;
+  height:46px;
+  width:46px;
+  }
+
+  // image de fond d'écran étoilé (que iphone 4)
+  .background{
+  background-image: url('../img/backgroundIphone4.jpg');
+  background-size:cover;
+  background-position:center;
+  }
+
+  // image des triangles en haut (que iphone 4)
+  #triangles{
+  z-index:10;
+  position:absolute;
+  width:100%;
+  margin-top: -19vh;
+  }
+
+  // animation des triangles dans la view splashscreen (que iphone 4)
+  .animateTriangles{
+  -webkit-transform: translateY(-19vh);
+  -webkit-transition: all 1s ease;
+  }
+}
 
 
 
