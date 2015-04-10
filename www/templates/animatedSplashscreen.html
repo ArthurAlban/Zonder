@@ -32,34 +32,30 @@
 
 <ion-slide>
 
-  <form name="loginForm" class="fullHeight" ng-submit="validLogin()" novalidate>
-    <div id="divFormLogin">
-      <label class="item labelZonder">
-        <div class="centeredContent" ng-switch on="displayMailError">
-         <img ng-switch-when="false" src="img/mail.png" width="22">
-         <img ng-switch-when="true" src="img/mailRed.png" width="22">
-        </div>
-         <input name="mail" type="email" ng-model="user.mail" placeholder="email address" required>
-      </label>
-      <label class="item labelZonder">
-        <div class="centeredContent" ng-switch on="displayMailError">
-         <img ng-switch-when="false" src="img/lock.png" width="17" height="22">
-         <img ng-switch-when="true" src="img/lockerRed.png" width="17" height="22">
-        </div>
-         <input name="password" type="password" ng-model="user.pass" placeholder="password" required>
-      </label>
+<form name="loginForm" class="fullHeight" ng-submit="validLogin()" novalidate>
+  <div id="divFormLogin">
+    <div class="labelZonder" ng-switch on="displayMailError">
+      <img class="imgLeft" ng-switch-when="false" src="img/mail.png" width="25">
+      <img class="imgLeft" ng-switch-when="true" src="img/mailRed.png" width="25">
+      <input class="input" name="mail" type="email" ng-model="user.mail" placeholder="email address" required>
+    </div>
+    <div class="labelZonder" ng-switch on="displayMailError">
+      <img class="imgLeft" ng-switch-when="false" src="img/lock.png" width="25">
+      <img class="imgLeft" ng-switch-when="true" ng-if="!identicPasswords" src="img/lockRed.png" width="25">
+      <input class="input" name="password" type="password" ng-model="user.pass" placeholder="password" required>
+    </div>
   </div>
 
-<div id="divTextAndButton">
-<div class="row" id="rowText">
-    <a class="col fontSmallBrandonMedium" id="textLeftInRow" ng-click="openForgotPasswordModal()"><b>PASSWORD ?</b></a>
-    <div id="divSeparateurRow"></div>
-    <a class="col fontSmallBrandonMedium" id="textRightInRow" ng-click="toRegister()"><b>REGISTER NOW</b></a>
+  <div id="divTextAndButton">
+    <div class="row" id="rowText">
+      <a class="col fontSmallBrandonMedium" id="textLeftInRow" ng-click="openForgotPasswordModal()"><b>PASSWORD ?</b></a>
+      <div id="divSeparateurRow"></div>
+      <a class="col fontSmallBrandonMedium" id="textRightInRow" ng-click="toRegister()"><b>REGISTER NOW</b></a>
+    </div>
+    <button class="button buttonZonder" type="submit" id="buttonSignIn">
+      SIGN IN
+    </button>
   </div>
-<button class="button buttonZonder" type="submit" id="buttonSignIn">
-  SIGN IN
-</button>
-</div>
 </form>
 </ion-slide>  
 
