@@ -25,11 +25,11 @@ zonder.controller('registerCtrl', function($scope, $state, $ionicPlatform, $ioni
 	};
 	
 	$scope.nextStepRegister = function(){
-		$scope.checkFirstStep();
-		if($scope.firstStepValid){
+		//$scope.checkFirstStep();
+		//if($scope.firstStepValid){
 			$ionicSlideBoxDelegate.next();
-			$scope.displayNextButton = false;
-		}
+			//$scope.displayNextButton = false;
+		//}
 	};
 
 	$scope.login = function() {

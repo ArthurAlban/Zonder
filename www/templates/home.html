@@ -1,17 +1,61 @@
 <ion-side-menus enable-menu-with-back-views="true">
 
-<ion-side-menu width="225" style="background-image:url('img/background.jpg');background-size:cover;" side="left">
+<ion-side-menu width="250" class="backgroundSideMenu" side="left" ng-controller="homeCtrl">
 
-<div style="position:relative;display:-webkit-flex;-webkit-flex-direction:row;-webkit-justify-content:flex-start; -webkit-align-items:center;width:100%;border:1px solid red;height:50px;">
-	<img style="position:relative;left:10px;border:1px solid red;" width="25" height="25" src="img/username.png">
- 	<div style="position:relative;left:10px;width:110px;border:1px solid red;">Profile</div>
- 	<img style="border:1px solid red;" width="25" height="25" src="img/username.png">
- </div>
+<img id="closeSideMenu" class="imgClick" menu-close src="img/close.png">
+<p id="textMenuSideMenu" class="fontOpenSansExtraBoldSideMenu">MENU</p>
 
+<div id="divMenusSideMenu">
+	<div class="optionMenuSideMenu">
+		<img class="imgLeft" width="20" src="img/profile.png">
+		<span class="text">Profile</span>
+		<img class="imgRight" width="7" src="img/chevronRight.png">
+	</div>
+	<div class="optionMenuSideMenu">
+		<img class="imgLeft" width="20" src="img/loupe.png">
+		<span class="text">Find Friends</span>
+		<img class="imgRight" width="7" src="img/chevronRight.png">
+	</div>
+	<div class="optionMenuSideMenu">
+		<img class="imgLeft" width="20" src="img/poll.png">
+		<span class="text">Create Zonder</span>
+		<img class="imgRight" width="7" src="img/chevronRight.png">
+	</div>
+</div>
+
+<div id="divOptionToggleMenu">
+	<div class="optionToggleMenu">
+		<span class="text">Friends notifications</span>
+		<div class="toggleDiv">
+			<label class=" toggle">
+				<input type="checkbox">
+				<div class="track">
+					<div class="handle"></div>
+				</div>
+			</label>
+		</div>
+	</div>
+	<div class="optionToggleMenu">
+		<span class="text">Zonder notifications</span>
+		<div class="toggleDiv">
+			<label class=" toggle">
+				<input type="checkbox">
+				<div class="track">
+					<div class="handle"></div>
+				</div>
+			</label>
+		</div>
+	</div>
+	<div class="logoutSideMenu">
+		<img width="20" class="imgLeft" src="img/logout.png">
+		<span class="text">Log out</span>
+	</div>
+</div>
  
 </ion-side-menu>
 
 <ion-side-menu-content ng-controller="homeCtrl" class="background">
+<div ng-if="divOpacity" fade-directive style="position:absolute;top:0;left:0;z-index:25;width:100%;height:100%;background-color:rgba(0,0,0,0.7)"></div>
 <img src="img/splashTriangles.png" style="position:fixed" id="triangles">
  <img src="img/menu.png" menu-toggle="left" id="posButtonMenu" class="imgClick sizeButtonImage">
   <img src="img/profilTest.png" class="profilImg">
@@ -35,7 +79,7 @@
     <div class="col colHeader imgClick">
     	<div ng-click="goToSlide(1)" class="ongletHeader">
     	<img src="img/poll.png" width="28" class="imgHeader">
-    	<span class="fontBrandonBlackMenu spanHeader">Poll</span>
+    	<span class="fontBrandonBlackMenu spanHeader">Zonder</span>
     	</div>
     </div>
     <div class="col colHeader imgClick">
@@ -46,7 +90,6 @@
     </div>
 </div>
 <div class="divSelectorTab" ng-class="{colorJaunePale:sliderVote, colorJaunePoussin:sliderPolls, colorJauneOrange:sliderFriends}"></div>
-
 
 <ion-slide-box id="sliderBoxHome" delegate-handle="homeSlider" show-pager="false" on-slide-changed="slideHasChangedInHomeSlider($index)">
 
@@ -81,12 +124,12 @@ toto
 
 <div ng-show="sliderVote || sliderPolls" class="buttonfooter">
 <img src="img/plus.png" width="16">
-<span class="brandonBold" id="createPoll">create a poll</span>
+<span class="brandonBold" id="createPoll">create a zonder</span>
 </div>
 
 <div ng-show="sliderFriends" class="buttonfooter">
 <img src="img/plus.png" width="16">
-<span class="brandonBold" id="findFriend">find friend</span>
+<span class="brandonBold" id="findFriends">find friends</span>
 </div>
 
 </ion-side-menu-content>

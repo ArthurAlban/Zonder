@@ -1,8 +1,23 @@
-zonder.controller('homeCtrl', function($scope, $state, $window, $ionicSlideBoxDelegate) {
+zonder.controller('homeCtrl', function($scope, $state, $window, $ionicSlideBoxDelegate, $rootScope,$ionicSideMenuDelegate) {
 
 	$scope.sliderVote = true;
 	$scope.sliderPolls = false;
 	$scope.sliderFriends = false;
+
+	$scope.divOpacity = false;
+
+// si on trouve un moment de mettre les valeurs dans la directive
+	$scope.$watch(function () {
+		return $ionicSideMenuDelegate.getOpenRatio();
+	},
+	function (ratio) {
+		if(ratio == 0){
+			$scope.divOpacity = false;
+		}
+		else{
+			$scope.divOpacity = true;
+		}
+	});
 
 $scope.goToSlide = function(index){
 	$ionicSlideBoxDelegate.$getByHandle('homeSlider').slide(index);
@@ -25,5 +40,12 @@ $scope.slideHasChangedInHomeSlider = function(index) {
 			$scope.sliderFriends = true;
 		}
 	};
+
+// $scope.openCloseSideMenu = function(){
+// 		console.log($rootScope.sideMenuIsOpen);
+// 		$ionicSideMenuDelegate.toggleLeft();
+// 		$rootScope.sideMenuIsOpen = !$rootScope.sideMenuIsOpen;
+// 		console.log($rootScope.sideMenuIsOpen);
+// 	};
 
 });

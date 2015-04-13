@@ -25,6 +25,8 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
     }
     $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
     $rootScope.destinationType = Camera.DestinationType.DATA_URL;
+
+    $rootScope.sideMenuIsOpen = false;
   });
 });
 
@@ -46,5 +48,6 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     templateUrl: "templates/register.html"
   });
   // if none of the above states are matched, use this as the fallback
+
   $urlRouterProvider.otherwise('/home');
 });

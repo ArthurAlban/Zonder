@@ -21,44 +21,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-div.conteneur {
-  position:relative;
-  top:100px;
-  height:50px;
-  line-height:50px;
-  text-align:left; /* centrage horizontal */
-  border:1px solid #ccc;
-}
-
-div.bloc {
-  margin-left:15px;
-  width:110px;
-  border:1px solid #fff;
-  vertical-align:middle;
-  display:inline-block;
-  line-height:normal; /* on rétablit le line-height */
-  text-align:left; /* ... et l'alignement du texte */
-}
-
-img.bloc{
-  margin-left:15px;
-  border:1px solid #fff;
-  vertical-align:middle;
-  display:inline-block;
-}
-
-
 ///////////////////// générique de fin //////////////////////////
-
-//font bouton du bottom
-.brandonBold{
-  color:#ffffff;
-  font-size:12px;
-  font-family:'BrandonBold';
-  line-height:1.265;
-  text-transform: uppercase;;
-  letter-spacing:0.075em;
-}
 
 //permet de mettre en full height un element
 .fullHeight{
@@ -68,6 +31,16 @@ img.bloc{
 // taille en px d'un bouton image (close / menu etc)
 .sizeButtonImage{
   width:24px;
+}
+
+//font bouton du bottom
+.brandonBold{
+  color:#ffffff;
+  font-size:3vw;
+  font-family:'BrandonBold';
+  line-height:1.265;
+  text-transform: uppercase;;
+  letter-spacing:0.075em;
 }
 
 // permet de mettre une image en rond 
@@ -89,7 +62,7 @@ img.bloc{
   position:absolute;
   width:100%;
   margin-top: -16vh;
-  }
+}
 
 // type de font brandonMedium (text au dessus du bouton)
 .fontSmallBrandonMedium{
@@ -132,9 +105,8 @@ img.bloc{
   line-height: 1.026;
 }
 
-
 // couleur d'erreur pour le text 
-  .colorError{
+.colorError{
   color:#ec7149;
 }
 
@@ -161,38 +133,6 @@ img.bloc{
   -webkit-align-items: center;
   -moz-align-items: center;
   align-items: center;
-}
-
-// à faire label dynamique (test)
-.labelZonder{
-  border: 0 none;
-  height:60px;
-  margin-top:3px;
-  background: #ffffff;
-  width:100%;
-  color:#adafbc;
-}
-
-.labelZonder div{
-  width:60px;
-  height:100%;
-}
-
-.labelZonder label{
-  position:relative;
-  left:60px;
-  line-height: 1.52;
-  font-size:5.3vw;
-  font-family:'OpenSansRegular';
-}
-
-.labelZonder input {
-  position: relative;
-  line-height: 1.313;
-  font-size:5.3vw;
-  font-family: 'OpenSansRegular';
-  left: 60px;
-  color: #adafbc;
 }
 
 .checkBoxZonderMale {
@@ -251,13 +191,13 @@ img.bloc{
 }
 
 #textLeftInRow{
-margin-right:2px;
-text-align:right;
+  margin-right:2px;
+  text-align:right;
 }
 
 #textRightInRow{
   margin-right:2px;
-text-align:left;
+  text-align:left;
 }
 
 #buttonSignIn{
@@ -377,6 +317,7 @@ text-align:left;
   color:#ffffff;
 }
 
+//Slide box du register
 #registerSlideBox {
   position:absolute;
   top:0;
@@ -384,29 +325,86 @@ text-align:left;
   height:100%;
 }
 
+//div contenant les labels pour la firstep de l'incscription
 #divRegisterFirstStep {
   position:absolute;
   top:27%;
   width:100%;
 }
 
+//div contenant les labels pour la second step de l'incscription
 #divRegisterSecondStep {
   position:absolute;
   top:27%;
   width:100%;
 }
 
+// div contenant les terme and condition dans register
 #divTermsAndConditionButton{
   position:absolute;
   top:75%;
   width:100%;
 }
-
+//position du boutton pour passer a letape suivante et l'inscription
 .buttonRegister{
   position:absolute;
   left:50%;
   margin-left:-40%;
 }
+
+//font pour les label de zonder
+@mixin fontLabelZonderInputAndText {
+  line-height: 1.313;
+  font-size:5.3vw;
+  font-family: 'OpenSansRegular';
+  color: #adafbc;
+}
+
+//Labels generiques
+.labelZonder {
+  height:60px;
+  background-color: #ffffff;
+  width:100%;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+  margin-bottom:2px;
+}
+
+//image gauche du label
+.labelZonder .imgLeft{
+ margin-left:20px;
+}
+
+//image droite du label
+.labelZonder .imgRight{
+  margin-left:3px;
+}
+
+//text du label
+.labelZonder .text {
+  margin-left:35px;
+  @include fontLabelZonderInputAndText;
+}
+
+//input du label
+.labelZonder .input {
+  margin-left:35px;
+  @include fontLabelZonderInputAndText;
+}
+
+//objet checkbox de zonder a combiner avec la checkbox de ionic label>input
+.checkboxZonder {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+  margin-left:3px;
+}
+//text du choix de la check box
+.checkboxZonder .textCheckbox{
+  @include fontLabelZonderInputAndText;
+}
+
 ////////////////////// home ////////////////////////
 
 // div de selection des onglets
@@ -434,17 +432,14 @@ display:-webkit-flex;
 -webkit-justify-content:flex-start;
 -webkit-align-items:center;
 }
-
 .buttonfooter img{
   margin-left:15px;
 }
-
 #createPoll{
-  margin-left:60%;
+  margin-left:55%;
 }
-
-#findFriend{
-  margin-left:65%
+#findFriends{
+  margin-left:62%
 }
 
 //slider box position
@@ -532,6 +527,151 @@ background:rgb(255,255,255);
   -webkit-transition: all 1s ease;
 }
 
+////////////////////// Side Menu ////////////////////////
+//div contenant les options du sidemenu
+#divMenusSideMenu{
+  position: absolute;
+  top:86px;
+  width:100%;
+}
+
+//div contenant les choix des notifs
+#divOptionToggleMenu{
+  position:absolute;
+  bottom:0px;
+  width:100%;
+}
+
+//icone close sidemenu
+#closeSideMenu{
+  position:absolute;
+  top:32px;
+  width:28px;
+  left:15px;
+}
+
+//text MENU sideMenu
+#textMenuSideMenu{
+  position:absolute;
+  top:34px;
+  left:70px;
+}
+
+//font du text menu
+.fontOpenSansExtraBoldSideMenu {
+  color:#ffffff;
+  font-size:17px;
+  font-family:'OpenSansExtraBold';
+  line-height:1.265;
+  letter-spacing:0.075em;
+}
+
+//font des texte dans les options du menu
+@mixin fontOpenSansRegularSideMenu {
+  color:#ffffff;
+  font-size:18px;
+  font-family:'OpenSansRegular';
+  line-height:1.265;
+}
+
+//classe des options du side menu imgLeft Text imgRight
+.optionMenuSideMenu {
+  width:100%;
+  height:50px;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+}
+
+//element dimage de gauche
+.optionMenuSideMenu .imgLeft {
+  margin-left:30px;
+}
+
+//element de texte
+.optionMenuSideMenu .text {
+  margin-left:30px;
+  width:130px;
+  @include fontOpenSansRegularSideMenu;
+}
+
+//element d'image de droite
+.optionMenuSideMenu .imgRight {
+  margin-left:22px;
+}
+
+//font pour les sidemenuoption Toggle
+@mixin fontOpenSansRegularSideMenuToggle {
+  color:#ffffff;
+  font-size:13px;
+  font-family:'OpenSansRegular';
+  line-height:1.265;
+}
+
+//class des options du sidemenu avec des toggle
+.optionToggleMenu {
+  width:100%;
+  height:50px;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+}
+
+//element de texte du toggle
+.optionToggleMenu .text {
+  width:150px;
+  margin-left:30px;
+  @include fontOpenSansRegularSideMenuToggle;
+
+}
+
+//element contenant le toggle
+.optionToggleMenu .toggleDiv{
+  height:18px;
+  width:32px;
+  margin-left:18px;
+}
+
+//font du logout
+@mixin fontOpenSansRegularSideMenuLogout {
+  color:#ffffff;
+  font-size:13px;
+  font-family:'OpenSansRegular';
+  line-height:1.365;
+}
+
+//menu de logout dans le side menu
+.logoutSideMenu{
+  height:60px;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+}
+
+//element dimage
+.logoutSideMenu .imgLeft{
+  margin-left:30px;
+}
+
+//element de texte
+.logoutSideMenu .text{
+  margin-left:20px;
+  @include fontOpenSansRegularSideMenuLogout;
+}
+
+//background sideMenu
+.backgroundSideMenu{
+  background-image: url('../img/backgroundBlur.jpg');
+  background-size: cover;
+}
+///////////////////// animation /////////////////////
+
+// animation des triangles du haut, translation vers le haut
+.animateTriangles{
+  -webkit-transform: translateY(-16vh);
+  -webkit-transition: all 1s ease;
+}
+
 // animation de fade out 
 .fade-out{
   opacity: 1;
@@ -564,167 +704,167 @@ background:rgb(255,255,255);
 
 // transition entre des modaux
 .slide-in-right {
--webkit-transform: translate3d(100%, 0, 0);
-transform: translate3d(100%, 0, 0); }
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0); }
 
-.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
--webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+  .slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
 
-.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
--webkit-transform: translate3d(0, 0, 0);
-transform: translate3d(0, 0, 0); }
+    .slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0); }
 
-.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
--webkit-transition: all ease-in-out 250ms;
-transition: all ease-in-out 250ms; }
+      .slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+        -webkit-transition: all ease-in-out 250ms;
+        transition: all ease-in-out 250ms; }
 
-@-webkit-keyframes scaleOut {
-from {
--webkit-transform: scale(1);
-opacity: 1; }
+        @-webkit-keyframes scaleOut {
+          from {
+            -webkit-transform: scale(1);
+            opacity: 1; }
 
-to {
--webkit-transform: scale(0.8);
-opacity: 0; } }
+            to {
+              -webkit-transform: scale(0.8);
+              opacity: 0; } }
 
-@keyframes scaleOut {
-from {
-transform: scale(1);
-opacity: 1; }
+              @keyframes scaleOut {
+                from {
+                  transform: scale(1);
+                  opacity: 1; }
 
-to {
-transform: scale(0.8);
-opacity: 0; } }
+                  to {
+                    transform: scale(0.8);
+                    opacity: 0; } }
 
-@-webkit-keyframes superScaleIn {
-from {
--webkit-transform: scale(1.2);
-opacity: 0; }
+                    @-webkit-keyframes superScaleIn {
+                      from {
+                        -webkit-transform: scale(1.2);
+                        opacity: 0; }
 
-to {
--webkit-transform: scale(1);
-opacity: 1; } }
+                        to {
+                          -webkit-transform: scale(1);
+                          opacity: 1; } }
 
-@keyframes superScaleIn {
-from {
-transform: scale(1.2);
-opacity: 0; }
+                          @keyframes superScaleIn {
+                            from {
+                              transform: scale(1.2);
+                              opacity: 0; }
 
-to {
-transform: scale(1);
-opacity: 1; } }
-///////////////////// font /////////////////////
+                              to {
+                                transform: scale(1);
+                                opacity: 1; } }
+                                ///////////////////// font /////////////////////
 
-@font-face {
-  font-family: 'BrandonBoldIt';
-  src: url('../fonts/brandon-grotesque/Brandon_bld_it.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonBoldIt';
+                                  src: url('../fonts/brandon-grotesque/Brandon_bld_it.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonBold';
-  src: url('../fonts/brandon-grotesque/Brandon_bld.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonBold';
+                                  src: url('../fonts/brandon-grotesque/Brandon_bld.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonBlackIt';
-  src: url('../fonts/brandon-grotesque/Brandon_blk_it.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonBlackIt';
+                                  src: url('../fonts/brandon-grotesque/Brandon_blk_it.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonBlack';
-  src: url('../fonts/brandon-grotesque/Brandon_blk.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonBlack';
+                                  src: url('../fonts/brandon-grotesque/Brandon_blk.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonLightIt';
-  src: url('../fonts/brandon-grotesque/Brandon_light_it.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonLightIt';
+                                  src: url('../fonts/brandon-grotesque/Brandon_light_it.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonLight';
-  src: url('../fonts/brandon-grotesque/Brandon_light.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonLight';
+                                  src: url('../fonts/brandon-grotesque/Brandon_light.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonMediumIt';
-  src: url('../fonts/brandon-grotesque/Brandon_med_it.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonMediumIt';
+                                  src: url('../fonts/brandon-grotesque/Brandon_med_it.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonMedium';
-  src: url('../fonts/brandon-grotesque/Brandon_med.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonMedium';
+                                  src: url('../fonts/brandon-grotesque/Brandon_med.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonRegularIt';
-  src: url('../fonts/brandon-grotesque/Brandon_reg_it.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonRegularIt';
+                                  src: url('../fonts/brandon-grotesque/Brandon_reg_it.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonRegular';
-  src: url('../fonts/brandon-grotesque/Brandon_reg.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonRegular';
+                                  src: url('../fonts/brandon-grotesque/Brandon_reg.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonThintIt';
-  src: url('../fonts/brandon-grotesque/Brandon_thin_it.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonThintIt';
+                                  src: url('../fonts/brandon-grotesque/Brandon_thin_it.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'BrandonThin';
-  src: url('../fonts/brandon-grotesque/Brandon_thin.otf') format("opentype");
-}
+                                @font-face {
+                                  font-family: 'BrandonThin';
+                                  src: url('../fonts/brandon-grotesque/Brandon_thin.otf') format("opentype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansBoldIt';
-  src: url('../fonts/open-sans/OpenSans-BoldItalic.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansBoldIt';
+                                  src: url('../fonts/open-sans/OpenSans-BoldItalic.ttf') format("truetype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansBold';
-  src: url('../fonts/open-sans/OpenSans-Bold.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansBold';
+                                  src: url('../fonts/open-sans/OpenSans-Bold.ttf') format("truetype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansExtraBoldIt';
-  src: url('../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansExtraBoldIt';
+                                  src: url('../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf') format("truetype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansExtraBold';
-  src: url('../fonts/open-sans/OpenSans-ExtraBold.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansExtraBold';
+                                  src: url('../fonts/open-sans/OpenSans-ExtraBold.ttf') format("truetype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansIt';
-  src: url('../fonts/open-sans/OpenSans-Italic.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansIt';
+                                  src: url('../fonts/open-sans/OpenSans-Italic.ttf') format("truetype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansLight';
-  src: url('../fonts/open-sans/OpenSans-Light.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansLight';
+                                  src: url('../fonts/open-sans/OpenSans-Light.ttf') format("truetype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansLightItalic';
-  src: url('../fonts/open-sans/OpenSans-LightItalic.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansLightItalic';
+                                  src: url('../fonts/open-sans/OpenSans-LightItalic.ttf') format("truetype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansRegular';
-  src: url('../fonts/open-sans/OpenSans-Regular.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansRegular';
+                                  src: url('../fonts/open-sans/OpenSans-Regular.ttf') format("truetype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansSemibold';
-  src: url('../fonts/open-sans/OpenSans-Semibold.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansSemibold';
+                                  src: url('../fonts/open-sans/OpenSans-Semibold.ttf') format("truetype");
+                                }
 
-@font-face {
-  font-family: 'OpenSansSemiboldItalic';
-  src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype");
-}
+                                @font-face {
+                                  font-family: 'OpenSansSemiboldItalic';
+                                  src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype");
+                                }
 
 ///////////////////// Media (difference entre les différents model d'iphone) /////////////////////////////////
 
@@ -732,6 +872,10 @@ opacity: 1; } }
 /////////////// iphone 5 //////////////////
 
 @media screen and (device-aspect-ratio: 40/71) {
+
+  .heightIonSlide{
+height:calc( 100vh - 150px );
+}
 
   .divHeader{
   position:absolute;
@@ -767,6 +911,10 @@ opacity: 1; } }
 
 ///////////// iphone 4 ////////////////////
 @media screen and (device-aspect-ratio: 2/3) {
+
+  .heightIonSlide{
+  height:calc( 100vh - 150px );
+  }
 
  .divHeader{
   position:absolute;
