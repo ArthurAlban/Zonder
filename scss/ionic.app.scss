@@ -288,7 +288,34 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 ///////////////////// forgotPassword /////////////////////
+#imgCloseForgotPassword{
+width:28px;
+z-index:11;
+position:absolute;
+left:12px;
+top:36px;
+}
 
+#contentForgotPassword{
+  position:absolute;
+  width:100%;
+  top:27.6%;
+}
+
+#buttonForgetPassword {
+  position:absolute;
+  left:50%;
+  margin-left:-40%;
+  top:81%;
+}
+
+.indicationForgotPassword {
+  margin-top:8px;
+  padding-left:5%;
+  padding-right:5%;
+  text-transform: uppercase;
+  text-align:center;
+}
 ///////////////////// register /////////////////////
 
 // text already have an account
@@ -375,6 +402,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .labelZonder .imgLeft{
  margin-left:20px;
 }
+
+//image gauche du label
+.labelZonder .imgLeftRound{
+ margin-left:20px;
+ border-radius: 100%;
+ width:25px;
+ height:25px;
+}
+
 
 //image droite du label
 .labelZonder .imgRight{
@@ -664,6 +700,115 @@ background:rgb(255,255,255);
   background-image: url('../img/backgroundBlur.jpg');
   background-size: cover;
 }
+
+///////////////////// Popup /////////////////////
+@mixin fontTitlePopup {
+  font-size:12px;
+  font-family: 'BrandonBold';
+  color: #000;
+  line-height:12px;
+  letter-spacing:0.075em;
+}
+
+@mixin fontTextPopup {
+  font-size:10px;
+  font-family: 'OpenSansIt';
+  color: #000;
+  line-height:1.6;
+}
+
+//overlay de la popup
+.overlayPopup {
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:30;
+  width:100vw;
+  height:100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: -webkit-flex;
+  -webkit-align-content: center;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+}
+
+//conteneur principal de la popup
+.popupZonder{
+  width:70vw;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start;
+}
+
+//conteneur du logo
+.imgPopup{
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width:100%;
+  padding-bottom: 10px;
+}
+
+//conteneur du titre de la popup
+.contentTitle {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width:100%;
+  padding-top:25px;
+  background-color : #fff;
+}
+
+//titre de la popup
+.titlePopup{
+  width:100%;
+  @include fontTitlePopup;
+  text-align: center;
+}
+
+//contenteu du text de la popup
+.contentText {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width:100%;
+  background-color : #fff;
+}
+
+//texte de la popup
+.textPopup{
+  width:80%;
+  @include fontTextPopup;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+//conteneur du boutton
+.contentButton {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width:100%;
+  background-color : #fff;
+  padding-bottom:20px;
+}
+
+//boutton de la popup
+.buttonPopup{
+  height:20px;
+  width:60px;
+  border-radius: 4px;
+  border:0 none;
+  background-color:rgb(247, 159, 3);
+  color:rgb(252, 249, 240);
+  font-size:11px;
+  font-family:'BrandonBold';
+  letter-spacing:0.075em;
+  line-height: 11px !important;
+}
+
+
 ///////////////////// animation /////////////////////
 
 // animation des triangles du haut, translation vers le haut
