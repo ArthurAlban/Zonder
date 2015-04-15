@@ -1,0 +1,137 @@
+<ion-modal-view class="background">
+<img src="img/splashTriangles.png" id="triangles">
+
+<img src="img/close2.png" ng-click="closeProfileModal()" class="imgClick" style="width:28px;z-index:11;position:absolute;left:12px;top:36px;">
+
+<div class="divTransparency"></div>
+
+<div class="posHeader">
+<div class="divHeader">
+<div class="row rowHeader">
+    <div class="col colHeader colorJaunePale"></div>
+    <div class="col colHeader colorJaunePoussin"></div>
+</div>
+</div>
+
+<div class="divHeader" style="z-index:15">
+<div class="row rowHeader">
+    <div class="col colHeader imgClick">
+      <div ng-click="goToSlide(0)" class="ongletHeader">
+      <img src="img/poll.png" width="28" class="imgHeader">
+      <span class="fontBrandonBlackMenu spanHeader">My Zonder</span>
+      </div>
+    </div>
+    <div class="col colHeader imgClick">
+      <div ng-click="goToSlide(1)" style="position:relative" class="ongletHeader">
+        <img src="img/friends.png" width="28" class="imgHeader">
+        <img style="position:absolute;top:6%;left:58%;" width="12" src="img/notification.png">
+        <span class="fontBrandonBlackMenu spanHeaderFriends">My Friends</span>
+        
+      </div>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="divSelectorTab" ng-class="{colorJaunePale:sliderPollsProfile, colorJaunePoussin:sliderFriendsProfile}"></div>
+
+<ion-slide-box id="sliderBoxHome" delegate-handle="profileSlider" show-pager="false" on-slide-changed="slideHasChangedInProfileSlider($index)">
+
+<ion-slide class="heightIonSlide" >
+<div class="divContentZonder">
+
+<div class="headerZonder">
+
+  <img width="46" src="img/louis.png">
+
+  <div class="contentHeader">
+    <div class="contentHeaderHeader">
+    <p class="sizeContentPseudo fontPseudoZonder"> Louis </p>
+    <p class="posTimer fontTimeZonder"> 12h55 ago</p>
+    </div>
+    
+    <div class="contentHeaderFooter">
+      <p class="fontQuestionZonder questionPosStyle">Do you prefer the mountains or the sea for a summer camp ?
+    </p>
+    <img width="13" class="posWheel" src="img/wheelOption.png">
+    </div>
+    
+  </div>
+
+</div>
+
+<div class="contentProgressionPoll">
+
+<div class="contentProgressionBar">
+<div class="contentBarPhotoLeft">
+<p class="fontVotePhotoZonder">60 votes</p>
+</div>
+</div>
+
+<div class="contentProgressionBar">
+<div class="contentBarPhotoRight">
+<p class="fontVotePhotoZonder">40 votes</p>
+</div>
+</div>
+</div>
+
+<div class="contentPhotosPoll">
+<div class="contentPhotoLeft">
+<img width="100%" src="img/imageLeftPoll.png">
+<p class="fontTitlePhotoZonder titlePhoto">montains</p>
+</div>
+<div class="contentPhotoLeft">
+<img width="100%" src="img/imageRightPoll.png">
+<p class="fontTitlePhotoZonder titlePhoto">sea</p>
+</div>
+</div>
+
+<div class="footerZonder">
+  <div class="contentVotesComments"> 
+    <div class="fontVoteCommentsZonder">148 <span class="fontVoteCommentsTextZonder">votes</span></div>
+    <div class="fontVoteCommentsZonder marginComments">12 <span class="fontVoteCommentsTextZonder">comments</span></div>
+  </div>
+<div class="contentIconFavouriteComments"> 
+  <img width="46" class="marginIconComments" src="img/commentsIcon.png">
+</div>
+
+ </div>
+
+</div>
+
+<div class="separator"></div>
+</ion-slide>
+
+
+<ion-slide class="heightIonSlide">
+
+<div style="position:relative;width:80%;margin:auto;margin-top:20px;height:46px;display: -webkit-flex;-webkit-align-items: center;-webkit-justify-content: flex-start;">
+<img width="46" src="img/louis.png">
+<img style="position:absolute;top:1px;left:33px;" width="10" src="img/notification.png">
+<div style="height:100%;margin-left:12px;width:calc( 100% - 46px );display:-webkit-flex;-webkit-flex-direction:column;-webkit-justify-content:flex-start;">
+<p class="fontPseudoNewFriends"> Louis 
+  <span class="fontNewFriendsInformation">is asking you as a friend</span>
+<!-- <span class="fontNewFriendsInformation">received your invitation</span>  -->
+</p>
+<div style="display: -webkit-flex;-webkit-align-items: flex-start;-webkit-justify-content: flex-start;"> 
+    <p class="fontPollsFriends">10 <span class="fontPollsFriendsText">zonders</span></p>
+    <div style="margin-left:2px;margin-right:2px"class="fontPollsFriendsText">/</div>
+    <p class="fontPollsFriends">121 <span class="fontPollsFriendsText">friends</span></p>
+</div>
+<p class="fontFooterFriends" style="margin-top:10px"> See Louis’s profile </p>
+</div>
+</div>
+</ion-slide>
+</ion-slide-box>
+
+<div ng-show="sliderPollsProfile" class="buttonfooter">
+<img src="img/plus.png" width="16">
+<span class="brandonBold" id="createPoll">create a zonder</span>
+</div>
+
+<div ng-show="sliderFriendsProfile" class="buttonfooter">
+<img src="img/plus.png" width="16">
+<span class="brandonBold" id="findFriends">find friends</span>
+</div>
+
+</ion-modal-view>

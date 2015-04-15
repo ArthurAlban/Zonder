@@ -1,0 +1,40 @@
+<ion-modal-view class="background">
+
+<button class="button button-clear button-light" ng-click="closeCommentsModal()" style="position:fixed;right:0px;top:14px;color:#ffffff;z-index:5;text-shadow: 2px 2px 4px #000000;">
+  <i class="icon ion-close-circled light"></i>
+</button>
+
+<div style="position:relative;overflow:hidden;height:50vh;width:100%;">
+	 <img src='{{pollToAnswer.photoLeft}}' ng-class="{opacityImage:true}" ng-style="{'width': imgLeftInfo.imgWidth + 'px', 'height': imgLeftInfo.imgHeight + 'px', 'margin-left': '-' + imgLeftInfo.positionLeft + 'px', 'margin-top': imgLeftInfo.positionTop + 'px'}">
+</div>
+
+<div style="overflow:hidden;position:relative;height:50vh;width:100%">
+	<img src='{{pollToAnswer.photoRight}}' ng-class="{opacityImage:true}"  ng-style="{'width': imgRightInfo.imgWidth + 'px', 'height': imgRightInfo.imgHeight + 'px', 'margin-left': '-' + imgRightInfo.positionLeft + 'px', 'margin-top': imgRightInfo.positionTop + 'px'}">
+</div>
+
+<ion-scroll ng-show="pollToAnswer.comments.length" class="sample-show-hide" has-bouncing="false" direction="y" zooming="false" delegate-handle="vertical" style="width:90%;position:absolute;left:5%;top:10%;max-height: 75%;overflow:hidden;">
+<ion-list class="list">
+
+<ion-item class="item" ng-repeat="comment in pollToAnswer.comments" style="border:0 none;width:100%;height:44px;background-color: rgba(0,0,0,0);">
+<img src={{comment.photoAuthorComments}} style="border:1px solid #35c3c1;position:absolute;left:12px;top:8px;width:26px;height:26px;border-radius:100%">
+<h2 style="position:absolute;margin-top:-10px;padding-left:2px;padding-right:2px;left:48px;text-transform: uppercase;font-size:12px;color:#cccccc;text-shadow: 1px 1px 2px #000000;"><b>{{comment.author}}</b></h2>
+<span style="width:80%;position:absolute;margin-top:5px;left:48px;color:#ffffff;text-shadow: 2px 2px 4px #000000;font-size:12px;background: transparent">{{comment.comment}}</span>
+</ion-item>
+</ion-list>
+</ion-scroll>
+
+<div ng-show="!pollToAnswer.comments.length" class="sample-show-hide" style="position:absolute;left:20%;top:20%;width:60%;height:30px;">
+    <span style="width:100%;color:#ffffff;text-shadow: 2px 2px 4px #000000;font-size:14px;background: transparent">No comment yet, be the first to comment !</span>
+</div>
+
+
+  <div style="position:absolute;left:5%;top:90%;width:90%;height:30px;">
+  	<div style="border:1px solid #FFFFFF;border-radius:10px;margin-top:0px;"></div>
+    <input type="text" style="width:85%;position:relative;background: transparent;text-shadow: 1px 1px 2px #000000;color:#FFFFFF;font-size:14px;height:30px;line-height:14px;" ng-model="pollToAnswer.comment" placeholder="Write comment" maxlength="30" minlength="1">
+    
+    <button class="button-clear" ng-click="sendComment(comment)" style="padding:0;position:absolute;left:85%;top:0;width:15%;height:30px;font-size:14px;text-shadow: 1px 1px 2px #000000;color:#FFFFFF;text-align:center;"><b>Send</b></button>
+  </div>
+
+
+
+</ion-modal-view>
