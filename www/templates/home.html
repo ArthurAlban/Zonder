@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="true">
+<ion-side-menus enable-menu-with-back-views="true" ng-controller="mainCtrl">
 
 <ion-side-menu width="250" class="backgroundSideMenu" side="left" ng-controller="parameterCtrl">
 
@@ -16,7 +16,7 @@
 		<span class="text">Find Friends</span>
 		<img class="imgRight" width="7" src="img/chevronRight.png">
 	</div>
-	<div class="optionMenuSideMenu">
+	<div class="optionMenuSideMenu" ng-click="openCreateZonderModal()">
 		<img class="imgLeft" width="20" src="img/poll.png">
 		<span class="text">Create Zonder</span>
 		<img class="imgRight" width="7" src="img/chevronRight.png">
@@ -298,7 +298,7 @@
 </ion-slide>
 </ion-slide-box>
 
-<div ng-show="sliderVote || sliderPolls" class="buttonfooter">
+<div ng-show="sliderVote || sliderPolls" class="buttonfooter" ng-click="openCreateZonderModal()">
 <img src="img/plus.png" width="16">
 <span class="brandonBold" id="createPoll">create a zonder</span>
 </div>

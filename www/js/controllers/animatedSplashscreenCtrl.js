@@ -235,6 +235,7 @@ $scope.clearRegisterModal = function(){
   $scope.photoHasChanged = false;
 
   $scope.displayNextButton = true;
+  $ionicSlideBoxDelegate.$getByHandle('registerSlider').slide(0);
 };
 
 //Pour serveur pas possible de new Array() route signup

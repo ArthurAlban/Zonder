@@ -1,0 +1,27 @@
+<ion-modal-view class="background">
+<img id="closeCreateZonder" class="imgClick" ng-click="closeCreateZonderModal()" src="img/close.png">
+
+
+<ion-slide-box on-slide-changed="slideChanged(index)" delegate-handle="createZonderSlider" show-pager="true" id="slideBoxCreateZonder">
+
+<ion-slide>
+
+<div id="contentTextAreaCreateZonder">
+<textarea class="questionCreateZonder" id="textAreaQuestionCreateZonder" ng-model="question" rows="7" cols="20" maxlength="90" placeholder="WHAT IS YOUR QUESTION ?">
+</textarea>
+</div>
+
+<div id="contentCharactersLeftCreateZonder">
+  <span class="charactersLeftCreateZonder">Characters left 90</span>
+</div>
+
+
+<!-- 
+<p class="titleTooltip posTitleTooltip">WHAT IS YOUR QUESTION ?</p>
+
+<p class="posSubtitleTooltip subtitleTooltip">Characters left 140</p> -->
+
+</ion-slide>
+</ion-slide-box>
+
+</ion-modal-view>

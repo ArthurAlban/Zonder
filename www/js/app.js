@@ -11,7 +11,7 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
   
   $ionicPlatform.ready(function() {
     console.log("hidebefore");
-    $cordovaSplashscreen.hide();
+    $cordovaSplashscreen.hide();  
     console.log("hideafter");
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
