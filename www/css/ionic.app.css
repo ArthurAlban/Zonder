@@ -7933,6 +7933,73 @@ a.button {
   font-family: 'OpenSansRegular';
   color: #adafbc; }
 
+.overlaySideMenu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 25;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); }
+
+.fontPseudoZonder {
+  color: #717070;
+  font-size: 8px;
+  font-family: 'OpenSansExtraBold';
+  line-height: 1.023;
+  text-transform: uppercase; }
+
+.fontPseudoTextZonder {
+  font-family: 'OpenSansSemibold';
+  color: #bdbbbb; }
+
+.fontTimeZonder {
+  color: #f79f03;
+  font-size: 6px;
+  font-family: 'OpenSansBold';
+  line-height: 1.023;
+  letter-spacing: 0.075em;
+  text-transform: uppercase; }
+
+.fontQuestionZonder {
+  font-size: 8px;
+  font-family: 'OpenSansIt';
+  line-height: 1.338;
+  text-align: left;
+  color: #7d7c7c; }
+
+.fontVoteCommentsZonder {
+  color: #c7c5c5;
+  font-size: 8px;
+  font-family: 'OpenSansBold';
+  line-height: 0.565;
+  letter-spacing: 0.075em;
+  text-transform: uppercase; }
+
+.fontVoteCommentsTextZonder {
+  color: #c7c5c5;
+  font-size: 8px;
+  font-family: 'OpenSansRegular';
+  line-height: 0.565;
+  letter-spacing: 0.075em;
+  text-transform: uppercase; }
+
+.fontTitlePhotoZonder {
+  color: #ffffff;
+  font-size: 2.5vw;
+  font-family: 'OpenSansExtraBold';
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase; }
+
+.fontVotePhotoZonder {
+  color: #ffffff;
+  font-size: 6px;
+  font-family: 'OpenSansExtraBold';
+  line-height: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase; }
+
 .divSelectorTab {
   position: relative;
   width: 100%;
@@ -7941,11 +8008,160 @@ a.button {
 .heightIonSlide {
   height: calc( 100vh - 170px); }
 
+.divContentZonder {
+  width: 80%;
+  margin: auto;
+  margin-top: 4%; }
+
+.headerZonder {
+  width: 100%;
+  height: 46px;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start; }
+
+.contentHeader {
+  height: 100%;
+  margin-left: 9px;
+  width: calc( 100% - 46px);
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  -webkit-justify-content: flex-start;
+  -webkit-align-items: center; }
+
+.contentHeaderHeader {
+  width: 100%;
+  height: 20%;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start; }
+
+.sizeContentPseudo {
+  width: calc( 100% - 38px); }
+
+.posTimer {
+  margin-top: 2px; }
+
+.contentHeaderFooter {
+  width: 100%;
+  height: 80%;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start; }
+
+.questionPosStyle {
+  margin-top: 8px;
+  width: calc( 100% - 24px);
+  webkit-hyphens: auto; }
+
+.posWheel {
+  margin-top: 4px;
+  margin-left: 10px; }
+
+.contentPhotos {
+  margin-top: 6px;
+  width: 100%;
+  height: 28vw;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start; }
+
+.contentPhotosPoll {
+  width: 100%;
+  height: 28vw;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start; }
+
+.contentProgressionPoll {
+  position: relative;
+  margin-top: 6px;
+  width: 100%;
+  height: 8px;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start; }
+
+.contentProgressionBar {
+  position: relative;
+  width: 50%;
+  height: 100%; }
+
+.contentBarPhotoLeft {
+  position: absolute;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background-color: #f79f03;
+  text-align: right;
+  padding-right: 2px;
+  padding-left: 2px; }
+
+.contentBarPhotoRight {
+  position: absolute;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background-color: #dadada;
+  text-align: left;
+  padding-right: 2px;
+  padding-left: 2px; }
+
+.contentPhotoLeft {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  overflow: hidden; }
+
+.titlePhoto {
+  padding: 3px;
+  background-color: rgba(0, 0, 0, 0.47);
+  position: absolute;
+  left: 6px;
+  bottom: 9px;
+  margin: 0;
+  max-width: 70%;
+  -webkit-hyphens: auto; }
+
+.footerZonder {
+  margin-top: 4px;
+  position: relative;
+  width: 100%; }
+
+.contentVotesComments {
+  position: absolute;
+  left: 0;
+  margin-top: 4px;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start; }
+
+.marginComments {
+  margin-left: 5px; }
+
+.contentIconFavouriteComments {
+  position: absolute;
+  right: 0;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start; }
+
+.marginIconComments {
+  margin-left: 8px; }
+
+.separator {
+  margin-top: 14%;
+  margin-left: -40%;
+  position: Relative;
+  left: 50%;
+  width: 80%;
+  border-top: 1px solid #dadada; }
+
 .buttonfooter {
   z-index: 25;
   position: absolute;
   bottom: 0;
-  height: 35px;
+  height: 30px;
   width: 100%;
   background-color: #f79f03;
   display: -webkit-flex;
@@ -7964,13 +8180,23 @@ a.button {
 
 #sliderBoxHome {
   position: relative;
-  top: 0px;
+  /*top:0px;*/
   background: white; }
+
+.divTransparency {
+  position: relative;
+  width: 100px;
+  height: 104px; }
+
+.posHeader {
+  position: relative;
+  width: 100%;
+  height: 59px; }
 
 .divHeader {
   position: absolute;
   width: 100%;
-  top: 104px; }
+  top: 0px; }
 
 .divHeader .rowHeader {
   height: 59px;
@@ -8026,6 +8252,53 @@ a.button {
   position: absolute;
   right: 20vw;
   top: 40px;
+  text-transform: uppercase; }
+
+.fontFooterFriends {
+  font-size: 8px;
+  font-family: 'OpenSansIt';
+  line-height: 1.338;
+  text-align: left;
+  letter-spacing: 0.075em;
+  color: #bdbbbb; }
+
+.fontPseudoFriends {
+  color: #939191;
+  font-size: 12px;
+  font-family: 'OpenSansExtraBold';
+  line-height: 12px;
+  letter-spacing: 0.075em;
+  text-transform: uppercase; }
+
+.fontPseudoNewFriends {
+  color: #f79f03;
+  font-size: 12px;
+  font-family: 'OpenSansExtraBold';
+  line-height: 12px;
+  letter-spacing: 0.075em;
+  text-transform: uppercase; }
+
+.fontNewFriendsInformation {
+  color: #f79f03;
+  font-size: 8px;
+  font-family: 'OpenSansIt';
+  line-height: 8px;
+  letter-spacing: 0.075em; }
+
+.fontPollsFriends {
+  color: #bdbbbb;
+  font-size: 8px;
+  font-family: 'OpenSansExtraBold';
+  line-height: 8px;
+  letter-spacing: 0.075em;
+  text-transform: uppercase; }
+
+.fontPollsFriendsText {
+  color: #bdbbbb;
+  font-size: 8px;
+  font-family: 'OpenSansRegular';
+  line-height: 8px;
+  letter-spacing: 0.075em;
   text-transform: uppercase; }
 
 .animateTriangles {
@@ -8378,10 +8651,14 @@ a.button {
 @media screen and (device-aspect-ratio: 40/71) {
   .heightIonSlide {
     height: calc( 100vh - 150px); }
+  .divTransparency {
+    position: relative;
+    width: 100px;
+    height: 84px; }
   .divHeader {
     position: absolute;
     width: 100%;
-    top: 84px; }
+    top: 0px; }
   #triangles {
     z-index: 10;
     position: absolute;
@@ -8401,10 +8678,14 @@ a.button {
 @media screen and (device-aspect-ratio: 2/3) {
   .heightIonSlide {
     height: calc( 100vh - 150px); }
+  .divTransparency {
+    position: relative;
+    width: 100px;
+    height: 84px; }
   .divHeader {
     position: absolute;
     width: 100%;
-    top: 84px; }
+    top: 0px; }
   #logoBandeau {
     z-index: 10;
     position: absolute;

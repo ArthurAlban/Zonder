@@ -443,6 +443,91 @@ top:36px;
 
 ////////////////////// home ////////////////////////
 
+//overlay sideMenu
+.overlaySideMenu{
+position:absolute;
+top:0;
+left:0;
+z-index:25;
+width:100%;
+height:100%;
+background-color:rgba(0,0,0,0.7)
+}
+
+//createur du zonder
+.fontPseudoZonder{
+  color: #717070;
+  font-size:8px;
+  font-family:'OpenSansExtraBold';
+  line-height:1.023;
+  text-transform: uppercase;
+}
+
+.fontPseudoTextZonder{
+  font-family:'OpenSansSemibold';
+  color: #bdbbbb;
+}
+
+//time zonder
+.fontTimeZonder{
+  color:#f79f03;
+  font-size:6px;
+  font-family:'OpenSansBold';
+  line-height:1.023;
+  letter-spacing:0.075em;
+  text-transform: uppercase;
+}
+
+//font question zonder
+.fontQuestionZonder{
+  font-size:8px;
+  font-family:'OpenSansIt';
+  line-height: 1.338;
+  text-align: left;
+  color: #7d7c7c;
+}
+
+//font vote and comments 
+.fontVoteCommentsZonder{
+  color: #c7c5c5;
+  font-size:8px;
+  font-family:'OpenSansBold';
+  line-height:0.565;
+  letter-spacing:0.075em;
+  text-transform: uppercase;
+}
+
+//font vote and comments 
+.fontVoteCommentsTextZonder{
+  color: #c7c5c5;
+  font-size:8px;
+  font-family:'OpenSansRegular';
+  line-height:0.565;
+  letter-spacing:0.075em;
+  text-transform: uppercase;
+}
+
+
+//font Titre photo
+.fontTitlePhotoZonder{
+  color: #ffffff;
+  font-size:2.5vw;
+  font-family:'OpenSansExtraBold';
+  line-height:1;
+  letter-spacing:0.100em;
+  text-transform: uppercase;
+}
+
+//font nombre de vote photo poll (progression bar)
+.fontVotePhotoZonder{
+  color: #ffffff;
+  font-size:6px;
+  font-family:'OpenSansExtraBold';
+  line-height:8px;
+  letter-spacing:0.100em;
+  text-transform: uppercase;
+}
+
 // div de selection des onglets
 .divSelectorTab{
 position:relative;
@@ -455,12 +540,211 @@ height:7px;
 height:calc( 100vh - 170px );
 }
 
+///////////////////  CSS d'un Zonder //////////////////
+//conteneur du zonder
+.divContentZonder{
+  width:80%;
+  margin:auto;
+  margin-top:4%;
+}
+
+//header du zonder
+.headerZonder{
+  width:100%;
+  height:46px;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start;
+}
+
+//div contenant la question/pseudo/time and wheel dans le header
+.contentHeader{
+  height:100%;
+  margin-left:9px;
+  width:calc( 100% - 46px );
+  display:-webkit-flex;
+  -webkit-flex-direction:column;
+  -webkit-justify-content:flex-start;
+  -webkit-align-items:center;
+}
+
+//div contenant pseudo and time
+.contentHeaderHeader{
+  width:100%;
+  height:20%;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start;
+}
+
+//size content pseudo
+.sizeContentPseudo{
+  width:calc( 100% - 38px );
+}
+
+//placement timer
+.posTimer{
+  margin-top:2px;
+}
+
+//content div footer
+.contentHeaderFooter{
+width:100%;
+height:80%;
+display: -webkit-flex;
+-webkit-align-items: center;
+-webkit-justify-content: flex-start;
+}
+
+//size and pos paragraphe question
+.questionPosStyle{
+margin-top:8px;
+width:calc( 100% - 24px );
+webkit-hyphens: auto;
+}
+
+//position wheel
+.posWheel{
+  margin-top:4px;
+  margin-left:10px;
+}
+
+//content photos
+.contentPhotos{
+margin-top:6px;
+width:100%;
+height:28vw;
+display: -webkit-flex;
+-webkit-align-items: flex-start;
+-webkit-justify-content: flex-start;
+}
+
+//content photos poll
+.contentPhotosPoll{
+width:100%;
+height:28vw;
+display: -webkit-flex;
+-webkit-align-items: flex-start;
+-webkit-justify-content: flex-start;
+}
+
+///// zonder dans poll ////
+//content progression poll
+.contentProgressionPoll{
+  position:relative;
+  margin-top:6px;
+  width:100%;
+  height:8px;
+  display: -webkit-flex;
+-webkit-align-items: flex-start;
+-webkit-justify-content: flex-start;
+}
+
+//content progression bar
+.contentProgressionBar{
+  position:relative;
+  width:50%;
+  height:100%;
+}
+
+//content bar photo left
+.contentBarPhotoLeft{
+  position:absolute;
+  left:0;
+  width:60%; // a changer selon le pourcentage //
+  height:100%;
+  background-color:#f79f03;
+  text-align:right;
+  padding-right:2px;
+  padding-left:2px;
+}
+
+//content bar photo right
+.contentBarPhotoRight{
+  position:absolute;
+  right:0;
+  width:40%; // a changer selon le pourcentage //
+  height:100%;
+  background-color:#dadada;
+  text-align:left;
+  padding-right:2px;
+  padding-left:2px;
+}
+///// fin spec zonder poll ////////
+
+//contentPhotoLeft
+.contentPhotoLeft{
+  position:relative;
+  width:50%;
+  height:100%;
+  overflow:hidden;
+}
+
+//style Title photo
+.titlePhoto{
+  padding:3px;
+  background-color:rgba(0,0,0,0.47);
+  position:absolute;
+  left:6px;
+  bottom:9px;
+  margin:0;
+  max-width:70%;
+  -webkit-hyphens: auto;
+}
+
+//content footer zonder
+.footerZonder{
+  margin-top:4px;
+  position:relative;
+  width:100%;
+}
+
+//content votes and comments
+.contentVotesComments{
+  position:absolute;
+  left:0;
+  margin-top:4px;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+}
+
+//décalage comments / votes
+.marginComments{
+  margin-left:5px;
+}
+
+//content favorite and write comments
+.contentIconFavouriteComments{
+  position:absolute;
+  right:0;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+}
+
+//décalage favourite / comments
+.marginIconComments{
+  margin-left:8px;
+}
+/////////////////// Fin ZOnder //////////////////////
+
+//separator ZOnder
+.separator{
+margin-top:14%;
+margin-left:-40%;
+position:Relative;
+left:50%;
+width:80%;
+border-top:1px solid #dadada;
+}
+
 //button footer find friends and create poll
 .buttonfooter{
 z-index:25;
 position:absolute;
 bottom:0;
-height:35px;
+height:30px;
 width:100%;
 background-color:#f79f03;
 display:-webkit-flex;
@@ -481,15 +765,29 @@ display:-webkit-flex;
 //slider box position
 #sliderBoxHome{
 position:relative;
-top:0px;
+/*top:0px;*/
 background:rgb(255,255,255);
+}
+
+//div transparente haut de view
+.divTransparency{
+  position:relative;
+  width:100px;
+  height:104px;
+}
+
+//div position Header
+.posHeader{
+  position:relative;
+  width:100%;
+  height:59px;
 }
 
 // design du Header dans la page home à 3 onglets
 .divHeader{
   position:absolute;
   width:100%;
-  top:104px;
+  top:0px;
 } 
 .divHeader .rowHeader{
   height:59px;
@@ -554,6 +852,66 @@ background:rgb(255,255,255);
     text-transform:uppercase;
   }
 
+//////////////// Friends ////////////////////
+
+//font question zonder
+.fontFooterFriends{
+  font-size:8px;
+  font-family:'OpenSansIt';
+  line-height: 1.338;
+  text-align: left;
+  letter-spacing:0.075em;
+  color: #bdbbbb;
+}
+
+//friends pseudo
+.fontPseudoFriends{
+  color:#939191;
+  font-size:12px;
+  font-family:'OpenSansExtraBold';
+  line-height:12px;
+  letter-spacing:0.075em;
+  text-transform: uppercase;
+}
+
+//new friends pseudo
+.fontPseudoNewFriends{
+  color:#f79f03;
+  font-size:12px;
+  font-family:'OpenSansExtraBold';
+  line-height:12px;
+  letter-spacing:0.075em;
+  text-transform: uppercase;
+}
+
+//new friends text informations
+.fontNewFriendsInformation{
+  color:#f79f03;
+  font-size:8px;
+  font-family:'OpenSansIt';
+  line-height:8px;
+  letter-spacing:0.075em;
+}
+
+//font polls and friends 
+.fontPollsFriends{
+  color: #bdbbbb;
+  font-size:8px;
+  font-family:'OpenSansExtraBold';
+  line-height:8px;
+  letter-spacing:0.075em;
+  text-transform: uppercase;
+}
+
+//font polls and friends 
+.fontPollsFriendsText{
+  color: #bdbbbb;
+  font-size:8px;
+  font-family:'OpenSansRegular';
+  line-height:8px;
+  letter-spacing:0.075em;
+  text-transform: uppercase;
+}
 
 ///////////////////// animation /////////////////////
 
@@ -1021,11 +1379,17 @@ background:rgb(255,255,255);
   .heightIonSlide{
 height:calc( 100vh - 150px );
 }
+//div transparente haut de view
+.divTransparency{
+  position:relative;
+  width:100px;
+  height:84px;
+}
 
   .divHeader{
   position:absolute;
   width:100%;
-  top:84px;
+  top:0px;
 } 
 
   // position des triangles en haut (que iphone 5)
@@ -1061,10 +1425,17 @@ height:calc( 100vh - 150px );
   height:calc( 100vh - 150px );
   }
 
+//div transparente haut de view
+.divTransparency{
+  position:relative;
+  width:100px;
+  height:84px;
+}
+
  .divHeader{
   position:absolute;
   width:100%;
-  top:84px;
+  top:0px;
 } 
 
   // logo en bandeau pour pourvoir le positionner au bon endroit de l'écran
