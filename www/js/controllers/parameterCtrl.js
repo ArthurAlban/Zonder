@@ -1,6 +1,6 @@
 zonder.controller('parameterCtrl', function($scope, $state, $ionicSlideBoxDelegate,$ionicModal) {
 	
-	$scope.sliderPollsProfile = false;
+	$scope.sliderPollsProfile = true;
 	$scope.sliderFriendsProfile = false;
 
 
