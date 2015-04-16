@@ -11,7 +11,7 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
   
   $ionicPlatform.ready(function() {
     console.log("hidebefore");
-    $cordovaSplashscreen.hide();
+    $cordovaSplashscreen.hide();  
     console.log("hideafter");
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -45,5 +45,5 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   });
   // if none of the above states are matched, use this as the fallback
 
-  $urlRouterProvider.otherwise('/animatedSplashscreen');
+  $urlRouterProvider.otherwise('/home');
 });

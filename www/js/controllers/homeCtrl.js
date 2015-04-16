@@ -41,4 +41,6 @@ $scope.slideHasChangedInHomeSlider = function(index) {
 		}
 	};
 
+
+
 });
