@@ -1,9 +1,11 @@
 <ion-view hide-nav-bar="true" ng-controller="animatedSplashscreenCtrl" class="background">
+
+
 <img src="img/splashTriangles.png" id="posTriangleTop" ng-class="{animateTriangles: animateTriangles}">
 
 <img src="img/logoBandeau.png" class="fade-out" id="logoBandeau">
 
-<ion-slide-box class="fade-in tooltip" on-slide-changed="slideChanged(index)" show-pager="true" id="slideBoxTooltip">
+<ion-slide-box class="fade-in tooltip" on-slide-changed="slideChanged(index)" delegate-handle="toolTipSlider" show-pager="true" id="slideBoxTooltip">
 
 <ion-slide>
 
@@ -50,7 +52,7 @@
     <div class="row" id="rowText">
       <a class="col fontSmallBrandonMedium" id="textLeftInRow" ng-click="openForgotPasswordModal()"><b>PASSWORD ?</b></a>
       <div id="divSeparateurRow"></div>
-      <a class="col fontSmallBrandonMedium" id="textRightInRow" ng-click="toRegister()"><b>REGISTER NOW</b></a>
+      <a class="col fontSmallBrandonMedium" id="textRightInRow" ng-click="openRegisterModal()"><b>REGISTER NOW</b></a>
     </div>
     <button class="button buttonZonder" type="submit" id="buttonSignIn">
       SIGN IN

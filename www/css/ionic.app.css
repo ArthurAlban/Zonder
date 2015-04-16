@@ -2928,18 +2928,19 @@ a.subdued {
     border-radius: 0;
     border-color: #d1d3d6;
     background-color: transparent;
-    color: #007aff;
-    font-size: 21px; }
+    color: #717070;
+    font-size: 21px;
+    font-family: 'BrandonMedium'; }
     .action-sheet .button:hover {
-      color: #007aff; }
+      color: #f79f03; }
     .action-sheet .button.destructive {
-      color: #ff3b30; }
+      color: #f79f03; }
       .action-sheet .button.destructive:hover {
-        color: #ff3b30; }
+        color: #f79f03; }
   .action-sheet .button.active, .action-sheet .button.activated {
     box-shadow: none;
     border-color: #d1d3d6;
-    color: #007aff;
+    color: f79f03;
     background: #e4e5e7; }
 
 .action-sheet-has-icons .icon {
@@ -6473,8 +6474,6 @@ progress {
   display: inline-block;
   margin: 0;
   padding: 0 12px;
-  min-width: 52px;
-  min-height: 47px;
   border-width: 1px;
   border-style: solid;
   border-radius: 2px;
@@ -7751,8 +7750,7 @@ a.button {
 
 #divFormLogin {
   position: absolute;
-  left: 1px;
-  top: 27.6%;
+  top: 27%;
   width: 100%; }
 
 #posTriangleTop {
@@ -7815,6 +7813,37 @@ a.button {
   line-height: 1.711;
   text-align: center; }
 
+#buttonSavePassword {
+  position: absolute;
+  left: 50%;
+  margin-left: -40%;
+  top: 81%; }
+
+#imgCloseForgotPassword {
+  width: 28px;
+  z-index: 11;
+  position: absolute;
+  left: 12px;
+  top: 36px; }
+
+#contentForgotPassword {
+  position: absolute;
+  width: 100%;
+  top: 27%; }
+
+#buttonForgetPassword {
+  position: absolute;
+  left: 50%;
+  margin-left: -40%;
+  top: 81%; }
+
+.indicationForgotPassword {
+  margin-top: 8px;
+  padding-left: 5%;
+  padding-right: 5%;
+  text-transform: uppercase;
+  text-align: center; }
+
 .footerRegister {
   position: absolute;
   top: 95%;
@@ -7840,6 +7869,7 @@ a.button {
 #registerSlideBox {
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%; }
 
@@ -7874,6 +7904,12 @@ a.button {
 
 .labelZonder .imgLeft {
   margin-left: 20px; }
+
+.labelZonder .imgLeftRound {
+  margin-left: 20px;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px; }
 
 .labelZonder .imgRight {
   margin-left: 3px; }
@@ -8310,7 +8346,8 @@ a.button {
 .posParameterProfile {
   z-index: 26;
   position: absolute;
-  right: 22px;
+  padding: 4px;
+  right: 32px;
   top: 75px; }
 
 .animateTriangles {
@@ -8405,6 +8442,86 @@ a.button {
 .backgroundSideMenu {
   background-image: url('../img/backgroundBlur.jpg');
   background-size: cover; }
+
+.overlayPopup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: -webkit-flex;
+  -webkit-align-content: center;
+  -webkit-align-items: center;
+  -webkit-justify-content: center; }
+
+.popupZonder {
+  width: 70vw;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start; }
+
+.imgPopup {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width: 100%;
+  padding-bottom: 10px; }
+
+.contentTitle {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width: 100%;
+  padding-top: 25px;
+  background-color: #fff; }
+
+.titlePopup {
+  width: 100%;
+  font-size: 12px;
+  font-family: 'BrandonBold';
+  color: #000;
+  line-height: 12px;
+  letter-spacing: 0.075em;
+  text-align: center; }
+
+.contentText {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width: 100%;
+  background-color: #fff; }
+
+.textPopup {
+  width: 80%;
+  font-size: 10px;
+  font-family: 'OpenSansIt';
+  color: #000;
+  line-height: 1.6;
+  text-align: center;
+  padding-bottom: 10px; }
+
+.contentButton {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width: 100%;
+  background-color: #fff;
+  padding-bottom: 20px; }
+
+.buttonPopup {
+  height: 20px;
+  width: 60px;
+  border-radius: 4px;
+  border: 0 none;
+  background-color: #f79f03;
+  color: #fcf9f0;
+  font-size: 11px;
+  font-family: 'BrandonBold';
+  letter-spacing: 0.075em;
+  line-height: 11px !important; }
 
 .animateTriangles {
   -webkit-transform: translateY(-16vh);
@@ -8583,6 +8700,11 @@ a.button {
 @media screen and (device-aspect-ratio: 40/71) {
   .heightIonSlide {
     height: calc( 100vh - 150px); }
+  .posParameterProfile {
+    z-index: 26;
+    position: absolute;
+    right: 22px;
+    top: 72px; }
   .divTransparency {
     position: relative;
     width: 100%;
@@ -8610,6 +8732,11 @@ a.button {
 @media screen and (device-aspect-ratio: 2/3) {
   .heightIonSlide {
     height: calc( 100vh - 150px); }
+  .posParameterProfile {
+    z-index: 26;
+    position: absolute;
+    right: 22px;
+    top: 72px; }
   .divTransparency {
     position: relative;
     width: 100%;

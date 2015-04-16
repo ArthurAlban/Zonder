@@ -22,6 +22,8 @@ zonder.factory('UserService', function($http, $q) {
         },
         signUp: function(userInfo) {
             var deferred = $q.defer();
+            console.log("user" + JSON.stringify(userInfo));
+            console.log("user" + userInfo);
             $http.post("http://89.3.47.72" + '/user/signup', {user : userInfo})
             .success(function(data){
                 deferred.resolve(data);

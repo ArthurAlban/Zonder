@@ -1,5 +1,5 @@
-zonder.controller('animatedSplashscreenCtrl', function($window,$scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal) {
-	$scope.animateTriangles = false;
+zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal, $ionicActionSheet, $cordovaCamera) {
+  $scope.animateTriangles = false;
 	$ionicPlatform.ready(function() {
 		$scope.animateTriangles = true;
 		$scope.$apply();
@@ -7,16 +7,8 @@ zonder.controller('animatedSplashscreenCtrl', function($window,$scope, $rootScop
 
 	// Called to navigate to the main app
    $scope.toLogin = function() {
-   $ionicSlideBoxDelegate.slide(3);
+   $ionicSlideBoxDelegate.$getByHandle('toolTipSlider').slide(3);
   };
-
-  $scope.toRegister = function() {
-    $state.go("register");
-  };
-
-  //  $scope.toforgotPassword = function() {
-  //   $state.go("forgotPassword");
-  // };
 
   // Called each time the slide changes
   $scope.slideChanged = function(index) {
@@ -103,6 +95,11 @@ $scope.toAnswer = function(){
 };
 
 ///////////// forgot pass /////////////////
+$scope.mailForgotPasswordPopup = false;
+
+$scope.displayMailForgotPasswordPopup = function(){
+  $scope.mailForgotPasswordPopup = true;
+}
 $ionicModal.fromTemplateUrl('modals/forgotPassword.html', {
   scope: $scope,
   animation: 'slide-in-right'
@@ -140,21 +137,16 @@ $scope.data.mail = "";
 $scope.displayMailerror = false;
 
 $scope.setDisplayMailErrorFalse = function(){
-  console.log("hiha31");
   $scope.displayMailerror = false;
 };
 
 $scope.sendNewPassword = function(mail){
-  console.log("hiha1");
   UserService.checkEmail(mail).then(function(data){
     if(data.result == "notFound")  {
-      console.log("hiha2");
       $scope.displayMailerror = true;
     }
     if(data.result == "found"){ 
-      console.log("hiha3");
       UserService.resetPassword(mail).then(function(data){
-      console.log("hiha4");
         $scope.closeForgotPasswordModal();
     }, function(msg){
       $scope.displayMailerror = true;
@@ -166,5 +158,341 @@ $scope.sendNewPassword = function(mail){
   console.log("impossible de vérifier l'email");
 });
 };
+
+
+////////////////// register   //////////////////////
+
+
+//popup booleans
+$scope.mailPopup = false;
+$scope.passwordPopup = false;
+$scope.pseudoPopup = false;
+
+
+$scope.displayMailPopup = function(){
+  $scope.mailPopup = true;
+};
+
+$scope.displayPasswordPopup = function(){
+  $scope.passwordPopup = true;
+};
+
+$scope.displayPseudoPopup = function(){
+  $scope.pseudoPopup = true;
+};
+
+//Methde appellée par la directive popup pour fermer la popup affichée
+$scope.closepopups = function() {
+  $scope.mailPopup = false;
+  $scope.passwordPopup = false;
+  $scope.pseudoPopup = false;
+  $scope.mailForgotPasswordPopup = false;
+};
+
+$ionicModal.fromTemplateUrl('modals/registerModal.html', {
+  scope: $scope,
+  animation: 'slide-in-right'
+}).then(function(modal) {
+  $scope.registerModal = modal;
+});
+
+$scope.openRegisterModal = function() {
+  $scope.registerModal.show();
+};
+
+$scope.closeRegisterModal = function() {
+  $scope.clearRegisterModal();
+  $scope.registerModal.hide();
+};
+
+$scope.$on('$destroy', function() {
+  $scope.registerModal.remove();
+});
+
+$scope.$on('modal.hidden', function() {
+});
+
+$scope.$on('modal.removed', function() {
+});
+
+$scope.clearRegisterModal = function(){
+  $scope.userData.email = "";
+  $scope.userData.password = "";
+  $scope.userData.confirmPassword = "";
+  $scope.userData.pseudo = "";
+  $scope.userData.photo = "img/camera.png";
+  $scope.userData.isMale = false;
+  $scope.userData.isFemale = false;
+  $scope.userInfo.password = "";
+  $scope.userInfo.email = "";
+  $scope.userInfo.pseudo = "";
+  $scope.userInfo.gender = "";
+  $scope.userInfo.photo = "";
+  $scope.mailIsValid = true;
+  $scope.identicPasswords = true;
+  $scope.pseudoIsValid = true;
+  $scope.genderIsValid = true;
+  $scope.photoHasChanged = false;
+
+  $scope.displayNextButton = true;
+};
+
+//Pour serveur pas possible de new Array() route signup
+$scope.userInfo = {};
+$scope.userData = new Array();
+$scope.userData.email = "";
+$scope.userData.password = "";
+$scope.userData.confirmPassword = "";
+$scope.userData.pseudo = "";
+$scope.userData.photo = "img/camera.png";
+$scope.userData.isMale = false;
+$scope.userData.isFemale = false;
+
+$scope.mailIsValid = true;
+$scope.identicPasswords = true;
+$scope.pseudoIsValid = true;
+$scope.genderIsValid = true;
+$scope.photoHasChanged = false;
+
+$scope.displayNextButton = true;
+
+
+$scope.disableSwipe = function() {
+  $ionicSlideBoxDelegate.$getByHandle('registerSlider').enableSlide(false);
+};
+
+$scope.slideHasChangedInRegister = function(index){
+  if(index == 0){
+    $scope.disableSwipe();
+    $scope.displayNextButton = true;
+  }
+};
+
+$scope.nextStepRegister = function(){
+  $scope.checkFirstStep();
+  if($scope.firstStepValid){
+    $ionicSlideBoxDelegate.$getByHandle('registerSlider').next();
+    $scope.displayNextButton = false;
+    $ionicSlideBoxDelegate.$getByHandle('registerSlider').enableSlide(true);
+  }
+};
+
+
+$scope.checkEmail = function(){
+  if($scope.userData.email){
+    if($scope.userData.email.length){
+      var reMail = new RegExp("^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-z]{2,4})$");
+      if(reMail.test($scope.userData.email)){
+        UserService.checkEmail($scope.userData.email).then(function(data){
+          if(data.result == "notFound")  {
+            $scope.mailIsValid = true;
+          }
+          if(data.result == "found"){
+            $scope.mailIsValid = false;
+          }
+        },function(status) {
+          console.log("impossible de vérifier l'email");
+          $scope.mailIsValid = false;
+        });
+      }
+      else{
+        $scope.mailIsValid = false;
+      }
+    }
+    else {
+      $scope.mailIsValid = false;
+    }
+  }
+  else {
+    $scope.mailIsValid = false;
+  }
+};
+
+$scope.checkPasswords = function(){
+  if($scope.userData.password && $scope.userData.confirmPassword){
+    if(($scope.userData.password.length > 5) && ($scope.userData.confirmPassword.length > 5)) {
+      if($scope.userData.password == $scope.userData.confirmPassword) {
+        $scope.identicPasswords = true;
+      }
+      else {
+        $scope.identicPasswords = false;
+      }
+    }
+    else {
+      $scope.identicPasswords = false;
+    }
+  }
+  else{
+    $scope.identicPasswords = false;
+  }
+};
+
+$scope.checkPseudo = function(){
+  if($scope.userData.pseudo){
+    if($scope.userData.pseudo.length > 3){
+      UserService.checkPseudo($scope.userData.pseudo).then(function(data){
+        if(data.result == "notFound"){
+          $scope.pseudoIsValid = true;
+        }
+        if(data.result == "found"){
+          $scope.pseudoIsValid = false;
+        }
+      },function(status){ 
+        console.log("Impossible de verifier le pseudo");
+        $scope.pseudoIsValid = false;
+      });
+    }
+    else {
+      $scope.pseudoIsValid = false;
+    }
+  }
+  else {
+    $scope.pseudoIsValid = false;
+
+  }
+};
+
+$scope.checkFirstStep = function(){
+  $scope.checkPasswords();
+  $scope.checkEmail();
+  $scope.checkPseudo();
+  if(!$scope.identicPasswords || !$scope.pseudoIsValid || !$scope.mailIsValid){
+    $scope.firstStepValid = false;
+  }
+  else{
+    $scope.firstStepValid = true;
+  }
+};
+
+
+$scope.checkMale = function(){
+  $scope.userData.isMale = true;
+  $scope.userData.isFemale = false;
+  $scope.genderIsValid = true;
+
+};
+
+$scope.checkFemale = function(){
+  $scope.userData.isMale = false;
+  $scope.userData.isFemale = true;
+  $scope.genderIsValid = true;
+};
+
+$scope.changeProfilePicture = function(){
+  var options = {
+    quality: 99,
+    destinationType: $rootScope.destinationType,
+    sourceType: $rootScope.pictureSource,
+    allowEdit: true,
+    encodingType: Camera.EncodingType.JPEG,
+    targetWidth: 150,
+    targetHeight: 150,
+    popoverOptions: CameraPopoverOptions,
+    saveToPhotoAlbum: false
+  };
+  console.log("1");
+  $cordovaCamera.getPicture(options).then(function(imageData) {
+    $scope.userData.photo = "data:image/jpeg;base64," + imageData;
+    $scope.photoHasChanged = true;
+    console.log("2");
+  }, function(err) {
+  });
+};
+
+$scope.showActionSheetPhotoSource = function() {
+
+  $ionicActionSheet.show({
+    titleText: 'Choose your profile photo',
+    buttons: [
+    { text: 'Album <i class="icon ion-images"></i>' },
+    { text: 'Camera <i class="icon ion-camera"></i>' },
+    ],
+    cancelText: 'Annuler',
+    cancel: function() {
+    },
+    buttonClicked: function(index) {
+      if(index == 0){
+        $rootScope.pictureSource = Camera.PictureSourceType.PHOTOLIBRARY;
+        $scope.changeProfilePicture();
+      }
+      if(index == 1){
+        $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
+        $scope.changeProfilePicture();
+      }
+      return true;
+    }
+  });
+};
+
+$scope.checkSecondStep = function(){
+  if($scope.userData.isMale || $scope.userData.isFemale){
+    $scope.signUp();
+  }
+  else{
+    $scope.genderIsValid = false;
+  }
+};
+
+$scope.toHome = function(){
+  $state.go('home');
+  $scope.closeRegisterModal();
+};
+
+
+$scope.signUp = function() {
+  $scope.userInfo.password = $scope.userData.password;
+  $scope.userInfo.email = $scope.userData.email;
+  $scope.userInfo.pseudo = $scope.userData.pseudo;
+  if($scope.userData.photo == "img/camera.png"){
+    $scope.userInfo.photo = "img/noProfilePic.png";
+  }
+  else{
+    $scope.userInfo.photo = $scope.userData.photo;
+  }
+  
+  if($scope.userData.isMale == true){
+    $scope.userInfo.gender = true;
+  } 
+  else {
+    $scope.userInfo.gender = false;
+  }
+    UserService.signUp($scope.userInfo).then(function(){
+      UserService.sendSignUpMail($scope.userInfo.email, $scope.userInfo.password).then(function(){
+        UserService.logIn($scope.userInfo.email, $scope.userInfo.password).then(function(d){
+          $window.localStorage['isLog'] = "true";
+          $window.localStorage['token'] = d.token;
+          UserService.getUserInfoForLocalStorage().then(function(data){
+            $window.localStorage['pseudo'] = data.pseudo;
+            $window.localStorage['email'] = data.email;
+            $window.localStorage['gender'] = data.gender;
+            $window.localStorage['photo'] = data.photo;
+            if(data.notifFriends) {
+              $window.localStorage['notifFriends'] = "true";
+            }
+            else {
+              $window.localStorage['notifFriends'] = "false";
+            }           
+            if(data.notifPolls) {
+              $window.localStorage['notifPolls'] = "true";
+            }
+            else {
+              $window.localStorage['notifPolls'] = "false";
+            }
+            $scope.toHome();
+          }, function(msg){
+            console.log(msg);
+          });
+        },function(msg){
+          console.log(msg);
+        });
+      },function(m){
+        console.log("Impossible de sendemail");
+      });
+},function(status){
+  console.log("Impossible de signUp");
+});
+
+};
+
 
 });

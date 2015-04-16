@@ -49,16 +49,17 @@
     border-color: $sheet-options-border-color;
     background-color: transparent;
 
-    color: $sheet-options-text-color;
+    color: #717070;//$sheet-options-text-color;
     font-size: 21px;
+    font-family:'BrandonMedium';
 
     &:hover {
-      color: $sheet-options-text-color;
+      color: #f79f03;//$sheet-options-text-color;
     }
     &.destructive {
-      color: #ff3b30;
+      color: #f79f03;
       &:hover {
-        color: #ff3b30;
+        color: #f79f03;
       }
     }
   }
@@ -66,7 +67,7 @@
   .button.active, .button.activated {
     box-shadow: none;
     border-color: $sheet-options-border-color;
-    color: $sheet-options-text-color;
+    color: f79f03;//$sheet-options-text-color;
     background: $sheet-options-bg-active-color;
   }
 }
