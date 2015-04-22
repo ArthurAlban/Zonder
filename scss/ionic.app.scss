@@ -402,9 +402,50 @@ top:36px;
   width:100%;
   display: -webkit-flex;
   -webkit-align-items: center;
+  -webkit-justify-content: space-around;
+  margin-bottom:2px;
+}
+
+//Label pour plus de 3 item
+.labelZonder2 {
+  height:60px;
+  background-color: #ffffff;
+  width:100%;
+  display: -webkit-flex;
+  -webkit-align-items: center;
   -webkit-justify-content: flex-start;
   margin-bottom:2px;
 }
+
+//image gauche du label
+.labelZonder2 .imgLeft{
+ margin-left:35px;
+}
+
+//text du label
+.labelZonder2 .text {
+  margin-left:35px;
+  @include fontLabelZonderInputAndText;
+}
+
+//input du label
+.labelZonder .input {
+  margin-left:35px;
+  @include fontLabelZonderInputAndText;
+}
+
+//objet checkbox de zonder a combiner avec la checkbox de ionic label>input
+.checkboxZonder {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+  margin-left:3px;
+}
+//text du choix de la check box
+.checkboxZonder .textCheckbox{
+  @include fontLabelZonderInputAndText;
+}
+
 
 //image gauche du label
 .labelZonder .imgLeft{
@@ -422,18 +463,17 @@ top:36px;
 
 //image droite du label
 .labelZonder .imgRight{
-  margin-left:3px;
 }
 
 //text du label
 .labelZonder .text {
-  margin-left:35px;
+  //margin-left:35px;
   @include fontLabelZonderInputAndText;
 }
 
 //input du label
 .labelZonder .input {
-  margin-left:35px;
+  //margin-left:35px;
   @include fontLabelZonderInputAndText;
 }
 

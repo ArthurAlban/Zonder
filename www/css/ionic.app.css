@@ -7899,8 +7899,46 @@ a.button {
   width: 100%;
   display: -webkit-flex;
   -webkit-align-items: center;
+  -webkit-justify-content: space-around;
+  margin-bottom: 2px; }
+
+.labelZonder2 {
+  height: 60px;
+  background-color: #ffffff;
+  width: 100%;
+  display: -webkit-flex;
+  -webkit-align-items: center;
   -webkit-justify-content: flex-start;
   margin-bottom: 2px; }
+
+.labelZonder2 .imgLeft {
+  margin-left: 35px; }
+
+.labelZonder2 .text {
+  margin-left: 35px;
+  line-height: 1.313;
+  font-size: 5.3vw;
+  font-family: 'OpenSansRegular';
+  color: #adafbc; }
+
+.labelZonder .input {
+  margin-left: 35px;
+  line-height: 1.313;
+  font-size: 5.3vw;
+  font-family: 'OpenSansRegular';
+  color: #adafbc; }
+
+.checkboxZonder {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+  margin-left: 3px; }
+
+.checkboxZonder .textCheckbox {
+  line-height: 1.313;
+  font-size: 5.3vw;
+  font-family: 'OpenSansRegular';
+  color: #adafbc; }
 
 .labelZonder .imgLeft {
   margin-left: 20px; }
@@ -7911,18 +7949,13 @@ a.button {
   width: 25px;
   height: 25px; }
 
-.labelZonder .imgRight {
-  margin-left: 3px; }
-
 .labelZonder .text {
-  margin-left: 35px;
   line-height: 1.313;
   font-size: 5.3vw;
   font-family: 'OpenSansRegular';
   color: #adafbc; }
 
 .labelZonder .input {
-  margin-left: 35px;
   line-height: 1.313;
   font-size: 5.3vw;
   font-family: 'OpenSansRegular';

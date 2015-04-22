@@ -167,7 +167,7 @@ $scope.sendNewPassword = function(mail){
 $scope.mailPopup = false;
 $scope.passwordPopup = false;
 $scope.pseudoPopup = false;
-
+$scope.passwordIdenticalPopup = false;
 
 $scope.displayMailPopup = function(){
   $scope.mailPopup = true;
@@ -181,12 +181,17 @@ $scope.displayPseudoPopup = function(){
   $scope.pseudoPopup = true;
 };
 
+$scope.displayPasswordIdenticalPopup = function(){
+  $scope.passwordIdenticalPopup = true;
+};
+
 //Methde appellée par la directive popup pour fermer la popup affichée
 $scope.closepopups = function() {
   $scope.mailPopup = false;
   $scope.passwordPopup = false;
   $scope.pseudoPopup = false;
   $scope.mailForgotPasswordPopup = false;
+  $scope.passwordIdenticalPopup = false;
 };
 
 $ionicModal.fromTemplateUrl('modals/registerModal.html', {
@@ -233,6 +238,8 @@ $scope.clearRegisterModal = function(){
   $scope.pseudoIsValid = true;
   $scope.genderIsValid = true;
   $scope.photoHasChanged = false;
+  $scope.passwordIsValid = true;
+  $scope.passwordIsValidDirty = false;
 
   $scope.displayNextButton = true;
   $ionicSlideBoxDelegate.$getByHandle('registerSlider').slide(0);
@@ -254,6 +261,8 @@ $scope.identicPasswords = true;
 $scope.pseudoIsValid = true;
 $scope.genderIsValid = true;
 $scope.photoHasChanged = false;
+$scope.passwordIsValid = true;
+$scope.passwordIsValidDirty = false;
 
 $scope.displayNextButton = true;
 
@@ -328,6 +337,24 @@ $scope.checkPasswords = function(){
   }
 };
 
+$scope.checkPasswordIsValid = function(){
+    var rePass = new RegExp("^[a-zA-Z0-9]{5,50}$");
+    if($scope.userData.password.length > 5){
+      if(rePass.test($scope.userData.password)){
+        $scope.passwordIsValid = true;
+        $scope.passwordIsValidDirty = true;
+      }
+      else{
+        $scope.passwordIsValid = false;
+        $scope.passwordIsValidDirty = false;
+      }
+    }
+    else{
+        $scope.passwordIsValid = false;
+        $scope.passwordIsValidDirty = false;
+    }
+};
+
 $scope.checkPseudo = function(){
   if($scope.userData.pseudo){
     if($scope.userData.pseudo.length > 3){
@@ -349,7 +376,6 @@ $scope.checkPseudo = function(){
   }
   else {
     $scope.pseudoIsValid = false;
-
   }
 };
 
@@ -357,14 +383,14 @@ $scope.checkFirstStep = function(){
   $scope.checkPasswords();
   $scope.checkEmail();
   $scope.checkPseudo();
-  if(!$scope.identicPasswords || !$scope.pseudoIsValid || !$scope.mailIsValid){
+  $scope.checkPasswordIsValid();
+  if(!$scope.identicPasswords || !$scope.pseudoIsValid || !$scope.mailIsValid || !$scope.passwordIsValid){
     $scope.firstStepValid = false;
   }
   else{
     $scope.firstStepValid = true;
   }
 };
-
 
 $scope.checkMale = function(){
   $scope.userData.isMale = true;
@@ -391,17 +417,14 @@ $scope.changeProfilePicture = function(){
     popoverOptions: CameraPopoverOptions,
     saveToPhotoAlbum: false
   };
-  console.log("1");
   $cordovaCamera.getPicture(options).then(function(imageData) {
     $scope.userData.photo = "data:image/jpeg;base64," + imageData;
     $scope.photoHasChanged = true;
-    console.log("2");
   }, function(err) {
   });
 };
 
 $scope.showActionSheetPhotoSource = function() {
-
   $ionicActionSheet.show({
     titleText: 'Choose your profile photo',
     buttons: [
@@ -438,7 +461,6 @@ $scope.toHome = function(){
   $state.go('home');
   $scope.closeRegisterModal();
 };
-
 
 $scope.signUp = function() {
   $scope.userInfo.password = $scope.userData.password;
