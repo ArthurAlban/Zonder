@@ -7894,9 +7894,12 @@ a.button {
   margin-left: -40%; }
 
 .labelZonder {
+  position: relative;
   height: 60px !important;
   margin-bottom: 2px;
-  border: 0 none !important; }
+  border: 0 none !important;
+  width: 100%;
+  left: 1px; }
 
 .iconZonderLeft {
   margin-left: 13px; }
@@ -7927,7 +7930,6 @@ a.button {
   height: 25px; }
 
 .checkboxZonder {
-  margin-right: 5px;
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start; }
@@ -7942,8 +7944,7 @@ a.button {
   line-height: 1.313 !important;
   font-size: 18px !important;
   font-family: 'OpenSansRegular' !important;
-  color: #adafbc !important;
-  margin-right: 5px; }
+  color: #adafbc !important; }
 
 .overlaySideMenu {
   position: absolute;
