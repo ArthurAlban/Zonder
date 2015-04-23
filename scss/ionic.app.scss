@@ -389,106 +389,63 @@ top:36px;
 
 //font pour les label de zonder
 @mixin fontLabelZonderInputAndText {
-  line-height: 1.313;
-  font-size:5.3vw;
-  font-family: 'OpenSansRegular';
-  color: #adafbc;
+  line-height: 1.313 !important;
+  font-size:18px !important;
+  font-family: 'OpenSansRegular' !important;
+  color:#adafbc !important;
 }
 
-//Labels generiques
 .labelZonder {
-  height:60px;
-  background-color: #ffffff;
-  width:100%;
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: space-around;
+  height:60px !important;
   margin-bottom:2px;
+  border: 0 none !important;
 }
 
-//Label pour plus de 3 item
-.labelZonder2 {
-  height:60px;
-  background-color: #ffffff;
-  width:100%;
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: flex-start;
-  margin-bottom:2px;
+.iconZonderLeft{
+  margin-left: 13px;
 }
 
-//image gauche du label
-.labelZonder2 .imgLeft{
- margin-left:35px;
+.iconZonderRight{
+  margin-right: 10px;
 }
 
-//text du label
-.labelZonder2 .text {
-  margin-left:35px;
-  @include fontLabelZonderInputAndText;
+.inputZonder{
+ @include fontLabelZonderInputAndText;
+  margin-left: 30px !important;
+  width:80% !important;
 }
 
-//input du label
-.labelZonder .input {
-  margin-left:35px;
-  @include fontLabelZonderInputAndText;
+.textZonder{
+ @include fontLabelZonderInputAndText;
+  margin:-14px 0 0 30px !important;
+  line-height:60px !important;
+  height:60px !important;
 }
 
-//objet checkbox de zonder a combiner avec la checkbox de ionic label>input
-.checkboxZonder {
-  display: -webkit-flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: flex-start;
-  margin-left:3px;
-}
-//text du choix de la check box
-.checkboxZonder .textCheckbox{
-  @include fontLabelZonderInputAndText;
-}
-
-
-//image gauche du label
-.labelZonder .imgLeft{
- margin-left:20px;
-}
-
-//image gauche du label
-.labelZonder .imgLeftRound{
- margin-left:20px;
- border-radius: 100%;
+.imgLeftRound{
+ border-radius: 100%; 
  width:25px;
  height:25px;
 }
 
-
-//image droite du label
-.labelZonder .imgRight{
-}
-
-//text du label
-.labelZonder .text {
-  //margin-left:35px;
-  @include fontLabelZonderInputAndText;
-}
-
-//input du label
-.labelZonder .input {
-  //margin-left:35px;
-  @include fontLabelZonderInputAndText;
-}
-
-//objet checkbox de zonder a combiner avec la checkbox de ionic label>input
 .checkboxZonder {
+  margin-left:5px;
+    display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start;
+}
+
+.labelContainerZonder {
+  margin-left:30px;
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start;
-  margin-left:3px;
-}
-//text du choix de la check box
-.checkboxZonder .textCheckbox{
-  @include fontLabelZonderInputAndText;
 }
 
+//text du choix de la check box
+.textCheckbox{
+  @include fontLabelZonderInputAndText;
+}
 
 ////////////////////// home ////////////////////////
 
@@ -685,8 +642,8 @@ display: -webkit-flex;
   width:100%;
   height:8px;
   display: -webkit-flex;
--webkit-align-items: flex-start;
--webkit-justify-content: flex-start;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-start;
 }
 
 //content progression bar
@@ -1272,8 +1229,16 @@ display:-webkit-flex;
 }
 ///////////////////// createZonder /////////////////////
 
+.fontYourOption{
+  color:#ffffff;
+  font-size:7vw;
+  font-family:'BrandonBold';
+  line-height:1;
+  letter-spacing:-0.075em;
+  text-transform: uppercase;
+}
+
 #slideBoxCreateZonder{
-  border:1px solid red;
   position:absolute;
   top:0;
   width:100%;
@@ -1281,7 +1246,6 @@ display:-webkit-flex;
 } 
 
 #closeCreateZonder{
-  border:1px solid blue;
   position:absolute;
   z-index: 16;
   top:32px;
@@ -1289,11 +1253,90 @@ display:-webkit-flex;
   left:15px;
 }
 
+#backCreateZonder{
+  position:absolute;
+  z-index: 16;
+  top:32px;
+  width:16px;
+  left:15px;
+}
+
+#posDivCameraLeft{
+  position:absolute;
+  z-index: 16;
+  top:36%;
+  left:18%;
+}
+
+.textAreaNamePhotoCreateZonder{ 
+  color:#ffffff;
+  font-size:5vw;
+  font-family:'BrandonBold';
+  line-height:1;
+  letter-spacing:-0.075em;
+  text-transform: uppercase;
+}
+
+.textAreaNamePhotoCreateZonderPlaceholder::-webkit-input-placeholder { 
+  color:#ffffff;
+  font-size:5vw;
+  font-family:'BrandonBold';
+  line-height:1;
+  letter-spacing:-0.075em;
+  text-transform: uppercase;
+}
+
+#posDivNamePhotoLeft{
+  position:absolute;
+  z-index: 16;
+  top:36%;
+  left:-3%;
+  text-align:center;
+  background-color: transparent;
+}
+
+#posDivCameraRight{
+  position:absolute;
+  z-index: 16;
+  top:62%;
+  right:18%;
+}
+
+#posDivNamePhotoRight{
+  position:absolute;
+  z-index: 16;
+  top:63%;
+  right:-3%;
+  text-align:center;
+  background-color: transparent;
+}
+
+//font add picture
+.addPictureFont{
+  color:#ffffff;
+  font-size:5vw;
+  font-family:'BrandonBold';
+  line-height:2.327;
+  letter-spacing:-0.075em;
+  text-transform: uppercase;
+}
+
+.sample-show-hide {
+}
+
+.sample-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.sample-show-hide.ng-hide {
+  opacity:0;
+}
+
 #contentTextAreaCreateZonder{
   position:absolute;
   top:30%;
-  left:15%;
-  border:1px solid red;
+  left:11%;
 }
 
 .questionCreateZonder{
@@ -1317,9 +1360,8 @@ display:-webkit-flex;
 
 #contentCharactersLeftCreateZonder{
   position:absolute;
-  top:60%;
-  left:15%;
-  border:1px solid red;
+  top:70%;
+  right:12%;
 }
 
 .charactersLeftCreateZonder{
@@ -1330,7 +1372,55 @@ display:-webkit-flex;
   color:#ffffff;
 }
 
+//font characters
+.fontCharacters{
+  font-size:12px;
+  font-family:'OpenSansIt';
+  line-height: 1.338;
+  color: #ffffff;
+}
 
+/* /////////////////  test image triangle ////////////////////////*/
+
+.pageOption {
+  overflow: hidden;
+  position: relative;
+  top:28%;
+  margin: 0 auto;
+  width: 100vw; height: 55vh;
+  border-top:1px solid #e8eaf1;
+  border-bottom:1px solid #e8eaf1;
+}
+.option, .option img {width: 100%; height: 100%; }
+.option {
+  overflow: hidden;
+  position: absolute;  
+ }
+ .option:first-child {
+  -webkit-transform-origin: 100% 0;
+}
+.option:last-child {
+   border-left:2px solid #e8eaf1;
+  -webkit-transform-origin: 0 100%;
+}
+.option img { opacity: .65; transition: .5s; }
+.option img:hover { opacity: 1; }
+.option img, .option:after {
+  -webkit-transform-origin: inherit;
+}
+
+
+.nameTranslateLeft{
+  opacity:1;
+  -webkit-transform: translateX(20%); 
+  -webkit-transition: all 0.5s linear;
+}
+
+.nameTranslateRight{
+  opacity:1;
+  -webkit-transform: translateX(-19%); 
+  -webkit-transition: all 0.5s linear;
+}
 
 ///////////////////// animation /////////////////////
 
@@ -1353,6 +1443,10 @@ display:-webkit-flex;
   -webkit-animation:fadeIn 1s forwards linear;
 }
 
+.fade-in-button{
+   opacity:0;
+  -webkit-transition:all linear 0.5s;
+}
 //fade in tooltip (délai pour faire apparaitre le text après l'animation de fade out du logo)
 .fade-in.tooltip{
   -webkit-animation-delay: 1.1s;

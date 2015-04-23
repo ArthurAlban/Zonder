@@ -16,96 +16,93 @@
 
 <form name="registerFirstStepForm" novalidate>
   <div id="divRegisterFirstStep">
-    <div class="labelZonder">
-      <img class="imgLeft" ng-if="mailIsValid" src="img/mail.png" width="25">
-      <img class="imgLeft" ng-if="!mailIsValid" src="img/mailRed.png" width="25">
-      <input class="input" name="email" type="email" ng-model="userData.email" placeholder="email address" ng-maxlength="50" ng-change="checkEmail()" required>
-      <img ng-click="displayMailPopup()" ng-if="!mailIsValid" class="imgRight" src="img/error.png" width="20">
-      <img ng-if="mailIsValid" class="imgRight" src="img/transparencyBackground.png" width="20">
+    <div class="item item-icon-left item-icon-right labelZonder">
+      <i class="icon iconZonderLeft"> 
+        <img ng-if="mailIsValid" src="img/mail.png" width="25">
+        <img ng-if="!mailIsValid" src="img/mailRed.png" width="25">
+      </i>
+      <input class="inputZonder"  name="email" type="email" ng-model="userData.email" placeholder="email address" ng-maxlength="50" ng-change="checkEmail()" required>
+      <i class="icon iconZonderRight">
+        <img ng-click="displayMailPopup()" ng-if="!mailIsValid" src="img/error.png" width="20">
+      </i>
     </div>
-    <div class="labelZonder">
-      <img class="imgLeft" ng-if="passwordIsValid" src="img/lock.png" width="25">
-      <img class="imgLeft" ng-if="!passwordIsValid" src="img/lockRed.png" width="25">
-      <input class="input" name="password" ng-change="checkPasswordIsValid()" type="password" ng-model="userData.password"  placeholder="password" ng-maxlength="20" required>
-      <img ng-if="!passwordIsValid" class="imgRight" src="img/error.png" width="20" ng-click="displayPasswordPopup()">
-      <img ng-if="passwordIsValid" class="imgRight" src="img/transparencyBackground.png" width="20">
+
+    <div class="item item-icon-left item-icon-right labelZonder">
+      <i class="icon iconZonderLeft"> 
+        <img ng-if="passwordIsValid" src="img/lock.png" width="25">
+        <img ng-if="!passwordIsValid" src="img/lockRed.png" width="25">
+      </i>
+      <input class="inputZonder"  name="password" ng-change="checkPasswordIsValid()" type="password" ng-model="userData.password"  placeholder="password" ng-maxlength="20" required>
+      <i class="icon iconZonderRight">
+        <img ng-if="!passwordIsValid" src="img/error.png" width="20" ng-click="displayPasswordPopup()">
+      </i>
     </div>
-    <div class="labelZonder">
-      <img class="imgLeft" ng-if="identicPasswords" src="img/lock.png" width="25">
-      <img class="imgLeft" ng-if="!identicPasswords" src="img/lockRed.png" width="25">
-      <input class="input" ng-disabled="!passwordIsValidDirty" name="confirmpassword" type="password" ng-minlength="6" ng-model="userData.confirmPassword" placeholder="confirm password" ng-maxlength="20" ng-change="checkPasswords()" required>
-      <img ng-if="!identicPasswords" class="imgRight" src="img/error.png" width="20" ng-click="displayPasswordIdenticalPopup()">
-      <img ng-if="identicPasswords" class="imgRight" src="img/transparencyBackground.png" width="20">
+
+    <div class="item item-icon-left item-icon-right labelZonder">
+      <i class="icon iconZonderLeft"> 
+        <img ng-if="identicPasswords" src="img/lock.png" width="25">
+        <img ng-if="!identicPasswords" src="img/lockRed.png" width="25">
+      </i>
+      <input class="inputZonder"  ng-disabled="!passwordIsValidDirty" name="confirmpassword" type="password" ng-minlength="6" ng-model="userData.confirmPassword" placeholder="confirm password" ng-maxlength="20" ng-change="checkPasswords()" required>
+      <i class="icon iconZonderRight">
+        <img ng-if="!identicPasswords" src="img/error.png" width="20" ng-click="displayPasswordIdenticalPopup()">
+      </i>
     </div>
-    <div class="labelZonder">
-      <img class="imgLeft" ng-if="pseudoIsValid" src="img/username.png" width="25">
-      <img class="imgLeft" ng-if="!pseudoIsValid" src="img/usernameRed.png" width="25">
-      <input class="input" name="pseudo" type="text" ng-model="userData.pseudo" maxlength="15" minlength="4"placeholder="pseudo"  ng-change="checkPseudo()" required>
-      <img ng-if="!pseudoIsValid" class="imgRight" src="img/error.png" width="20" ng-click="displayPseudoPopup()">
-      <img ng-if="pseudoIsValid" class="imgRight" src="img/transparencyBackground.png" width="20">
+
+    <div class="item item-icon-left item-icon-right labelZonder">
+      <i class="icon iconZonderLeft"> 
+        <img ng-if="pseudoIsValid" src="img/username.png" width="25">
+        <img ng-if="!pseudoIsValid" src="img/usernameRed.png" width="25">
+      </i>
+      <input class="inputZonder"  name="pseudo" type="text" ng-model="userData.pseudo" maxlength="15" minlength="4"placeholder="pseudo"  ng-change="checkPseudo()" required>
+      <i class="icon iconZonderRight">
+        <img ng-if="!pseudoIsValid" src="img/error.png" width="20" ng-click="displayPseudoPopup()">
+      </i>
     </div>
+    
   </div>
 </form>
 
-
-<!-- <form name="registerFirstStepForm" novalidate>
-  <div id="divRegisterFirstStep">
-    <div class="labelZonder">
-      <img class="imgLeft" ng-if="mailIsValid" src="img/mail.png" width="25">
-      <img class="imgLeft" ng-if="!mailIsValid" src="img/mailRed.png" width="25">
-      <input class="input" name="email" type="email" ng-model="userData.email" placeholder="email address" ng-maxlength="50" ng-change="checkEmail()" required>
-      <img ng-click="displayMailPopup()" ng-if="!mailIsValid" class="imgRight" src="img/error.png" width="20">
-    </div>
-    <div class="labelZonder">
-      <img class="imgLeft" ng-if="identicPasswords" src="img/lock.png" width="25">
-      <img class="imgLeft" ng-if="!identicPasswords" src="img/lockRed.png" width="25">
-      <input class="input" name="password" type="password" ng-model="userData.password"  placeholder="password" ng-minlength="6" ng-pattern="/^[A-z][A-z0-9]*$/" ng-maxlength="20" required>
-      <img ng-if="!identicPasswords" class="imgRight" src="img/error.png" width="20" ng-click="displayPasswordPopup()">
-    </div>
-    <div class="labelZonder">
-      <img class="imgLeft" ng-if="identicPasswords" src="img/lock.png" width="25">
-      <img class="imgLeft" ng-if="!identicPasswords" src="img/lockRed.png" width="25">
-      <input class="input" name="confirmpassword" type="password" ng-minlength="6" ng-pattern="/^[A-z][A-z0-9]*$/" ng-model="userData.confirmPassword" placeholder="confirm password" ng-maxlength="20" ng-change="checkPasswords()" required>
-      <img ng-if="!identicPasswords" class="imgRight" src="img/error.png" width="20" ng-click="displayPasswordIdenticalPopup()">
-    </div>
-    <div class="labelZonder">
-      <img class="imgLeft" ng-if="pseudoIsValid" src="img/username.png" width="25">
-      <img class="imgLeft" ng-if="!pseudoIsValid" src="img/usernameRed.png" width="25">
-      <input class="input" name="pseudo" type="text" ng-model="userData.pseudo" maxlength="15" minlength="4" ng-pattern="/^[A-z][A-z0-9]*$/" placeholder="pseudo"  ng-change="checkPseudo()" required>
-      <img ng-if="!pseudoIsValid" class="imgRight" src="img/error.png" width="20" ng-click="displayPseudoPopup()">
-    </div>
-  </div>
-</form>
- -->
 </ion-slide>
 
 <ion-slide>
 <form name="registerSecondStepForm" novalidate>
   <div id="divRegisterSecondStep">
-    <div class="labelZonder">
-      <img class="imgLeft" ng-if="!photoHasChanged" src={{userData.photo}} ng-click="showActionSheetPhotoSource()" width="25">
+
+   <div class="item item-icon-left item-icon-right labelZonder">
+    <i class="icon iconZonderLeft"> 
+      <img ng-if="!photoHasChanged" src={{userData.photo}} ng-click="showActionSheetPhotoSource()" width="25">
       <img class="imgLeftRound" ng-if="photoHasChanged" src={{userData.photo}} ng-click="showActionSheetPhotoSource()" width="25">
-      <span class="text">upload a profile picture</span>
-      <img class="imgRight" src="img/transparencyBackground.png" width="20">
-    </div>
-    <div class="labelZonder2">
-      <img class="imgLeft"  ng-click="checkMale" ng-if="genderIsValid" src="img/gender.png" width="25">
-      <img class="imgLeft" ng-if="!genderIsValid" src="img/genderRed.png" width="25">
-      <span class="text">are you a</span>
-      <div class="checkboxZonder">
-        <label class="checkbox" >
-          <input type="checkbox" ng-change="checkMale()" ng-model="userData.isMale">
-        </label>
-        <span class="textCheckbox">male</span>
-      </div>
-      <div class="checkboxZonder">
-        <label class="checkbox" >
-          <input type="checkbox" ng-change="checkFemale()" ng-model="userData.isFemale" >
-        </label>
-        <span class="textCheckbox">female</span>
-      </div>
-    </div>
+    </i>
+    <div class="textZonder">upload a profile picture</div>
+    <i class="icon iconZonderRight"> 
+      <img src="img/chevronRightGrey.png" ng-click="showActionSheetPhotoSource()" width="7">
+    </i>
   </div>
+
+  <div class="item item-icon-left labelZonder">
+   <i class="icon iconZonderLeft"> 
+    <img ng-if="genderIsValid" src="img/gender.png" width="25">
+    <img ng-if="!genderIsValid" src="img/genderRed.png" width="25">
+  </i>
+  <div class="labelContainerZonder">
+    <div class="textCheckbox">are you a</div>  
+    <div class="checkboxZonder">
+      <label class="checkbox">
+        <input type="checkbox" ng-change="checkMale()" ng-model="userData.isMale">
+      </label>
+      <span class="textCheckbox">male</span>
+    </div>
+    <div class="checkboxZonder">
+      <label class="checkbox" >
+        <input type="checkbox" ng-change="checkFemale()" ng-model="userData.isFemale" >
+      </label>
+      <span class="textCheckbox">female</span>
+    </div>
+  </div>   
+</div>
+
+</div>
 </form>
 </ion-slide>
 

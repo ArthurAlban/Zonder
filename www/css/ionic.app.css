@@ -4646,7 +4646,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   z-index: 2;
   display: block;
   margin: -1px;
-  padding: 16px;
+  padding: 14px;
   border-width: 1px;
   border-style: solid;
   font-size: 16px; }
@@ -4677,12 +4677,12 @@ ion-tabs.tabs-color-active-dark .tab-item {
     display: -ms-flexbox;
     display: flex;
     position: absolute;
-    top: 16px;
-    right: 32px; }
+    top: 14px;
+    right: 28px; }
   .item.item-button-right .badge {
-    right: 67px; }
+    right: 63px; }
   .item.item-divider .badge {
-    top: 8px; }
+    top: 7px; }
   .item .badge + .badge {
     margin-right: 5px; }
   .item.item-light {
@@ -4784,7 +4784,7 @@ a.item {
 .item-complex .item-content, .item-radio .item-content {
   position: relative;
   z-index: 2;
-  padding: 16px 49px 16px 16px;
+  padding: 14px 42px 14px 14px;
   border: none;
   background-color: white; }
 
@@ -4896,24 +4896,24 @@ a.item-content {
   font-size: 28px; }
 
 .item-icon-left {
-  padding-left: 54px; }
+  padding-left: 47px; }
   .item-icon-left .icon {
-    left: 11px; }
+    left: 10px; }
 
 .item-complex.item-icon-left {
   padding-left: 0; }
   .item-complex.item-icon-left .item-content {
-    padding-left: 54px; }
+    padding-left: 47px; }
 
 .item-icon-right {
-  padding-right: 54px; }
+  padding-right: 47px; }
   .item-icon-right .icon {
-    right: 11px; }
+    right: 10px; }
 
 .item-complex.item-icon-right {
   padding-right: 0; }
   .item-complex.item-icon-right .item-content {
-    padding-right: 54px; }
+    padding-right: 47px; }
 
 .item-icon-left.item-icon-right .icon:first-child {
   right: auto; }
@@ -4926,10 +4926,10 @@ a.item-content {
   font-size: 16px; }
 
 .item-icon-left .icon-accessory {
-  left: 3px; }
+  left: 2px; }
 
 .item-icon-right .icon-accessory {
-  right: 3px; }
+  right: 2px; }
 
 /**
  * Item Button
@@ -4937,7 +4937,7 @@ a.item-content {
  * An item button is a child button inside an .item (not the entire .item)
  */
 .item-button-left {
-  padding-left: 72px; }
+  padding-left: 63px; }
 
 .item-button-left > .button, .item-button-left .item-content > .button {
   display: -webkit-box;
@@ -4952,8 +4952,8 @@ a.item-content {
   -moz-align-items: center;
   align-items: center;
   position: absolute;
-  top: 8px;
-  left: 11px;
+  top: 7px;
+  left: 10px;
   min-width: 34px;
   min-height: 34px;
   font-size: 18px;
@@ -4970,7 +4970,7 @@ a.item-content {
     line-height: 32px; }
 
 .item-button-right, a.item.item-button-right, button.item.item-button-right {
-  padding-right: 80px; }
+  padding-right: 70px; }
 
 .item-button-right > .button, .item-button-right .item-content > .button, .item-button-right > .buttons, .item-button-right .item-content > .buttons {
   display: -webkit-box;
@@ -4985,8 +4985,8 @@ a.item-content {
   -moz-align-items: center;
   align-items: center;
   position: absolute;
-  top: 8px;
-  right: 16px;
+  top: 7px;
+  right: 14px;
   min-width: 34px;
   min-height: 34px;
   font-size: 18px;
@@ -5004,12 +5004,12 @@ a.item-content {
     line-height: 32px; }
 
 .item-avatar, .item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content {
-  padding-left: 72px;
-  min-height: 72px; }
+  padding-left: 68px;
+  min-height: 68px; }
   .item-avatar > img:first-child, .item-avatar .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-content .item-image, .item-avatar-left > img:first-child, .item-avatar-left .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-content .item-image {
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: 14px;
+    left: 14px;
     max-width: 40px;
     max-height: 40px;
     width: 100%;
@@ -5017,12 +5017,12 @@ a.item-content {
     border-radius: 50%; }
 
 .item-avatar-right, .item-avatar-right .item-content {
-  padding-right: 72px;
-  min-height: 72px; }
+  padding-right: 68px;
+  min-height: 68px; }
   .item-avatar-right > img:first-child, .item-avatar-right .item-image, .item-avatar-right .item-content > img:first-child, .item-avatar-right .item-content .item-image {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 14px;
+    right: 14px;
     max-width: 40px;
     max-height: 40px;
     width: 100%;
@@ -5030,8 +5030,8 @@ a.item-content {
     border-radius: 50%; }
 
 .item-thumbnail-left, .item-thumbnail-left .item-content {
-  padding-top: 8px;
-  padding-left: 106px;
+  padding-top: 7px;
+  padding-left: 104px;
   min-height: 100px; }
   .item-thumbnail-left > img:first-child, .item-thumbnail-left .item-image, .item-thumbnail-left .item-content > img:first-child, .item-thumbnail-left .item-content .item-image {
     position: absolute;
@@ -5047,8 +5047,8 @@ a.item-content {
   padding-left: 0; }
 
 .item-thumbnail-right, .item-thumbnail-right .item-content {
-  padding-top: 8px;
-  padding-right: 106px;
+  padding-top: 7px;
+  padding-right: 104px;
   min-height: 100px; }
   .item-thumbnail-right > img:first-child, .item-thumbnail-right .item-image, .item-thumbnail-right .item-content > img:first-child, .item-thumbnail-right .item-content .item-image {
     position: absolute;
@@ -5072,16 +5072,16 @@ a.item-content {
 
 .item-body {
   overflow: auto;
-  padding: 16px;
+  padding: 14px;
   text-overflow: inherit;
   white-space: normal; }
   .item-body h1, .item-body h2, .item-body h3, .item-body h4, .item-body h5, .item-body h6, .item-body p {
-    margin-top: 16px;
-    margin-bottom: 16px; }
+    margin-top: 14px;
+    margin-bottom: 14px; }
 
 .item-divider {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   min-height: 30px;
   background-color: #f5f5f5;
   color: #222;
@@ -5656,11 +5656,11 @@ input, button, select, textarea {
     -webkit-border-radius: 0;
     border-radius: 0;
     -webkit-box-flex: 1;
-    -webkit-flex: 1 220px;
+    -webkit-flex: 1 100px;
     -moz-box-flex: 1;
-    -moz-flex: 1 220px;
-    -ms-flex: 1 220px;
-    flex: 1 220px;
+    -moz-flex: 1 100px;
+    -ms-flex: 1 100px;
+    flex: 1 100px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -5708,7 +5708,7 @@ input, button, select, textarea {
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 10.66667px; }
+  padding: 9.33333px; }
 
 .item-input-wrapper {
   display: -webkit-box;
@@ -5741,7 +5741,7 @@ input, button, select, textarea {
   line-height: 18px; }
 
 .item-input-wrapper ~ .button {
-  margin-left: 10.66667px; }
+  margin-left: 9.33333px; }
 
 .input-label {
   display: table;
@@ -6006,21 +6006,21 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   opacity: 1; }
 
 .item-checkbox {
-  padding-left: 50px; }
+  padding-left: 46px; }
   .item-checkbox.active {
     box-shadow: none; }
 
 .item-checkbox .checkbox {
   position: absolute;
   top: 50%;
-  right: 8px;
-  left: 8px;
+  right: 7px;
+  left: 7px;
   z-index: 3;
   margin-top: -13.5px; }
 
 .item-checkbox.item-checkbox-right {
-  padding-right: 50px;
-  padding-left: 16px; }
+  padding-right: 46px;
+  padding-left: 14px; }
 
 .item-checkbox-right .checkbox input, .item-checkbox-right .checkbox-icon {
   float: right; }
@@ -6131,15 +6131,15 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   box-shadow: none; }
 
 .item-toggle, .item-toggle.item-complex .item-content {
-  padding-right: 80px; }
+  padding-right: 74px; }
 
 .item-toggle.item-complex {
   padding-right: 0; }
 
 .item-toggle .toggle {
   position: absolute;
-  top: 10px;
-  right: 16px;
+  top: 9px;
+  right: 14px;
   z-index: 3; }
 
 .toggle input:disabled + .track {
@@ -6212,7 +6212,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 
 .item-radio .item-content {
   /* give some room to the right for the checkmark icon */
-  padding-right: 64px; }
+  padding-right: 56px; }
 
 .item-radio .radio-icon {
   /* checkmark icon will be hidden by default */
@@ -6221,7 +6221,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   right: 0;
   z-index: 3;
   visibility: hidden;
-  padding: 14px;
+  padding: 12px;
   height: 100%;
   font-size: 24px; }
 
@@ -6378,7 +6378,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     position: absolute;
     top: 0;
     right: 0;
-    padding: 14px 48px 16px 16px;
+    padding: 12px 42px 14px 14px;
     max-width: 65%;
     border: none;
     background: #fff;
@@ -6396,7 +6396,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   .item-select:after {
     position: absolute;
     top: 50%;
-    right: 16px;
+    right: 14px;
     margin-top: -3px;
     width: 0;
     height: 0;
@@ -7893,85 +7893,153 @@ a.button {
   left: 50%;
   margin-left: -40%; }
 
+/*//Labels generiques
 .labelZonder {
-  height: 60px;
+  height:60px;
   background-color: #ffffff;
-  width: 100%;
+  width:100%;
   display: -webkit-flex;
   -webkit-align-items: center;
-  -webkit-justify-content: space-around;
-  margin-bottom: 2px; }
+  -webkit-justify-content: space-between;
+  margin-bottom:2px;
+}
 
+//Label pour plus de 3 item
 .labelZonder2 {
-  height: 60px;
+  height:60px;
   background-color: #ffffff;
-  width: 100%;
+  width:100%;
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start;
-  margin-bottom: 2px; }
+  margin-bottom:2px;
+}
 
-.labelZonder2 .imgLeft {
-  margin-left: 35px; }
+//image gauche du label
+.labelZonder2 .imgLeft{
+  margin-left:25px;
+}
 
+//text du label
 .labelZonder2 .text {
-  margin-left: 35px;
-  line-height: 1.313;
-  font-size: 5.3vw;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
+  margin-left:10vw;
+  //margin-left:8vw;
+  @include fontLabelZonderInputAndText;
+}
 
+//input du label
 .labelZonder .input {
-  margin-left: 35px;
-  line-height: 1.313;
-  font-size: 5.3vw;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
+  //margin-left:35px;
+  @include fontLabelZonderInputAndText;
+}
 
+//objet checkbox de zonder a combiner avec la checkbox de ionic label>input
+.checkboxZonder {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: space-between;
+  margin-left:3px;
+}
+//text du choix de la check box
+.checkboxZonder .textCheckbox{
+  @include fontLabelZonderInputAndText;
+}
+
+//image gauche du label
+.labelZonder .imgLeft{
+ margin-left:25px;
+}
+
+//image gauche du label
+.labelZonder .imgLeftRound{
+ margin-left:25px;
+ border-radius: 100%;
+ width:25px;
+ height:25px;
+}
+
+//image droite du label
+.labelZonder .imgRight{
+  margin-right: 20px;
+  border:1px solid red;
+}
+
+//text du label
+.labelZonder .text {
+  border:1px solid red;
+  @include fontLabelZonderInputAndText;
+}
+
+//input du label
+.labelZonder .input {
+  //margin-left:35px;
+  border:1px solid red;
+  @include fontLabelZonderInputAndText;
+}
+
+//objet checkbox de zonder a combiner avec la checkbox de ionic label>input
 .checkboxZonder {
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start;
-  margin-left: 3px; }
+  margin-left:3px;
+}
+//text du choix de la check box
+.checkboxZonder .textCheckbox{
+  @include fontLabelZonderInputAndText;
+}
 
-.checkboxZonder .textCheckbox {
-  line-height: 1.313;
-  font-size: 5.3vw;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
+*/
+.labelZonder {
+  height: 60px !important;
+  margin-bottom: 2px;
+  border: 0 none !important; }
 
-.labelZonder .imgLeft {
-  margin-left: 20px; }
+.iconZonderLeft {
+  margin-left: 13px; }
 
-.labelZonder .imgLeftRound {
-  margin-left: 20px;
+.iconZonderRight {
+  margin-right: 10px; }
+
+.inputZonder {
+  line-height: 1.313 !important;
+  font-size: 18px !important;
+  font-family: 'OpenSansRegular' !important;
+  color: #adafbc !important;
+  margin-left: 30px !important;
+  width: 80% !important; }
+
+.textZonder {
+  line-height: 1.313 !important;
+  font-size: 18px !important;
+  font-family: 'OpenSansRegular' !important;
+  color: #adafbc !important;
+  margin: -14px 0 0 30px !important;
+  line-height: 60px !important;
+  height: 60px !important; }
+
+.imgLeftRound {
   border-radius: 100%;
   width: 25px;
   height: 25px; }
 
-.labelZonder .text {
-  line-height: 1.313;
-  font-size: 5.3vw;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
-
-.labelZonder .input {
-  line-height: 1.313;
-  font-size: 5.3vw;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
-
 .checkboxZonder {
+  margin-left: 5px;
   display: -webkit-flex;
   -webkit-align-items: center;
-  -webkit-justify-content: flex-start;
-  margin-left: 3px; }
+  -webkit-justify-content: flex-start; }
 
-.checkboxZonder .textCheckbox {
-  line-height: 1.313;
-  font-size: 5.3vw;
-  font-family: 'OpenSansRegular';
-  color: #adafbc; }
+.labelContainerZonder {
+  margin-left: 30px;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start; }
+
+.textCheckbox {
+  line-height: 1.313 !important;
+  font-size: 18px !important;
+  font-family: 'OpenSansRegular' !important;
+  color: #adafbc !important; }
 
 .overlaySideMenu {
   position: absolute;
@@ -8556,26 +8624,97 @@ a.button {
   letter-spacing: 0.075em;
   line-height: 11px !important; }
 
+.fontYourOption {
+  color: #ffffff;
+  font-size: 7vw;
+  font-family: 'BrandonBold';
+  line-height: 1;
+  letter-spacing: -0.075em;
+  text-transform: uppercase; }
+
 #slideBoxCreateZonder {
-  border: 1px solid red;
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%; }
 
 #closeCreateZonder {
-  border: 1px solid blue;
   position: absolute;
   z-index: 16;
   top: 32px;
   width: 28px;
   left: 15px; }
 
+#backCreateZonder {
+  position: absolute;
+  z-index: 16;
+  top: 32px;
+  width: 16px;
+  left: 15px; }
+
+#posDivCameraLeft {
+  position: absolute;
+  z-index: 16;
+  top: 36%;
+  left: 18%; }
+
+.textAreaNamePhotoCreateZonder {
+  color: #ffffff;
+  font-size: 5vw;
+  font-family: 'BrandonBold';
+  line-height: 1;
+  letter-spacing: -0.075em;
+  text-transform: uppercase; }
+
+.textAreaNamePhotoCreateZonderPlaceholder::-webkit-input-placeholder {
+  color: #ffffff;
+  font-size: 5vw;
+  font-family: 'BrandonBold';
+  line-height: 1;
+  letter-spacing: -0.075em;
+  text-transform: uppercase; }
+
+#posDivNamePhotoLeft {
+  position: absolute;
+  z-index: 16;
+  top: 36%;
+  left: -3%;
+  text-align: center;
+  background-color: transparent; }
+
+#posDivCameraRight {
+  position: absolute;
+  z-index: 16;
+  top: 62%;
+  right: 18%; }
+
+#posDivNamePhotoRight {
+  position: absolute;
+  z-index: 16;
+  top: 63%;
+  right: -3%;
+  text-align: center;
+  background-color: transparent; }
+
+.addPictureFont {
+  color: #ffffff;
+  font-size: 5vw;
+  font-family: 'BrandonBold';
+  line-height: 2.327;
+  letter-spacing: -0.075em;
+  text-transform: uppercase; }
+
+.sample-show-hide {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
+
+.sample-show-hide.ng-hide {
+  opacity: 0; }
+
 #contentTextAreaCreateZonder {
   position: absolute;
   top: 30%;
-  left: 15%;
-  border: 1px solid red; }
+  left: 11%; }
 
 .questionCreateZonder {
   background-color: transparent;
@@ -8596,9 +8735,8 @@ a.button {
 
 #contentCharactersLeftCreateZonder {
   position: absolute;
-  top: 60%;
-  left: 15%;
-  border: 1px solid red; }
+  top: 70%;
+  right: 12%; }
 
 .charactersLeftCreateZonder {
   font-family: 'BrandonLight';
@@ -8606,6 +8744,58 @@ a.button {
   font-size: 5vw;
   line-height: 1.2;
   color: #ffffff; }
+
+.fontCharacters {
+  font-size: 12px;
+  font-family: 'OpenSansIt';
+  line-height: 1.338;
+  color: #ffffff; }
+
+/* /////////////////  test image triangle ////////////////////////*/
+.pageOption {
+  overflow: hidden;
+  position: relative;
+  top: 28%;
+  margin: 0 auto;
+  width: 100vw;
+  height: 55vh;
+  border-top: 1px solid #e8eaf1;
+  border-bottom: 1px solid #e8eaf1; }
+
+.option, .option img {
+  width: 100%;
+  height: 100%; }
+
+.option {
+  overflow: hidden;
+  position: absolute; }
+
+.option:first-child {
+  -webkit-transform-origin: 100% 0; }
+
+.option:last-child {
+  border-left: 2px solid #e8eaf1;
+  -webkit-transform-origin: 0 100%; }
+
+.option img {
+  opacity: .65;
+  transition: .5s; }
+
+.option img:hover {
+  opacity: 1; }
+
+.option img, .option:after {
+  -webkit-transform-origin: inherit; }
+
+.nameTranslateLeft {
+  opacity: 1;
+  -webkit-transform: translateX(20%);
+  -webkit-transition: all 0.5s linear; }
+
+.nameTranslateRight {
+  opacity: 1;
+  -webkit-transform: translateX(-19%);
+  -webkit-transition: all 0.5s linear; }
 
 .animateTriangles {
   -webkit-transform: translateY(-16vh);
@@ -8619,6 +8809,10 @@ a.button {
 .fade-in {
   opacity: 0;
   -webkit-animation: fadeIn 1s forwards linear; }
+
+.fade-in-button {
+  opacity: 0;
+  -webkit-transition: all linear 0.5s; }
 
 .fade-in.tooltip {
   -webkit-animation-delay: 1.1s; }

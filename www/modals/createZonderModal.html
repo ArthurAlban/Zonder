@@ -1,27 +1,125 @@
 <ion-modal-view class="background">
-<img id="closeCreateZonder" class="imgClick" ng-click="closeCreateZonderModal()" src="img/close.png">
+<img id="closeCreateZonder" ng-show="showCloseButton" class="imgClick" ng-click="closeCreateZonderModal()" src="img/close.png">
 
+<img id="backCreateZonder" ng-show="!showCloseButton" class="imgClick" ng-click="backStep()" src="img/arrowBack.png">
 
-<ion-slide-box on-slide-changed="slideChanged(index)" delegate-handle="createZonderSlider" show-pager="true" id="slideBoxCreateZonder">
+<ion-slide-box on-slide-changed="slideHasChangedInCreateZonder(index)" delegate-handle="createZonderSlider" ng-init="disableSwipeCreateZonder()" show-pager="true" id="slideBoxCreateZonder">
 
 <ion-slide>
 
 <div id="contentTextAreaCreateZonder">
-<textarea class="questionCreateZonder" id="textAreaQuestionCreateZonder" ng-model="question" rows="7" cols="20" maxlength="90" placeholder="WHAT IS YOUR QUESTION ?">
+<textarea class="questionCreateZonder" ng-change="charactersLeft()" id="textAreaQuestionCreateZonder" ng-model="createPoll.question" rows="8" cols="18" maxlength="90" placeholder="WHAT IS YOUR QUESTION ?">
 </textarea>
 </div>
 
 <div id="contentCharactersLeftCreateZonder">
-  <span class="charactersLeftCreateZonder">Characters left 90</span>
+  <span class="fontCharacters">Characters left: {{charLeft}}</span>
+</div>
+
+</ion-slide>
+
+<ion-slide>
+
+<div ng-show="displayButtonLeft" class="sample-show-hide" id="posDivCameraLeft" ng-click="showActionSheetPhotoSourceForPhotoLeft()" style=" display: -webkit-flex;-webkit-flex-direction: column;-webkit-align-items: center;-webkit-justify-content: flex-start;">
+<div class="addPictureFont">add picture</div>
+<img width="40" ng-show="true" ng-click="" src="img/cameraPhoto.png">
+</div>
+
+<div ng-show="displayButtonRight" class="sample-show-hide" id="posDivCameraRight" ng-click="showActionSheetPhotoSourceForPhotoRight()" style=" display: -webkit-flex;-webkit-flex-direction: column;-webkit-align-items: center;-webkit-justify-content: flex-start;">
+<img width="40" ng-show="true" ng-click="" src="img/cameraPhoto.png">
+<div class="addPictureFont">add picture</div>
 </div>
 
 
-<!-- 
-<p class="titleTooltip posTitleTooltip">WHAT IS YOUR QUESTION ?</p>
+<textarea ng-class="{nameTranslateLeft:!displayButtonLeft}" id="posDivNamePhotoLeft" ng-change="checkChoicePhotoInCreatePoll()" rows="3" cols="14" maxlength="26" ng-show="!displayButtonLeft" class="sample-show-hide textAreaNamePhotoCreateZonder textAreaNamePhotoCreateZonderPlaceholder" ng-model="createPoll.namePhotoLeft" placeholder="NAME PHOTO"></textarea>
 
-<p class="posSubtitleTooltip subtitleTooltip">Characters left 140</p> -->
+<textarea ng-class="{nameTranslateRight:!displayButtonRight}" id="posDivNamePhotoRight" ng-change="checkChoicePhotoInCreatePoll()" rows="3" cols="14" maxlength="26" ng-show="!displayButtonRight" class="sample-show-hide textAreaNamePhotoCreateZonder textAreaNamePhotoCreateZonderPlaceholder" ng-model="createPoll.namePhotoRight" placeholder="NAME PHOTO"></textarea>
+
+
+<div class='pageOption'>
+  <a class='option' ng-click="showActionSheetPhotoSourceForPhotoLeft()" ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegBackground + 'deg)'}">
+    <img src='{{createPoll.photoLeft}}' ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegImage + 'deg)', 'width': imgLeftInfo.imgWidth + 'px', 'height': imgLeftInfo.imgHeight + 'px', 'margin-left': '-' + imgLeftInfo.positionLeft + 'px', 'margin-top': imgLeftInfo.positionTop + 'px'}">
+  </a>
+  <a class='option' ng-click="showActionSheetPhotoSourceForPhotoRight()" ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegBackground + 'deg)'}">
+    <img src='{{createPoll.photoRight}}' ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegImage + 'deg)'}">
+  </a>
+</div>
+</ion-slide>
+
+
+<ion-slide>
+
+<div style="position:absolute;top:26%;left:10%" class="fontYourOption">your options</div>
+
+<div style="position:absolute;top:32%;width:100%;">
+
+ <div class="labelZonder">
+      <img class="imgLeft" src="img/clock.png" width="25">
+
+      <span class="text">select your timer</span>
+    </div>
+
+    <div class="labelZonder">
+      <img class="imgLeft" src="img/earth.png" width="25">
+    
+      <div class="checkboxZonder" style="margin-left:30px">
+        <label class="checkbox" >
+          <input type="checkbox" ng-change="" ng-model="worldPoll">
+        </label>
+        <span class="textCheckbox">public</span>
+      </div>
+      <div class="checkboxZonder">
+        <label class="checkbox" >
+          <input type="checkbox" ng-change="" ng-model="friendPoll" >
+        </label>
+        <span class="textCheckbox">friends only</span>
+      </div>
+    </div>
+
+     <div class="labelZonder">
+      <img class="imgLeft" src="img/gender.png" width="25">
+    
+      <div class="checkboxZonder" style="margin-left:30px">
+        <label class="checkbox" >
+          <input type="checkbox" ng-change="" ng-model="worldPoll">
+        </label>
+        <span class="textCheckbox">men</span>
+      </div>
+      <div class="checkboxZonder">
+        <label class="checkbox" >
+          <input type="checkbox" ng-change="" ng-model="worldPoll">
+        </label>
+        <span class="textCheckbox">women</span>
+      </div>
+      <div class="checkboxZonder">
+        <label class="checkbox" >
+          <input type="checkbox" ng-change="" ng-model="friendPoll" >
+        </label>
+        <span class="textCheckbox">both</span>
+      </div>
+    </div>
+
+     <div class="labelZonder">
+      <img class="imgLeft" src="img/target.png" width="25">
+
+      <span class="text">select your target</span>
+    </div>
+</div>
 
 </ion-slide>
+
 </ion-slide-box>
+
+<button ng-disabled="!showNextButtonForCreatePoll" ng-show="displayNextButtonQuestion" class="button buttonZonder buttonRegister" ng-click="nextStepPhoto()" style="position:absolute;top:85%;">
+    NEXT
+ </button>
+
+ <button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister" ng-click="nextStepOption()" style="position:absolute;top:85%;">
+    NEXT
+ </button>
+
+  <button ng-disabled="" ng-show="displayCreateButton" class="button buttonZonder buttonRegister" ng-click="createPoll()" style="position:absolute;top:85%;">
+    CREATE
+ </button>
 
 </ion-modal-view>
