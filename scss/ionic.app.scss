@@ -429,7 +429,7 @@ top:36px;
 }
 
 .checkboxZonder {
-  margin-left:5px;
+  margin-right:5px;
     display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start;
@@ -445,6 +445,7 @@ top:36px;
 //text du choix de la check box
 .textCheckbox{
   @include fontLabelZonderInputAndText;
+  margin-right:5px;
 }
 
 ////////////////////// home ////////////////////////
