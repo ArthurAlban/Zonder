@@ -7927,7 +7927,7 @@ a.button {
   height: 25px; }
 
 .checkboxZonder {
-  margin-left: 5px;
+  margin-right: 5px;
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start; }
@@ -7942,7 +7942,8 @@ a.button {
   line-height: 1.313 !important;
   font-size: 18px !important;
   font-family: 'OpenSansRegular' !important;
-  color: #adafbc !important; }
+  color: #adafbc !important;
+  margin-right: 5px; }
 
 .overlaySideMenu {
   position: absolute;
