@@ -36,17 +36,21 @@
 
 <form name="loginForm" class="fullHeight" ng-submit="validLogin()" novalidate>
   <div id="divFormLogin">
-    <div class="labelZonder" ng-switch on="displayMailError">
-      <img class="imgLeft" ng-switch-when="false" src="img/mail.png" width="25">
-      <img class="imgLeft" ng-switch-when="true" src="img/mailRed.png" width="25">
-      <input class="input" name="mail" type="email" ng-model="user.mail" placeholder="email address" required>
-      <img class="imgRight" src="img/transparencyBackground.png" width="20">
+
+    <div class="item item-icon-left labelZonder">
+      <i class="icon iconZonderLeft"> 
+        <img ng-if="!displayMailError" src="img/mail.png" width="25">
+        <img ng-if="displayMailError" src="img/mailRed.png" width="25">
+      </i>
+      <input class="inputZonder"  name="mail" type="email" ng-model="user.mail" placeholder="email address" required>
     </div>
-    <div class="labelZonder" ng-switch on="displayMailError">
-      <img class="imgLeft" ng-switch-when="false" src="img/lock.png" width="25">
-      <img class="imgLeft" ng-switch-when="true" src="img/lockRed.png" width="25">
-      <input class="input" name="password" type="password" ng-model="user.pass" placeholder="password" required>
-      <img class="imgRight" src="img/transparencyBackground.png" width="20">
+
+    <div class="item item-icon-left labelZonder">
+      <i class="icon iconZonderLeft"> 
+        <img ng-if="!displayMailError" src="img/lock.png" width="25">
+        <img ng-if="displayMailError" src="img/lockRed.png" width="25">
+      </i>
+      <input class="inputZonder" name="password" type="password" ng-model="user.pass" placeholder="password" required>
     </div>
   </div>
 
