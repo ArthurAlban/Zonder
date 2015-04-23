@@ -140,7 +140,7 @@ $scope.checkChoicePhotoInCreatePoll = function(){
 };
 
 $scope.imgLeftInfo = {};
-$scope.imgRightInfo = new Array();
+$scope.imgRightInfo = {};
 // $scope.toto = {};
 
 $scope.choosePhotoLeft = function(){
@@ -165,12 +165,14 @@ $scope.choosePhotoLeft = function(){
       image.src = $scope.createPoll.photoLeft;
       console.log("hiha 7");
       image.onload = function(){
+        console.log("width" + image.width);
+        console.log("height" + image.height);
         $scope.imgLeftInfo.imgWidth = image.width;
         $scope.imgLeftInfo.imgHeight = image.height;
         callback();
       };
     },function(callback){
-      $scope.imgLeftInfo = $scope.setPositionImage($scope.imgLeftInfo.imgWidth, $scope.imgLeftInfo.imgHeight);
+      $scope.imgLeftInfo = $scope.setPositionImage(true, $scope.imgLeftInfo.imgWidth, $scope.imgLeftInfo.imgHeight);
       callback();
     }], function(err, res){
       console.log("imgLeftInfo3" + JSON.stringify($scope.imgLeftInfo));
@@ -228,8 +230,27 @@ $scope.choosePhotoRight = function(){
 
   $cordovaCamera.getPicture(options).then(function(imageData) {
     $scope.createPoll.photoRight = "data:image/jpeg;base64," + imageData;
-    $scope.displayButtonRight = false;
-    // $scope.checkPhotoInCreatePoll();
+    console.log("hiha 444444");
+    async.series([function(callback){
+      var image = new Image();
+      image.src = $scope.createPoll.photoRight;
+      console.log("hiha 7");
+      image.onload = function(){
+        console.log("width" + image.width);
+        console.log("height" + image.height);
+        $scope.imgRightInfo.imgWidth = image.width;
+        $scope.imgRightInfo.imgHeight = image.height;
+        callback();
+      };
+    },function(callback){
+      $scope.imgRightInfo = $scope.setPositionImage(false, $scope.imgRightInfo.imgWidth, $scope.imgRightInfo.imgHeight);
+      callback();
+    }], function(err, res){
+      console.log("imgRightInfo3" + JSON.stringify($scope.imgRightInfo));
+      $scope.displayButtonRight = false;
+      $scope.$apply();
+      callback();
+    });
   }, function(err) {
     // $scope.checkPhotoInCreatePoll();
   });
@@ -320,33 +341,57 @@ $scope.showActionSheetPhotoSourceForPhotoRight = function() {
 
 ///// set position and info image //////////////////
 
-$scope.getInfoImage = function(photoBase64){
- var image = new Image();
- image.src = photoBase64;
- console.log("hihahaaaaaaa");
- image.onload = function(){
-  console.log("hihahoooooooooooo" + image.height);
-  return {"imgWidth": image.width, "imgHeight": image.height};
-};
-};
-
-$scope.setPositionImage = function(imgWidth, imgHeight){
+$scope.setPositionImage = function(imgLeft, imgWidth, imgHeight){
   var imgInfo = new Array();
 
   var viewportWidth = window.screen.width;
   var viewportHeight = window.screen.height * 0.55;
-
+  console.log("viewportHeight" + viewportHeight);
+  console.log("viewportWidth" + viewportWidth);
   if(imgWidth <= imgHeight){
-    imgInfo = $scope.resizeImageWidth(imgWidth, imgHeight, viewportWidth, viewportHeight);
+    console.log("portrait");
+    imgInfo = $scope.resizeImageWidth(imgLeft, imgWidth, imgHeight, viewportWidth, viewportHeight);
   }
   else{
+    console.log("lanscape");
     imgInfo = $scope.resizeImageHeight(imgWidth, imgHeight, viewportWidth, viewportHeight);
   }
 
   return imgInfo;
 };
 
-$scope.resizeImageWidth = function(imgWidth, imgHeight, divWidth, divHeight){
+$scope.resizeImageWidth = function(imgLeft, imgWidth, imgHeight, divWidth, divHeight){
+
+  var imgWidth = imgHeight;
+  var widthIncreaseFactor = divWidth / imgWidth;
+
+  var finalHeightImg = widthIncreaseFactor * imgHeight;
+  var posTopLeftY = (divHeight - finalHeightImg) / 2;
+
+  var ratio = divWidth / divHeight;
+
+  console.log("widthIncreaseFactor" + widthIncreaseFactor);
+  console.log("posTopLeftY" + posTopLeftY);
+
+  if(imgLeft){
+    console.log("left");
+    var positionLeft = posTopLeftY * ratio;
+  }
+  else{
+    console.log("right");
+      var positionLeft = -posTopLeftY * ratio;
+  }
+
+  var positionTop = posTopLeftY;
+  var imgWidth = divWidth;
+  var imgHeight = finalHeightImg;
+  console.log("toto");
+
+  return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidth, "imgHeight": imgHeight};
+};
+
+$scope.resizeImageWidthInHeight = function(imgWidth, imgHeight, divWidth, divHeight){
+
   var widthIncreaseFactor = divWidth / imgWidth;
 
   var finalHeightImg = widthIncreaseFactor * imgHeight;
@@ -366,10 +411,22 @@ $scope.resizeImageHeight = function(imgWidth, imgHeight, divWidth, divHeight){
   var finalWidthImg = heightIncreaseFactor * imgWidth;
   var posTopLeftX = (divWidth - finalWidthImg) / 2;
 
-  var positionLeft = -posTopLeftX;
+  var positionLeft = posTopLeftX;
   var positionTop = 0;
   var imgWidth = finalWidthImg;
   var imgHeight = divHeight;
+
+  if(imgWidth < divWidth){
+    console.log("resize");
+    var imgLeftInfoTest = $scope.resizeImageWidthInHeight(imgWidth,imgHeight,divWidth,divHeight);
+
+    var ratio = divWidth / divHeight;
+
+    var positionLeft = imgLeftInfoTest.positionTop * ratio;
+    var positionTop = imgLeftInfoTest.positionTop;
+    var imgWidth = imgLeftInfoTest.imgWidth - positionLeft + 40;
+    var imgHeight = imgLeftInfoTest.imgHeight;
+  }
 
   return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidth, "imgHeight": imgHeight};
 };

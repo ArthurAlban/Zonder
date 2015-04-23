@@ -38,10 +38,10 @@
 
 <div class='pageOption'>
   <a class='option' ng-click="showActionSheetPhotoSourceForPhotoLeft()" ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegBackground + 'deg)'}">
-    <img src='{{createPoll.photoLeft}}' ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegImage + 'deg)', 'width': imgLeftInfo.imgWidth + 'px', 'height': imgLeftInfo.imgHeight + 'px', 'margin-left': '-' + imgLeftInfo.positionLeft + 'px', 'margin-top': imgLeftInfo.positionTop + 'px'}">
+    <img src='{{createPoll.photoLeft}}' ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegImage + 'deg)', 'width': imgLeftInfo.imgWidth + 'px', 'height': imgLeftInfo.imgHeight + 'px', 'margin-left': imgLeftInfo.positionLeft + 'px', 'margin-top': imgLeftInfo.positionTop + 'px'}">
   </a>
   <a class='option' ng-click="showActionSheetPhotoSourceForPhotoRight()" ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegBackground + 'deg)'}">
-    <img src='{{createPoll.photoRight}}' ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegImage + 'deg)'}">
+    <img src='{{createPoll.photoRight}}' ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegImage + 'deg)',  'width': imgRightInfo.imgWidth + 'px', 'height': imgRightInfo.imgHeight + 'px', 'margin-left': imgRightInfo.positionLeft + 'px', 'margin-top': imgRightInfo.positionTop + 'px'}">
   </a>
 </div>
 </ion-slide>
