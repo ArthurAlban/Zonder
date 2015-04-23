@@ -396,9 +396,12 @@ top:36px;
 }
 
 .labelZonder {
+  position: relative;
   height:60px !important;
   margin-bottom:2px;
   border: 0 none !important;
+  width:100%;
+  left:1px;
 }
 
 .iconZonderLeft{
@@ -429,7 +432,6 @@ top:36px;
 }
 
 .checkboxZonder {
-  //margin-right:5px;
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start;
@@ -445,7 +447,6 @@ top:36px;
 //text du choix de la check box
 .textCheckbox{
   @include fontLabelZonderInputAndText;
-  //margin-right:5px;
 }
 
 ////////////////////// home ////////////////////////
