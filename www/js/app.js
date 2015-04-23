@@ -45,5 +45,5 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   });
   // if none of the above states are matched, use this as the fallback
 
-  $urlRouterProvider.otherwise('/animatedSplashscreen');
+  $urlRouterProvider.otherwise('/home');
 });
