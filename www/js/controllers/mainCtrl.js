@@ -1,4 +1,4 @@
-zonder.controller('mainCtrl', function($scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera) {
+zonder.controller('mainCtrl', function($scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera,  UserService) {
 	
 $ionicModal.fromTemplateUrl('modals/createZonderModal.html', {
   scope: $scope,
@@ -13,6 +13,7 @@ $scope.openCreateZonderModal = function() {
 
 $scope.closeCreateZonderModal = function() {
   $scope.createZonderModal.hide();
+  $scope.clearModal();
 };
 
 $scope.$on('$destroy', function() {
@@ -62,6 +63,34 @@ $scope.createPoll = function(){
 $scope.backStep = function(){
     $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').previous();
 };
+
+$scope.clearModal = function(){
+  $scope.createPoll.photoLeft = "img/transparencyBackground.png";
+  $scope.createPoll.photoRight = "img/transparencyBackground.png";
+  $scope.createPoll.question = "";
+  $scope.createPoll.namePhotoLeft = "";
+  $scope.createPoll.namePhotoRight = "";
+  $scope.createPoll.friendsConcerned = "";
+  $scope.friendsConcerned.splice(0, $scope.friendsConcerned.length);
+  $scope.createPoll.usersConcerned = 10;
+  $scope.createPoll.timePoll = 3600;
+  $scope.createPoll.gender = "";
+  $scope.createPoll.range = "";
+  $scope.displayButtonLeft = true;
+  $scope.displayButtonRight = true;
+  $scope.zonderInfo.friendPoll = false;
+  $scope.zonderInfo.worldPoll = false;
+  $scope.zonderInfo.femalePoll = false;
+  $scope.zonderInfo.malePoll = false;
+  $scope.zonderInfo.mixtPoll = false;
+  $scope.showNextButtonForCreatePoll = false;
+  $scope.showNextButtonForChoosePhoto = false;
+  $scope.showFinishButtonCreatePoll = false;
+};
+
+$scope.showCloseButton = true;
+$scope.displayNextButtonQuestion = true;
+
 $scope.displayButtonLeft = true;
 $scope.displayButtonRight = true;
 
@@ -69,15 +98,8 @@ $scope.friendsConcerned = new Array();
 $scope.friends = new Array();
 $scope.friendsAreLoaded = false;
 
-$scope.friendPoll = false;
-$scope.worldPoll = false;
-$scope.femalePoll = false;
-$scope.malePoll = false;
-$scope.mixtPoll = false;
-
 $scope.search = "";
-$scope.showCloseButton = true;
-$scope.displayNextButtonQuestion = true;
+
 $scope.createPoll = {};
 $scope.createPoll.question = "";
 $scope.createPoll.photoLeft = "img/transparencyBackground.png";
@@ -120,16 +142,6 @@ var angleRad = Math.atan(viewportHeight/viewportWidth);
 $scope.photoSkewAngleDegBackground = (90 - (angleRad * (180 / Math.PI)))*(-1);
 $scope.photoSkewAngleDegImage = 90 - (angleRad * (180 / Math.PI));
 
-// $scope.checkPhotoInCreatePoll = function(){
-//   if(($scope.createPoll.photoLeft != "img/transparencyBackground.png") && ($scope.createPoll.photoRight != "img/transparencyBackground.png")){
-//     console.log("aaa");
-//     $scope.showNextButtonForChoosePhoto = true;
-//   }
-//   else {
-//     $scope.showNextButtonForChoosePhoto = false;
-//   }
-// };
-
 $scope.checkChoicePhotoInCreatePoll = function(){
   if(($scope.createPoll.namePhotoLeft.length > 2) && ($scope.createPoll.namePhotoRight.length > 2)){
     $scope.showNextButtonForChoosePhoto = true;
@@ -141,7 +153,6 @@ $scope.checkChoicePhotoInCreatePoll = function(){
 
 $scope.imgLeftInfo = {};
 $scope.imgRightInfo = {};
-// $scope.toto = {};
 
 $scope.choosePhotoLeft = function(){
   var options = {
@@ -286,57 +297,289 @@ $scope.showActionSheetPhotoSourceForPhotoRight = function() {
 
 /////////////////  slider option create poll /////////////////////////
 
+  $scope.showFinishButtonCreatePoll = false;
+
+  $scope.queriesForFriendInfoCreatePoll = new Array();
+  $scope.queriesForFriendPhotoCreatePoll = new Array();
+
+  $scope.zonderInfo = new Array();
+  $scope.zonderInfo.friendPoll = false;
+  $scope.zonderInfo.worldPoll = false;
+  $scope.zonderInfo.femalePoll = false;
+  $scope.zonderInfo.malePoll = false;
+  $scope.zonderInfo.mixtPoll = false;
+
+  $scope.animateFriends = false;
+  $scope.animateTarget = false;
+
+  $scope.checkOptionInCreatePoll = function(){
+    if($scope.createPoll.timePoll != ""){
+      if($scope.createPoll.gender != ""){
+        if($scope.createPoll.range != ""){
+          if($scope.zonderInfo.friendPoll){
+            for(friend in $scope.friends){
+              if($scope.friends[friend].selected){
+                $scope.showFinishButtonCreatePoll = true;
+              }
+              else{
+                $scope.showFinishButtonCreatePoll = false;
+              }
+            }
+          }
+          if($scope.zonderInfo.worldPoll){
+            if($scope.createPoll.usersConcerned != ""){
+              $scope.showFinishButtonCreatePoll = true;
+            }
+            else{
+              $scope.showFinishButtonCreatePoll = false;
+            }
+          }
+        }
+      }
+    }
+  };
+
   $scope.setFriendPoll  = function() {
-    $scope.friendPoll = true;
-    $scope.worldPoll = false;
+    $scope.zonderInfo.friendPoll = true;
+    $scope.zonderInfo.worldPoll = false;
+    $scope.animateFriends = true;
+    $scope.animateTarget = false;
     $scope.createPoll.range = "Amis";
-    // $scope.updateFriendsCreatePoll();
-    // $scope.checkOptionInCreatePoll();
+    $scope.updateFriendsCreatePoll();
+    $scope.checkOptionInCreatePoll();
   };
 
   $scope.setWorldPoll  = function() {
-    $scope.friendPoll = false;
-    $scope.worldPoll = true;
+    $scope.zonderInfo.friendPoll = false;
+    $scope.zonderInfo.worldPoll = true;
+    $scope.animateFriends = false;
+    $scope.animateTarget = true;
     $scope.createPoll.range = "Monde";
-    // $scope.updateFriendsCreatePoll();
-    // $scope.checkOptionInCreatePoll();
+    $scope.updateFriendsCreatePoll();
+    $scope.checkOptionInCreatePoll();
+  };
+
+$scope.getFriendsCreatePoll = function(callback){
+    UserService.getFriends().then(function(data){
+      $scope.friends = data.friends;
+      angular.forEach($scope.friends, function(f, k){
+        if(!f.gender){
+          f.photo = "img/profilTest.png";
+        }
+        else{
+          f.photo = "img/louis.png";
+        }
+        
+      });
+
+      async.parallel([$scope.getFriendsInfosCreatePoll, $scope.getFriendsPhotosCreatePoll], function(err, res){
+        callback();
+      });
+    }, function(status){
+      console.log("Impossible de récuperer les utilisateurs");
+    });
+  };
+
+  $scope.getFriendsInfosCreatePoll = function(callback){
+    angular.forEach($scope.friends, function(friend, key){
+      var q = function(callback){
+        UserService.getFriendInfoFromId(friend.id).then(function(d){
+          angular.forEach($scope.friends, function(f, k){
+            if(f.id == friend.id){
+              f.pseudo = d.pseudo;
+              f.selected = false;
+              f.gender = d.gender;
+            }
+          });
+          callback();
+        }, function(status){
+          console.log("Impossible de recuperer les infos d'un utilisateur");
+        });
+      };
+      $scope.queriesForFriendInfoCreatePoll.push(q);
+    });
+    callback();
+  };
+
+  $scope.getFriendsPhotosCreatePoll = function(callback){
+    angular.forEach($scope.friends, function(friend, key){
+      var q = function(callback){
+        UserService.getFriendPhotoFromId(friend.id).then(function(d){
+          angular.forEach($scope.friends, function(f, k){
+            if(f.id == friend.id){
+              f.photo = d.photo;
+              callback();
+            }
+          });
+        }, function(status){
+          console.log("Impossible de récuperer la photo de l'utulisateur");
+        });
+      };
+      $scope.queriesForFriendPhotoCreatePoll.push(q);
+    });
+    callback();
+  };
+
+  $scope.queriesExecInfoCreatePoll = function(callback){
+    async.parallel($scope.queriesForFriendInfoCreatePoll, function(err, res){
+      $scope.loadingSondrFriends = false;
+      $scope.$apply();
+      callback();
+    });
+  };
+
+  $scope.queriesExecPhotoCreatePoll = function(callback){
+    async.parallel($scope.queriesForFriendPhotoCreatePoll,function(err, res){
+      callback();
+    });
+  };
+
+  $scope.queriesParallelCreatePoll = function(callback) {
+    async.parallel([$scope.queriesExecInfoCreatePoll, $scope.queriesExecPhotoCreatePoll], function(err, res){
+      $scope.friendsAreLoaded = true;
+      callback();
+    });
   };
 
 
-// $scope.checkOptionInCreatePoll = function(){
-//   if($scope.createPoll.timePoll != ""){
-//     if($scope.createPoll.gender != ""){
-//       if($scope.createPoll.range != ""){
-//         if($scope.friendPoll){
-//           for(friend in $scope.friends){
-//             if($scope.friends[friend].selected){
-//               $scope.showFinishButtonCreatePoll = true;
-//             }
-//             else{
-//               $scope.showFinishButtonCreatePoll = false;
-//             }
-//           }
-//         }
-//         if($scope.worldPoll){
-//           if($scope.createPoll.usersConcerned != ""){
-//             $scope.showFinishButtonCreatePoll = true;
-//           }
-//           else{
-//             $scope.showFinishButtonCreatePoll = false;
-//           }
-//         }
-//       }
-//     }
-//   }
-// };
+  $scope.updateFriendsCreatePoll = function(){
+    if(!$scope.loadingSondrFriends && !$scope.friendsAreLoaded){
+      $scope.loadingSondrFriends = true;
+      $scope.queriesForFriendPhotoCreatePoll.splice(0, $scope.queriesForFriendPhotoCreatePoll.length);
+      $scope.queriesForFriendInfoCreatePoll.splice(0, $scope.queriesForFriendInfoCreatePoll.length);
+      $scope.friends.splice(0, $scope.friends.length);
+
+      async.series([$scope.getFriendsCreatePoll, $scope.queriesParallelCreatePoll], 
+        function(err, result){
+                 $scope.$apply();
+        });
+    }
+  };
+
+  $scope.deselectFriends = function(){
+    for(f in $scope.friends){
+      if($scope.zonderInfo.femalePoll){
+        if($scope.friends[f].gender){
+          if($scope.friends[f].selected ){
+            $scope.friends[f].selected = false;
+          }   
+        }
+      } else if($scope.zonderInfo.malePoll){
+        if(!$scope.friends[f].gender){
+          if($scope.friends[f].selected ){
+            $scope.friends[f].selected = false;
+          }   
+        } 
+      }
+    }
+  };
+
+  $scope.updateAllFriendsSelected = function(){
+    var isAllselected = true;
+    
+    if($scope.friends.length){
+      if($scope.zonderInfo.femalePoll){
+        var hasWoman = false;
+        for(friend in $scope.friends){
+          if(!$scope.friends[friend].gender){
+            hasWoman = true;
+            if(!$scope.friends[friend].selected){
+              isAllselected = false;
+            }
+          }
+        }
+        if(!hasWoman){
+          isAllselected = false;
+        }
+      }
+      else if($scope.zonderInfo.malePoll){
+        var hasMan = false;
+        for(friend in $scope.friends){
+          if($scope.friends[friend].gender){
+            hasMan = true;
+            if(!$scope.friends[friend].selected){
+              isAllselected = false;
+            }
+          }
+        }
+        if(!hasMan){
+          isAllselected = false;
+        }
+      }
+      else{
+        for(friend in $scope.friends){
+          if(!$scope.friends[friend].selected){
+            isAllselected = false;
+          }
+        }
+      }
+    }
+    else{
+      isAllselected = false;
+    }
+    return isAllselected;
+  };
+
+  $scope.selectAllFriends = function(){
+    for(friend in $scope.friends){
+      if($scope.zonderInfo.femalePoll){
+        if(!$scope.friends[friend].gender){
+          $scope.friends[friend].selected = !$scope.allFriendsSelected; 
+        }
+      }
+      else if ($scope.zonderInfo.malePoll){
+        if($scope.friends[friend].gender){
+          $scope.friends[friend].selected = !$scope.allFriendsSelected; 
+        }
+      }
+      else {
+        $scope.friends[friend].selected = !$scope.allFriendsSelected;
+      }
+    }    
+    $scope.allFriendsSelected = !$scope.allFriendsSelected;
+    $scope.checkOptionInCreatePoll(); 
+  };
+
+  $scope.selectFriend = function(id, selected){
+    for(friend in $scope.friends){
+      if($scope.friends[friend].id == id){
+        $scope.friends[friend].selected = !selected;
+      }
+    }
+    $scope.allFriendsSelected = $scope.updateAllFriendsSelected();
+    $scope.checkOptionInCreatePoll();
+  };
+
+  $scope.setFemalePoll = function() {
+    $scope.createPoll.gender = "female";
+    $scope.zonderInfo.femalePoll = true;
+    $scope.zonderInfo.malePoll = false;
+    $scope.zonderInfo.mixtPoll = false;
+    $scope.deselectFriends();
+    $scope.allFriendsSelected = $scope.updateAllFriendsSelected();
+    $scope.checkOptionInCreatePoll();
+  };
+
+  $scope.setMalePoll = function() {
+    $scope.createPoll.gender = "male";
+    $scope.zonderInfo.femalePoll = false;
+    $scope.zonderInfo.malePoll = true;
+    $scope.zonderInfo.mixtPoll = false;
+    $scope.deselectFriends();
+    $scope.allFriendsSelected = $scope.updateAllFriendsSelected();
+    $scope.checkOptionInCreatePoll();
+  };
+
+  $scope.setMixtPoll = function() {
+    $scope.createPoll.gender = "mixte";
+    $scope.zonderInfo.femalePoll = false;
+    $scope.zonderInfo.malePoll = false;
+    $scope.zonderInfo.mixtPoll = true;
+    $scope.allFriendsSelected = $scope.updateAllFriendsSelected();
+    $scope.checkOptionInCreatePoll();
+  };
+
 //////////////// resize image ///////////////////
-
-
-    // $scope.imgLeftInfo = $scope.getInfoImage($scope.createPoll.photoLeft);
-    // $scope.imgRightInfo = $scope.getInfoImage($scope.createPoll.photoRight);
-
-    // $scope.imgLeftInfo = $scope.setPositionImage($scope.imgLeftInfo.imgWidth, $scope.imgLeftInfo.imgHeight);
-    // $scope.imgRightInfo = $scope.setPositionImage($scope.imgRightInfo.imgWidth, $scope.imgRightInfo.imgHeight);
 
 
 ///// set position and info image //////////////////
@@ -430,8 +673,6 @@ $scope.resizeImageHeight = function(imgWidth, imgHeight, divWidth, divHeight){
 
   return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidth, "imgHeight": imgHeight};
 };
-
-
 
 
 /////////////// search image google ///////////////

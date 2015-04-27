@@ -47,7 +47,7 @@
 </ion-slide>
 
 
-<ion-slide>
+<ion-slide style="overflow:hidden">
 
 <div style="position:absolute;top:26%;left:10%" class="fontYourOption">your options</div>
 
@@ -70,18 +70,19 @@
   <div class="labelContainerZonder" style="margin-left:26px"> 
     <div class="checkboxZonder">
       <label class="checkbox">
-        <input type="checkbox" ng-model="worldPoll">
+        <input type="checkbox" ng-change="setWorldPoll()" ng-model="zonderInfo.worldPoll">
       </label>
       <span class="textCheckbox">public</span>
     </div>
     <div class="checkboxZonder">
       <label class="checkbox" >
-        <input type="checkbox"  ng-model="friendPoll" >
+        <input type="checkbox" ng-change="setFriendPoll()" ng-model="zonderInfo.friendPoll" >
       </label>
       <span class="textCheckbox">friends only</span>
     </div>
   </div>   
 </div>
+
 
 <div class="item item-icon-left labelZonder">
    <i class="icon iconZonderLeft"> 
@@ -90,26 +91,29 @@
   <div class="labelContainerZonder" style="margin-left:26px"> 
     <div class="checkboxZonder">
       <label class="checkbox">
-        <input type="checkbox" ng-model="worldPoll">
+        <input type="checkbox" ng-click="setMalePoll()" ng-model="zonderInfo.malePoll">
       </label>
       <span class="textCheckbox">men</span>
     </div>
     <div class="checkboxZonder">
       <label class="checkbox" >
-        <input type="checkbox"  ng-model="friendPoll" >
+        <input type="checkbox" ng-click="setFemalePoll()" ng-model="zonderInfo.femalePoll" >
       </label>
       <span class="textCheckbox">women</span>
     </div>
     <div class="checkboxZonder">
       <label class="checkbox" >
-        <input type="checkbox"  ng-model="friendPoll" >
+        <input type="checkbox" ng-click="setMixtPoll()" ng-model="zonderInfo.mixtPoll" >
       </label>
       <span class="textCheckbox">both</span>
     </div>
   </div>   
 </div>
 
-    <div class="item item-icon-left item-icon-right labelZonder">
+<!-- bidouillage -->
+
+    <div class="divTargetAndFriends"> 
+    <div class="item item-icon-left item-icon-right specTarget" ng-class="{labelZonder:animateTarget, labelZonderHide:!animateTarget}">
       <i class="icon iconZonderLeft"> 
         <img src="img/target.png" width="25">
       </i>
@@ -118,22 +122,54 @@
       <img src="img/chevronRightGrey.png" width="7">
     </i>
     </div>
-     
+
+     <div class="item specFriends" ng-class="{labelZonder:animateFriends, labelZonderFriendsHide:!animateFriends}">
+
+      <ion-scroll direction="x" zooming="false" delegate-handle="horizontal" class="fullSize">
+
+    <div ng-show="loadingSondrFriends" class="card centeredContent" style="background:#ECF0F1;position:relative;left:50%;margin: 10px 0 0 -25px;width:50px;height:50px;"><i style="font-size:26px;" class="icon ion-loading-c"></i></div>
+
+    <div ng-if="!friends.length" ng-hide="loadingSondrFriends"class="centeredContent fontOptionCreateZonder specNotFriends">You don't have any friends yet !</div>
+
+    <div ng-hide="loadingSondrFriends" class="row specDivFriends" ng-style="{'width': ((friends.length + 1) * 58) + 'px' }" >
+      <div class="specDivAll">
+        <img ng-if="!allFriendsSelected" src="img/allFriends.svg" ng-click="selectAllFriends()" class="specImg"/>
+        <img ng-if="allFriendsSelected" src="img/allFriendsSelected.svg" ng-click="selectAllFriends()" class="specImg"/>
+
+        <label class="fontOptionCreateZonder specText">
+          All
+        </label>
+      </div>
+
+      <div ng-hide="(zonderInfo.femalePoll && f.gender) || (zonderInfo.malePoll && !f.gender)" class="sample-show-hide specDivFriends" ng-repeat="f in friends">
+        <img  src={{f.photo}} ng-class="{borderNotSelected:!f.selected,borderSelected:f.selected}" ng-click="selectFriend(f.id, f.selected)" class="specImg"/>
+        <label ng-if="f.pseudo.length <= 7" class=" fontOptionCreateZonder specText">
+          {{f.pseudo}}
+        </label>
+        <label ng-if="f.pseudo.length > 7" class=" fontOptionCreateZonder specText">
+          {{f.pseudo.substring(0,6)}}...
+        </label>
+      </div>
+    </div>
+  </ion-scroll>
+ </div>
+ </div> <!-- fin bidouillage -->
+
 </div>
 
 </ion-slide>
 
 </ion-slide-box>
 
-<button ng-disabled="!showNextButtonForCreatePoll" ng-show="displayNextButtonQuestion" class="button buttonZonder buttonRegister" ng-click="nextStepPhoto()" style="position:absolute;top:85%;">
+<button ng-disabled="!showNextButtonForCreatePoll" ng-show="displayNextButtonQuestion" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepPhoto()">
     NEXT
  </button>
 
- <button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister" ng-click="nextStepOption()" style="position:absolute;top:85%;">
+ <button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepOption()">
     NEXT
  </button>
 
-  <button ng-disabled="" ng-show="displayCreateButton" class="button buttonZonder buttonRegister" ng-click="createPoll()" style="position:absolute;top:85%;">
+  <button ng-disabled="!showFinishButtonCreatePoll" ng-show="displayCreateButton" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="createPoll()">
     CREATE
  </button>
 
