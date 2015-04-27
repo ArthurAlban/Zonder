@@ -1250,6 +1250,7 @@ display:-webkit-flex;
   letter-spacing:0.075em;
   line-height: 11px !important;
 }
+
 ///////////////////// createZonder /////////////////////
 
 .fullSize{
@@ -1531,6 +1532,117 @@ display:-webkit-flex;
   -webkit-transform: translateX(-19%); 
   -webkit-transition: all 0.5s linear;
 }
+
+///////////////////// Target Picker /////////////////////
+#overlayTargetPicker{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:30 !important;
+  width:100vw;
+  height:100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#contentTargetPicker{
+  position: relative;
+  background-color: #FFF;
+  width: 200px;
+  height: 250px;
+}
+
+#closeTargetPicker {
+  position: absolute;
+  top:10px;
+  left:10px;
+}
+
+///////////////////// Time Picker /////////////////////
+#overlayTimePicker{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:30 !important;
+  width:100vw;
+  height:100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#contentTimePicker{
+  position: relative;
+  background-color: #FFF;
+  width: 200px;
+  height: 250px;
+}
+
+#closeTimePicker {
+  position: absolute;
+  top:10px;
+  left:10px;
+}
+
+.timePicker {
+  position: absolute;
+  border: 1px solid blue;
+  top:45px;
+  height: 170px;
+  width: 100%;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  -webkit-flex-direction : column;
+}
+
+//conteneur du titre de la popup
+.contentTitleTimePicker {
+  position: absolute;
+  width:100%;
+  top:17px;
+}
+
+//titre de la popup
+.titlePopupTimePicker{
+  width:100%;
+  @include fontTitlePopup;
+  text-align: center;
+}
+
+.contentButton {
+  position: absolute;
+  width:100%;
+  background-color : #fff;
+  top:235px;
+}
+
+.contentPlus {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width: 100%;
+}
+
+.contentMinus {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width: 100%;
+}
+
+.contentTime {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  width: 100%;
+}
+
+.fontTime{
+  font-size:30px;
+  font-family: 'BrandonBold';
+  color: #000;
+  line-height:30px;
+  letter-spacing:0.075em;
+}
+
 
 ///////////////////// animation /////////////////////
 

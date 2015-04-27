@@ -3,13 +3,81 @@
 
 <img id="backCreateZonder" ng-show="!showCloseButton" class="imgClick" ng-click="backStep()" src="img/arrowBack.png">
 
+<div id="overlayTimePicker" class="centeredContent" ng-if="timePickerIsOpen">
+  <div id="contentTimePicker">
+
+    <div class="contentTitleTimePicker">
+      <p class="titlePopupTimePicker">
+        TIME
+      </p>
+    </div> 
+    <img id="closeTimePicker" src="img/closeBlack.png" width="25" ng-click="closeTimePicker()">
+
+    <div class="timePicker">
+      <p class="contentPlus">
+        <span class="fontTime" ng-click="increaseHours()"> + </span>
+        <span class="fontTime" ng-click="increaseDecadeMinutes()"> + </span>
+      </p>
+      <p class="contentTime">
+        <span class="fontTime"> {{hours}} </span>
+        <span class="fontTime">:</span>
+        <span class="fontTime"> {{decadeMinutes}} </span>
+        <span class="fontTime"> {{unitMinutes}} </span>
+      </p>
+      <p class="contentMinus">
+        <span class="fontTime" ng-click="decreaseHours()"> - </span>
+        <span class="fontTime" ng-click="decreaseDecadeMinutes()"> - </span>
+      </p>
+    </div>
+    
+    <p class="contentButton">
+      <button ng-click="closeTimePicker()" class="buttonPopup button">OK</button>
+    </p>
+  </div>
+</div>
+
+
+<div id="overlayTargetPicker" class="centeredContent"  ng-if="targetPickerIsOpen" >
+  <div id="contentTargetPicker">
+
+    <div class="contentTitleTimePicker">
+      <p class="titlePopupTimePicker">
+        TARGET
+      </p>
+    </div> 
+    <img id="closeTargetPicker" src="img/closeBlack.png" width="25" ng-click="closeTargetPicker()">
+
+    <div class="timePicker">
+      <p class="contentPlus">
+        <span class="fontTime" ng-click="increaseHundredPeopleRange()"> + </span>
+        <span class="fontTime" ng-click="increaseDecadePeopleRange()"> + </span>
+      </p>
+      <p class="contentTime">
+        <span class="fontTime"> {{hundredPeopleRange}} </span>
+        <span class="fontTime"> {{decadePeopleRange}} </span>
+        <span class="fontTime"> {{unitPeopleRange}} </span>
+      </p>
+      <p class="contentMinus">
+        <span class="fontTime" ng-click="decreaseHundredPeopleRange()"> - </span>
+        <span class="fontTime" ng-click="decreaseDecadePeopleRange()"> - </span>
+      </p>
+    </div>
+    
+    <p class="contentButton">
+      <button ng-click="closeTargetPicker()" class="buttonPopup button">OK</button>
+    </p>
+  </div>
+</div>
+
+
+
 <ion-slide-box on-slide-changed="slideHasChangedInCreateZonder(index)" delegate-handle="createZonderSlider" ng-init="disableSwipeCreateZonder()" show-pager="true" id="slideBoxCreateZonder">
 
 <ion-slide>
 
 <div id="contentTextAreaCreateZonder">
-<textarea class="questionCreateZonder" ng-change="charactersLeft()" id="textAreaQuestionCreateZonder" ng-model="createPoll.question" rows="8" cols="18" maxlength="90" placeholder="WHAT IS YOUR QUESTION ?">
-</textarea>
+  <textarea class="questionCreateZonder" ng-change="charactersLeft()" id="textAreaQuestionCreateZonder" ng-model="createPoll.question" rows="8" cols="18" maxlength="90" placeholder="WHAT IS YOUR QUESTION ?">
+  </textarea>
 </div>
 
 <div id="contentCharactersLeftCreateZonder">
@@ -21,13 +89,13 @@
 <ion-slide>
 
 <div ng-show="displayButtonLeft" class="sample-show-hide" id="posDivCameraLeft" ng-click="showActionSheetPhotoSourceForPhotoLeft()" style=" display: -webkit-flex;-webkit-flex-direction: column;-webkit-align-items: center;-webkit-justify-content: flex-start;">
-<div class="addPictureFont">add picture</div>
-<img width="40" ng-show="true" ng-click="" src="img/cameraPhoto.png">
+  <div class="addPictureFont">add picture</div>
+  <img width="40" ng-show="true" ng-click="" src="img/cameraPhoto.png">
 </div>
 
 <div ng-show="displayButtonRight" class="sample-show-hide" id="posDivCameraRight" ng-click="showActionSheetPhotoSourceForPhotoRight()" style=" display: -webkit-flex;-webkit-flex-direction: column;-webkit-align-items: center;-webkit-justify-content: flex-start;">
-<img width="40" ng-show="true" ng-click="" src="img/cameraPhoto.png">
-<div class="addPictureFont">add picture</div>
+  <img width="40" ng-show="true" ng-click="" src="img/cameraPhoto.png">
+  <div class="addPictureFont">add picture</div>
 </div>
 
 
@@ -53,20 +121,20 @@
 
 <div style="position:absolute;top:32%;width:100%;">
 
-     <div class="item item-icon-left item-icon-right labelZonder">
-      <i class="icon iconZonderLeft"> 
-        <img src="img/clock.png" width="25">
-      </i>
-      <div class="textZonder">select your timer</div>
-    <i class="icon iconZonderRight"> 
-      <img src="img/chevronRightGrey.png" width="7">
-    </i>
-    </div>
-
-    <div class="item item-icon-left labelZonder">
-   <i class="icon iconZonderLeft"> 
-    <img src="img/earth.png" width="25">
+ <div class="item item-icon-left item-icon-right labelZonder" ng-click="openTimePicker()">
+  <i class="icon iconZonderLeft"> 
+    <img src="img/clock.png" width="25">
   </i>
+  <div class="textZonder">select your timer</div>
+  <i class="icon iconZonderRight"> 
+    <img src="img/chevronRightGrey.png" width="7">
+  </i>
+</div>
+
+<div class="item item-icon-left labelZonder">
+ <i class="icon iconZonderLeft"> 
+  <img src="img/earth.png" width="25">
+</i>
   <div class="labelContainerZonder" style="margin-left:26px"> 
     <div class="checkboxZonder">
       <label class="checkbox">
@@ -80,14 +148,14 @@
       </label>
       <span class="textCheckbox">friends only</span>
     </div>
-  </div>   
+  </div>
 </div>
 
 
 <div class="item item-icon-left labelZonder">
-   <i class="icon iconZonderLeft"> 
-    <img src="img/gender.png" width="25">
-  </i>
+ <i class="icon iconZonderLeft"> 
+  <img src="img/gender.png" width="25">
+</i>
   <div class="labelContainerZonder" style="margin-left:26px"> 
     <div class="checkboxZonder">
       <label class="checkbox">
@@ -113,7 +181,7 @@
 <!-- bidouillage -->
 
     <div class="divTargetAndFriends"> 
-    <div class="item item-icon-left item-icon-right specTarget" ng-class="{labelZonder:animateTarget, labelZonderHide:!animateTarget}">
+    <div class="item item-icon-left item-icon-right specTarget" ng-click="openTargetPicker()" ng-class="{labelZonder:animateTarget, labelZonderHide:!animateTarget}">
       <i class="icon iconZonderLeft"> 
         <img src="img/target.png" width="25">
       </i>
@@ -169,7 +237,7 @@
     NEXT
  </button>
 
-  <button ng-disabled="!showFinishButtonCreatePoll" ng-show="displayCreateButton" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="createPoll()">
+  <button ng-disabled="!showFinishButtonCreatePoll" ng-show="displayCreateButton" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="createPollFunction()">
     CREATE
  </button>
 

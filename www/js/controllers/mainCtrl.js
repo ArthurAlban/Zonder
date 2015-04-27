@@ -1,5 +1,104 @@
-zonder.controller('mainCtrl', function($scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera,  UserService) {
-	
+zonder.controller('mainCtrl', function($scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService) {
+  $scope.timePickerIsOpen = false;
+
+  $scope.openTimePicker = function(){
+    $scope.timePickerIsOpen = true;
+  };
+
+  $scope.closeTimePicker = function(){
+    $scope.timePickerIsOpen = false;
+  };
+
+  $scope.hours = 1;
+  $scope.decadeMinutes = 0;
+  $scope.unitMinutes = 0;
+
+  $scope.increaseHours = function(){
+    if($scope.hours > 8){
+      $scope.hours = 1;
+    }
+    else{
+      $scope.hours = ($scope.hours + 1)%10;
+    }
+  };
+
+  $scope.decreaseHours = function(){
+    if($scope.hours <= 1){
+      $scope.hours = 9;
+    }
+    else {
+     $scope.hours--;
+   }
+ };
+
+ $scope.increaseDecadeMinutes = function(){
+  if($scope.decadeMinutes == 3){
+    $scope.decadeMinutes = 0;
+  }
+  else{
+    $scope.decadeMinutes = 3;
+  }
+};
+
+$scope.decreaseDecadeMinutes = function(){
+  if($scope.decadeMinutes == 3){
+    $scope.decadeMinutes = 0;
+  }
+  else{
+    $scope.decadeMinutes = 3;
+  }
+};
+
+$scope.targetPickerIsOpen = false;
+
+$scope.openTargetPicker = function(){
+  $scope.targetPickerIsOpen = true;
+};
+
+$scope.closeTargetPicker = function(){
+  $scope.targetPickerIsOpen = false;
+};
+
+$scope.hundredPeopleRange = 0;
+$scope.decadePeopleRange = 1;
+$scope.unitPeopleRange = 0;
+
+$scope.increaseHundredPeopleRange = function(){
+  if($scope.hundredPeopleRange > 8){
+    $scope.hundredPeopleRange = 0;
+  }
+  else{
+    $scope.hundredPeopleRange = ($scope.hundredPeopleRange + 1)%10;
+  }
+};
+
+$scope.decreaseHundredPeopleRange = function(){
+  if($scope.hundredPeopleRange <= 0){
+    $scope.hundredPeopleRange = 9;
+  }
+  else {
+   $scope.hundredPeopleRange--;
+ }
+};
+
+$scope.increaseDecadePeopleRange = function(){
+  if($scope.decadePeopleRange > 8){
+    $scope.decadePeopleRange = 1;
+  }
+  else{
+    $scope.decadePeopleRange = ($scope.decadePeopleRange + 1)%10;
+  }
+};
+
+$scope.decreaseDecadePeopleRange = function(){
+  if($scope.decadePeopleRange <= 1){
+    $scope.decadePeopleRange = 9;
+  }
+  else {
+   $scope.decadePeopleRange--;
+ }
+};
+
 $ionicModal.fromTemplateUrl('modals/createZonderModal.html', {
   scope: $scope,
   animation: 'slide-in-right'
@@ -34,12 +133,12 @@ $scope.slideHasChangedInCreateZonder = function(index){
   	$scope.displayNextButtonChoosePhoto = true;
   	$scope.displayCreateButton = false;
   	$scope.showCloseButton = false;
-   }
+  }
   if(index == 2){
   	console.log("option");
   	$scope.displayNextButtonChoosePhoto = false;
   	$scope.displayCreateButton = true;
-   }
+  }
 };
 
 $scope.disableSwipeCreateZonder = function() {
@@ -47,21 +146,21 @@ $scope.disableSwipeCreateZonder = function() {
 };
 
 $scope.nextStepPhoto = function(){
-    $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
-    $scope.displayNextButtonQuestion = false;
+  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
+  $scope.displayNextButtonQuestion = false;
 };
 
 $scope.nextStepOption = function(){
-    $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
-    $scope.displayNextButtonChoosePhoto = false;
+  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
+  $scope.displayNextButtonChoosePhoto = false;
 };
 
 $scope.createPoll = function(){
-   console.log("create poll");
+ console.log("create poll");
 };
 
 $scope.backStep = function(){
-    $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').previous();
+  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').previous();
 };
 
 $scope.clearModal = function(){
@@ -117,10 +216,10 @@ $scope.createPoll.range = "";
 $scope.charLeft = 90;
 
 $scope.charactersLeft = function(){
-console.log("charactersLeft" + $scope.charLeft);
-console.log("length" + $scope.createPoll.question.length);
-$scope.charLeft = (90 - $scope.createPoll.question.length);
- if($scope.createPoll.question.length > 2){
+  console.log("charactersLeft" + $scope.charLeft);
+  console.log("length" + $scope.createPoll.question.length);
+  $scope.charLeft = (90 - $scope.createPoll.question.length);
+  if($scope.createPoll.question.length > 2){
     $scope.showNextButtonForCreatePoll = true;
   }
   else{
@@ -622,7 +721,7 @@ $scope.resizeImageWidth = function(imgLeft, imgWidth, imgHeight, divWidth, divHe
   }
   else{
     console.log("right");
-      var positionLeft = -posTopLeftY * ratio;
+    var positionLeft = -posTopLeftY * ratio;
   }
 
   var positionTop = posTopLeftY;
@@ -674,6 +773,33 @@ $scope.resizeImageHeight = function(imgWidth, imgHeight, divWidth, divHeight){
   return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidth, "imgHeight": imgHeight};
 };
 
+/////////////// create poll ///////////////////////
+
+$scope.createPollFunction = function() {
+  console.log("create");
+  if($scope.createPoll.range == "Amis"){
+    for(friend in $scope.friends){
+      if($scope.friends[friend].selected){
+        $scope.friendsConcerned.push($scope.friends[friend].id);
+      }
+    }
+  }
+  else if($scope.createPoll.range == "Monde"){
+    $scope.createPoll.usersConcerned = ($scope.hundredPeopleRange*100) + ($scope.decadePeopleRange*10);
+  }
+
+  $scope.createPoll.timePoll = ($scope.hours*3600) + ($scope.decadeMinutes*600);
+
+  $scope.createPoll.friendsConcerned = $scope.friendsConcerned;
+
+  $scope.closeAllModalCreatePoll();
+
+  PollService.createPoll($scope.createPoll).then(function(data) {
+    $scope.clearModal();
+  },function(status) {
+    console.log("Impossible de creer le sondage");
+  });
+};
 
 /////////////// search image google ///////////////
 
