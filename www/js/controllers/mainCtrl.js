@@ -52,7 +52,7 @@ $scope.decreaseDecadeMinutes = function(){
 };
 
 $scope.targetPickerIsOpen = false;
-$scope.rangeIsSelected = false;
+$scope.targetIsSelected = false;
 
 $scope.openTargetPicker = function(){
   $scope.targetPickerIsOpen = true;
@@ -60,7 +60,7 @@ $scope.openTargetPicker = function(){
 
 $scope.chooseRange = function(){
   $scope.targetPickerIsOpen = false;
-  $scope.rangeIsSelected = true;
+  $scope.targetIsSelected = true;
 };
 
 $scope.hundredPeopleRange = 0;
@@ -200,7 +200,7 @@ $scope.clearModal = function(){
   $scope.decadeMinutes = 0;
   $scope.unitMinutes = 0;
   $scope.timeIsSelected = false;
-  $scope.rangeIsSelected = false;
+  $scope.targetIsSelected = false;
 };
 
 $scope.showCloseButton = true;
