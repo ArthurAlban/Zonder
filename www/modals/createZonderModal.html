@@ -11,7 +11,6 @@
         TIME
       </p>
     </div> 
-    <img id="closeTimePicker" src="img/closeBlack.png" width="25" ng-click="closeTimePicker()">
 
     <div class="timePicker">
       <p class="contentPlus">
@@ -31,7 +30,7 @@
     </div>
     
     <p class="contentButton">
-      <button ng-click="closeTimePicker()" class="buttonPopup button">OK</button>
+      <button ng-click="chooseTime()" class="buttonPopup button">OK</button>
     </p>
   </div>
 </div>
@@ -45,7 +44,6 @@
         TARGET
       </p>
     </div> 
-    <img id="closeTargetPicker" src="img/closeBlack.png" width="25" ng-click="closeTargetPicker()">
 
     <div class="timePicker">
       <p class="contentPlus">
@@ -64,7 +62,7 @@
     </div>
     
     <p class="contentButton">
-      <button ng-click="closeTargetPicker()" class="buttonPopup button">OK</button>
+      <button ng-click="chooseRange()" class="buttonPopup button">OK</button>
     </p>
   </div>
 </div>
@@ -125,7 +123,8 @@
   <i class="icon iconZonderLeft"> 
     <img src="img/clock.png" width="25">
   </i>
-  <div class="textZonder">select your timer</div>
+  <div class="textZonder" ng-if="!timeIsSelected">select your timer</div>
+  <div class="textZonder" ng-if="timeIsSelected"> {{hours}} hrs {{decadeMinutes}}0 min</div>
   <i class="icon iconZonderRight"> 
     <img src="img/chevronRightGrey.png" width="7">
   </i>
@@ -185,7 +184,8 @@
       <i class="icon iconZonderLeft"> 
         <img src="img/target.png" width="25">
       </i>
-      <div class="textZonder">select your target</div>
+      <div class="textZonder" ng-if="!rangeIsSelected">select your target</div>
+      <div class="textZonder" ng-if="rangeIsSelected"> {{hundredPeopleRange}}{{decadePeopleRange}}0 peoples </div>
     <i class="icon iconZonderRight"> 
       <img src="img/chevronRightGrey.png" width="7">
     </i>
