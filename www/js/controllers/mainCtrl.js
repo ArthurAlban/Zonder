@@ -583,5 +583,4 @@ $scope.$on('$destroy', function() {
 });
 
 
-
 });
