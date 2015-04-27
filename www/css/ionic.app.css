@@ -7899,7 +7899,26 @@ a.button {
   margin-bottom: 2px;
   border: 0 none !important;
   width: 100%;
-  left: 1px; }
+  left: 1px;
+  -webkit-transition: left 0.5s ease; }
+
+.labelZonderHide {
+  position: relative;
+  height: 60px !important;
+  margin-bottom: 2px;
+  border: 0 none !important;
+  width: 100%;
+  left: 101%;
+  -webkit-transition: left 0.5s ease; }
+
+.labelZonderFriendsHide {
+  position: relative;
+  height: 60px !important;
+  margin-bottom: 2px;
+  border: 0 none !important;
+  width: 100%;
+  left: -100%;
+  -webkit-transition: left 0.5s ease; }
 
 .iconZonderLeft {
   margin-left: 13px; }
@@ -8529,6 +8548,80 @@ a.button {
   letter-spacing: 0.075em;
   line-height: 11px !important; }
 
+.fullSize {
+  width: 100%;
+  height: 100%; }
+
+.specDivFriends {
+  margin-top: 4px;
+  left: 13px;
+  padding: 0;
+  position: relative;
+  height: 66px; }
+
+.specDivAll {
+  position: relative;
+  height: 100%;
+  margin: 0 10px 0 0; }
+
+.specImg {
+  width: 40px;
+  height: 40px;
+  position: relative; }
+
+.specText {
+  color: #000000;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 8px; }
+
+.fontOptionCreateZonder {
+  font-size: 8px;
+  font-family: 'OpenSansRegular';
+  color: #adafbc; }
+
+.specNotFriends {
+  position: relative;
+  left: 50%;
+  margin: 0 0 0 -100px;
+  width: 200px;
+  height: 50px;
+  color: #cccccc;
+  text-align: center; }
+
+.specDivFriends {
+  position: relative;
+  height: 100%;
+  margin: 0 2px 0 2px; }
+
+.divTargetAndFriends {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  padding: 0;
+  margin: 0; }
+
+.specTarget {
+  position: absolute; }
+
+.specFriends {
+  position: absolute;
+  padding: 4px 0 0 0; }
+
+.specButtonCreateZonder {
+  position: absolute;
+  top: 85%; }
+
+.borderNotSelected {
+  border-radius: 100%; }
+
+.borderSelected {
+  border-radius: 100%;
+  border: 2px solid #35c3c1; }
+
 .fontYourOption {
   color: #ffffff;
   font-size: 7vw;
@@ -8777,22 +8870,19 @@ a.button {
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: center;
-  width: 100%;
-  border: 1px solid green; }
+  width: 100%; }
 
 .contentMinus {
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: center;
-  width: 100%;
-  border: 1px solid red; }
+  width: 100%; }
 
 .contentTime {
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: center;
-  width: 100%;
-  border: 1px solid brown; }
+  width: 100%; }
 
 .fontTime {
   font-size: 30px;
