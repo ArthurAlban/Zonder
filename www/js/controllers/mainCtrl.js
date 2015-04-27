@@ -9,6 +9,7 @@ zonder.controller('mainCtrl', function($scope, $state, $rootScope, $ionicModal, 
   $scope.chooseTime = function(){
     $scope.timePickerIsOpen = false;
     $scope.timeIsSelected = true;
+    $scope.checkOptionInCreatePoll();
   };
 
   $scope.hours = 1;
@@ -61,6 +62,7 @@ $scope.openTargetPicker = function(){
 $scope.chooseRange = function(){
   $scope.targetPickerIsOpen = false;
   $scope.targetIsSelected = true;
+  $scope.checkOptionInCreatePoll();
 };
 
 $scope.hundredPeopleRange = 0;
@@ -430,13 +432,9 @@ $scope.animateTarget = false;
 
 $scope.checkOptionInCreatePoll = function(){
   if($scope.timeIsSelected){
-    console.log("1");
     if($scope.createPoll.gender != ""){
-      console.log("2");
       if($scope.createPoll.range != ""){
-        console.log("3");
         if($scope.zonderInfo.friendPoll){
-          console.log("4");
           for(friend in $scope.friends){
             if($scope.friends[friend].selected){
               $scope.showFinishButtonCreatePoll = true;
@@ -447,7 +445,6 @@ $scope.checkOptionInCreatePoll = function(){
           }
         }
         if($scope.zonderInfo.worldPoll){
-          console.log("5");
           if($scope.targetIsSelected){
            $scope.showFinishButtonCreatePoll = true;
          }
