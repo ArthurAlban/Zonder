@@ -69,14 +69,14 @@
 <form name="registerSecondStepForm" novalidate>
   <div id="divRegisterSecondStep">
 
-   <div class="item item-icon-left item-icon-right labelZonder">
+   <div ng-click="showActionSheetPhotoSource()" class="item item-icon-left item-icon-right labelZonder">
     <i class="icon iconZonderLeft"> 
-      <img ng-if="!photoHasChanged" src={{userData.photo}} ng-click="showActionSheetPhotoSource()" width="25">
-      <img class="imgLeftRound" ng-if="photoHasChanged" src={{userData.photo}} ng-click="showActionSheetPhotoSource()" width="25">
+      <img ng-if="!photoHasChanged" src={{userData.photo}}  width="25">
+      <img class="imgLeftRound" ng-if="photoHasChanged" src={{userData.photo}} width="25">
     </i>
     <div class="textZonder">upload a profile picture</div>
     <i class="icon iconZonderRight"> 
-      <img src="img/chevronRightGrey.png" ng-click="showActionSheetPhotoSource()" width="7">
+      <img src="img/chevronRightGrey.png" width="7">
     </i>
   </div>
 

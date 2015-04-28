@@ -3,72 +3,6 @@
 
 <img id="backCreateZonder" ng-show="!showCloseButton" class="imgClick" ng-click="backStep()" src="img/arrowBack.png">
 
-<div id="overlayTimePicker" class="centeredContent" ng-if="timePickerIsOpen">
-  <div id="contentTimePicker">
-
-    <div class="contentTitleTimePicker">
-      <p class="titlePopupTimePicker">
-        TIME
-      </p>
-    </div> 
-
-    <div class="timePicker">
-      <p class="contentPlus">
-        <span class="fontTime" ng-click="increaseHours()"> + </span>
-        <span class="fontTime" ng-click="increaseDecadeMinutes()"> + </span>
-      </p>
-      <p class="contentTime">
-        <span class="fontTime"> {{hours}} </span>
-        <span class="fontTime">:</span>
-        <span class="fontTime"> {{decadeMinutes}} </span>
-        <span class="fontTime"> {{unitMinutes}} </span>
-      </p>
-      <p class="contentMinus">
-        <span class="fontTime" ng-click="decreaseHours()"> - </span>
-        <span class="fontTime" ng-click="decreaseDecadeMinutes()"> - </span>
-      </p>
-    </div>
-    
-    <p class="contentButton">
-      <button ng-click="chooseTime()" class="buttonPopup button">OK</button>
-    </p>
-  </div>
-</div>
-
-
-<div id="overlayTargetPicker" class="centeredContent"  ng-if="targetPickerIsOpen" >
-  <div id="contentTargetPicker">
-
-    <div class="contentTitleTimePicker">
-      <p class="titlePopupTimePicker">
-        TARGET
-      </p>
-    </div> 
-
-    <div class="timePicker">
-      <p class="contentPlus">
-        <span class="fontTime" ng-click="increaseHundredPeopleRange()"> + </span>
-        <span class="fontTime" ng-click="increaseDecadePeopleRange()"> + </span>
-      </p>
-      <p class="contentTime">
-        <span class="fontTime"> {{hundredPeopleRange}} </span>
-        <span class="fontTime"> {{decadePeopleRange}} </span>
-        <span class="fontTime"> {{unitPeopleRange}} </span>
-      </p>
-      <p class="contentMinus">
-        <span class="fontTime" ng-click="decreaseHundredPeopleRange()"> - </span>
-        <span class="fontTime" ng-click="decreaseDecadePeopleRange()"> - </span>
-      </p>
-    </div>
-    
-    <p class="contentButton">
-      <button ng-click="chooseRange()" class="buttonPopup button">OK</button>
-    </p>
-  </div>
-</div>
-
-
-
 <ion-slide-box on-slide-changed="slideHasChangedInCreateZonder(index)" delegate-handle="createZonderSlider" ng-init="disableSwipeCreateZonder()" show-pager="true" id="slideBoxCreateZonder">
 
 <ion-slide>
@@ -97,9 +31,9 @@
 </div>
 
 
-<textarea ng-class="{nameTranslateLeft:!displayButtonLeft}" id="posDivNamePhotoLeft" ng-change="checkChoicePhotoInCreatePoll()" rows="3" cols="14" maxlength="26" ng-show="!displayButtonLeft" class="sample-show-hide textAreaNamePhotoCreateZonder textAreaNamePhotoCreateZonderPlaceholder" ng-model="createPoll.namePhotoLeft" placeholder="NAME PHOTO"></textarea>
+<textarea ng-class="{nameTranslateLeft:!displayButtonLeft}" id="posDivNamePhotoLeft" ng-change="checkChoicePhotoInCreatePoll()" rows="3" cols="14" maxlength="26" ng-show="!displayButtonLeft" class="sample-show-hide textAreaNamePhotoCreateZonder textAreaNamePhotoCreateZonderPlaceholder" ng-model="createPoll.namePhotoLeft" placeholder="PHOTO NAME"></textarea>
 
-<textarea ng-class="{nameTranslateRight:!displayButtonRight}" id="posDivNamePhotoRight" ng-change="checkChoicePhotoInCreatePoll()" rows="3" cols="14" maxlength="26" ng-show="!displayButtonRight" class="sample-show-hide textAreaNamePhotoCreateZonder textAreaNamePhotoCreateZonderPlaceholder" ng-model="createPoll.namePhotoRight" placeholder="NAME PHOTO"></textarea>
+<textarea ng-class="{nameTranslateRight:!displayButtonRight}" id="posDivNamePhotoRight" ng-change="checkChoicePhotoInCreatePoll()" rows="3" cols="14" maxlength="26" ng-show="!displayButtonRight" class="sample-show-hide textAreaNamePhotoCreateZonder textAreaNamePhotoCreateZonderPlaceholder" ng-model="createPoll.namePhotoRight" placeholder="PHOTO NAME"></textarea>
 
 
 <div class='pageOption'>
@@ -228,6 +162,71 @@
 </ion-slide>
 
 </ion-slide-box>
+
+<div id="overlayTimePicker" class="sample-show-hide" ng-show="timePickerIsOpen">
+</div>
+
+<div class="contentPickerHide" style="z-index:1000" ng-class="{optionTranslateUp:!timePickerIsOpen, optionTranslateDown:timePickerIsOpen}">
+
+    <div class="contentTitleTimePicker">
+      <p class="titlePopupTimePicker">
+        TIME
+      </p>
+    </div> 
+
+    <div class="timePicker">
+      <p class="contentPlus">
+        <span class="fontTime" ng-click="increaseHours()"> + </span>
+        <span class="fontTime" ng-click="increaseDecadeMinutes()"> + </span>
+      </p>
+      <p class="contentTime">
+        <span class="fontTime"> {{hours}} </span>
+        <span class="fontTime">:</span>
+        <span class="fontTime"> {{decadeMinutes}} </span>
+        <span class="fontTime"> {{unitMinutes}} </span>
+      </p>
+      <p class="contentMinus">
+        <span class="fontTime" ng-click="decreaseHours()"> - </span>
+        <span class="fontTime" ng-click="decreaseDecadeMinutes()"> - </span>
+      </p>
+    </div>
+    
+    <p class="contentButton">
+      <button ng-click="chooseTime()" class="buttonPopup button">OK</button>
+    </p>
+  </div>
+
+<div id="overlayTargetPicker" class="sample-show-hide" ng-show="targetPickerIsOpen">
+</div>
+
+  <div class="contentPickerHide" style="z-index:1000" ng-class="{optionTranslateUp:!targetPickerIsOpen, optionTranslateDown:targetPickerIsOpen}">
+
+    <div class="contentTitleTimePicker">
+      <p class="titlePopupTimePicker">
+        TARGET
+      </p>
+    </div> 
+
+    <div class="timePicker">
+      <p class="contentPlus">
+        <span class="fontTime" ng-click="increaseHundredPeopleRange()"> + </span>
+        <span class="fontTime" ng-click="increaseDecadePeopleRange()"> + </span>
+      </p>
+      <p class="contentTime">
+        <span class="fontTime"> {{hundredPeopleRange}} </span>
+        <span class="fontTime"> {{decadePeopleRange}} </span>
+        <span class="fontTime"> {{unitPeopleRange}} </span>
+      </p>
+      <p class="contentMinus">
+        <span class="fontTime" ng-click="decreaseHundredPeopleRange()"> - </span>
+        <span class="fontTime" ng-click="decreaseDecadePeopleRange()"> - </span>
+      </p>
+    </div>
+    
+    <p class="contentButton">
+      <button ng-click="chooseRange()" class="buttonPopup button">OK</button>
+    </p>
+  </div>
 
 <button ng-disabled="!showNextButtonForCreatePoll" ng-show="displayNextButtonQuestion" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepPhoto()">
     NEXT

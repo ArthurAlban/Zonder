@@ -1,6 +1,71 @@
-zonder.controller('mainCtrl', function($scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService) {
+zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService) {
+
+  $scope.myPhoto = $window.localStorage['photo'];
+  $scope.myPseudo = $window.localStorage['pseudo'];
+
+  //////////////////////// Change Profile Photo////////////////////////////////
+
+$scope.changeProfilePicture = function(){
+  console.log("changeProfilePicture");
+  var options = {
+    quality: 99,
+    destinationType: $rootScope.destinationType,
+    sourceType: $rootScope.pictureSource,
+    allowEdit: true,
+    encodingType: Camera.EncodingType.JPEG,
+    targetWidth: 150,
+    targetHeight: 150,
+    popoverOptions: CameraPopoverOptions,
+    saveToPhotoAlbum: false
+  };
+
+  $cordovaCamera.getPicture(options).then(function(imageData) {
+    $scope.myPhoto = "data:image/jpeg;base64," + imageData;
+    UserService.setPhotoUser($scope.myPhoto).then(function(data){
+      $window.localStorage['photo'] = $scope.myPhoto;
+    }, function(status){
+      console.log("Erreur lors de la modification de la photo de profil")
+    });
+  }, function(err) {
+      // error
+    });
+};
+
+
+$scope.showActionSheetPhotoSource = function() {
+
+  $ionicActionSheet.show({
+    titleText: 'Choose your profile photo',
+    buttons: [
+    { text: 'Album <i class="icon ion-images"></i>' },
+    { text: 'Camera <i class="icon ion-camera"></i>' },
+    { text: 'Internet <i class="icon ion-earth"></i>' },
+    ],
+    cancelText: 'Annuler',
+    cancel: function() {
+    },
+    buttonClicked: function(index) {
+      if(index == 0){
+        $rootScope.pictureSource = Camera.PictureSourceType.PHOTOLIBRARY;
+        $scope.changeProfilePicture();
+      }
+      if(index == 1){
+        $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
+        $scope.changeProfilePicture();
+      }
+      if(index == 2){
+        $window.open("https://www.google.com", "_system");
+      }
+      return true;
+    }
+  });
+};
+
+////////////////////////// Create Poll  ///////////////////////////////////////
+
   $scope.timePickerIsOpen = false;
   $scope.timeIsSelected = false;
+  $scope.animateHideTimePicker = false;
 
   $scope.openTimePicker = function(){
     $scope.timePickerIsOpen = true;
@@ -8,8 +73,11 @@ zonder.controller('mainCtrl', function($scope, $state, $rootScope, $ionicModal, 
 
   $scope.chooseTime = function(){
     $scope.timePickerIsOpen = false;
-    $scope.timeIsSelected = true;
-    $scope.checkOptionInCreatePoll();
+    window.setTimeout(function() {
+       $scope.timeIsSelected = true;
+       $scope.checkOptionInCreatePoll();
+    }, 500);
+
   };
 
   $scope.hours = 1;
@@ -814,7 +882,9 @@ $scope.createPollFunction = function() {
 
   $scope.closeCreateZonderModal();
   PollService.createPoll($scope.createPoll).then(function(data) {
+    $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').slide(0);
     $scope.clearModal();
+    
   },function(status) {
     console.log("Impossible de creer le sondage");
   });
@@ -841,5 +911,202 @@ $scope.$on('$destroy', function() {
   $scope.chooseGooglePhotoModal.remove();
 });
 
+/////////////////////// fin create poll ///////////////////////
+
+//////////////////////// Retrieve Polls ////////////////////////////////
+
+$scope.queriesForPollsInfos = new Array();
+$scope.queriesForInfoPhoto = new Array();
+
+$scope.getPollsForRootScope = function(callback){
+  PollService.getPolls(0).then(function(data){
+    $rootScope.lengthTab = data.lengthGlobal;
+    console.log("$rootScope.lengthTab" + $rootScope.lengthTab);
+   if(data.poll != "allPollsLoaded"){
+    $rootScope.polls = data.poll;
+    console.log("polls" + JSON.stringify($rootScope.polls));
+    async.parallel([function(callback){$scope.getPollsInfos($rootScope.polls, callback)}, 
+      function(callback){$scope.getInfoPhoto($rootScope.polls, callback)}], 
+      function(err, res){
+        callback();
+      });
+  }
+  else{
+    console.log("allPollsLoaded" + data.poll);
+    callback();
+  }
+}, function(status){
+  console.log("Impossible de récuperer les polls");
+  callback();
+});
+};
+
+$scope.getPollsInfos = function(pollArray, callback){
+  if(pollArray.length){
+    angular.forEach(pollArray, function(poll, key){ 
+      var q = function(callback){
+        PollService.getPollFromId(poll.id).then(function(d){
+          angular.forEach(pollArray, function(p, k){
+            if(p.id == poll.id){
+              p.author = d.author;
+              p.question = d.question;
+              p.photoLeft = d.photoLeft;
+              p.photoRight = d.photoRight;
+              p.gender = d.gender;
+              p.range = d.range;
+              p.votes = d.votes;
+              p.whoVotedWhat = d.whoVotedWhat;
+              p.progression = d.progression;
+              p.timePoll = d.timePoll;
+              p.startDate = d.startDate;
+              p.photoLeftVote = d.photoLeftVote;
+              p.photoRightVote = d.photoRightVote;
+              p.pourcentagePhotoLeft = d.pourcentagePhotoLeft;
+              p.pourcentagePhotoRight = d.pourcentagePhotoRight;
+              p.comments = d.comments;
+              p.firstName = d.firstName;
+              p.secondName = d.secondName;
+              p.friendsConcerned = d.friendsConcerned;
+              p.usersConcerned = d.usersConcerned;
+              p.isOver = d.isOver;
+            }
+          });
+          callback();
+        }, function(status){
+          console.log("Impossible de récuperer les infos basic du sondage");
+          callback();
+        });
+      };
+      $scope.queriesForPollsInfos.push(q);
+    });
+    callback();
+  }
+  else {
+    callback();
+  }
+};
+
+
+$scope.getInfoPhoto = function(pollArray, callback){
+  if(pollArray.length){
+    angular.forEach(pollArray, function(poll, key){
+      var q = function(callback){
+        angular.forEach(pollArray, function(p, k){
+          if(p.id == poll.id){
+            console.log
+            var imageLeft = new Image();
+            imageLeft.src = p.photoLeft;
+
+            var imageRight = new Image();
+            imageRight.src = p.photoRight;
+            async.parallel([function(callback){
+              imageLeft.onload = function(){
+                p.imageWidthLeft = imageLeft.width;
+                p.imageHeightLeft = imageLeft.height;
+                callback();
+              };
+            },function(callback){
+              imageRight.onload = function(){
+                p.imageWidthRight = imageRight.width;
+                p.imageHeightRight = imageRight.height;
+                callback();
+              };
+            }], function(err, res){
+              callback();
+            });
+          }
+        }); 
+      }
+      $scope.queriesForInfoPhoto.push(q);
+    });
+    callback();
+  }
+  else {
+    callback();
+  }
+};
+
+
+$scope.queriesExecInfoPhoto = function(callback){
+  async.parallel($scope.queriesForInfoPhoto,function(err, res){
+    callback();
+  });
+};
+
+$scope.queriesExecPollsInfos = function(callback){
+  async.parallel($scope.queriesForPollsInfos,function(err, res){
+    callback();
+  });
+};
+
+
+$scope.queriesParallelRequestInfoPoll = function(callback){
+  async.parallel([$scope.queriesExecPollsInfos], function(err, res){
+    callback();
+  });
+};
+
+$scope.retrievePollsForRootScope = function(){
+  async.series([$scope.getPollsForRootScope, $scope.queriesParallelRequestInfoPoll, $scope.queriesExecInfoPhoto], 
+    function(err, result){
+      console.log("fin recup");
+      $scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
+      $scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
+    });
+};
+
+window.setTimeout(function(){
+  $scope.retrievePollsForRootScope();
+}, 2000);
+
+//////////////////////// Retrieve Friends ////////////////////////////////
+
+
+$scope.getAddFriends = function(callback){
+  UserService.getAddFriends().then(function(data){
+    $rootScope.addFriends = data.addFriends;
+    callback();
+  }, function(status){
+    console.log("Impossible de recuperer addFriends");
+    callback();
+  });
+};
+
+$scope.getRequestFriends = function(callback){
+  UserService.getRequestFriends().then(function(data){
+    $rootScope.requestFriends = data.requestFriends;
+    callback();
+  }, function(status){
+    console.log("Impossible de recuperer requestFriends");
+    callback();
+  });
+};
+
+$scope.getFriends = function(callback){
+  UserService.getFriends().then(function(data){
+    $rootScope.friends = data.friends;
+    callback();
+  }, function(status){
+    console.log("Impossible de recuperer friends");
+    callback();
+  });
+};
+
+$scope.retrieveAllFriends = function(){
+  async.parallel([$scope.getFriends, $scope.getRequestFriends, $scope.getAddFriends], function(err, result){
+  });
+};
+
+$scope.retrieveAllFriends();
+
+/////////////////////////  Report This Poll ////////////////////////////////
+
+$scope.reportThisPoll = function(pollId){
+  PollService.reportThisPoll(pollId).then(function(data){
+    console.log("Le sondage à été reporté");
+  }, function(status){
+    console.log("Impossible de report le sondage");
+  });
+};
 
 });

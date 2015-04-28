@@ -862,6 +862,7 @@ background:rgb(255,255,255);
   top:22px;
   height:46px;
   width:46px;
+  border-radius: 100%;
   }
 
   //Position du bouton Menu de la page home
@@ -1289,9 +1290,9 @@ display:-webkit-flex;
 }
 
 .fontOptionCreateZonder{
-  font-size:8px ;
+  font-size:14px ;
   font-family: 'OpenSansRegular';
-  color:#adafbc;
+  color:#adafbc !important;
 }
 
 .specNotFriends{
@@ -1544,12 +1545,6 @@ display:-webkit-flex;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-#contentTargetPicker{
-  position: relative;
-  background-color: #FFF;
-  width: 200px;
-  height: 250px;
-}
 
 #closeTargetPicker {
   position: absolute;
@@ -1568,12 +1563,28 @@ display:-webkit-flex;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-#contentTimePicker{
-  position: relative;
+
+.contentPickerHide{
+  position: absolute;
+  left:50vw;
+  top:-150px;
+  margin-left: -100px;
+  margin-top: -125px;
   background-color: #FFF;
   width: 200px;
   height: 250px;
 }
+
+.optionTranslateUp{
+  -webkit-transform: translateY(0vh); 
+  -webkit-transition: all 0.5s linear;
+}
+
+.optionTranslateDown{
+  -webkit-transform: translateY(calc( 50vh + 150px )); 
+  -webkit-transition: all 0.5s linear;
+}
+
 
 #closeTimePicker {
   position: absolute;
@@ -1904,6 +1915,7 @@ height:calc( 100vh - 150px );
   top:22px;
   height:46px;
   width:46px;
+  border-radius: 100%;
   }
 
 }
@@ -1953,6 +1965,7 @@ height:calc( 100vh - 150px );
   top:22px;
   height:46px;
   width:46px;
+  border-radius: 100%;
   }
 
   // image de fond d'écran étoilé (que iphone 4)

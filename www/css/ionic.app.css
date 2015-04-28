@@ -8271,7 +8271,8 @@ a.button {
   right: 22px;
   top: 22px;
   height: 46px;
-  width: 46px; }
+  width: 46px;
+  border-radius: 100%; }
 
 #posButtonMenu {
   z-index: 11;
@@ -8579,9 +8580,9 @@ a.button {
   font-size: 8px; }
 
 .fontOptionCreateZonder {
-  font-size: 8px;
+  font-size: 14px;
   font-family: 'OpenSansRegular';
-  color: #adafbc; }
+  color: #adafbc !important; }
 
 .specNotFriends {
   position: relative;
@@ -8804,12 +8805,6 @@ a.button {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6); }
 
-#contentTargetPicker {
-  position: relative;
-  background-color: #FFF;
-  width: 200px;
-  height: 250px; }
-
 #closeTargetPicker {
   position: absolute;
   top: 10px;
@@ -8824,11 +8819,23 @@ a.button {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6); }
 
-#contentTimePicker {
-  position: relative;
+.contentPickerHide {
+  position: absolute;
+  left: 50vw;
+  top: -150px;
+  margin-left: -100px;
+  margin-top: -125px;
   background-color: #FFF;
   width: 200px;
   height: 250px; }
+
+.optionTranslateUp {
+  -webkit-transform: translateY(0vh);
+  -webkit-transition: all 0.5s linear; }
+
+.optionTranslateDown {
+  -webkit-transform: translateY(calc( 50vh + 150px));
+  -webkit-transition: all 0.5s linear; }
 
 #closeTimePicker {
   position: absolute;
@@ -9099,7 +9106,8 @@ a.button {
     right: 13px;
     top: 22px;
     height: 46px;
-    width: 46px; } }
+    width: 46px;
+    border-radius: 100%; } }
 
 @media screen and (device-aspect-ratio: 2/3) {
   .heightIonSlide {
@@ -9129,7 +9137,8 @@ a.button {
     right: 13px;
     top: 22px;
     height: 46px;
-    width: 46px; }
+    width: 46px;
+    border-radius: 100%; }
   .background {
     background-image: url('../img/backgroundIphone4.jpg');
     background-size: cover;

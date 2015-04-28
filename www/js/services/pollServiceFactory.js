@@ -10,9 +10,9 @@ zonder.factory('PollService', function($http, $q) {
             });
             return deferred.promise;
         },
-        getPollFromId: function() {
+        getPollFromId: function(id) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/getPollFromId')
+            $http.post("http://89.3.47.72" + '/poll/getPollFromId', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){

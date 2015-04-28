@@ -23,7 +23,13 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    
+
+    $rootScope.friends = new Array();
+    $rootScope.requestFriends = new Array();
+    $rootScope.addFriends = new Array();
+    $rootScope.polls = new Array();
+    $rootScope.lengthTab = 0;
+
     $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
     $rootScope.destinationType = Camera.DestinationType.DATA_URL;
     $rootScope.sideMenuIsOpen = false;
@@ -45,5 +51,10 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   });
   // if none of the above states are matched, use this as the fallback
 
-  $urlRouterProvider.otherwise('/animatedSplashscreen');
+  if(window.localStorage['isLog'] == "true") {
+  $urlRouterProvider.otherwise('/home');
+  }
+  else{
+    $urlRouterProvider.otherwise('/animatedSplashscreen');
+  }
 });

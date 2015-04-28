@@ -57,7 +57,7 @@ $scope.login = function (mail, password) {
         else {
           $window.localStorage['notifPolls'] = "false";
         }
-        $scope.toAnswer();
+        $scope.toHome();
         //$rootScope.loadingIndicator.hide();
         }, function(m){
         });
@@ -89,7 +89,7 @@ $scope.isUnchanged = function (user){
   return angular.equals(user, $scope.userData);
 };
 
-$scope.toAnswer = function(){
+$scope.toHome = function(){
   console.log("log");
   $state.go('home');
 };
@@ -457,7 +457,7 @@ $scope.checkSecondStep = function(){
   }
 };
 
-$scope.toHome = function(){
+$scope.toHomeSignUp = function(){
   $state.go('home');
   $scope.closeRegisterModal();
 };
@@ -501,7 +501,7 @@ $scope.signUp = function() {
             else {
               $window.localStorage['notifPolls'] = "false";
             }
-            $scope.toHome();
+            $scope.toHomeSignUp();
           }, function(msg){
             console.log(msg);
           });

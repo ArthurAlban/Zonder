@@ -46,7 +46,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="logoutSideMenu">
+	<div class="logoutSideMenu" menu-close ng-click="logOut()">
 		<img width="20" class="imgLeft" src="img/logout.png">
 		<span class="text">Log out</span>
 	</div>
@@ -60,8 +60,8 @@
 <div id="triangles"> <img style="width:100%" src="img/splashTriangles.png" ></div>
 
  <img src="img/menu.png" menu-toggle="left" id="posButtonMenu" class="imgClick sizeButtonImage">
-  <img src="img/profilTest.png" class="profilImg">
-  <label class="fontBrandonBlack" id="posPseudoUser">Manuel</label>
+  <img src="{{myPhoto}}" ng-click="showActionSheetPhotoSource()" class="profilImg">
+  <label class="fontBrandonBlack" id="posPseudoUser">{{myPseudo}}</label>
 
 <div class="divTransparency"></div>
 
@@ -112,16 +112,16 @@
 
 <div class="headerZonder">
 
-	<img width="46" src="img/profilTest.png">
+	<img width="46" height="46" class="roundImage" src="{{pollUp.author.photo}}">
 
 	<div class="contentHeader">
 		<div class="contentHeaderHeader">
-		<p class="sizeContentPseudo fontPseudoZonder"> Maria <span class="fontPseudoTextZonder">created a zonder</span></p>
+		<p class="sizeContentPseudo fontPseudoZonder"> {{pollUp.author.pseudo}} <span class="fontPseudoTextZonder">created a zonder</span></p>
 		<p class="posTimer fontTimeZonder"> 12h55 ago</p>
 		</div>
 		
 		<div class="contentHeaderFooter">
-			<p class="fontQuestionZonder questionPosStyle">Which kind of breakfast should I choose if I wanna move like Jagger ?
+			<p class="fontQuestionZonder questionPosStyle">{{pollUp.question}}
 		</p>
 		<img width="13" class="posWheel" src="img/wheelOption.png">
 		</div>
@@ -132,19 +132,19 @@
 
 <div class="contentPhotos">
 <div class="contentPhotoLeft">
-<img width="100%" src="img/photoLeft.jpg">
-<p class="fontTitlePhotoZonder titlePhoto">grapefruits</p>
+<img width="100%" src="{{pollUp.photoLeft}}">
+<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.firstName}}</p>
 </div>
 <div class="contentPhotoLeft">
-<img width="100%" src="img/photoRight.jpg">
-<p class="fontTitlePhotoZonder titlePhoto">strawberries</p>
+<img width="100%" src="{{pollUp.photoRight}}">
+<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.secondName}}</p>
 </div>
 </div>
 
 <div class="footerZonder">
 	<div class="contentVotesComments"> 
-		<div class="fontVoteCommentsZonder">148 <span class="fontVoteCommentsTextZonder">votes</span></div>
-		<div class="fontVoteCommentsZonder marginComments">12 <span class="fontVoteCommentsTextZonder">comments</span></div>
+		<div class="fontVoteCommentsZonder">{{pollUp.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
+		<div class="fontVoteCommentsZonder marginComments">{{pollUp.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 	</div>
 <div class="contentIconFavouriteComments"> 
 	<img width="12" src="img/favoritIcon.png">
@@ -162,16 +162,16 @@
 
 <div class="headerZonder">
 
-	<img width="46" src="img/profilTest.png">
+	<img width="46" height="46" class="roundImage" src="{{pollDown.author.photo}}">
 
 	<div class="contentHeader">
 		<div class="contentHeaderHeader">
-		<p class="sizeContentPseudo fontPseudoZonder">Maria <span class="fontPseudoTextZonder">created a zonder</span></p>
+		<p class="sizeContentPseudo fontPseudoZonder">{{pollDown.author.pseudo}} <span class="fontPseudoTextZonder">created a zonder</span></p>
 		<p class="posTimer fontTimeZonder">12h55 ago</p>
 		</div>
 		
 		<div class="contentHeaderFooter">
-			<p class="fontQuestionZonder questionPosStyle">Which kind of breakfast should I choose if I wanna move like Jagger ?
+			<p class="fontQuestionZonder questionPosStyle">{{pollDown.question}}
 		</p>
 		<img width="13" class="posWheel" src="img/wheelOption.png">
 		</div>
@@ -182,19 +182,19 @@
 
 <div class="contentPhotos">
 <div class="contentPhotoLeft">
-<img width="100%" src="img/photoLeft.jpg">
-<p class="fontTitlePhotoZonder titlePhoto">grapefruits</p>
+<img width="100%" src="{{pollDown.photoLeft}}">
+<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.firstName}}</p>
 </div>
 <div class="contentPhotoLeft">
-<img width="100%" src="img/photoRight.jpg">
-<p class="fontTitlePhotoZonder titlePhoto">strawberries</p>
+<img width="100%" src="{{pollDown.photoRight}}">
+<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.secondName}}</p>
 </div>
 </div>
 
 <div class="footerZonder">
 	<div class="contentVotesComments"> 
-		<div class="fontVoteCommentsZonder">148 <span class="fontVoteCommentsTextZonder">votes</span></div>
-		<div class="fontVoteCommentsZonder marginComments">12 <span class="fontVoteCommentsTextZonder">comments</span></div>
+		<div class="fontVoteCommentsZonder">{{pollDown.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
+		<div class="fontVoteCommentsZonder marginComments">{{pollDown.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 	</div>
 <div class="contentIconFavouriteComments"> 
 	<img width="12" src="img/favoritIcon.png">
