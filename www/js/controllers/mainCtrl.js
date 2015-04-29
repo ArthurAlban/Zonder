@@ -11,7 +11,7 @@ $scope.changeProfilePicture = function(){
     quality: 99,
     destinationType: $rootScope.destinationType,
     sourceType: $rootScope.pictureSource,
-    allowEdit: true,
+    allowEdit: false,
     encodingType: Camera.EncodingType.JPEG,
     targetWidth: 150,
     targetHeight: 150,
@@ -304,6 +304,7 @@ $scope.charLeft = 90;
 $scope.charactersLeft = function(){
   console.log("charactersLeft" + $scope.charLeft);
   console.log("length" + $scope.createPoll.question.length);
+  console.log("question" + $scope.createPoll.question);
   $scope.charLeft = (90 - $scope.createPoll.question.length);
   $scope.createPoll.question = $scope.createPoll.question.toLowerCase();
   console.log( "$scope.createPoll.question" + $scope.createPoll.question);
@@ -343,10 +344,10 @@ $scope.imgRightInfo = {};
 
 $scope.choosePhotoLeft = function(){
   var options = {
-    quality: 40,
+    quality: 50,
     destinationType: $rootScope.destinationType,
     sourceType: $rootScope.pictureSource,
-    allowEdit: true,
+    allowEdit: false,
     encodingType: Camera.EncodingType.JPEG,
     targetWidth: 500,
     targetHeight: 500,
@@ -415,10 +416,10 @@ $scope.showActionSheetPhotoSourceForPhotoLeft = function() {
 
 $scope.choosePhotoRight = function(){
   var options = {
-    quality: 40,
+    quality: 50,
     destinationType: $rootScope.destinationType,
     sourceType: $rootScope.pictureSource,
-    allowEdit: true,
+    allowEdit: false,
     encodingType: Camera.EncodingType.JPEG,
     targetWidth: 500,
     targetHeight: 500,
@@ -794,16 +795,12 @@ $scope.setPositionImage = function(imgLeft, imgWidth, imgHeight){
 
 $scope.resizeImageWidth = function(imgLeft, imgWidth, imgHeight, divWidth, divHeight){
 
-  var imgWidth = imgHeight;
   var widthIncreaseFactor = divWidth / imgWidth;
 
   var finalHeightImg = widthIncreaseFactor * imgHeight;
   var posTopLeftY = (divHeight - finalHeightImg) / 2;
 
   var ratio = divWidth / divHeight;
-
-  console.log("widthIncreaseFactor" + widthIncreaseFactor);
-  console.log("posTopLeftY" + posTopLeftY);
 
   if(imgLeft){
     console.log("left");
@@ -814,22 +811,6 @@ $scope.resizeImageWidth = function(imgLeft, imgWidth, imgHeight, divWidth, divHe
     var positionLeft = -posTopLeftY * ratio;
   }
 
-  var positionTop = posTopLeftY;
-  var imgWidth = divWidth;
-  var imgHeight = finalHeightImg;
-  console.log("toto");
-
-  return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidth, "imgHeight": imgHeight};
-};
-
-$scope.resizeImageWidthInHeight = function(imgWidth, imgHeight, divWidth, divHeight){
-
-  var widthIncreaseFactor = divWidth / imgWidth;
-
-  var finalHeightImg = widthIncreaseFactor * imgHeight;
-  var posTopLeftY = (divHeight - finalHeightImg) / 2;
-
-  var positionLeft = 0;
   var positionTop = posTopLeftY;
   var imgWidth = divWidth;
   var imgHeight = finalHeightImg;
@@ -847,18 +828,6 @@ $scope.resizeImageHeight = function(imgWidth, imgHeight, divWidth, divHeight){
   var positionTop = 0;
   var imgWidth = finalWidthImg;
   var imgHeight = divHeight;
-
-  if(imgWidth < divWidth){
-    console.log("resize");
-    var imgLeftInfoTest = $scope.resizeImageWidthInHeight(imgWidth,imgHeight,divWidth,divHeight);
-
-    var ratio = divWidth / divHeight;
-
-    var positionLeft = imgLeftInfoTest.positionTop * ratio;
-    var positionTop = imgLeftInfoTest.positionTop;
-    var imgWidth = imgLeftInfoTest.imgWidth - positionLeft + 40;
-    var imgHeight = imgLeftInfoTest.imgHeight;
-  }
 
   return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidth, "imgHeight": imgHeight};
 };
@@ -1114,6 +1083,7 @@ $scope.reportThisPoll = function(pollId){
 ////////////////// Compute Time elapsed since creation ////////////////////
 $scope.getTimeHoursMinutesFromPoll = function(poll){
   //Get the dates in ms
+  console.log("getTimeHoursMinutesFromPoll");
   var startDateMs = new Date(poll.startDate);
   startDateMs = startDateMs.getTime();
   var nowMs = Date.now();
@@ -1123,12 +1093,22 @@ $scope.getTimeHoursMinutesFromPoll = function(poll){
   var durationInHours = durationInMs / (3600 * 1000);
 
   //get the Minutes and hours 
-  var minPoll = (durationInHours % 1).toFixed(2) * 100;
+  console.log("startttttt");
+  var minPoll = (durationInHours % 1).toFixed(2) * 60;
+  console.log("minPoll1 " + minPoll);
+  minPoll = minPoll.toString();
+  minPoll = minPoll.split('.');
+  console.log("minPoll2 " + minPoll[0]);
+  if(minPoll[0].length == 1){
+    minPoll[0] = "0" + minPoll[0];
+    console.log("minPoll3 " + minPoll[0]);
+  }
+
   var hoursPoll = Math.floor(durationInHours);
 
   //Object that contains minutes and hours
   var pollTime = new Array();
-  pollTime.minutes = minPoll;
+  pollTime.minutes = minPoll[0];
   pollTime.hours = hoursPoll;
 
   return pollTime;
