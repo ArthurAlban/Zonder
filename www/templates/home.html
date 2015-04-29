@@ -117,13 +117,13 @@
 	<div class="contentHeader">
 		<div class="contentHeaderHeader">
 		<p class="sizeContentPseudo fontPseudoZonder"> {{pollUp.author.pseudo}} <span class="fontPseudoTextZonder">created a zonder</span></p>
-		<p class="posTimer fontTimeZonder"> 12h55 ago</p>
+		<p class="posTimer fontTimeZonder"> {{pollUp.timeElapsed.hours}}h{{pollUp.timeElapsed.minutes}} ago</p>
 		</div>
 		
 		<div class="contentHeaderFooter">
 			<p class="fontQuestionZonder questionPosStyle">{{pollUp.question}}
 		</p>
-		<img width="13" class="posWheel" src="img/wheelOption.png">
+		<img width="13" class="posWheel imgClick" src="img/wheelOption.png" ng-click="showActionsheetAnswerZonderUp()">
 		</div>
 		
 	</div>
@@ -147,7 +147,6 @@
 		<div class="fontVoteCommentsZonder marginComments">{{pollUp.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 	</div>
 <div class="contentIconFavouriteComments"> 
-	<img width="12" src="img/favoritIcon.png">
 	<img width="18" class="marginIconComments" src="img/commentsIcon.png">
 </div>
 
@@ -167,13 +166,13 @@
 	<div class="contentHeader">
 		<div class="contentHeaderHeader">
 		<p class="sizeContentPseudo fontPseudoZonder">{{pollDown.author.pseudo}} <span class="fontPseudoTextZonder">created a zonder</span></p>
-		<p class="posTimer fontTimeZonder">12h55 ago</p>
+		<p class="posTimer fontTimeZonder">{{pollDown.timeElapsed.hours}}h{{pollDown.timeElapsed.minutes}} ago</p>
 		</div>
 		
 		<div class="contentHeaderFooter">
 			<p class="fontQuestionZonder questionPosStyle">{{pollDown.question}}
 		</p>
-		<img width="13" class="posWheel" src="img/wheelOption.png">
+		<img width="13" class="posWheel imgClick" src="img/wheelOption.png" ng-click="showActionsheetAnswerZonderDown()">
 		</div>
 		
 	</div>
@@ -197,8 +196,7 @@
 		<div class="fontVoteCommentsZonder marginComments">{{pollDown.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 	</div>
 <div class="contentIconFavouriteComments"> 
-	<img width="12" src="img/favoritIcon.png">
-	<img width="18" class="marginIconComments" src="img/commentsIcon.png">
+	<img width="18" class="marginIconComments" src="img/commentsIcon.png" >
 </div>
 
  </div>

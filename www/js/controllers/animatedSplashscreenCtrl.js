@@ -358,6 +358,7 @@ $scope.checkPasswordIsValid = function(){
 $scope.checkPseudo = function(){
   if($scope.userData.pseudo){
     if($scope.userData.pseudo.length > 3){
+      $scope.userData.pseudo = $scope.userData.pseudo.toLowerCase();
       UserService.checkPseudo($scope.userData.pseudo).then(function(data){
         if(data.result == "notFound"){
           $scope.pseudoIsValid = true;

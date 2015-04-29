@@ -395,6 +395,10 @@ top:36px;
   color:#adafbc !important;
 }
 
+.inputLowerCaseOnly{
+  text-transform: lowercase;
+}
+
 .labelZonder {
   position: relative;
   height:60px !important;
@@ -1868,7 +1872,7 @@ display:-webkit-flex;
 
 @media screen and (device-aspect-ratio: 40/71) {
 
-  .heightIonSlide{
+.heightIonSlide{
 height:calc( 100vh - 150px );
 }
 

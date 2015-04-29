@@ -1,4 +1,4 @@
-zonder.controller('answerZonderCtrl', function($scope, $state, $window, PollService, UserService){
+zonder.controller('answerZonderCtrl', function($scope, $state, $window, PollService, UserService, $ionicActionSheet){
 
 ///////////////// Récupération des polls ////////////////////////////
 
@@ -7,9 +7,71 @@ $scope.pollsToBeLoaded = new Array();
 $scope.pollUp = new Array();
 $scope.pollDown = new Array();
 
+$scope.pollUp.isFavourited = false;
+$scope.pollUp.isAskingAddInFavourites = false;
+
+$scope.pollDown.isFavourited = false;
+$scope.pollDown.isAskingAddInFavourites = false;
+
 $scope.queriesForUserInfo = new Array();
 $scope.queriesForUserPhoto = new Array();
 $scope.queriesForPollsInfosAnswerZonder = new Array();
+
+
+
+$scope.addPollUpInFavourites = function(id){
+	$scope.pollUp.isAskingAddInFavourites = true;
+	PollService.addPollinFavourites(id).then(function(data){
+		$scope.pollUp.isAskingAddInFavourites = false;
+		$scope.pollUp.isFavourited = true;
+	}, function(status) {
+		console.log("impossible d'ajouter le sondage en favoris");
+		$scope.pollUp.isAskingAddInFavourites = false;
+		$scope.pollUp.isFavourited = false;
+	});
+};
+
+
+$scope.checkIfPollUpIsFavourited = function(){
+	$scope.pollUp.isFavourited = false;
+	PollService.getPollsForHistory().then(function(data){
+		$scope.pollsFromHistory = data;
+		for(poll in $scope.pollsFromHistory){
+			if($scope.pollsFromHistory[poll].id == $scope.pollUp.id){
+				$scope.pollUp.isFavourited = true;
+			}
+		}
+	},function(status) {
+		console.log("impossible de récupérer l'historique des sondages");
+	});
+};
+
+
+$scope.addPollDownInFavourites = function(id){
+	$scope.pollDown.isAskingAddInFavourites = true;
+	PollService.addPollinFavourites(id).then(function(data){
+		$scope.pollDown.isAskingAddInFavourites = false;
+		$scope.pollDown.isFavourited = true;
+	}, function(status) {
+		console.log("impossible d'ajouter le sondage en favoris");
+		$scope.pollDown.isAskingAddInFavourites = false;
+		$scope.pollDown.isFavourited = false;
+	});
+};
+
+$scope.checkIfPollDownIsFavourited = function(){
+	$scope.pollDown.isFavourited = false;
+	PollService.getPollsForHistory().then(function(data){
+		$scope.pollsFromHistory = data;
+		for(poll in $scope.pollsFromHistory){
+			if($scope.pollsFromHistory[poll].id == $scope.pollDown.id){
+				$scope.pollDown.isFavourited = true;
+			}
+		}
+	},function(status) {
+		console.log("impossible de récupérer l'historique des sondages");
+	});
+};
 
 
 $scope.getPollsToBeLoaded = function(callback){
@@ -54,6 +116,9 @@ $scope.getPollsInfosAnswerZonder = function(pollArray, callback){
               p.friendsConcerned = d.friendsConcerned;
               p.usersConcerned = d.usersConcerned;
               p.isOver = d.isOver;
+
+              p.timeElapsed = new Array();
+              p.timeElapsed = $scope.getTimeHoursMinutesFromPoll(p);
             }
           });
           callback();
@@ -155,9 +220,11 @@ $scope.updateInformationsPolls = function(callback){
 		});
 };
 
-$scope.firsLoadPoll = function(){
+$scope.firstLoadPoll = function(){
 	async.series([$scope.updateInformationsPolls,$scope.getNextPollUp,$scope.getNextPollDown],
 		function(err, result){
+			$scope.checkIfPollUpIsFavourited();
+			$scope.checkIfPollDownIsFavourited();
 			console.log("affect up and down poll");
 		});
 };
@@ -179,7 +246,49 @@ $scope.checkLengthAndGetMorePoll = function(){
 };
 
 window.setTimeout(function(){
-  $scope.firsLoadPoll();
+  $scope.firstLoadPoll();
 }, 2000);
+
+///////////// Action sheet option poll ////////////
+$scope.showActionsheetAnswerZonderUp = function() {
+	$ionicActionSheet.show({
+		buttons: [
+		{ text: 'Share' },
+		{ text: 'Report this poll' },
+		],
+		cancelText: 'Annuler',
+		cancel: function() {
+		},
+		buttonClicked: function(index) {
+			if(index == 0){
+			}
+			if(index == 1){
+				$scope.reportThisPoll($scope.pollUp.id);
+			}
+			return true;
+		}
+	});
+};
+
+$scope.showActionsheetAnswerZonderDown = function() {
+	$ionicActionSheet.show({
+		buttons: [
+		{ text: 'Share' },
+		{ text: 'Report this poll' },
+		],
+		cancelText: 'Annuler',
+		cancel: function() {
+		},
+		buttonClicked: function(index) {
+			if(index == 0){
+			}
+			if(index == 1){
+				$scope.reportThisPoll($scope.pollDown.id);
+			}
+			return true;
+		}
+	});
+};
+
 
 });

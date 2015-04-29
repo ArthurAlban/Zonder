@@ -7893,6 +7893,9 @@ a.button {
   left: 50%;
   margin-left: -40%; }
 
+.inputLowerCaseOnly {
+  text-transform: lowercase; }
+
 .labelZonder {
   position: relative;
   height: 60px !important;

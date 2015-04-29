@@ -305,12 +305,14 @@ $scope.charactersLeft = function(){
   console.log("charactersLeft" + $scope.charLeft);
   console.log("length" + $scope.createPoll.question.length);
   $scope.charLeft = (90 - $scope.createPoll.question.length);
+  $scope.createPoll.question = $scope.createPoll.question.toLowerCase();
+  console.log( "$scope.createPoll.question" + $scope.createPoll.question);
   if($scope.createPoll.question.length > 2){
     $scope.showNextButtonForCreatePoll = true;
   }
   else{
     $scope.showNextButtonForCreatePoll = false;
-  }	
+  }
 };
 
 
@@ -879,7 +881,7 @@ $scope.createPollFunction = function() {
   $scope.createPoll.timePoll = ($scope.hours*3600) + ($scope.decadeMinutes*600);
 
   $scope.createPoll.friendsConcerned = $scope.friendsConcerned;
-
+  $scope.createPoll.question = $scope.createPoll.question.charAt(0).toUpperCase() + $scope.createPoll.question.slice(1);
   $scope.closeCreateZonderModal();
   PollService.createPoll($scope.createPoll).then(function(data) {
     $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').slide(0);
@@ -1107,6 +1109,29 @@ $scope.reportThisPoll = function(pollId){
   }, function(status){
     console.log("Impossible de report le sondage");
   });
+};
+
+////////////////// Compute Time elapsed since creation ////////////////////
+$scope.getTimeHoursMinutesFromPoll = function(poll){
+  //Get the dates in ms
+  var startDateMs = new Date(poll.startDate);
+  startDateMs = startDateMs.getTime();
+  var nowMs = Date.now();
+
+  //Compute the difference
+  var durationInMs = nowMs - startDateMs;
+  var durationInHours = durationInMs / (3600 * 1000);
+
+  //get the Minutes and hours 
+  var minPoll = (durationInHours % 1).toFixed(2) * 100;
+  var hoursPoll = Math.floor(durationInHours);
+
+  //Object that contains minutes and hours
+  var pollTime = new Array();
+  pollTime.minutes = minPoll;
+  pollTime.hours = hoursPoll;
+
+  return pollTime;
 };
 
 });
