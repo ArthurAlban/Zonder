@@ -271,6 +271,7 @@ $scope.clearModal = function(){
   $scope.unitMinutes = 0;
   $scope.timeIsSelected = false;
   $scope.targetIsSelected = false;
+  $scope.charLeft = 90;
 };
 
 $scope.showCloseButton = true;
