@@ -16,10 +16,10 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
+  if (window.cordova && window.cordova.plugins.Keyboard) {
+    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+  }
+  if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
@@ -27,7 +27,9 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
     $rootScope.friends = new Array();
     $rootScope.requestFriends = new Array();
     $rootScope.addFriends = new Array();
-    $rootScope.polls = new Array();
+    $rootScope.pollsVoted = new Array();
+    $rootScope.myPolls = new Array();
+
     $rootScope.lengthTab = 0;
 
     $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
@@ -52,7 +54,7 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   // if none of the above states are matched, use this as the fallback
 
   if(window.localStorage['isLog'] == "true") {
-  $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/home');
   }
   else{
     $urlRouterProvider.otherwise('/animatedSplashscreen');

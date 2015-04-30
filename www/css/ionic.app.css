@@ -8188,9 +8188,15 @@ a.button {
 .separator {
   margin-top: 14%;
   margin-left: -40%;
-  position: Relative;
+  position: relative;
   left: 50%;
   width: 80%;
+  border-top: 1px solid #dadada; }
+
+.separatorZonder {
+  margin-top: 10%;
+  position: relative;
+  width: 100%;
   border-top: 1px solid #dadada; }
 
 .buttonfooter {

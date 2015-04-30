@@ -5,104 +5,104 @@ zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ion
 
   //////////////////////// Change Profile Photo////////////////////////////////
 
-$scope.changeProfilePicture = function(){
-  console.log("changeProfilePicture");
-  var options = {
-    quality: 99,
-    destinationType: $rootScope.destinationType,
-    sourceType: $rootScope.pictureSource,
-    allowEdit: false,
-    encodingType: Camera.EncodingType.JPEG,
-    targetWidth: 150,
-    targetHeight: 150,
-    popoverOptions: CameraPopoverOptions,
-    saveToPhotoAlbum: false
-  };
+  $scope.changeProfilePicture = function(){
+    console.log("changeProfilePicture");
+    var options = {
+      quality: 99,
+      destinationType: $rootScope.destinationType,
+      sourceType: $rootScope.pictureSource,
+      allowEdit: false,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 150,
+      targetHeight: 150,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false
+    };
 
-  $cordovaCamera.getPicture(options).then(function(imageData) {
-    $scope.myPhoto = "data:image/jpeg;base64," + imageData;
-    UserService.setPhotoUser($scope.myPhoto).then(function(data){
-      $window.localStorage['photo'] = $scope.myPhoto;
-    }, function(status){
-      console.log("Erreur lors de la modification de la photo de profil")
-    });
-  }, function(err) {
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+      $scope.myPhoto = "data:image/jpeg;base64," + imageData;
+      UserService.setPhotoUser($scope.myPhoto).then(function(data){
+        $window.localStorage['photo'] = $scope.myPhoto;
+      }, function(status){
+        console.log("Erreur lors de la modification de la photo de profil")
+      });
+    }, function(err) {
       // error
     });
-};
+  };
 
 
-$scope.showActionSheetPhotoSource = function() {
+  $scope.showActionSheetPhotoSource = function() {
 
-  $ionicActionSheet.show({
-    titleText: 'Choose your profile photo',
-    buttons: [
-    { text: 'Album <i class="icon ion-images"></i>' },
-    { text: 'Camera <i class="icon ion-camera"></i>' },
-    { text: 'Internet <i class="icon ion-earth"></i>' },
-    ],
-    cancelText: 'Annuler',
-    cancel: function() {
-    },
-    buttonClicked: function(index) {
-      if(index == 0){
-        $rootScope.pictureSource = Camera.PictureSourceType.PHOTOLIBRARY;
-        $scope.changeProfilePicture();
+    $ionicActionSheet.show({
+      titleText: 'Choose your profile photo',
+      buttons: [
+      { text: 'Album <i class="icon ion-images"></i>' },
+      { text: 'Camera <i class="icon ion-camera"></i>' },
+      { text: 'Internet <i class="icon ion-earth"></i>' },
+      ],
+      cancelText: 'Annuler',
+      cancel: function() {
+      },
+      buttonClicked: function(index) {
+        if(index == 0){
+          $rootScope.pictureSource = Camera.PictureSourceType.PHOTOLIBRARY;
+          $scope.changeProfilePicture();
+        }
+        if(index == 1){
+          $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
+          $scope.changeProfilePicture();
+        }
+        if(index == 2){
+          $window.open("https://www.google.com", "_system");
+        }
+        return true;
       }
-      if(index == 1){
-        $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
-        $scope.changeProfilePicture();
-      }
-      if(index == 2){
-        $window.open("https://www.google.com", "_system");
-      }
-      return true;
-    }
-  });
-};
+    });
+  };
 
 ////////////////////////// Create Poll  ///////////////////////////////////////
 
+$scope.timePickerIsOpen = false;
+$scope.timeIsSelected = false;
+$scope.animateHideTimePicker = false;
+
+$scope.openTimePicker = function(){
+  $scope.timePickerIsOpen = true;
+};
+
+$scope.chooseTime = function(){
   $scope.timePickerIsOpen = false;
-  $scope.timeIsSelected = false;
-  $scope.animateHideTimePicker = false;
+  window.setTimeout(function() {
+   $scope.timeIsSelected = true;
+   $scope.checkOptionInCreatePoll();
+ }, 500);
 
-  $scope.openTimePicker = function(){
-    $scope.timePickerIsOpen = true;
-  };
+};
 
-  $scope.chooseTime = function(){
-    $scope.timePickerIsOpen = false;
-    window.setTimeout(function() {
-       $scope.timeIsSelected = true;
-       $scope.checkOptionInCreatePoll();
-    }, 500);
+$scope.hours = 1;
+$scope.decadeMinutes = 0;
+$scope.unitMinutes = 0;
 
-  };
+$scope.increaseHours = function(){
+  if($scope.hours > 8){
+    $scope.hours = 1;
+  }
+  else{
+    $scope.hours = ($scope.hours + 1)%10;
+  }
+};
 
-  $scope.hours = 1;
-  $scope.decadeMinutes = 0;
-  $scope.unitMinutes = 0;
+$scope.decreaseHours = function(){
+  if($scope.hours <= 1){
+    $scope.hours = 9;
+  }
+  else {
+   $scope.hours--;
+ }
+};
 
-  $scope.increaseHours = function(){
-    if($scope.hours > 8){
-      $scope.hours = 1;
-    }
-    else{
-      $scope.hours = ($scope.hours + 1)%10;
-    }
-  };
-
-  $scope.decreaseHours = function(){
-    if($scope.hours <= 1){
-      $scope.hours = 9;
-    }
-    else {
-     $scope.hours--;
-   }
- };
-
- $scope.increaseDecadeMinutes = function(){
+$scope.increaseDecadeMinutes = function(){
   if($scope.decadeMinutes == 3){
     $scope.decadeMinutes = 0;
   }
@@ -888,28 +888,31 @@ $scope.$on('$destroy', function() {
 
 $scope.queriesForPollsInfos = new Array();
 $scope.queriesForInfoPhoto = new Array();
+$scope.queriesForUserInfo = new Array();
+$scope.queriesForUserPhoto = new Array();
 
-$scope.getPollsForRootScope = function(callback){
-  PollService.getPolls(0).then(function(data){
+$scope.getPollsVoted = function(callback){
+  PollService.getPollsVoted(0).then(function(data){
     $rootScope.lengthTab = data.lengthGlobal;
     console.log("$rootScope.lengthTab" + $rootScope.lengthTab);
-   if(data.poll != "allPollsLoaded"){
-    $rootScope.polls = data.poll;
-    console.log("polls" + JSON.stringify($rootScope.polls));
-    async.parallel([function(callback){$scope.getPollsInfos($rootScope.polls, callback)}, 
-      function(callback){$scope.getInfoPhoto($rootScope.polls, callback)}], 
-      function(err, res){
-        callback();
-      });
-  }
-  else{
-    console.log("allPollsLoaded" + data.poll);
+    if(data.poll != "allPollsLoaded"){
+      $rootScope.pollsVoted = data.poll;
+      async.parallel([function(callback){$scope.getPollsInfos($rootScope.pollsVoted, callback)}, 
+        function(callback){$scope.getInfoPhoto($rootScope.pollsVoted, callback)},
+        function(callback){$scope.getUsersInfos($rootScope.pollsVoted, callback)},
+        function(callback){$scope.getUsersPhoto($rootScope.pollsVoted, callback)}], 
+        function(err, res){
+          callback();
+        });
+    }
+    else{
+      console.log("allPollsLoaded" + data.poll);
+      callback();
+    }
+  }, function(status){
+    console.log("Impossible de récuperer les polls");
     callback();
-  }
-}, function(status){
-  console.log("Impossible de récuperer les polls");
-  callback();
-});
+  });
 };
 
 $scope.getPollsInfos = function(pollArray, callback){
@@ -919,7 +922,8 @@ $scope.getPollsInfos = function(pollArray, callback){
         PollService.getPollFromId(poll.id).then(function(d){
           angular.forEach(pollArray, function(p, k){
             if(p.id == poll.id){
-              p.author = d.author;
+              p.authorId = d.author;
+
               p.question = d.question;
               p.photoLeft = d.photoLeft;
               p.photoRight = d.photoRight;
@@ -940,21 +944,25 @@ $scope.getPollsInfos = function(pollArray, callback){
               p.friendsConcerned = d.friendsConcerned;
               p.usersConcerned = d.usersConcerned;
               p.isOver = d.isOver;
+
+              var time = $scope.getTimeHoursMinutesFromPoll(p);
+              p.timeElapsedHours = time.hours;
+              p.timeElapsedMinutes = time.minutes;
             }
           });
-          callback();
-        }, function(status){
-          console.log("Impossible de récuperer les infos basic du sondage");
-          callback();
-        });
-      };
-      $scope.queriesForPollsInfos.push(q);
-    });
-    callback();
-  }
-  else {
-    callback();
-  }
+callback();
+}, function(status){
+  console.log("Impossible de récuperer les infos basic du sondage");
+  callback();
+});
+};
+$scope.queriesForPollsInfos.push(q);
+});
+callback();
+}
+else {
+  callback();
+}
 };
 
 
@@ -997,6 +1005,55 @@ $scope.getInfoPhoto = function(pollArray, callback){
   }
 };
 
+$scope.getUsersInfos = function(pollArray, callback){
+  angular.forEach(pollArray, function(poll, key){
+    var q = function(callback){
+      UserService.getFriendInfoFromId(poll.authorId).then(function(d){
+        angular.forEach(pollArray, function(p, k){
+          if(p.id == poll.id){
+            p.authorPseudo = d.pseudo;
+          }
+        });
+        callback();
+      }, function(status){
+        console.log("Impossible de récuperer les infos pour l'utilisateurs");
+      });
+    };
+    $scope.queriesForUserInfo.push(q);
+  });
+  callback();
+};
+
+$scope.getUsersPhoto = function(pollArray, callback){
+  angular.forEach(pollArray, function(poll, key){
+    var q = function(callback){
+      UserService.getFriendPhotoFromId(poll.authorId).then(function(d){
+        angular.forEach(pollArray, function(p, k){
+          if(p.id == poll.id){
+            p.authorPhoto = d.photo;
+          }
+        });
+        callback();
+      }, function(status){
+        console.log("Impossible de récuperer les infos pour l'utilisateurs");
+      });
+    };
+    $scope.queriesForUserPhoto.push(q);
+  });
+  callback();
+};
+
+$scope.queriesExecUsersPhoto = function(callback){
+  async.parallel($scope.queriesForUserPhoto,function(err, res){
+    callback();
+  });
+};
+
+$scope.queriesExecUsersInfos = function(callback){
+  async.parallel($scope.queriesForUserInfo,function(err, res){
+    callback();
+  });
+};
 
 $scope.queriesExecInfoPhoto = function(callback){
   async.parallel($scope.queriesForInfoPhoto,function(err, res){
@@ -1010,19 +1067,20 @@ $scope.queriesExecPollsInfos = function(callback){
   });
 };
 
-
-$scope.queriesParallelRequestInfoPoll = function(callback){
-  async.parallel([$scope.queriesExecPollsInfos], function(err, res){
+$scope.parallelQueriesExecAllInfos = function(callback){
+  async.parallel([$scope.queriesExecUsersInfos, $scope.queriesExecUsersPhoto, $scope.queriesExecInfoPhoto],function(err, res){
     callback();
   });
 };
 
 $scope.retrievePollsForRootScope = function(){
-  async.series([$scope.getPollsForRootScope, $scope.queriesParallelRequestInfoPoll, $scope.queriesExecInfoPhoto], 
+  async.series([$scope.getPollsVoted, $scope.queriesExecPollsInfos, $scope.parallelQueriesExecAllInfos], 
     function(err, result){
-      console.log("fin recup");
       $scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
       $scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
+      $scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
+      $scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
+      console.log("fin recup");
     });
 };
 
@@ -1083,7 +1141,6 @@ $scope.reportThisPoll = function(pollId){
 ////////////////// Compute Time elapsed since creation ////////////////////
 $scope.getTimeHoursMinutesFromPoll = function(poll){
   //Get the dates in ms
-  console.log("getTimeHoursMinutesFromPoll");
   var startDateMs = new Date(poll.startDate);
   startDateMs = startDateMs.getTime();
   var nowMs = Date.now();
@@ -1093,15 +1150,11 @@ $scope.getTimeHoursMinutesFromPoll = function(poll){
   var durationInHours = durationInMs / (3600 * 1000);
 
   //get the Minutes and hours 
-  console.log("startttttt");
   var minPoll = (durationInHours % 1).toFixed(2) * 60;
-  console.log("minPoll1 " + minPoll);
   minPoll = minPoll.toString();
   minPoll = minPoll.split('.');
-  console.log("minPoll2 " + minPoll[0]);
   if(minPoll[0].length == 1){
     minPoll[0] = "0" + minPoll[0];
-    console.log("minPoll3 " + minPoll[0]);
   }
 
   var hoursPoll = Math.floor(durationInHours);

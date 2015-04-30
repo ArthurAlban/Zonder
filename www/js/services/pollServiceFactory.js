@@ -40,7 +40,7 @@ zonder.factory('PollService', function($http, $q) {
             });
             return deferred.promise;
         },
-         getInfoPollsBasic: function(id) {
+        getInfoPollsBasic: function(id) {
             var deferred = $q.defer();
             $http.post("http://89.3.47.72" + '/poll/getInfoPollsBasic', {id : id})
             .success(function(data){
@@ -60,9 +60,9 @@ zonder.factory('PollService', function($http, $q) {
             });
             return deferred.promise;
         },
-        getPolls: function(index) {
+        getPollsVoted: function(index) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/getPolls', {index : index})
+            $http.post("http://89.3.47.72" + '/poll/getPollsVoted', {index : index})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -70,9 +70,9 @@ zonder.factory('PollService', function($http, $q) {
             });
             return deferred.promise;
         },
-        getPollsForHistory: function() {
+        getMyPolls: function(index) {
             var deferred = $q.defer();
-            $http.get("http://89.3.47.72" + '/poll/getPollsForHistory')
+            $http.post("http://89.3.47.72" + '/poll/getMyPolls', {index : index})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -80,9 +80,9 @@ zonder.factory('PollService', function($http, $q) {
             });
             return deferred.promise;
         },
-        deletePollInHistory: function(id){
+        deletePollInPollsVoted: function(id){
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/deletePollInHistory', {id : id})     
+            $http.post("http://89.3.47.72" + '/poll/deletePollInPollsVoted', {id : id})     
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -90,37 +90,27 @@ zonder.factory('PollService', function($http, $q) {
             });
             return deferred.promise;
         },
-        addPollinFavourites: function(id){
-             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/addPollinFavourites', {id : id})     
-            .success(function(data){
-                deferred.resolve(data);
-            }).error(function(data, status){
-                deferred.reject(status); 
-            });
-            return deferred.promise;
-        },
-        voteAndUpdatePoll: function(idPoll,choice,author){
-             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/voteAndUpdatePoll', {idPoll : idPoll, choice : choice, author : author})     
-            .success(function(data){
-                deferred.resolve(data);
-            }).error(function(data, status){
-                deferred.reject(status); 
-            });
-            return deferred.promise;
-        },
-        reportThisPoll: function(idPoll){
-            var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/reportThisPoll', {idPoll : idPoll})     
-            .success(function(data){
-                deferred.resolve(data);
-            }).error(function(data, status){
-                deferred.reject(status); 
-            });
-            return deferred.promise;
-        }
-    };
+        voteAndUpdatePoll: function(idPoll, choice){
+         var deferred = $q.defer();
+         $http.post("http://89.3.47.72" + '/poll/voteAndUpdatePoll', {idPoll : idPoll, choice : choice})     
+         .success(function(data){
+            deferred.resolve(data);
+        }).error(function(data, status){
+            deferred.reject(status); 
+        }); 
+        return deferred.promise;
+    },
+    reportThisPoll: function(idPoll){
+        var deferred = $q.defer();
+        $http.post("http://89.3.47.72" + '/poll/reportThisPoll', {idPoll : idPoll})     
+        .success(function(data){
+            deferred.resolve(data);
+        }).error(function(data, status){
+            deferred.reject(status); 
+        });
+        return deferred.promise;
+    }
+};
 
-    return factory;
+return factory;
 });
