@@ -234,14 +234,19 @@
 	<div class="contentProgressionPoll">
 
 		<div class="contentProgressionBar">
-			<div class="contentBarPhotoLeft">
-				<p class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
+			<div class="contentBarPhotoLeft" ng-style="{'width' : poll.pourcentagePhotoLeft + '%'}">
+				<p ng-if="poll.pourcentagePhotoLeft>0&&poll.pourcentagePhotoLeft<=15" class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
+				<p ng-if="poll.pourcentagePhotoLeft>15&&poll.pourcentagePhotoLeft<=40" class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
+				<p ng-if="poll.pourcentagePhotoLeft>40" class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
+
 			</div>
 		</div>
 
 		<div class="contentProgressionBar">
-			<div class="contentBarPhotoRight">
-				<p class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
+			<div class="contentBarPhotoRight" ng-style="{'width' : poll.pourcentagePhotoRight + '%'}">
+				<p ng-if="poll.pourcentagePhotoRight>0&&poll.pourcentagePhotoRight<=15" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
+				<p ng-if="poll.pourcentagePhotoRight>15&&poll.pourcentagePhotoRight<=40" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
+				<p ng-if="poll.pourcentagePhotoRight>40" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
 			</div>
 		</div>
 	</div>
