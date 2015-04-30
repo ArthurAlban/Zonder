@@ -51,7 +51,7 @@
 		<span class="text">Log out</span>
 	</div>
 </div>
- 
+
 </ion-side-menu>
 
 <ion-side-menu-content ng-controller="homeCtrl" class="background">
@@ -59,45 +59,45 @@
 
 <div id="triangles"> <img style="width:100%" src="img/splashTriangles.png" ></div>
 
- <img src="img/menu.png" menu-toggle="left" id="posButtonMenu" class="imgClick sizeButtonImage">
-  <img src="{{myPhoto}}" ng-click="showActionSheetPhotoSource()" class="profilImg">
-  <label class="fontBrandonBlack" id="posPseudoUser">{{myPseudo}}</label>
+<img src="img/menu.png" menu-toggle="left" id="posButtonMenu" class="imgClick sizeButtonImage">
+<img src="{{myPhoto}}" ng-click="showActionSheetPhotoSource()" class="profilImg">
+<label class="fontBrandonBlack" id="posPseudoUser">{{myPseudo}}</label>
 
 <div class="divTransparency"></div>
 
 <div class="posHeader">
-<div class="divHeader">
-<div class="row rowHeader">
-    <div class="col colHeader colorJaunePale"></div>
-    <div class="col colHeader colorJaunePoussin"></div>
-    <div class="col colHeader colorJauneOrange"></div>
-</div>
-</div>
+	<div class="divHeader">
+		<div class="row rowHeader">
+			<div class="col colHeader colorJaunePale"></div>
+			<div class="col colHeader colorJaunePoussin"></div>
+			<div class="col colHeader colorJauneOrange"></div>
+		</div>
+	</div>
 
-<div class="divHeader" style="z-index:15">
-<div class="row rowHeader">
-    <div class="col colHeader imgClick">
-    	<div ng-click="goToSlide(0)" class="ongletHeader">
-    		<img src="img/vote.png" width="28" class="imgHeader">
-    		<span class="fontBrandonBlackMenu spanHeader">Vote</span>
-    	</div>
-    </div>
-    <div class="col colHeader imgClick">
-    	<div ng-click="goToSlide(1)" class="ongletHeader">
-    	<img src="img/poll.png" width="28" class="imgHeader">
-    	<span class="fontBrandonBlackMenu spanHeader">Zonder</span>
-    	</div>
-    </div>
-    <div class="col colHeader imgClick">
-    	<div ng-click="goToSlide(2)" style="position:relative" class="ongletHeader">
-    		<img src="img/friends.png" width="28" class="imgHeader">
-    		<img style="position:absolute;top:6%;left:58%;" width="12" src="img/notification.png">
-    		<span class="fontBrandonBlackMenu spanHeaderFriends">Friends</span>
-    		
-    	</div>
-    </div>
-</div>
-</div>
+	<div class="divHeader" style="z-index:15">
+		<div class="row rowHeader">
+			<div class="col colHeader imgClick">
+				<div ng-click="goToSlide(0)" class="ongletHeader">
+					<img src="img/vote.png" width="28" class="imgHeader">
+					<span class="fontBrandonBlackMenu spanHeader">Vote</span>
+				</div>
+			</div>
+			<div class="col colHeader imgClick">
+				<div ng-click="goToSlide(1)" class="ongletHeader">
+					<img src="img/poll.png" width="28" class="imgHeader">
+					<span class="fontBrandonBlackMenu spanHeader">Zonder</span>
+				</div>
+			</div>
+			<div class="col colHeader imgClick">
+				<div ng-click="goToSlide(2)" style="position:relative" class="ongletHeader">
+					<img src="img/friends.png" width="28" class="imgHeader">
+					<img style="position:absolute;top:6%;left:58%;" width="12" src="img/notification.png">
+					<span class="fontBrandonBlackMenu spanHeaderFriends">Friends</span>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="divSelectorTab" ng-class="{colorJaunePale:sliderVote, colorJaunePoussin:sliderPolls, colorJauneOrange:sliderFriends}"></div>
@@ -108,177 +108,172 @@
 
 
 <ion-slide ng-controller="answerZonderCtrl" class="heightIonSlide">
-<ion-scroll direction="y" class="heightIonScroll" delegate-handle="vertical">
-<div class="divContentZonder" style="margin-top:10%">
+<ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
+<div class="divContentZonder marginTopPullUp">
 
-<div class="headerZonder">
+	<div class="headerZonder">
 
-	<img width="46" height="46" class="roundImage" src="{{pollUp.author.photo}}">
+		<img width="46" height="46" style="border:1px solid #dadada;" class="roundImage" src="{{pollUp.authorPhoto}}">
 
-	<div class="contentHeader">
-		<div class="contentHeaderHeader">
-		<p class="sizeContentPseudo fontPseudoZonder"> {{pollUp.author.pseudo}} <span class="fontPseudoTextZonder">created a zonder</span></p>
-		<p class="posTimer fontTimeZonder"> 12h55 ago</p>
+		<div class="contentHeader">
+			<div class="contentHeaderHeader">
+				<p class="sizeContentPseudo fontPseudoZonder"> {{pollUp.authorPseudo}} <span class="fontPseudoTextZonder">created a zonder</span></p>
+				<p class="posTimer fontTimeZonder"> {{pollUp.timeElapsedHours}}h{{pollUp.timeElapsedMinutes}} ago</p>
+			</div>
+
+			<div class="contentHeaderFooter" >
+				<p class="fontQuestionZonder questionPosStyle">{{pollUp.question}}
+				</p>
+				<img width="13" class="posWheel imgClick" src="img/wheelOption.png" ng-click="showActionsheetAnswerZonderUp()">
+			</div>
+
 		</div>
-		
-		<div class="contentHeaderFooter" >
-			<p class="fontQuestionZonder questionPosStyle">{{pollUp.question}}
-		</p>
-		<img width="13" class="posWheel" src="img/wheelOption.png">
+
+	</div>
+
+	<div class="contentPhotos">
+		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'left')">
+			<img ng-style="{'width': imgPollUpLeftInfo.imgWidth + 'px', 'height': imgPollUpLeftInfo.imgHeight + 'px', 'margin-left': imgPollUpLeftInfo.positionLeft + 'px', 'margin-top': imgPollUpLeftInfo.positionTop + 'px'}" src="{{pollUp.photoLeft}}">
+			<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.firstName}}</p>
 		</div>
-		
+		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'right')">
+			<img ng-style="{'width': imgPollUpRightInfo.imgWidth + 'px', 'height': imgPollUpRightInfo.imgHeight + 'px', 'margin-left': imgPollUpRightInfo.positionLeft + 'px', 'margin-top': imgPollUpRightInfo.positionTop + 'px'}" src="{{pollUp.photoRight}}">
+			<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.secondName}}</p>
+		</div>
+	</div>
+
+	<div class="footerZonder">
+		<div class="contentVotesComments"> 
+			<div class="fontVoteCommentsZonder">{{pollUp.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
+			<div class="fontVoteCommentsZonder marginComments">{{pollUp.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
+		</div>
+		<div class="contentIconFavouriteComments"> 
+			<img width="20" class="marginIconComments" src="img/commentsIcon.png">
+		</div>
+
 	</div>
 
 </div>
 
-<div class="contentPhotos">
-<div class="contentPhotoLeft">
-	<!--  -->
-<img ng-style="{'width': imgPollUpLeftInfo.imgWidth + 'px', 'height': imgPollUpLeftInfo.imgHeight + 'px', 'margin-left': imgPollUpLeftInfo.positionLeft + 'px', 'margin-top': imgPollUpLeftInfo.positionTop + 'px'}" src="{{pollUp.photoLeft}}">
-<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.firstName}}</p>
+<div class="divSeparator">
+	<div class="separatorLeft"></div>
+	<img width="5%" style="margin-left:5%;margin-right:5%;margin-top:-2.2%" src="img/logo.png">
+	<div class="separatorRight"></div>
 </div>
-<div class="contentPhotoLeft">
-	<!--  -->
-<img ng-style="{'width': imgPollUpRightInfo.imgWidth + 'px', 'height': imgPollUpRightInfo.imgHeight + 'px', 'margin-left': imgPollUpRightInfo.positionLeft + 'px', 'margin-top': imgPollUpRightInfo.positionTop + 'px'}" src="{{pollUp.photoRight}}">
-<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.secondName}}</p>
-</div>
-</div>
-
-<div class="footerZonder">
-	<div class="contentVotesComments"> 
-		<div class="fontVoteCommentsZonder">{{pollUp.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
-		<div class="fontVoteCommentsZonder marginComments">{{pollUp.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
-	</div>
-<div class="contentIconFavouriteComments"> 
-	<img width="12" src="img/favoritIcon.png">
-	<img width="18" class="marginIconComments" src="img/commentsIcon.png">
-</div>
-
- </div>
-
-</div>
-
-<div class="separator"></div>
 
 
 <div class="divContentZonder">
 
-<div class="headerZonder">
+	<div class="headerZonder">
 
-	<img width="46" height="46" class="roundImage" src="{{pollDown.author.photo}}">
+		<img width="46" height="46" style="border:1px solid #dadada;" class="roundImage" src="{{pollDown.authorPhoto}}">
 
-	<div class="contentHeader">
-		<div class="contentHeaderHeader">
-		<p class="sizeContentPseudo fontPseudoZonder">{{pollDown.author.pseudo}} <span class="fontPseudoTextZonder">created a zonder</span></p>
-		<p class="posTimer fontTimeZonder">12h55 ago</p>
+		<div class="contentHeader">
+			<div class="contentHeaderHeader">
+				<p class="sizeContentPseudo fontPseudoZonder">{{pollDown.authorPseudo}} <span class="fontPseudoTextZonder">created a zonder</span></p>
+				<p class="posTimer fontTimeZonder">{{pollDown.timeElapsedHours}}h{{pollDown.timeElapsedMinutes}} ago</p>
+			</div>
+
+			<div class="contentHeaderFooter">
+				<p class="fontQuestionZonder questionPosStyle">{{pollDown.question}}
+				</p>
+				<img width="13" class="posWheel imgClick" src="img/wheelOption.png" ng-click="showActionsheetAnswerZonderDown()">
+			</div>
+
 		</div>
-		
-		<div class="contentHeaderFooter">
-			<p class="fontQuestionZonder questionPosStyle">{{pollDown.question}}
-		</p>
-		<img width="13" class="posWheel" src="img/wheelOption.png">
+
+	</div>
+
+	<div class="contentPhotos">
+		<div class="contentPhotoLeft" ng-click="votePollDown(pollDown.id, 'left')">
+			<img ng-style="{'width': imgPollDownLeftInfo.imgWidth + 'px', 'height': imgPollDownLeftInfo.imgHeight + 'px', 'margin-left': imgPollDownLeftInfo.positionLeft + 'px', 'margin-top': imgPollDownLeftInfo.positionTop + 'px'}" src="{{pollDown.photoLeft}}">
+			<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.firstName}}</p>
 		</div>
-		
+		<div class="contentPhotoLeft" ng-click="votePollDown(pollDown.id, 'right')">
+			<img ng-style="{'width': imgPollDownRightInfo.imgWidth + 'px', 'height': imgPollDownRightInfo.imgHeight + 'px', 'margin-left': imgPollDownRightInfo.positionLeft + 'px', 'margin-top': imgPollDownRightInfo.positionTop + 'px'}" src="{{pollDown.photoRight}}">
+			<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.secondName}}</p>
+		</div>
+	</div>
+
+	<div class="footerZonder">
+		<div class="contentVotesComments"> 
+			<div class="fontVoteCommentsZonder">{{pollDown.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
+			<div class="fontVoteCommentsZonder marginComments">{{pollDown.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
+		</div>
+		<div class="contentIconFavouriteComments"> 
+			<img width="20" class="marginIconComments" src="img/commentsIcon.png" >
+		</div>
+
 	</div>
 
 </div>
-
-<div class="contentPhotos">
-<div class="contentPhotoLeft">
-	<!--  -->
-<img ng-style="{'width': imgPollDownLeftInfo.imgWidth + 'px', 'height': imgPollDownLeftInfo.imgHeight + 'px', 'margin-left': imgPollDownLeftInfo.positionLeft + 'px', 'margin-top': imgPollDownLeftInfo.positionTop + 'px'}" src="{{pollDown.photoLeft}}">
-<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.firstName}}</p>
-</div>
-<div class="contentPhotoLeft">
-	<!--  -->
-<img ng-style="{'width': imgPollDownRightInfo.imgWidth + 'px', 'height': imgPollDownRightInfo.imgHeight + 'px', 'margin-left': imgPollDownRightInfo.positionLeft + 'px', 'margin-top': imgPollDownRightInfo.positionTop + 'px'}" src="{{pollDown.photoRight}}">
-<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.secondName}}</p>
-</div>
-</div>
-
-<div class="footerZonder">
-	<div class="contentVotesComments"> 
-		<div class="fontVoteCommentsZonder">{{pollDown.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
-		<div class="fontVoteCommentsZonder marginComments">{{pollDown.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
-	</div>
-<div class="contentIconFavouriteComments"> 
-	<img width="12" src="img/favoritIcon.png">
-	<img width="18" class="marginIconComments" src="img/commentsIcon.png">
-</div>
-
- </div>
-
-</div>
-<div style="position:relative;height:20px;width:100%"></div>
 </ion-scroll>
 </ion-slide>
 
 <!-- /////////////// poll //////////////// -->
 
-
 <ion-slide ng-controller="pollsCtrl" class="heightIonSlide" >
-<div class="divContentZonder">
+<ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
 
-<div class="headerZonder">
+<div ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp">
 
-	<img width="46" src="img/louis.png">
+	<div class="headerZonder">
 
-	<div class="contentHeader">
-		<div class="contentHeaderHeader">
-		<p class="sizeContentPseudo fontPseudoZonder"> Louis </p>
-		<p class="posTimer fontTimeZonder"> 12h55 ago</p>
+		<img width="46" height="46" style="border:1px solid #dadada;" class="roundImage" src="{{poll.authorPhoto}}">
+
+		<div class="contentHeader">
+			<div class="contentHeaderHeader">
+				<p class="sizeContentPseudo fontPseudoZonder"> {{poll.authorPseudo}} </p>
+				<p class="posTimer fontTimeZonder"> {{poll.timeElapsedHours}}h{{poll.timeElapsedMinutes}} ago </p>
+			</div>
+			<div class="contentHeaderFooter">
+				<p class="fontQuestionZonder questionPosStyle"> {{poll.question}}</p>
+				<img width="13" class="posWheel" src="img/wheelOption.png">
+			</div>
 		</div>
-		
-		<div class="contentHeaderFooter">
-			<p class="fontQuestionZonder questionPosStyle">Do you prefer the mountains or the sea for a summer camp ?
-		</p>
-		<img width="13" class="posWheel" src="img/wheelOption.png">
-		</div>
-		
+
 	</div>
 
-</div>
+	<div class="contentProgressionPoll">
 
-<div class="contentProgressionPoll">
+		<div class="contentProgressionBar">
+			<div class="contentBarPhotoLeft">
+				<p class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
+			</div>
+		</div>
 
-<div class="contentProgressionBar">
-<div class="contentBarPhotoLeft">
-<p class="fontVotePhotoZonder">60 votes</p>
-</div>
-</div>
-
-<div class="contentProgressionBar">
-<div class="contentBarPhotoRight">
-<p class="fontVotePhotoZonder">40 votes</p>
-</div>
-</div>
-</div>
-
-<div class="contentPhotosPoll">
-<div class="contentPhotoLeft">
-<img width="100%" src="img/imageLeftPoll.png">
-<p class="fontTitlePhotoZonder titlePhoto">montains</p>
-</div>
-<div class="contentPhotoLeft">
-<img width="100%" src="img/imageRightPoll.png">
-<p class="fontTitlePhotoZonder titlePhoto">sea</p>
-</div>
-</div>
-
-<div class="footerZonder">
-	<div class="contentVotesComments"> 
-		<div class="fontVoteCommentsZonder">148 <span class="fontVoteCommentsTextZonder">votes</span></div>
-		<div class="fontVoteCommentsZonder marginComments">12 <span class="fontVoteCommentsTextZonder">comments</span></div>
+		<div class="contentProgressionBar">
+			<div class="contentBarPhotoRight">
+				<p class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
+			</div>
+		</div>
 	</div>
-<div class="contentIconFavouriteComments"> 
-	<img width="18" class="marginIconComments" src="img/commentsIcon.png">
+
+	<div class="contentPhotosPoll">
+		<div class="contentPhotoLeft">
+			<img ng-style="{'width': poll.specImgLeftWidth + 'px', 'height': poll.specImgLeftHeight + 'px', 'margin-left': poll.specImgLeftPositionLeft + 'px', 'margin-top': poll.specImgLeftPositionTop + 'px'}" src="{{poll.photoLeft}}">
+			<p class="fontTitlePhotoZonder titlePhoto">{{poll.firstName}}</p>
+		</div>
+		<div class="contentPhotoLeft">
+			<img ng-style="{'width': poll.specImgRightWidth + 'px', 'height': poll.specImgRightHeight + 'px', 'margin-left': poll.specImgRightPositionLeft + 'px', 'margin-top': poll.specImgRightPositionTop + 'px'}" src="{{poll.photoRight}}">
+			<p class="fontTitlePhotoZonder titlePhoto">{{poll.secondName}}</p>
+		</div>
+	</div>
+
+	<div class="footerZonder">
+		<div class="contentVotesComments"> 
+			<div class="fontVoteCommentsZonder">{{poll.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
+			<div class="fontVoteCommentsZonder marginComments">{{poll.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
+		</div>
+		<div class="contentIconFavouriteComments"> 
+			<img width="18" class="marginIconComments" src="img/commentsIcon.png">
+		</div>
+
+	</div>
+	<div class="separatorZonder"></div>
 </div>
 
- </div>
-
-</div>
-
-<div class="separator"></div>
+</ion-scroll>
 </ion-slide>
 
 <!-- /////////////// friends //////////////// -->
@@ -287,32 +282,32 @@
 <ion-slide ng-controller="friendsCtrl" class="heightIonSlide">
 
 <div class="contentItemFriend">
-<img width="46" src="img/louis.png">
-<img class="posNotification" width="10" src="img/notification.png">
-<div class="contentTextFriend">
-<p class="fontPseudoNewFriends"> Louis 
-  <span class="fontNewFriendsInformation">is asking you as a friend</span>
-<!-- <span class="fontNewFriendsInformation">received your invitation</span>  -->
-</p>
-<div class="contentFlexFlexStart"> 
-    <p class="fontPollsFriends">10 <span class="fontPollsFriendsText">zonders</span></p>
-    <div style="margin-left:2px;margin-right:2px"class="fontPollsFriendsText">/</div>
-    <p class="fontPollsFriends">121 <span class="fontPollsFriendsText">friends</span></p>
-</div>
-<p class="fontFooterFriends" style="margin-top:10px"> See Louis’s profile </p>
-</div>
+	<img width="46" src="img/louis.png">
+	<img class="posNotification" width="10" src="img/notification.png">
+	<div class="contentTextFriend">
+		<p class="fontPseudoNewFriends"> Louis 
+			<span class="fontNewFriendsInformation">is asking you as a friend</span>
+			<!-- <span class="fontNewFriendsInformation">received your invitation</span>  -->
+		</p>
+		<div class="contentFlexFlexStart"> 
+			<p class="fontPollsFriends">10 <span class="fontPollsFriendsText">zonders</span></p>
+			<div style="margin-left:2px;margin-right:2px"class="fontPollsFriendsText">/</div>
+			<p class="fontPollsFriends">121 <span class="fontPollsFriendsText">friends</span></p>
+		</div>
+		<p class="fontFooterFriends" style="margin-top:10px"> See Louis’s profile </p>
+	</div>
 </div>
 </ion-slide>
 </ion-slide-box>
 
 <div ng-show="sliderVote || sliderPolls" class="buttonfooter" ng-click="openCreateZonderModal()">
-<img src="img/plus.png" width="16">
-<span class="brandonBold" id="createPoll">create a zonder</span>
+	<img src="img/plus.png" width="16">
+	<span class="brandonBold" id="createPoll">create a zonder</span>
 </div>
 
 <div ng-show="sliderFriends" class="buttonfooter">
-<img src="img/plus.png" width="16">
-<span class="brandonBold" id="findFriends">find friends</span>
+	<img src="img/plus.png" width="16">
+	<span class="brandonBold" id="findFriends">find friends</span>
 </div>
 
 </ion-side-menu-content>

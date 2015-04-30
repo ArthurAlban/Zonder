@@ -7893,6 +7893,9 @@ a.button {
   left: 50%;
   margin-left: -40%; }
 
+.inputLowerCaseOnly {
+  text-transform: lowercase; }
+
 .labelZonder {
   position: relative;
   height: 60px !important;
@@ -8038,7 +8041,7 @@ a.button {
   height: 7px; }
 
 .heightIonSlide {
-  height: calc( 100vh - 170px); }
+  height: calc( 100vh - 200px); }
 
 .heightIonScroll {
   height: calc( 100vh - 200px); }
@@ -8046,7 +8049,9 @@ a.button {
 .divContentZonder {
   position: relative;
   width: 80%;
-  margin: auto;
+  margin: auto; }
+
+.marginTopPullUp {
   margin-top: 4%; }
 
 .headerZonder {
@@ -8105,7 +8110,8 @@ a.button {
 
 .contentPhotosPoll {
   width: 100%;
-  height: 28vw;
+  height: 30vw;
+  overflow: hidden;
   display: -webkit-flex;
   -webkit-align-items: flex-start;
   -webkit-justify-content: flex-start; }
@@ -8163,12 +8169,13 @@ a.button {
 .footerZonder {
   margin-top: 4px;
   position: relative;
+  height: 16px;
   width: 100%; }
 
 .contentVotesComments {
   position: absolute;
   left: 0;
-  margin-top: 4px;
+  height: 100%;
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start; }
@@ -8179,6 +8186,7 @@ a.button {
 .contentIconFavouriteComments {
   position: absolute;
   right: 0;
+  height: 100%;
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start; }
@@ -8186,12 +8194,31 @@ a.button {
 .marginIconComments {
   margin-left: 8px; }
 
-.separator {
-  margin-top: 14%;
+.divSeparator {
+  margin-top: 6%;
+  margin-bottom: 9%;
   margin-left: -40%;
-  position: Relative;
+  position: relative;
   left: 50%;
   width: 80%;
+  /*border-top:1px solid #dadada;*/
+  display: -webkit-flex;
+  -webkit-justify-content: flex-start;
+  /*-webkit-align-content:center;*/
+  -webkit-align-items: flex-start; }
+
+.separatorLeft {
+  width: 42.5%;
+  border-top: 1px solid #dadada; }
+
+.separatorRight {
+  width: 42.5%;
+  border-top: 1px solid #dadada; }
+
+.separatorZonder {
+  margin-top: 10%;
+  position: relative;
+  width: 100%;
   border-top: 1px solid #dadada; }
 
 .buttonfooter {
@@ -8277,6 +8304,7 @@ a.button {
   top: 22px;
   height: 46px;
   width: 46px;
+  border: 2px solid #ffffff;
   border-radius: 100%; }
 
 #posButtonMenu {
@@ -9083,8 +9111,9 @@ a.button {
 
 @media screen and (device-aspect-ratio: 40/71) {
   .heightIonSlide {
-    height: calc( 100vh - 150px); }
+    height: calc( 100vh - 180px); }
   .heightIonScroll {
+    margin: 0;
     height: calc( 100vh - 180px); }
   .posParameterProfile {
     z-index: 26;
@@ -9118,7 +9147,7 @@ a.button {
 
 @media screen and (device-aspect-ratio: 2/3) {
   .heightIonSlide {
-    height: calc( 100vh - 150px); }
+    height: calc( 100vh - 180px); }
   .heightIonScroll {
     height: calc( 100vh - 180px); }
   .posParameterProfile {

@@ -54,7 +54,7 @@
         <img ng-if="pseudoIsValid" src="img/username.png" width="25">
         <img ng-if="!pseudoIsValid" src="img/usernameRed.png" width="25">
       </i>
-      <input class="inputZonder"  name="pseudo" type="text" ng-model="userData.pseudo" maxlength="15" minlength="4"placeholder="pseudo"  ng-change="checkPseudo()" required>
+      <input class="inputZonder inputLowerCaseOnly"  name="pseudo" type="text" ng-model="userData.pseudo" maxlength="15" minlength="4"placeholder="pseudo"  ng-change="checkPseudo()" required>
       <i class="icon iconZonderRight">
         <img ng-if="!pseudoIsValid" src="img/error.png" width="20" ng-click="displayPseudoPopup()">
       </i>
@@ -94,7 +94,7 @@
       <span class="textCheckbox">male</span>
     </div>
     <div class="checkboxZonder">
-      <label class="checkbox" >
+      <label class="checkbox">
         <input type="checkbox" ng-change="checkFemale()" ng-model="userData.isFemale" >
       </label>
       <span class="textCheckbox">female</span>
