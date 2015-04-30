@@ -772,7 +772,7 @@ $scope.setMixtPoll = function() {
 //////////////// resize image ///////////////////
 
 
-///// set position and info image //////////////////
+///// set position and info image IN CREATE ZONDER//////////////////
 
 $scope.setPositionImage = function(imgLeft, imgWidth, imgHeight){
   var imgInfo = new Array();
@@ -831,6 +831,75 @@ $scope.resizeImageHeight = function(imgWidth, imgHeight, divWidth, divHeight){
 
   return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidth, "imgHeight": imgHeight};
 };
+
+
+///// set position and info image IN VOTE AND ZONDER//////////////////
+
+$scope.setPositionImageVoteAndZonder = function(imgWidth, imgHeight){
+  var imgInfo = new Array();
+
+  var viewportWidth = window.screen.width * 0.40;
+  var viewportHeight = window.screen.width * 0.30;
+  // console.log("viewportHeight" + viewportHeight);
+  // console.log("viewportWidth" + viewportWidth);
+  // console.log("imgWidth" + imgWidth);
+  // console.log("imgHeight" + imgHeight);
+
+  if(imgWidth <= imgHeight){
+    // console.log("portrait");
+    imgInfo = $scope.resizeImageWidthVoteAndZonder(imgWidth, imgHeight, viewportWidth, viewportHeight);
+  }
+  else{
+    // console.log("lanscape");
+    imgInfo = $scope.resizeImageHeightVoteAndZonder(imgWidth, imgHeight, viewportWidth, viewportHeight);
+  }
+
+  return imgInfo;
+};
+
+$scope.resizeImageWidthVoteAndZonder = function(imgWidth, imgHeight, divWidth, divHeight){
+  var widthIncreaseFactor = divWidth / imgWidth;
+
+  var finalHeightImg = widthIncreaseFactor * imgHeight;
+  var posTopLeftY = (divHeight - finalHeightImg) / 2;
+
+  var positionLeft = 0;
+  var positionTop = posTopLeftY;
+  var imgWidthFinal = divWidth;
+  var imgHeightFinal = finalHeightImg;
+
+  if(imgHeightFinal < divHeight){
+    var imgInfoResizeHeight = new Array();
+    imgInfoResizeHeight = $scope.resizeImageHeightVoteAndZonder(imgWidthFinal, imgHeightFinal, divWidth, divHeight);
+    return {"positionLeft": imgInfoResizeHeight.positionLeft, "positionTop": imgInfoResizeHeight.positionTop, "imgWidth": imgInfoResizeHeight.imgWidth, "imgHeight": imgInfoResizeHeight.imgHeight};
+  }
+
+  return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidthFinal, "imgHeight": imgHeightFinal};
+};
+
+$scope.resizeImageHeightVoteAndZonder = function(imgWidth, imgHeight, divWidth, divHeight){
+  var heightIncreaseFactor = divHeight / imgHeight;
+
+  var finalWidthImg = heightIncreaseFactor * imgWidth;
+  var posTopLeftX = (divWidth - finalWidthImg) / 2;
+
+  var positionLeft = posTopLeftX;
+  var positionTop = 0;
+  var imgWidthFinal = finalWidthImg;
+  var imgHeightFinal = divHeight;
+
+  if(imgWidthFinal < divWidth){
+    // console.log("jy suissssss");
+    var imgInfoResizeWidth = new Array()
+    imgInfoResizeWidth = $scope.resizeImageWidthVoteAndZonder(imgWidthFinal, imgHeightFinal, divWidth, divHeight);
+    // console.log("imgInfoResizeWidth" + JSON.stringify(imgInfoResizeWidth));
+    return {"positionLeft": imgInfoResizeWidth.positionLeft, "positionTop": imgInfoResizeWidth.positionTop, "imgWidth": imgInfoResizeWidth.imgWidth, "imgHeight": imgInfoResizeWidth.imgHeight};
+  }
+
+  return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidthFinal, "imgHeight": imgHeightFinal};
+};
+
+
 
 /////////////// create poll ///////////////////////
 
@@ -984,12 +1053,22 @@ $scope.getInfoPhoto = function(pollArray, callback){
               imageLeft.onload = function(){
                 p.imageWidthLeft = imageLeft.width;
                 p.imageHeightLeft = imageLeft.height;
+                var specImgLeft = $scope.setPositionImageVoteAndZonder(p.imageWidthLeft, p.imageHeightLeft);
+                p.specImgLeftPositionLeft = specImgLeft.positionLeft;
+                p.specImgLeftPositionTop = specImgLeft.positionTop;
+                p.specImgLeftWidth = specImgLeft.imgWidth;
+                p.specImgLeftHeight = specImgLeft.imgHeight;
                 callback();
               };
             },function(callback){
               imageRight.onload = function(){
                 p.imageWidthRight = imageRight.width;
                 p.imageHeightRight = imageRight.height;
+                var specImgRight = $scope.setPositionImageVoteAndZonder(p.imageWidthRight, p.imageHeightRight);
+                p.specImgRightPositionLeft = specImgRight.positionLeft;
+                p.specImgRightPositionTop = specImgRight.positionTop;
+                p.specImgRightWidth = specImgRight.imgWidth;
+                p.specImgRightHeight = specImgRight.imgHeight;
                 callback();
               };
             }], function(err, res){

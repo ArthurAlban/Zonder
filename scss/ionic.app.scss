@@ -574,15 +574,24 @@ height:7px;
 
 //position ion slide
 .heightIonSlide{
-height:calc( 100vh - 170px );
+height:calc( 100vh - 200px );
+}
+
+//position ion-scroll
+.heightIonScroll{
+  height:calc( 100vh - 200px );
 }
 
 ///////////////////  CSS d'un Zonder //////////////////
 //conteneur du zonder
 .divContentZonder{
-width:80%;
-margin:auto;
-margin-top:4%;
+  position:relative;
+  width:80%;
+  margin:auto;
+}
+
+.marginTopPullUp{
+  margin-top:4%;
 }
 
 //header du zonder
@@ -660,7 +669,8 @@ display: -webkit-flex;
 //content photos poll
 .contentPhotosPoll{
 width:100%;
-height:28vw;
+height:30vw;
+overflow: hidden;
 display: -webkit-flex;
 -webkit-align-items: flex-start;
 -webkit-justify-content: flex-start;
@@ -730,6 +740,7 @@ max-width:70%;
 .footerZonder{
 margin-top:4px;
 position:relative;
+height:16px;
 width:100%;
 }
 
@@ -737,7 +748,7 @@ width:100%;
 .contentVotesComments{
 position:absolute;
 left:0;
-margin-top:4px;
+height:100%;
 display: -webkit-flex;
 -webkit-align-items: center;
 -webkit-justify-content: flex-start;
@@ -752,6 +763,7 @@ margin-left:5px;
 .contentIconFavouriteComments{
 position:absolute;
 right:0;
+height: 100%;
 display: -webkit-flex;
 -webkit-align-items: center;
 -webkit-justify-content: flex-start;
@@ -764,12 +776,27 @@ margin-left:8px;
 /////////////////// Fin ZOnder //////////////////////
 
 //separator ZOnder
-.separator{
-margin-top:14%;
+.divSeparator{
+margin-top:6%;
+margin-bottom:9%;
 margin-left:-40%;
 position:relative;
 left:50%;
 width:80%;
+/*border-top:1px solid #dadada;*/
+display:-webkit-flex;
+-webkit-justify-content:flex-start;
+/*-webkit-align-content:center;*/
+-webkit-align-items:flex-start;
+}
+
+.separatorLeft{
+width:42.5%;
+border-top:1px solid #dadada;
+}
+
+.separatorRight{
+width:42.5%;
 border-top:1px solid #dadada;
 }
 
@@ -875,6 +902,7 @@ right:22px;
 top:22px;
 height:46px;
 width:46px;
+border:2px solid #ffffff;
 border-radius: 100%;
 }
 
@@ -1882,7 +1910,13 @@ src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype");
 @media screen and (device-aspect-ratio: 40/71) {
 
 .heightIonSlide{
-height:calc( 100vh - 150px );
+height:calc( 100vh - 180px );
+}
+
+//position ion-scroll
+.heightIonScroll{
+  margin:0;
+  height:calc( 100vh - 180px );
 }
 
 //button parameter profile
@@ -1937,9 +1971,13 @@ border-radius: 100%;
 @media screen and (device-aspect-ratio: 2/3) {
 
 .heightIonSlide{
-height:calc( 100vh - 150px );
+height:calc( 100vh - 180px );
 }
 
+//position ion-scroll
+.heightIonScroll{
+  height:calc( 100vh - 180px );
+}
 //button parameter profile
 .posParameterProfile{
 z-index:26;

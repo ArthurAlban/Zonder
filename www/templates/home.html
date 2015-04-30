@@ -108,11 +108,12 @@
 
 
 <ion-slide ng-controller="answerZonderCtrl" class="heightIonSlide">
-<div class="divContentZonder">
+<ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
+<div class="divContentZonder marginTopPullUp">
 
 	<div class="headerZonder">
 
-		<img width="46" height="46" class="roundImage" src="{{pollUp.authorPhoto}}">
+		<img width="46" height="46" style="border:1px solid #dadada;" class="roundImage" src="{{pollUp.authorPhoto}}">
 
 		<div class="contentHeader">
 			<div class="contentHeaderHeader">
@@ -132,12 +133,10 @@
 
 	<div class="contentPhotos">
 		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'left')">
-			<!--  -->
 			<img ng-style="{'width': imgPollUpLeftInfo.imgWidth + 'px', 'height': imgPollUpLeftInfo.imgHeight + 'px', 'margin-left': imgPollUpLeftInfo.positionLeft + 'px', 'margin-top': imgPollUpLeftInfo.positionTop + 'px'}" src="{{pollUp.photoLeft}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.firstName}}</p>
 		</div>
 		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'right')">
-			<!--  -->
 			<img ng-style="{'width': imgPollUpRightInfo.imgWidth + 'px', 'height': imgPollUpRightInfo.imgHeight + 'px', 'margin-left': imgPollUpRightInfo.positionLeft + 'px', 'margin-top': imgPollUpRightInfo.positionTop + 'px'}" src="{{pollUp.photoRight}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.secondName}}</p>
 		</div>
@@ -149,21 +148,25 @@
 			<div class="fontVoteCommentsZonder marginComments">{{pollUp.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
 		<div class="contentIconFavouriteComments"> 
-			<img width="18" class="marginIconComments" src="img/commentsIcon.png">
+			<img width="20" class="marginIconComments" src="img/commentsIcon.png">
 		</div>
 
 	</div>
 
 </div>
 
-<div class="separator"></div>
+<div class="divSeparator">
+	<div class="separatorLeft"></div>
+	<img width="5%" style="margin-left:5%;margin-right:5%;margin-top:-2.2%" src="img/logo.png">
+	<div class="separatorRight"></div>
+</div>
 
 
 <div class="divContentZonder">
 
 	<div class="headerZonder">
 
-		<img width="46" height="46" class="roundImage" src="{{pollDown.authorPhoto}}">
+		<img width="46" height="46" style="border:1px solid #dadada;" class="roundImage" src="{{pollDown.authorPhoto}}">
 
 		<div class="contentHeader">
 			<div class="contentHeaderHeader">
@@ -183,12 +186,10 @@
 
 	<div class="contentPhotos">
 		<div class="contentPhotoLeft" ng-click="votePollDown(pollDown.id, 'left')">
-			<!--  -->
 			<img ng-style="{'width': imgPollDownLeftInfo.imgWidth + 'px', 'height': imgPollDownLeftInfo.imgHeight + 'px', 'margin-left': imgPollDownLeftInfo.positionLeft + 'px', 'margin-top': imgPollDownLeftInfo.positionTop + 'px'}" src="{{pollDown.photoLeft}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.firstName}}</p>
 		</div>
 		<div class="contentPhotoLeft" ng-click="votePollDown(pollDown.id, 'right')">
-			<!--  -->
 			<img ng-style="{'width': imgPollDownRightInfo.imgWidth + 'px', 'height': imgPollDownRightInfo.imgHeight + 'px', 'margin-left': imgPollDownRightInfo.positionLeft + 'px', 'margin-top': imgPollDownRightInfo.positionTop + 'px'}" src="{{pollDown.photoRight}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.secondName}}</p>
 		</div>
@@ -200,23 +201,25 @@
 			<div class="fontVoteCommentsZonder marginComments">{{pollDown.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
 		<div class="contentIconFavouriteComments"> 
-			<img width="18" class="marginIconComments" src="img/commentsIcon.png" >
+			<img width="20" class="marginIconComments" src="img/commentsIcon.png" >
 		</div>
 
 	</div>
 
 </div>
+</ion-scroll>
 </ion-slide>
 
 <!-- /////////////// poll //////////////// -->
 
 <ion-slide ng-controller="pollsCtrl" class="heightIonSlide" >
+<ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
 
-<div ng-repeat="poll in displayPolls" class="divContentZonder">
+<div ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp">
 
 	<div class="headerZonder">
 
-		<img width="46" height="46" class="roundImage" src="{{poll.authorPhoto}}">
+		<img width="46" height="46" style="border:1px solid #dadada;" class="roundImage" src="{{poll.authorPhoto}}">
 
 		<div class="contentHeader">
 			<div class="contentHeaderHeader">
@@ -253,11 +256,11 @@
 
 	<div class="contentPhotosPoll">
 		<div class="contentPhotoLeft">
-			<img width="100%" src="{{poll.photoLeft}}">
+			<img ng-style="{'width': poll.specImgLeftWidth + 'px', 'height': poll.specImgLeftHeight + 'px', 'margin-left': poll.specImgLeftPositionLeft + 'px', 'margin-top': poll.specImgLeftPositionTop + 'px'}" src="{{poll.photoLeft}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{poll.firstName}}</p>
 		</div>
 		<div class="contentPhotoLeft">
-			<img width="100%" src="{{poll.photoRight}}">
+			<img ng-style="{'width': poll.specImgRightWidth + 'px', 'height': poll.specImgRightHeight + 'px', 'margin-left': poll.specImgRightPositionLeft + 'px', 'margin-top': poll.specImgRightPositionTop + 'px'}" src="{{poll.photoRight}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{poll.secondName}}</p>
 		</div>
 	</div>
@@ -274,6 +277,8 @@
 	</div>
 	<div class="separatorZonder"></div>
 </div>
+
+</ion-scroll>
 </ion-slide>
 
 <!-- /////////////// friends //////////////// -->
