@@ -1015,6 +1015,8 @@ $scope.getPollsInfos = function(pollArray, callback){
               p.usersConcerned = d.usersConcerned;
               p.isOver = d.isOver;
 
+              console.log("pourcentagePhotoRight" + p.pourcentagePhotoRight);
+              console.log("pourcentagePhotoLeft" + p.pourcentagePhotoLeft);
               var time = $scope.getTimeHoursMinutesFromPoll(p);
               p.timeElapsedHours = time.hours;
               p.timeElapsedMinutes = time.minutes;
