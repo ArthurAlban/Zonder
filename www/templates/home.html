@@ -214,6 +214,7 @@
 
 <ion-slide ng-controller="pollsCtrl" class="heightIonSlide" >
 <ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
+<ion-refresher pulling-icon="ion-chevron-down" spinner="spiral" on-refresh="pullToRefresh()"></ion-refresher>
 
 <div ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp">
 
@@ -277,6 +278,9 @@
 	</div>
 	<div class="separatorZonder"></div>
 </div>
+
+<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScroll" on-infinite="loadPollsCtrl(true)" immediate-check="false">
+</ion-infinite-scroll>
 
 </ion-scroll>
 </ion-slide>
