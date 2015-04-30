@@ -569,9 +569,15 @@ height:7px;
 height:calc( 100vh - 170px );
 }
 
+//position ion-scroll
+.heightIonScroll{
+  height:calc( 100vh - 200px );
+}
+
 ///////////////////  CSS d'un Zonder //////////////////
 //conteneur du zonder
 .divContentZonder{
+  position:relative;
   width:80%;
   margin:auto;
   margin-top:4%;
@@ -1873,6 +1879,11 @@ display:-webkit-flex;
 height:calc( 100vh - 150px );
 }
 
+//position ion-scroll
+.heightIonScroll{
+  height:calc( 100vh - 180px );
+}
+
 //button parameter profile
 .posParameterProfile{
   z-index:26;
@@ -1928,6 +1939,10 @@ height:calc( 100vh - 150px );
   height:calc( 100vh - 150px );
   }
 
+//position ion-scroll
+.heightIonScroll{
+  height:calc( 100vh - 180px );
+}
 //button parameter profile
 .posParameterProfile{
   z-index:26;

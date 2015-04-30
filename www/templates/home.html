@@ -108,7 +108,8 @@
 
 
 <ion-slide ng-controller="answerZonderCtrl" class="heightIonSlide">
-<div class="divContentZonder">
+<ion-scroll direction="y" class="heightIonScroll" delegate-handle="vertical">
+<div class="divContentZonder" style="margin-top:10%">
 
 <div class="headerZonder">
 
@@ -208,6 +209,8 @@
  </div>
 
 </div>
+<div style="position:relative;height:20px;width:100%"></div>
+</ion-scroll>
 </ion-slide>
 
 <!-- /////////////// poll //////////////// -->
