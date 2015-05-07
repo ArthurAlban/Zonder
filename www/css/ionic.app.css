@@ -8320,10 +8320,10 @@ a.button {
 
 .contentItemFriend {
   position: relative;
-  width: 80%;
+  width: 86%;
   margin: auto;
   margin-top: 20px;
-  height: 46px;
+  height: 48px;
   display: -webkit-flex;
   -webkit-align-items: center;
   -webkit-justify-content: flex-start; }
@@ -8331,7 +8331,7 @@ a.button {
 .contentTextFriend {
   height: 100%;
   margin-left: 12px;
-  width: calc( 100% - 46px);
+  width: calc( 100% - 48px);
   display: -webkit-flex;
   -webkit-flex-direction: column;
   -webkit-justify-content: flex-start; }
@@ -8366,7 +8366,7 @@ a.button {
   color: #f79f03;
   font-size: 12px;
   font-family: 'OpenSansExtraBold';
-  line-height: 12px;
+  line-height: 8px;
   letter-spacing: 0.075em;
   text-transform: uppercase; }
 
@@ -8392,6 +8392,20 @@ a.button {
   line-height: 8px;
   letter-spacing: 0.075em;
   text-transform: uppercase; }
+
+.contentFriend {
+  width: 95%;
+  height: 100%;
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-start; }
+
+.contentFriendActionSheet {
+  width: 5%;
+  height: 100%;
+  display: -webkit-flex;
+  -webkit-align-items: flex-start;
+  -webkit-justify-content: flex-end; }
 
 .posButtonClose {
   z-index: 26;

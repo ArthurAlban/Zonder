@@ -2,7 +2,7 @@ zonder.factory('PollService', function($http, $q) {
     var factory = {
         createPoll: function(poll) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/createPoll', {poll : poll})
+            $http.post("http://192.168.240.4" + '/poll/createPoll', {poll : poll})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -12,7 +12,7 @@ zonder.factory('PollService', function($http, $q) {
         },
         getPollFromId: function(id) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/getPollFromId', {id : id})
+            $http.post("http://192.168.240.4" + '/poll/getPollFromId', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -22,7 +22,7 @@ zonder.factory('PollService', function($http, $q) {
         },
         getInfoPollsStatic: function(id) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/getInfoPollsStatic', {id : id})
+            $http.post("http://192.168.240.4" + '/poll/getInfoPollsStatic', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -32,7 +32,7 @@ zonder.factory('PollService', function($http, $q) {
         },
         getAllInfoPollsDynamic: function(id) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/getAllInfoPollsDynamic', {id : id})
+            $http.post("http://192.168.240.4" + '/poll/getAllInfoPollsDynamic', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -42,7 +42,7 @@ zonder.factory('PollService', function($http, $q) {
         },
         getInfoPollsBasic: function(id) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/getInfoPollsBasic', {id : id})
+            $http.post("http://192.168.240.4" + '/poll/getInfoPollsBasic', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -52,7 +52,7 @@ zonder.factory('PollService', function($http, $q) {
         },
         sendComment: function(idPoll,author,comment) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/sendComment', {idPoll : idPoll, comment : comment, author : author})
+            $http.post("http://192.168.240.4" + '/poll/sendComment', {idPoll : idPoll, comment : comment, author : author})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -62,7 +62,7 @@ zonder.factory('PollService', function($http, $q) {
         },
         getPollsVoted: function(index) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/getPollsVoted', {index : index})
+            $http.post("http://192.168.240.4" + '/poll/getPollsVoted', {index : index})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -72,7 +72,7 @@ zonder.factory('PollService', function($http, $q) {
         },
         getMyPolls: function(index) {
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/getMyPolls', {index : index})
+            $http.post("http://192.168.240.4" + '/poll/getMyPolls', {index : index})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -82,7 +82,7 @@ zonder.factory('PollService', function($http, $q) {
         },
         deletePollInPollsVoted: function(id){
             var deferred = $q.defer();
-            $http.post("http://89.3.47.72" + '/poll/deletePollInPollsVoted', {id : id})     
+            $http.post("http://192.168.240.4" + '/poll/deletePollInPollsVoted', {id : id})     
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -92,7 +92,7 @@ zonder.factory('PollService', function($http, $q) {
         },
         voteAndUpdatePoll: function(idPoll, choice){
          var deferred = $q.defer();
-         $http.post("http://89.3.47.72" + '/poll/voteAndUpdatePoll', {idPoll : idPoll, choice : choice})     
+         $http.post("http://192.168.240.4" + '/poll/voteAndUpdatePoll', {idPoll : idPoll, choice : choice})     
          .success(function(data){
             deferred.resolve(data);
         }).error(function(data, status){
@@ -102,7 +102,7 @@ zonder.factory('PollService', function($http, $q) {
     },
     reportThisPoll: function(idPoll){
         var deferred = $q.defer();
-        $http.post("http://89.3.47.72" + '/poll/reportThisPoll', {idPoll : idPoll})     
+        $http.post("http://192.168.240.4" + '/poll/reportThisPoll', {idPoll : idPoll})     
         .success(function(data){
             deferred.resolve(data);
         }).error(function(data, status){

@@ -6,7 +6,6 @@ zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ion
   //////////////////////// Change Profile Photo////////////////////////////////
 
   $scope.changeProfilePicture = function(){
-    console.log("changeProfilePicture");
     var options = {
       quality: 99,
       destinationType: $rootScope.destinationType,
@@ -41,7 +40,7 @@ zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ion
       { text: 'Camera <i class="icon ion-camera"></i>' },
       { text: 'Internet <i class="icon ion-earth"></i>' },
       ],
-      cancelText: 'Annuler',
+      cancelText: 'Cancel',
       cancel: function() {
       },
       buttonClicked: function(index) {
@@ -200,20 +199,17 @@ $scope.closeAndClearCreateZonderModal = function(){
 
 $scope.slideHasChangedInCreateZonder = function(index){
   if(index == 0){
-  	console.log("question");
     $scope.displayNextButtonQuestion = true;
     $scope.displayNextButtonChoosePhoto = false;
     $scope.showCloseButton = true;
   }
   if(index == 1){
-  	console.log("photo");
   	$scope.displayNextButtonQuestion = false;
   	$scope.displayNextButtonChoosePhoto = true;
   	$scope.displayCreateButton = false;
   	$scope.showCloseButton = false;
   }
   if(index == 2){
-  	console.log("option");
   	$scope.displayNextButtonChoosePhoto = false;
   	$scope.displayCreateButton = true;
   }
@@ -232,10 +228,9 @@ $scope.nextStepOption = function(){
   $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
   $scope.displayNextButtonChoosePhoto = false;
 };
-
+/*
 $scope.createPoll = function(){
- console.log("create poll");
-};
+};*/
 
 $scope.backStep = function(){
   $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').previous();
@@ -302,12 +297,8 @@ $scope.createPoll.range = "";
 $scope.charLeft = 90;
 
 $scope.charactersLeft = function(){
-  console.log("charactersLeft" + $scope.charLeft);
-  console.log("length" + $scope.createPoll.question.length);
-  console.log("question" + $scope.createPoll.question);
   $scope.charLeft = (90 - $scope.createPoll.question.length);
   $scope.createPoll.question = $scope.createPoll.question.toLowerCase();
-  console.log( "$scope.createPoll.question" + $scope.createPoll.question);
   if($scope.createPoll.question.length > 2){
     $scope.showNextButtonForCreatePoll = true;
   }
@@ -358,14 +349,10 @@ $scope.choosePhotoLeft = function(){
   $cordovaCamera.getPicture(options).then(function(imageData) {
     $scope.createPoll.photoLeft = "data:image/jpeg;base64," + imageData;
 
-    console.log("hiha 444444");
     async.series([function(callback){
       var image = new Image();
       image.src = $scope.createPoll.photoLeft;
-      console.log("hiha 7");
       image.onload = function(){
-        console.log("width" + image.width);
-        console.log("height" + image.height);
         $scope.imgLeftInfo.imgWidth = image.width;
         $scope.imgLeftInfo.imgHeight = image.height;
         callback();
@@ -374,7 +361,6 @@ $scope.choosePhotoLeft = function(){
       $scope.imgLeftInfo = $scope.setPositionImage(true, $scope.imgLeftInfo.imgWidth, $scope.imgLeftInfo.imgHeight);
       callback();
     }], function(err, res){
-      console.log("imgLeftInfo3" + JSON.stringify($scope.imgLeftInfo));
       $scope.displayButtonLeft = false;
       $scope.$apply();
       callback();
@@ -429,14 +415,10 @@ $scope.choosePhotoRight = function(){
 
   $cordovaCamera.getPicture(options).then(function(imageData) {
     $scope.createPoll.photoRight = "data:image/jpeg;base64," + imageData;
-    console.log("hiha 444444");
     async.series([function(callback){
       var image = new Image();
       image.src = $scope.createPoll.photoRight;
-      console.log("hiha 7");
       image.onload = function(){
-        console.log("width" + image.width);
-        console.log("height" + image.height);
         $scope.imgRightInfo.imgWidth = image.width;
         $scope.imgRightInfo.imgHeight = image.height;
         callback();
@@ -445,7 +427,6 @@ $scope.choosePhotoRight = function(){
       $scope.imgRightInfo = $scope.setPositionImage(false, $scope.imgRightInfo.imgWidth, $scope.imgRightInfo.imgHeight);
       callback();
     }], function(err, res){
-      console.log("imgRightInfo3" + JSON.stringify($scope.imgRightInfo));
       $scope.displayButtonRight = false;
       $scope.$apply();
       callback();
@@ -550,7 +531,7 @@ $scope.setWorldPoll  = function() {
 };
 
 $scope.getFriendsCreatePoll = function(callback){
-  UserService.getFriends().then(function(data){
+  UserService.getAllFriends().then(function(data){
     $scope.friends = data.friends;
     angular.forEach($scope.friends, function(f, k){
       if(!f.gender){
@@ -637,12 +618,18 @@ $scope.updateFriendsCreatePoll = function(){
     $scope.loadingSondrFriends = true;
     $scope.queriesForFriendPhotoCreatePoll.splice(0, $scope.queriesForFriendPhotoCreatePoll.length);
     $scope.queriesForFriendInfoCreatePoll.splice(0, $scope.queriesForFriendInfoCreatePoll.length);
-    $scope.friends.splice(0, $scope.friends.length);
+    $scope.queriesForDeleteFriends.splice(0, $scope.queriesForDeleteFriends.length);
 
-    async.series([$scope.getFriendsCreatePoll, $scope.queriesParallelCreatePoll], 
+    $scope.friends.splice(0, $scope.friends.length);
+    async.series([$scope.fillQueriesforDeleteFriends, $scope.queriesExecDeleteFriends, $scope.getFriendsCreatePoll, $scope.queriesParallelCreatePoll], 
       function(err, result){
-       $scope.$apply();
-     });
+        $scope.queriesForFriendPhotoCreatePoll.splice(0, $scope.queriesForFriendPhotoCreatePoll.length);
+        $scope.queriesForFriendInfoCreatePoll.splice(0, $scope.queriesForFriendInfoCreatePoll.length);
+        $scope.queriesForDeleteFriends.splice(0, $scope.queriesForDeleteFriends.length);
+        console.log("Avant broadcast");
+        $scope.$broadcast('reloadFriends');
+        $scope.$apply();
+      });
   }
 };
 
@@ -779,14 +766,10 @@ $scope.setPositionImage = function(imgLeft, imgWidth, imgHeight){
 
   var viewportWidth = window.screen.width;
   var viewportHeight = window.screen.height * 0.55;
-  console.log("viewportHeight" + viewportHeight);
-  console.log("viewportWidth" + viewportWidth);
   if(imgWidth <= imgHeight){
-    console.log("portrait");
     imgInfo = $scope.resizeImageWidth(imgLeft, imgWidth, imgHeight, viewportWidth, viewportHeight);
   }
   else{
-    console.log("lanscape");
     imgInfo = $scope.resizeImageHeight(imgWidth, imgHeight, viewportWidth, viewportHeight);
   }
 
@@ -803,11 +786,9 @@ $scope.resizeImageWidth = function(imgLeft, imgWidth, imgHeight, divWidth, divHe
   var ratio = divWidth / divHeight;
 
   if(imgLeft){
-    console.log("left");
     var positionLeft = posTopLeftY * ratio;
   }
   else{
-    console.log("right");
     var positionLeft = -posTopLeftY * ratio;
   }
 
@@ -840,17 +821,11 @@ $scope.setPositionImageVoteAndZonder = function(imgWidth, imgHeight){
 
   var viewportWidth = window.screen.width * 0.40;
   var viewportHeight = window.screen.width * 0.30;
-  // console.log("viewportHeight" + viewportHeight);
-  // console.log("viewportWidth" + viewportWidth);
-  // console.log("imgWidth" + imgWidth);
-  // console.log("imgHeight" + imgHeight);
 
   if(imgWidth <= imgHeight){
-    // console.log("portrait");
     imgInfo = $scope.resizeImageWidthVoteAndZonder(imgWidth, imgHeight, viewportWidth, viewportHeight);
   }
   else{
-    // console.log("lanscape");
     imgInfo = $scope.resizeImageHeightVoteAndZonder(imgWidth, imgHeight, viewportWidth, viewportHeight);
   }
 
@@ -889,10 +864,8 @@ $scope.resizeImageHeightVoteAndZonder = function(imgWidth, imgHeight, divWidth, 
   var imgHeightFinal = divHeight;
 
   if(imgWidthFinal < divWidth){
-    // console.log("jy suissssss");
     var imgInfoResizeWidth = new Array()
     imgInfoResizeWidth = $scope.resizeImageWidthVoteAndZonder(imgWidthFinal, imgHeightFinal, divWidth, divHeight);
-    // console.log("imgInfoResizeWidth" + JSON.stringify(imgInfoResizeWidth));
     return {"positionLeft": imgInfoResizeWidth.positionLeft, "positionTop": imgInfoResizeWidth.positionTop, "imgWidth": imgInfoResizeWidth.imgWidth, "imgHeight": imgInfoResizeWidth.imgHeight};
   }
 
@@ -904,7 +877,6 @@ $scope.resizeImageHeightVoteAndZonder = function(imgWidth, imgHeight, divWidth, 
 /////////////// create poll ///////////////////////
 
 $scope.createPollFunction = function() {
-  console.log("create");
   if($scope.createPoll.range == "Amis"){
     for(friend in $scope.friends){
       if($scope.friends[friend].selected){
@@ -963,7 +935,6 @@ $scope.queriesForUserPhoto = new Array();
 $scope.getPollsVoted = function(callback){
   PollService.getPollsVoted(0).then(function(data){
     $rootScope.lengthTab = data.lengthGlobal;
-    console.log("$rootScope.lengthTab" + $rootScope.lengthTab);
     if(data.poll != "allPollsLoaded"){
       $rootScope.pollsVoted = data.poll;
       async.parallel([function(callback){$scope.getPollsInfos($rootScope.pollsVoted, callback)}, 
@@ -975,7 +946,6 @@ $scope.getPollsVoted = function(callback){
         });
     }
     else{
-      console.log("allPollsLoaded" + data.poll);
       callback();
     }
   }, function(status){
@@ -1014,8 +984,6 @@ $scope.getPollsInfos = function(pollArray, callback){
               p.usersConcerned = d.usersConcerned;
               p.isOver = d.isOver;
 
-              console.log("pourcentagePhotoRight" + p.pourcentagePhotoRight);
-              console.log("pourcentagePhotoLeft" + p.pourcentagePhotoLeft);
               var time = $scope.getTimeHoursMinutesFromPoll(p);
               p.timeElapsedHours = time.hours;
               p.timeElapsedMinutes = time.minutes;
@@ -1043,7 +1011,6 @@ $scope.getInfoPhoto = function(pollArray, callback){
       var q = function(callback){
         angular.forEach(pollArray, function(p, k){
           if(p.id == poll.id){
-            console.log
             var imageLeft = new Image();
             imageLeft.src = p.photoLeft;
 
@@ -1074,16 +1041,16 @@ $scope.getInfoPhoto = function(pollArray, callback){
             }], function(err, res){
               callback();
             });
-          }
-        }); 
-      }
-      $scope.queriesForInfoPhoto.push(q);
-    });
-    callback();
-  }
-  else {
-    callback();
-  }
+}
+}); 
+}
+$scope.queriesForInfoPhoto.push(q);
+});
+callback();
+}
+else {
+  callback();
+}
 };
 
 $scope.getUsersInfos = function(pollArray, callback){
@@ -1161,7 +1128,6 @@ $scope.retrievePollsForRootScope = function(){
       $scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
       $scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
       $scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
-      console.log("fin recup");
     });
 };
 
@@ -1171,10 +1137,14 @@ window.setTimeout(function(){
 
 //////////////////////// Retrieve Friends ////////////////////////////////
 
+$scope.queriesForRequestFriendInfo = new Array();
+$scope.queriesForRequestFriendPhoto = new Array();
+$scope.queriesForDeleteFriends = new Array();
 
 $scope.getAddFriends = function(callback){
   UserService.getAddFriends().then(function(data){
     $rootScope.addFriends = data.addFriends;
+    console.log("$rootScope.addFriends" + JSON.stringify($rootScope.addFriends));
     callback();
   }, function(status){
     console.log("Impossible de recuperer addFriends");
@@ -1185,6 +1155,7 @@ $scope.getAddFriends = function(callback){
 $scope.getRequestFriends = function(callback){
   UserService.getRequestFriends().then(function(data){
     $rootScope.requestFriends = data.requestFriends;
+    console.log("$rootScope.requestFriends" + JSON.stringify($rootScope.requestFriends));
     callback();
   }, function(status){
     console.log("Impossible de recuperer requestFriends");
@@ -1193,27 +1164,204 @@ $scope.getRequestFriends = function(callback){
 };
 
 $scope.getFriends = function(callback){
-  UserService.getFriends().then(function(data){
-    $rootScope.friends = data.friends;
-    callback();
+  UserService.getFriends(0).then(function(data){
+    if(data.friend != "allFriendsLoaded"){
+      $rootScope.friends = data.friend;
+      console.log("$rootScope.friends" + JSON.stringify($rootScope.friends));
+      callback();
+    }
+    else{
+      callback();
+    }
   }, function(status){
     console.log("Impossible de recuperer friends");
     callback();
   });
 };
 
-$scope.retrieveAllFriends = function(){
-  async.parallel([$scope.getFriends, $scope.getRequestFriends, $scope.getAddFriends], function(err, result){
+$scope.retrieveAllFriendsId = function(callback){
+  async.parallel([$scope.getFriends, $scope.getRequestFriends, $scope.getAddFriends],
+   function(err, result){
+    callback();
   });
 };
 
-$scope.retrieveAllFriends();
+$scope.getFriendsInfo = function(friendArray, callback){
+  angular.forEach(friendArray, function(friend, key){
+    var q = function(callback){
+      UserService.getFriendInfoFromId(friend.id).then(function(d){
+        angular.forEach(friendArray, function(f, k){
+          if(f.id == friend.id){
+            f.pseudo = d.pseudo;
+            f.gender = d.gender;
+            f.nbPolls = d.nbPolls;
+            f.nbFriends = d.nbFriends;
+            if(f.gender){
+              f.photo = "img/louis.png";
+            }
+            else{
+              f.photo = "img/profilTest.png";
+            }
+          }
+        });
+        callback();
+      }, function(status){
+        console.log("Impossible de récuperer les infos pour l'utilisateurs");
+      });
+    };
+    $scope.queriesForRequestFriendInfo.push(q);
+  });
+  callback();
+};
+
+$scope.getFriendsPhoto = function(friendArray, callback){
+  angular.forEach(friendArray, function(friend, key){
+    var q = function(callback){
+      UserService.getFriendPhotoFromId(friend.id).then(function(d){
+        angular.forEach(friendArray, function(f, k){
+          if(f.id == friend.id){
+            f.photo = d.photo;
+            callback();
+          }
+        });
+      }, function(status){
+        console.log("Impossible de recupere la photo de l'utilisateur");
+      });
+    };
+    $scope.queriesForRequestFriendPhoto.push(q);
+  });
+  callback();
+};
+
+$scope.getPseudoPhotoFriends = function(friendArray, callback){
+  async.parallel([function(callback){$scope.getFriendsInfo(friendArray,callback);},
+    function(callback){$scope.getFriendsPhoto(friendArray,callback);}],
+    function(err, result){
+      callback();
+    });
+};
+
+
+$scope.queriesExecInfoRequest = function(callback){
+  async.parallel($scope.queriesForRequestFriendInfo,
+    function(err, res){
+      callback();
+    });
+};
+
+$scope.queriesExecPhotoRequest = function(callback){
+  async.parallel($scope.queriesForRequestFriendPhoto,
+    function(err, res){
+      callback();
+    });
+};
+
+$scope.queriesParallelRequest = function(callback) {
+  async.parallel([$scope.queriesExecInfoRequest, $scope.queriesExecPhotoRequest],
+   function(err, res){
+    callback();
+  });
+};
+
+$scope.fillQueriesAddFriends = function(callback){
+  async.series([function(callback){$scope.getPseudoPhotoFriends($rootScope.addFriends,callback);},
+    $scope.queriesParallelRequest],
+    function(err, result){
+      $scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
+      $scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
+      callback();
+    });
+};
+
+$scope.fillQueriesRequestFriends = function(callback){
+  async.series([function(callback){$scope.getPseudoPhotoFriends($rootScope.requestFriends,callback);},
+    $scope.queriesParallelRequest],
+    function(err, result){
+      $scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
+      $scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
+      callback();
+    });
+};
+
+$scope.fillQueriesFriends = function(callback){
+  async.series([function(callback){$scope.getPseudoPhotoFriends($rootScope.friends,callback);},
+    $scope.queriesParallelRequest],
+    function(err, result){
+      $scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
+      $scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
+      callback();
+    });
+};
+
+$scope.fillAllQueries = function(callback){
+  async.series([$scope.fillQueriesAddFriends, $scope.fillQueriesRequestFriends, $scope.fillQueriesFriends],
+   function(err, result){
+    callback();
+  });
+};
+
+
+$scope.fillQueriesforDeleteFriends = function(callback){
+  console.log("fillQueriesforDeleteFriends");
+  UserService.getFriendsToDelete().then(function(data){
+    console.log("getFriendsToDelete" + JSON.stringify(data));
+    if(data.friendsToDelete){
+      $rootScope.friendsHaveChanged = true;
+      angular.forEach(data.friendsToDelete, function(f, k){
+        var q = function(callback){
+          console.log("f.id" + f.id);
+          UserService.deleteFriendToDelete(f.id).then(function(d){
+            console.log("deleteFriendsToDelete");
+            callback();
+          },function(s){
+            console.log("Error in deleteFriendsToDelete");
+          });
+        };
+        $scope.queriesForDeleteFriends.push(q);
+      });
+      callback(); 
+    }
+    else{
+      callback(); 
+    }
+  }, function(status){
+    console.log("Error in getFriendsToDelete")
+    callback();
+  });
+};
+
+$scope.queriesExecDeleteFriends = function(callback){
+  console.log("queriesExecDeleteFriends");
+  async.parallel($scope.queriesForDeleteFriends, function(err, result){
+    console.log("FinDeleteFriend");
+    
+    callback();
+  });
+};
+
+$scope.loadAllFriends = function(){
+  async.series([$scope.fillQueriesforDeleteFriends, $scope.queriesExecDeleteFriends, $scope.retrieveAllFriendsId, $scope.fillAllQueries],
+    function(err, result){
+      console.log("ooooooooooooooooook");
+      $rootScope.friendsHaveChanged = false;
+      // console.log("$rootScope.friends1" + JSON.stringify($rootScope.friends));
+      // console.log("$rootScope.addFriends1" + JSON.stringify($rootScope.addFriends));
+      // console.log("$rootScope.requestFriends1" + JSON.stringify($rootScope.requestFriends));
+      $scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
+      $scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
+      $scope.queriesForDeleteFriends.splice(0, $scope.queriesForDeleteFriends.length);
+
+    });
+};
+
+window.setTimeout(function(){
+  $scope.loadAllFriends();
+}, 2000);
 
 /////////////////////////  Report This Poll ////////////////////////////////
 
 $scope.reportThisPoll = function(pollId){
   PollService.reportThisPoll(pollId).then(function(data){
-    console.log("Le sondage à été reporté");
   }, function(status){
     console.log("Impossible de report le sondage");
   });
@@ -1247,5 +1395,6 @@ $scope.getTimeHoursMinutesFromPoll = function(poll){
 
   return pollTime;
 };
+
 
 });
