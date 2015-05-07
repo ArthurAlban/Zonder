@@ -76,6 +76,7 @@ $scope.chooseTime = function(){
   window.setTimeout(function() {
    $scope.timeIsSelected = true;
    $scope.checkOptionInCreatePoll();
+   $scope.$apply();
  }, 500);
 
 };
