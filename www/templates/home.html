@@ -214,6 +214,7 @@
 
 <ion-slide ng-controller="pollsCtrl" class="heightIonSlide" >
 <ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
+<ion-refresher pulling-icon="ion-chevron-down" spinner="spiral" on-refresh="pullToRefresh()"></ion-refresher>
 
 <div ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp">
 
@@ -278,6 +279,9 @@
 	<div class="separatorZonder"></div>
 </div>
 
+<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScroll" on-infinite="loadPollsCtrl(true)" immediate-check="false">
+</ion-infinite-scroll>
+
 </ion-scroll>
 </ion-slide>
 
@@ -286,23 +290,69 @@
 
 <ion-slide ng-controller="friendsCtrl" class="heightIonSlide">
 
-<div class="contentItemFriend">
-	<img width="46" src="img/louis.png">
-	<img class="posNotification" width="10" src="img/notification.png">
-	<div class="contentTextFriend">
-		<p class="fontPseudoNewFriends"> Louis 
-			<span class="fontNewFriendsInformation">is asking you as a friend</span>
-			<!-- <span class="fontNewFriendsInformation">received your invitation</span>  -->
-		</p>
-		<div class="contentFlexFlexStart"> 
-			<p class="fontPollsFriends">10 <span class="fontPollsFriendsText">zonders</span></p>
-			<div style="margin-left:2px;margin-right:2px"class="fontPollsFriendsText">/</div>
-			<p class="fontPollsFriends">121 <span class="fontPollsFriendsText">friends</span></p>
+<ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
+
+<div ng-repeat="requestFriend in displayRequestFriends" class="contentItemFriend">
+	<div class="contentFriend">
+		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{requestFriend.photo}}">
+		<img class="posNotification" width="10" src="img/notification.png">
+		<div class="contentTextFriend" >
+			<p class="fontPseudoNewFriends"> {{requestFriend.pseudo}} 
+				<span class="fontNewFriendsInformation">is asking you as a friend</span>
+			</p>
+			<div class="contentFlexFlexStart"> 
+				<p class="fontPollsFriends">{{requestFriend.nbPolls}} <span class="fontPollsFriendsText">zonders</span></p>
+				<div style="margin-left:2px;margin-right:2px"class="fontPollsFriendsText">/</div>
+				<p class="fontPollsFriends">{{requestFriend.nbFriends}} <span class="fontPollsFriendsText">friends</span></p>
+			</div>
+			<p class="fontFooterFriends" style="margin-top:8px"> See {{requestFriend.pseudo}}’s profile </p>
 		</div>
-		<p class="fontFooterFriends" style="margin-top:10px"> See Louis’s profile </p>
+	</div> 
+	<div class="contentFriendActionSheet">
+		<img width="5" class="imgClick" ng-click="showActionSheetRequestFriends(requestFriend.id)" src="img/actionSheetVertical.png">
 	</div>
 </div>
+
+<!-- <div ng-repeat="addFriend in displayAddFriends" class="contentItemFriend">
+<img width="46" height="46" style="border:1px solid #dadada;" class="roundImage" src="{{addFriend.photo}}">
+<img class="posNotification" width="10" src="img/notification.png">
+<div class="contentTextFriend">
+<p class="fontPseudoNewFriends"> {{addFriend.pseudo}} 
+<span class="fontNewFriendsInformation">received your invitation</span> 
+</p>
+<div class="contentFlexFlexStart"> 
+<p class="fontPollsFriends">{{addFriend.nbPolls}} <span class="fontPollsFriendsText">zonders</span></p>
+<div style="margin-left:2px;margin-right:2px"class="fontPollsFriendsText">/</div>
+<p class="fontPollsFriends">{{addFriend.nbFriends}} <span class="fontPollsFriendsText">friends</span></p>
+</div>
+<p class="fontFooterFriends" style="margin-top:10px"> See {{addFriend.pseudo}}’s profile </p>
+</div>
+</div> -->
+
+<div ng-repeat="friend in displayFriends" class="contentItemFriend">
+	<div class="contentFriend">
+		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{friend.photo}}">
+		<div class="contentTextFriend">
+			<p class="fontPseudoFriends"> {{friend.pseudo}}
+			</p>
+			<div class="contentFlexFlexStart"> 
+				<p class="fontPollsFriends">{{friend.nbPolls}} <span class="fontPollsFriendsText">zonders</span></p>
+				<div style="margin-left:2px;margin-right:2px"class="fontPollsFriendsText">/</div>
+				<p class="fontPollsFriends">{{friend.nbFriends}} <span class="fontPollsFriendsText">friends</span></p>
+			</div>
+			<p class="fontFooterFriends" style="margin-top:10px"> See {{friend.pseudo}}’s profile </p>
+		</div>
+	</div> 
+	<div class="contentFriendActionSheet">
+		<img width="5" class="imgClick" ng-click="showActionSheetFriends(friend.id)" src="img/actionSheetVertical.png">
+	</div>
+</div>
+
+<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScrollForFriends" on-infinite="loadFriendsCtrl(true)" immediate-check="false">
+</ion-infinite-scroll>
+</ion-scroll>
 </ion-slide>
+
 </ion-slide-box>
 
 <div ng-show="sliderVote || sliderPolls" class="buttonfooter" ng-click="openCreateZonderModal()">

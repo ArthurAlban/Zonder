@@ -10,9 +10,7 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
   $rootScope.animateTooltip = false;
   
   $ionicPlatform.ready(function() {
-    console.log("hidebefore");
     $cordovaSplashscreen.hide();  
-    console.log("hideafter");
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -31,6 +29,8 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
     $rootScope.myPolls = new Array();
 
     $rootScope.lengthTab = 0;
+    
+    $rootScope.friendsHaveChanged = false;
 
     $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
     $rootScope.destinationType = Camera.DestinationType.DATA_URL;
