@@ -8079,13 +8079,13 @@ a.button {
   height: 20%;
   display: -webkit-flex;
   -webkit-align-items: flex-start;
-  -webkit-justify-content: flex-start; }
+  -webkit-justify-content: space-between; }
 
 .sizeContentPseudo {
-  width: calc( 100% - 38px); }
+  width: calc( 100% - 46px); }
 
 .posTimer {
-  margin-top: 2px; }
+  margin-top: 1px; }
 
 .contentHeaderFooter {
   width: 100%;

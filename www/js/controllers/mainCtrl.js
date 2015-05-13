@@ -1,5 +1,10 @@
 zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService) {
 
+  $scope.goToProfile = function(){
+    $state.go('showProfile');
+  };
+
+
   $scope.myPhoto = $window.localStorage['photo'];
   $scope.myPseudo = $window.localStorage['pseudo'];
 
@@ -756,6 +761,24 @@ $scope.setMixtPoll = function() {
   $scope.checkOptionInCreatePoll();
 };
 
+$scope.getPhotoFromGoogle = function(query){
+  console.log("getPhotoFromGoogle" + query);
+  if(query){
+    console.log("OKIMAGE");
+    UserService.getImageFromGoogle(query).then(function(data) {
+      console.log("imageTT" + JSON.stringify(data.items[0].link));
+      console.log("image" + data.link);
+      $scope.imgDownload = data.items[0].link;
+      $scope.$apply();
+    },function(status) {
+      console.log("Impossible de récupérer l'image");
+    });
+  }
+  else{
+    console.log("ZZZZZZZ");
+  }
+};
+
 //////////////// resize image ///////////////////
 
 
@@ -987,6 +1010,7 @@ $scope.getPollsInfos = function(pollArray, callback){
               var time = $scope.getTimeHoursMinutesFromPoll(p);
               p.timeElapsedHours = time.hours;
               p.timeElapsedMinutes = time.minutes;
+              p.timeElapsedDays = time.day;
             }
           });
 callback();
@@ -1392,7 +1416,9 @@ $scope.getTimeHoursMinutesFromPoll = function(poll){
   var pollTime = new Array();
   pollTime.minutes = minPoll[0];
   pollTime.hours = hoursPoll;
-
+  if(hoursPoll > 23){
+    pollTime.day = Math.floor((hoursPoll/24));
+  }
   return pollTime;
 };
 

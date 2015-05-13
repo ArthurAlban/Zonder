@@ -328,7 +328,18 @@ checkPseudo: function(pseudo){
         deferred.reject(status);
     });
     return deferred.promise;
+},
+getImageFromGoogle: function(query){
+    var deferred = $q.defer();
+    $http.post("http://192.168.240.4" + '/user/getImageFromGoogle', {query : query})
+    .success(function(data){
+        deferred.resolve(data);
+    }).error(function(data, status){
+        deferred.reject(status);
+    });
+    return deferred.promise;
 }
+
 };
 
 return factory;

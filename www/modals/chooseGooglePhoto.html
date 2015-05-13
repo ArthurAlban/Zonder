@@ -6,14 +6,14 @@
 <div class="labelZonder">
       <img class="imgLeft" src="img/loupeGrey.png" width="25">
       <input class="input" name="search" type="search" ng-model="search" placeholder="What are you searching for" ng-maxlength="50">
-      <button ng-click="" type="submit" name="submit" style="font-size:10px;width:70px;height:30px" class="buttonPopup button imgRight">SEARCH</button>
 </div>
 </form>
 
 <div style="position:absolute;top:28%;width:100%;height:55%;border-top:1px solid #e8eaf1;border-bottom:1px solid #e8eaf1;">
 <img src="img/transparencyBackground.png">
 </div>
-
+<button ng-click="getPhotoFromGoogle(search)" type="submit" name="submit" style="font-size:10px;width:70px;height:30px" class="buttonPopup button imgRight">SEARCH</button>
+<img src={{imgDownload}}>
 <button ng-disabled="" ng-show="true" class="button buttonZonder buttonRegister" ng-click="" style="position:absolute;top:85%;">
   THIS
 </button>

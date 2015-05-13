@@ -620,17 +620,17 @@ width:100%;
 height:20%;
 display: -webkit-flex;
 -webkit-align-items: flex-start;
--webkit-justify-content: flex-start;
+-webkit-justify-content: space-between;
 }
 
 //size content pseudo
 .sizeContentPseudo{
-width:calc( 100% - 38px );
+width:calc( 100% - 46px );
 }
 
 //placement timer
 .posTimer{
-margin-top:2px;
+margin-top:1px;
 }
 
 //content div footer

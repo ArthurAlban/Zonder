@@ -60,7 +60,7 @@
 <div id="triangles"> <img style="width:100%" src="img/splashTriangles.png" ></div>
 
 <img src="img/menu.png" menu-toggle="left" id="posButtonMenu" class="imgClick sizeButtonImage">
-<img src="{{myPhoto}}" ng-click="showActionSheetPhotoSource()" class="profilImg">
+<img src="{{myPhoto}}" ng-click="goToProfile()" class="profilImg">
 <label class="fontBrandonBlack" id="posPseudoUser">{{myPseudo}}</label>
 
 <div class="divTransparency"></div>
@@ -91,7 +91,7 @@
 			<div class="col colHeader imgClick">
 				<div ng-click="goToSlide(2)" style="position:relative" class="ongletHeader">
 					<img src="img/friends.png" width="28" class="imgHeader">
-					<img style="position:absolute;top:6%;left:58%;" width="12" src="img/notification.png">
+					<img ng-if="requestFriends.length" style="position:absolute;top:6%;left:58%;" width="12" src="img/notification.png">
 					<span class="fontBrandonBlackMenu spanHeaderFriends">Friends</span>
 
 				</div>
@@ -225,7 +225,9 @@
 		<div class="contentHeader">
 			<div class="contentHeaderHeader">
 				<p class="sizeContentPseudo fontPseudoZonder"> {{poll.authorPseudo}} </p>
-				<p class="posTimer fontTimeZonder"> {{poll.timeElapsedHours}}h{{poll.timeElapsedMinutes}} ago </p>
+				<p ng-if="!poll.timeElapsedDays" class="posTimer fontTimeZonder"> {{poll.timeElapsedHours}}h{{poll.timeElapsedMinutes}} ago </p>
+				<p ng-if="poll.timeElapsedDays<31" class="posTimer fontTimeZonder"> {{poll.timeElapsedDays}} days ago </p>
+				<p ng-if="poll.timeElapsedDays>31" class="posTimer fontTimeZonder"> months ago </p>
 			</div>
 			<div class="contentHeaderFooter">
 				<p class="fontQuestionZonder questionPosStyle"> {{poll.question}}</p>
