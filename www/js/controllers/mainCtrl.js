@@ -628,7 +628,6 @@ $scope.updateFriendsCreatePoll = function(){
         $scope.queriesForFriendPhotoCreatePoll.splice(0, $scope.queriesForFriendPhotoCreatePoll.length);
         $scope.queriesForFriendInfoCreatePoll.splice(0, $scope.queriesForFriendInfoCreatePoll.length);
         $scope.queriesForDeleteFriends.splice(0, $scope.queriesForDeleteFriends.length);
-        console.log("Avant broadcast");
         $scope.$broadcast('reloadFriends');
         $scope.$apply();
       });
@@ -825,16 +824,16 @@ $scope.setPositionImageVoteAndZonder = function(imgWidth, imgHeight){
   var viewportHeight = window.screen.width * 0.30;
 
   if(imgWidth <= imgHeight){
-    imgInfo = $scope.resizeImageWidthVoteAndZonder(imgWidth, imgHeight, viewportWidth, viewportHeight);
+    imgInfo = $scope.resizeImageWidthGeneral(imgWidth, imgHeight, viewportWidth, viewportHeight);
   }
   else{
-    imgInfo = $scope.resizeImageHeightVoteAndZonder(imgWidth, imgHeight, viewportWidth, viewportHeight);
+    imgInfo = $scope.resizeImageHeightGeneral(imgWidth, imgHeight, viewportWidth, viewportHeight);
   }
 
   return imgInfo;
 };
 
-$scope.resizeImageWidthVoteAndZonder = function(imgWidth, imgHeight, divWidth, divHeight){
+$scope.resizeImageWidthGeneral = function(imgWidth, imgHeight, divWidth, divHeight){
   var widthIncreaseFactor = divWidth / imgWidth;
 
   var finalHeightImg = widthIncreaseFactor * imgHeight;
@@ -847,14 +846,14 @@ $scope.resizeImageWidthVoteAndZonder = function(imgWidth, imgHeight, divWidth, d
 
   if(imgHeightFinal < divHeight){
     var imgInfoResizeHeight = new Array();
-    imgInfoResizeHeight = $scope.resizeImageHeightVoteAndZonder(imgWidthFinal, imgHeightFinal, divWidth, divHeight);
+    imgInfoResizeHeight = $scope.resizeImageHeightGeneral(imgWidthFinal, imgHeightFinal, divWidth, divHeight);
     return {"positionLeft": imgInfoResizeHeight.positionLeft, "positionTop": imgInfoResizeHeight.positionTop, "imgWidth": imgInfoResizeHeight.imgWidth, "imgHeight": imgInfoResizeHeight.imgHeight};
   }
 
   return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidthFinal, "imgHeight": imgHeightFinal};
 };
 
-$scope.resizeImageHeightVoteAndZonder = function(imgWidth, imgHeight, divWidth, divHeight){
+$scope.resizeImageHeightGeneral = function(imgWidth, imgHeight, divWidth, divHeight){
   var heightIncreaseFactor = divHeight / imgHeight;
 
   var finalWidthImg = heightIncreaseFactor * imgWidth;
@@ -867,7 +866,7 @@ $scope.resizeImageHeightVoteAndZonder = function(imgWidth, imgHeight, divWidth, 
 
   if(imgWidthFinal < divWidth){
     var imgInfoResizeWidth = new Array()
-    imgInfoResizeWidth = $scope.resizeImageWidthVoteAndZonder(imgWidthFinal, imgHeightFinal, divWidth, divHeight);
+    imgInfoResizeWidth = $scope.resizeImageWidthGeneral(imgWidthFinal, imgHeightFinal, divWidth, divHeight);
     return {"positionLeft": imgInfoResizeWidth.positionLeft, "positionTop": imgInfoResizeWidth.positionTop, "imgWidth": imgInfoResizeWidth.imgWidth, "imgHeight": imgInfoResizeWidth.imgHeight};
   }
 
@@ -875,6 +874,21 @@ $scope.resizeImageHeightVoteAndZonder = function(imgWidth, imgHeight, divWidth, 
 };
 
 
+$scope.setPositionImageInCommentsAndPollModal = function(imgWidth, imgHeight){
+  var imgInfo = new Array();
+
+  var viewportWidth = window.screen.width;
+  var viewportHeight = window.screen.height / 2;
+
+  if(imgWidth <= imgHeight){
+    imgInfo = $scope.resizeImageWidthGeneral(imgWidth, imgHeight, viewportWidth, viewportHeight);
+  }
+  else{
+    imgInfo = $scope.resizeImageHeightGeneral(imgWidth, imgHeight, viewportWidth, viewportHeight);
+  }
+
+  return imgInfo;
+};
 
 /////////////// create poll ///////////////////////
 
@@ -1146,7 +1160,6 @@ $scope.queriesForDeleteFriends = new Array();
 $scope.getAddFriends = function(callback){
   UserService.getAddFriends().then(function(data){
     $rootScope.addFriends = data.addFriends;
-    console.log("$rootScope.addFriends" + JSON.stringify($rootScope.addFriends));
     callback();
   }, function(status){
     console.log("Impossible de recuperer addFriends");
@@ -1157,7 +1170,6 @@ $scope.getAddFriends = function(callback){
 $scope.getRequestFriends = function(callback){
   UserService.getRequestFriends().then(function(data){
     $rootScope.requestFriends = data.requestFriends;
-    console.log("$rootScope.requestFriends" + JSON.stringify($rootScope.requestFriends));
     callback();
   }, function(status){
     console.log("Impossible de recuperer requestFriends");
@@ -1169,7 +1181,6 @@ $scope.getFriends = function(callback){
   UserService.getFriends(0).then(function(data){
     if(data.friend != "allFriendsLoaded"){
       $rootScope.friends = data.friend;
-      console.log("$rootScope.friends" + JSON.stringify($rootScope.friends));
       callback();
     }
     else{
@@ -1304,16 +1315,12 @@ $scope.fillAllQueries = function(callback){
 
 
 $scope.fillQueriesforDeleteFriends = function(callback){
-  console.log("fillQueriesforDeleteFriends");
   UserService.getFriendsToDelete().then(function(data){
-    console.log("getFriendsToDelete" + JSON.stringify(data));
     if(data.friendsToDelete){
       $rootScope.friendsHaveChanged = true;
       angular.forEach(data.friendsToDelete, function(f, k){
         var q = function(callback){
-          console.log("f.id" + f.id);
           UserService.deleteFriendToDelete(f.id).then(function(d){
-            console.log("deleteFriendsToDelete");
             callback();
           },function(s){
             console.log("Error in deleteFriendsToDelete");
@@ -1333,10 +1340,7 @@ $scope.fillQueriesforDeleteFriends = function(callback){
 };
 
 $scope.queriesExecDeleteFriends = function(callback){
-  console.log("queriesExecDeleteFriends");
-  async.parallel($scope.queriesForDeleteFriends, function(err, result){
-    console.log("FinDeleteFriend");
-    
+  async.parallel($scope.queriesForDeleteFriends, function(err, result){    
     callback();
   });
 };
@@ -1344,7 +1348,6 @@ $scope.queriesExecDeleteFriends = function(callback){
 $scope.loadAllFriends = function(){
   async.series([$scope.fillQueriesforDeleteFriends, $scope.queriesExecDeleteFriends, $scope.retrieveAllFriendsId, $scope.fillAllQueries],
     function(err, result){
-      console.log("ooooooooooooooooook");
       $rootScope.friendsHaveChanged = false;
       // console.log("$rootScope.friends1" + JSON.stringify($rootScope.friends));
       // console.log("$rootScope.addFriends1" + JSON.stringify($rootScope.addFriends));

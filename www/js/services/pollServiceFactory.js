@@ -30,6 +30,16 @@ zonder.factory('PollService', function($http, $q) {
             });
             return deferred.promise;
         },
+        getPollComment: function(id) {
+            var deferred = $q.defer();
+            $http.post("http://192.168.240.4" + '/poll/getPollComment', {id : id})
+            .success(function(data){
+                deferred.resolve(data);
+            }).error(function(data, status){
+                deferred.reject(status); 
+            });
+            return deferred.promise;
+        },
         getAllInfoPollsDynamic: function(id) {
             var deferred = $q.defer();
             $http.post("http://192.168.240.4" + '/poll/getAllInfoPollsDynamic', {id : id})

@@ -736,6 +736,18 @@ max-width:70%;
 -webkit-hyphens: auto;
 }
 
+//style Title photo poll modal
+.titlePhotoPollModal{
+padding:3px;
+background-color:rgba(0,0,0,0.47);
+position:absolute;
+left:10px;
+bottom:46px;
+margin:0;
+max-width:70%;
+-webkit-hyphens: auto;
+}
+
 //content footer zonder
 .footerZonder{
 margin-top:4px;
@@ -798,6 +810,31 @@ border-top:1px solid #dadada;
 .separatorRight{
 width:42.5%;
 border-top:1px solid #dadada;
+}
+
+//separator Poll Modal
+.divSeparatorPollModal{
+position:absolute;
+top:50%;
+left:50%;
+width:80%;
+margin-left:-40%;
+margin-top:-1px;
+display:-webkit-flex;
+-webkit-justify-content:flex-start;
+-webkit-align-items:flex-start;
+}
+
+.separatorLeftPollModal{
+width:42.5%;
+border-top:2px solid #ffffff;
+border-radius:10px;
+}
+
+.separatorRightPollModal{
+width:42.5%;
+border-top:2px solid #ffffff;
+border-radius:10px;
 }
 
 //Separateur pour ngrepeat dans onglet Zonder
@@ -1711,8 +1748,78 @@ line-height:30px;
 letter-spacing:0.075em;
 }
 
+// content item question
+.contentItemQuestionPollModal{
+position:absolute;
+width:84%;
+top:30px;
+left:14%;
+height:48px;
+display: -webkit-flex;
+-webkit-align-items: center;
+-webkit-justify-content: flex-start;
+}
 
 ///////////////////// animation /////////////////////
+.photoLinePair2{
+	margin-left:4%;
+}
+
+.photoLineSpecific{
+	margin-left:12.5%;
+}
+
+.photoLineImpair{
+	margin-left:4%;
+}
+
+.custom-color-icon{
+	color:#f79f03;
+}
+
+.opacityImage{
+	opacity: 0.6;
+	-webkit-transition: all 1s linear;
+}
+
+.opacityImageActif{
+	opacity: 0.8;
+	-webkit-transition: all 1s linear;
+}
+
+.pourcentageTranslateUpFirst{
+	opacity:0;
+	-webkit-transform: translateY(-25vh); 
+	-webkit-transition: all 0.5s linear;
+}
+
+.pourcentageTranslateDownFirst{
+	opacity:1;
+	-webkit-transform: translateY(0vh); 
+	-webkit-transition: all 0.5s linear;
+}
+
+.pourcentageTranslateUpSecond{
+	opacity:1;
+	-webkit-transform: translateY(0vh); 
+	-webkit-transition: all 0.5s linear;
+}
+
+.pourcentageTranslateDownSecond{
+	opacity:0;
+	-webkit-transform: translateY(+25vh); 
+	-webkit-transition: all 0.5s linear;
+}
+
+.translateNamePhotoHide{
+	-webkit-transform: translateX(-70vw); 
+	-webkit-transition: all 0.5s ease;
+}
+
+.translateNamePhotoShow{
+	-webkit-transform: translateX(0vw); 
+	-webkit-transition: all 0.5s ease;
+}
 
 // animation des triangles du haut, translation vers le haut
 .animateTriangles{

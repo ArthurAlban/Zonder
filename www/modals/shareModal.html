@@ -1,0 +1,11 @@
+<ion-modal-view style="background-color: rgb(0,0,0)">
+
+<div style="position:relative;overflow:hidden;height:50vh;width:100%;">
+	 <img src='{{pollUp.photoLeft}}' ng-class="{opacityImage:true}" ng-style="{'width': imgLeftInfo.imgWidth + 'px', 'height': imgLeftInfo.imgHeight + 'px', 'margin-left': imgLeftInfo.positionLeft + 'px', 'margin-top': imgLeftInfo.positionTop + 'px'}">
+</div>
+
+<div style="overflow:hidden;position:relative;height:50vh;width:100%">
+	<img src='{{pollUp.photoRight}}' ng-class="{opacityImage:true}"  ng-style="{'width': imgRightInfo.imgWidth + 'px', 'height': imgRightInfo.imgHeight + 'px', 'margin-left': imgRightInfo.positionLeft + 'px', 'margin-top': imgRightInfo.positionTop + 'px'}">
+</div>
+
+</ion-modal-view>

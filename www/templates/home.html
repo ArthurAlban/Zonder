@@ -55,6 +55,7 @@
 </ion-side-menu>
 
 <ion-side-menu-content ng-controller="homeCtrl" class="background">
+
 <div ng-if="divOpacity" fade-directive class="overlaySideMenu"></div>
 
 <div id="triangles"> <img style="width:100%" src="img/splashTriangles.png" ></div>
@@ -131,7 +132,7 @@
 
 	</div>
 
-	<div class="contentPhotos">
+	<div class="contentPhotos" id="share">
 		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'left')">
 			<img ng-style="{'width': imgPollUpLeftInfo.imgWidth + 'px', 'height': imgPollUpLeftInfo.imgHeight + 'px', 'margin-left': imgPollUpLeftInfo.positionLeft + 'px', 'margin-top': imgPollUpLeftInfo.positionTop + 'px'}" src="{{pollUp.photoLeft}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.firstName}}</p>
@@ -148,7 +149,7 @@
 			<div class="fontVoteCommentsZonder marginComments">{{pollUp.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
 		<div class="contentIconFavouriteComments"> 
-			<img width="20" class="marginIconComments" src="img/commentsIcon.png">
+			<img width="20" ng-click="openCommentsModalUp()" class="marginIconComments" src="img/commentsIcon.png">
 		</div>
 
 	</div>
@@ -201,13 +202,14 @@
 			<div class="fontVoteCommentsZonder marginComments">{{pollDown.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
 		<div class="contentIconFavouriteComments"> 
-			<img width="20" class="marginIconComments" src="img/commentsIcon.png" >
+			<img width="20" ng-click="openCommentsModalDown()" class="marginIconComments" src="img/commentsIcon.png" >
 		</div>
 
 	</div>
 
 </div>
 </ion-scroll>
+
 </ion-slide>
 
 <!-- /////////////// poll //////////////// -->
@@ -216,7 +218,7 @@
 <ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
 <ion-refresher pulling-icon="ion-chevron-down" spinner="spiral" on-refresh="pullToRefresh()"></ion-refresher>
 
-<div ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp">
+<div ng-repeat="poll in displayPolls" ng-click="openPollModal(poll)" class="divContentZonder marginTopPullUp">
 
 	<div class="headerZonder">
 
@@ -271,9 +273,9 @@
 			<div class="fontVoteCommentsZonder">{{poll.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
 			<div class="fontVoteCommentsZonder marginComments">{{poll.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
-		<div class="contentIconFavouriteComments"> 
+		<!-- <div class="contentIconFavouriteComments"> 
 			<img width="18" class="marginIconComments" src="img/commentsIcon.png">
-		</div>
+		</div> -->
 
 	</div>
 	<div class="separatorZonder"></div>

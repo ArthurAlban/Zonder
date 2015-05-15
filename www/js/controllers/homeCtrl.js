@@ -241,7 +241,6 @@ $scope.displayInfiniteScrollForFriends = false;
 
 $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
 	if(!$scope.displayFriends.length && !$scope.displayRequestFriends.length){
-		console.log("2 inside");
 		$scope.displayFriends = $rootScope.friends;
 		// $scope.displayAddFriends = $rootScope.addFriends;
 		$scope.displayRequestFriends = $rootScope.requestFriends;
@@ -251,13 +250,11 @@ $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
       	callback();
       }
       else{
-      	console.log("2 outside");
       	callback();
       }
   };
 
   $scope.getStatusForFriends = function(data){
-  	console.log("8");
 
   	if($rootScope.friendsHaveChanged){
   		return true;
@@ -266,15 +263,12 @@ $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
 	var lengthToString = $scope.displayFriends.length.toString();
 	var nbLoadsMax = $scope.displayFriends.length / 10;
 
-	console.log("$scope.confirmFriend" + $scope.confirmFriend);
 
   	if($scope.confirmFriend){
-  		console.log("confirmFriend" + $scope.confirmFriend);
   		if(lengthToString.slice(-1) != "0"){
   			return true;
   		}
   		else if($scope.nbLoadsFriends == nbLoadsMax) {
-  			console.log("$scope.nbLoadsFriends" + $scope.nbLoadsFriends);
   			$scope.nbLoadsFriends--;
   		}
   	}
@@ -288,7 +282,6 @@ $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
   	}
   	
 
-	console.log("9 outside");
 	return false;
 };
 
@@ -309,22 +302,15 @@ $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
 
 
 $scope.getStatusForRequestFriends = function(data){
-	console.log("data" + JSON.stringify(data));
-	console.log("4");
-
-
 	if(data.requestFriends.length != $scope.displayRequestFriends.length){
-		console.log(" 5 change tab request friends1");
 		return true;
 	}
 	else{
 		for(var i = 0; i < data.requestFriends.length; i++){
 			if(data.requestFriends[i].id != $scope.displayRequestFriends[i].id){
-				console.log(" 5 change tab request friends2");
 				return true;
 			}
 		}
-		console.log("5");
 		return false;
 	}
 };
@@ -332,25 +318,19 @@ $scope.getStatusForRequestFriends = function(data){
 
 // /// comparer id toppolls et id data && vérifier meme taille si pareil alors 304 si un différent alors 200
 $scope.loadMoreFriends = function(callback){
-	console.log("je fais un load more friends");
-	console.log("$scope.nbLoadsFriends" + $scope.nbLoadsFriends);
 	UserService.getFriends($scope.nbLoadsFriends).then(function(data){
-		console.log("data" +  JSON.stringify(data));
 		if(data.friend != "allFriendsLoaded"){
-			console.log("je charge");
 			$scope.bufferFriends = data.friend;
 			$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 			$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
 			async.series([function(callback){$scope.fillQueriesAllFriends($scope.bufferFriends, callback);}],
 				function(err, res){
-					console.log("bufferFriends" + $scope.bufferFriends);
 					angular.forEach($scope.bufferFriends, function(p, k){
 						$scope.displayFriends.push(p);
 					});
 					$scope.bufferFriends.splice(0, $scope.bufferFriends.length);
 					$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 					$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
-					console.log("displayFriends" + $scope.displayFriends);
 					callback();
 				});
 		}
@@ -377,12 +357,9 @@ $scope.fillQueriesAllFriends = function(pollArray, callback){
 
 /// comparer id toppolls et id data && vérifier meme taille si pareil alors 304 si un différent alors 200
 $scope.checkAndLoadFriends = function(callback){
-	console.log("7");
 	UserService.getFriends(0).then(function(data){
 		$scope.friendStatus = $scope.getStatusForFriends(data);
-		console.log("status" + $scope.friendStatus);
 		if($scope.friendStatus){
-			console.log("10 inside");
 			if(data.friend != "allFriendsLoaded"){
 				$scope.nbLoadsFriends = 0;
 				$scope.bufferFriends = data.friend;
@@ -391,11 +368,9 @@ $scope.checkAndLoadFriends = function(callback){
 				async.series([function(callback){$scope.fillQueriesAllFriends($scope.bufferFriends, callback);}],
 					function(err, res){
 						$scope.displayFriends = angular.copy($scope.bufferFriends);
-						console.log("friends3" + JSON.stringify($scope.displayFriends));
 						$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 						$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
 						$scope.bufferFriends.splice(0, $scope.bufferFriends.length);
-						console.log("ça va looooooooooooo");
 						callback();
 					});
 			}
@@ -405,7 +380,6 @@ $scope.checkAndLoadFriends = function(callback){
 			}
 		}
 		else if(!$scope.friendStatus){
-			console.log("10 outside");
 			callback();
 		}
 	}, function(status){
@@ -441,10 +415,8 @@ $scope.checkAndLoadFriends = function(callback){
 /// comparer id toppolls et id data && vérifier meme taille si pareil alors 304 si un différent alors 200
 $scope.checkAndLoadRequestFriends = function(callback){
 	UserService.getRequestFriends().then(function(data){
-		console.log("3");
 		$scope.requestFriendStatus = $scope.getStatusForRequestFriends(data);
 		if($scope.requestFriendStatus){
-			console.log("6 inside");
 			$scope.bufferRequestFriends = data.requestFriends;
 			$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 			$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
@@ -454,12 +426,10 @@ $scope.checkAndLoadRequestFriends = function(callback){
 					$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 					$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
 					$scope.bufferRequestFriends.splice(0, $scope.bufferRequestFriends.length);
-					console.log("ça va laaaaaaaaaa");
 					callback();
 				});
 		}
 		else if(!$scope.requestFriendStatus){
-			console.log("6 outside");
 			callback();
 		}
 	}, function(status){
@@ -468,22 +438,17 @@ $scope.checkAndLoadRequestFriends = function(callback){
 };
 
 $scope.loadFriendsCtrl = function(isLoadMoreFriends){
-
 	if(isLoadMoreFriends){
-		console.log("2");
 		$scope.nbLoadsFriends++;
-		console.log("je commence le load");
 		async.series([$scope.loadMoreFriends],
 			function(err, res){
 				$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 				$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
 				$scope.$broadcast('scroll.infiniteScrollComplete');
-				console.log("load fini");
 				$scope.$apply();
 			});
 	}
 	else{
-		console.log("1");
 		async.series([
 			function(callback){$scope.firstBufferFriends(isLoadMoreFriends, callback);},
 			$scope.checkAndLoadRequestFriends,
@@ -491,7 +456,6 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 		$scope.checkAndLoadFriends
 		], 
 		function(err, res){
-			console.log("11");
 			$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 			$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
 			if($scope.displayFriends.length > 9){
@@ -499,7 +463,6 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 			}
 			$rootScope.friendsHaveChanged = false;
 			$scope.confirmFriend = false;
-			console.log("finFFFFFFRIIIIENNNDSS");
 			$scope.$apply();
 		});
 	}
@@ -550,11 +513,8 @@ $scope.showActionSheetFriends = function(id) {
 
 $scope.confirmationFriend = function(id) {
 	UserService.confirmationFriend(id).then(function(data){
-		console.log("confirm");
 		$scope.deleteRequestFriendInRequestFriendInApp(id);
-		console.log("confirm2");
 		$scope.confirmFriend = true;
-		console.log("$scope.confirmFriend" + $scope.confirmFriend);
 		$scope.loadFriendsCtrl(false);
 		$scope.$apply();
 	},function(status){

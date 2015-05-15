@@ -1,4 +1,4 @@
-zonder.controller('answerZonderCtrl', function($scope, $state, $window, PollService, UserService, $ionicActionSheet){
+zonder.controller('answerZonderCtrl', function($scope, $state, $window, $ionicModal, CommentService, PollService, UserService, $ionicActionSheet, $cordovaSocialSharing){
 
 ///////////////// Récupération des polls ////////////////////////////
 
@@ -203,6 +203,7 @@ $scope.updateInformationsPolls = function(callback){
 			$scope.queriesForUserPhoto.splice(0,$scope.queriesForUserPhoto.length);
 			$scope.queriesForPollsInfosAnswerZonder.splice(0,$scope.queriesForPollsInfosAnswerZonder.length);
 			$scope.queriesForPollsInfosPhotoAnswerZonder.splice(0,$scope.queriesForPollsInfosPhotoAnswerZonder.length);
+			// $scope.htmlToImage();
 			callback();
 		});
 };
@@ -297,5 +298,211 @@ $scope.votePollDown = function(pollId, choice){
 	});
 };
 
+$scope.imgLeftInfoComments = new Array();
+$scope.imgRightInfoComments = new Array();
+
+/////////////// Récupération des commentaires ///////////////////////
+$scope.queriesForCommentInfo = new Array();
+$scope.queriesForCommentphotoUser = new Array();
+
+$scope.getInfosCommentsAndUser = function(poll, callback){
+	async.parallel([function(callback){$scope.getCommentsInfos(poll, callback)}, function(callback){$scope.getCommentsPhotoUser(poll, callback)}], function(err, res){
+		callback();
+	});
+};
+
+$scope.getCommentsInfos = function(poll, callback){
+	angular.forEach(poll.comments, function(comment, key){
+		var q = function(callback){
+			CommentService.getCommentsInfoById(comment.id).then(function(d){
+				angular.forEach(poll.comments, function(c, k){
+					if(c.id == comment.id){
+						c.author = d.author;
+						c.comment = d.comment;
+						c.idAuthor = d.idAuthor;
+						c.photoAuthorComments = "img/louis.png";
+					}
+				});
+				callback();
+			}, function(status) {
+				console.log("impossible de récuperer les infos du commentaire");
+			});
+		};
+		$scope.queriesForCommentInfo.push(q);
+	});
+	callback();
+};
+
+$scope.getCommentsPhotoUser = function(poll, callback){
+	angular.forEach(poll.comments, function(comment, key){
+		var q = function(callback){
+			UserService.getFriendPhotoFromId(comment.idAuthor).then(function(d){
+				angular.forEach(poll.comments, function(c, k){
+					if(c.id == comment.id){
+						c.photoAuthorComments = d.photo;
+						callback();
+					}
+				});
+			},function(status) {
+				console.log("impossible de récupérer la photo d'un utilisateur");
+			});
+		};
+		$scope.queriesForCommentphotoUser.push(q);
+	});
+	callback();
+};
+
+
+$scope.queriesExecInfoComment = function(callback){
+	async.parallel($scope.queriesForCommentInfo,function(err, res){
+		// $scope.loadingComments = false;
+		callback();
+	});
+};
+
+$scope.queriesExecPhotoUserComment = function(callback){
+	async.parallel($scope.queriesForCommentphotoUser,function(err, res){
+		callback();
+	});
+};
+
+$scope.queriesParallel = function(callback) {
+	async.series([$scope.queriesExecInfoComment, $scope.queriesExecPhotoUserComment], function(err, res){
+		callback();
+	});
+};
+
+
+$scope.displayComments = function(poll){
+		// $scope.loadingComments = true;
+		$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+		$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
+		// A faire quand on change de sondage $scope.comments.splice(0, $scope.comments.length);
+		async.series([function(callback){$scope.getInfosCommentsAndUser(poll, callback)}, $scope.queriesParallel], 
+			function(err, result){
+				$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+				$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
+				$scope.$apply();
+			});
+};
+
+/////////////////////////  Comments modal Up ////////////////////////////////
+
+$ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
+    scope: $scope,
+    animation: 'slide-in-right'
+  }).then(function(modal) {
+    $scope.commentsModalUp = modal;
+  });
+
+  $scope.openCommentsModalUp = function() {
+  	console.log("comments" + JSON.stringify($scope.pollUp.comments));
+  	$scope.pollUp.writeComment = "";
+	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
+	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
+
+	if($scope.pollUp.comments.length){
+		$scope.displayComments($scope.pollUp);
+	}
+	
+    $scope.commentsModalUp.show();
+  };
+
+  $scope.closeCommentsModalUp = function() {
+  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
+  	$scope.pollUp.writeComment = "";
+  	// $scope.pollUp = [];
+    $scope.commentsModalUp.hide();
+    $scope.$apply();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.commentsModalUp.remove();
+  });
+
+  $scope.$on('modal.hidden', function() {
+  });
+
+  $scope.$on('modal.removed', function() {
+  });
+
+  
+/////////////////////////  Comments modal Down ////////////////////////////////
+
+$ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
+    scope: $scope,
+    animation: 'slide-in-right'
+  }).then(function(modal) {
+    $scope.commentsModalDown = modal;
+  });
+
+  $scope.openCommentsModalDown = function() {
+  	$scope.pollDown.writeComment = "";
+	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthLeft, $scope.pollDown.imageHeightLeft);
+	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthRight, $scope.pollDown.imageHeightRight);
+
+	if($scope.pollDown.comments.length){
+		$scope.displayComments($scope.pollDown);
+	}
+	
+    $scope.commentsModalDown.show();
+  };
+
+  $scope.closeCommentsModalDown = function() {
+  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
+  	$scope.pollDown.writeComment = "";
+    $scope.commentsModalDown.hide();
+    $scope.$apply();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.commentsModalDown.remove();
+  });
+
+  $scope.$on('modal.hidden', function() {
+  });
+
+  $scope.$on('modal.removed', function() {
+  });
+
+  ///////////////////////////////// send comment ////////////////////////////////////////////
+
+  $scope.sendCommentUp = function(){
+  	PollService.sendComment($scope.pollUp.id, $window.localStorage['pseudo'],$scope.pollUp.writeComment).then(function(d){
+  		console.log("data" + JSON.stringify(d));
+  		var pollTmp = {};
+  		pollTmp.author = d.comment.author;
+  		pollTmp.comment = d.comment.comment;
+  		pollTmp.photoAuthorComments = $window.localStorage['photo'];
+  		 console.log("pollTmp" + JSON.stringify(pollTmp));
+
+  		$scope.pollUp.comments.push(pollTmp);
+  		console.log("comments after" + JSON.stringify($scope.pollUp.comments));
+  		$scope.pollUp.writeComment = "";
+  		$scope.$apply();
+  	}, function(status){
+  		console.log("Impossible d'envoyer le commentaire");
+  	});
+  };
+
+$scope.sendCommentDown = function(){
+  	PollService.sendComment($scope.pollDown.id, $window.localStorage['pseudo'],$scope.pollDown.writeComment).then(function(d){
+  		console.log("data" + JSON.stringify(d));
+  		var pollTmp = {};
+  		pollTmp.author = d.comment.author;
+  		pollTmp.comment = d.comment.comment;
+  		pollTmp.photoAuthorComments = $window.localStorage['photo'];
+  		console.log("pollTmp" + JSON.stringify(pollTmp));
+
+  		$scope.pollDown.comments.push(pollTmp);
+  		console.log("comments after" + JSON.stringify($scope.pollDown.comments));
+  		$scope.pollDown.writeComment = "";
+  		$scope.$apply();
+  	}, function(status){
+  		console.log("Impossible d'envoyer le commentaire");
+  	});
+  };
 
 });
