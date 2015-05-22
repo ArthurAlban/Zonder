@@ -7813,6 +7813,18 @@ a.button {
   line-height: 1.711;
   text-align: center; }
 
+.posExplicationSwipe {
+  position: absolute;
+  top: 83%;
+  width: 100%;
+  color: #ffffff;
+  font-size: 8px;
+  font-size: 3vw;
+  font-family: 'BrandonLight';
+  letter-spacing: 0.075em;
+  line-height: 1.711;
+  text-align: center; }
+
 #buttonSavePassword {
   position: absolute;
   left: 50%;
@@ -7892,6 +7904,13 @@ a.button {
   position: absolute;
   left: 50%;
   margin-left: -40%; }
+
+.fontSearch {
+  line-height: 1.313 !important;
+  font-size: 18px !important;
+  font-family: 'OpenSansRegular' !important;
+  color: #adafbc !important;
+  font-size: 12px !important; }
 
 .inputLowerCaseOnly {
   text-transform: lowercase; }
@@ -8079,13 +8098,13 @@ a.button {
   height: 20%;
   display: -webkit-flex;
   -webkit-align-items: flex-start;
-  -webkit-justify-content: flex-start; }
+  -webkit-justify-content: space-between; }
 
 .sizeContentPseudo {
-  width: calc( 100% - 38px); }
+  width: calc( 100% - 46px); }
 
 .posTimer {
-  margin-top: 2px; }
+  margin-top: 1px; }
 
 .contentHeaderFooter {
   width: 100%;
@@ -8984,6 +9003,20 @@ a.button {
   -webkit-align-items: center;
   -webkit-justify-content: flex-start; }
 
+.activeSliderCurrent {
+  opacity: 1;
+  -webkit-transition: all 0.4s ease; }
+
+.activeSliderOther {
+  opacity: 0.3;
+  -webkit-transition: all 0.4s ease; }
+
+.spinnerLoading svg {
+  width: 28px;
+  height: 28px;
+  stroke: #fff;
+  fill: #fff; }
+
 .photoLinePair2 {
   margin-left: 4%; }
 
@@ -9044,6 +9077,10 @@ a.button {
 .fade-in {
   opacity: 0;
   -webkit-animation: fadeIn 1s forwards linear; }
+
+.fade-out-slider {
+  opacity: 1;
+  -webkit-animation: fadeOut 1s forwards linear; }
 
 .fade-in-button {
   opacity: 0;

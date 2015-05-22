@@ -18,7 +18,7 @@
     <div class="contentTextFriend">
       <p class="fontPseudoFriends" style="color:#ffffff"> {{pollToDisplay.authorPseudo}}
       </p>
-      <p class="fontFooterFriends" style="font-size:11px;color:#ffffff"> {{pollToDisplay.question}} </p>
+      <p class="fontFooterFriends" style="webkit-hyphens: auto;font-size:11px;color:#ffffff"> {{pollToDisplay.question}} </p>
     </div>
     <img width="48" height="48" style="border:2px solid #ffffff;" class="roundImage" src="{{pollToDisplay.authorPhoto}}">
   </div> 
@@ -46,19 +46,23 @@
 <div style="border-radius:10px;position:absolute;top:94%;left:66%;height:22px;border:1px solid #FFFFFF;"></div>
 <div style="border-radius:10px;position:absolute;top:94%;left:82%;height:22px;border:1px solid #FFFFFF;"></div>
 
-<!-- <i ng-click="comments(displaySectionComments)" ng-class="{blue:displaySectionComments}" class="icon ion-chatbubble-working light" style="font-size:20px;margin-left:-8px;z-index:1000;position:absolute;top:94%;left:10%;"></i> -->
+<div ng-click="comments(displaySectionComments)" style="position:absolute;height:22px;top:94%;left:8%;display:-webkit-flex;-webkit-justify-content:center;-webkit-align-items:center;"><img width="20" src="img/parameterProfile.png"></div>
 
-<img width="20" ng-click="comments(displaySectionComments)" src="img/parameterProfile.png" style="margin-left:-8px;z-index:1000;position:absolute;top:94%;margin-top:8px;left:10%;">
-
-<div ng-switch on="pollToDisplay.range">
-  <img ng-switch-when="Monde" width="20" ng-click="votes(displaySectionVotes)" src="img/earthWhite.png" style="margin-left:-8px;z-index:1000;position:absolute;top:94%;left:26%;">
-  <img ng-switch-when="Amis" width="20" ng-click="votes(displaySectionVotes)" src="img/friends.png" style="margin-left:-6px;z-index:1000;position:absolute;top:94%;left:26%;">
+<div ng-switch on="pollToDisplay.range" ng-click="votes(displaySectionVotes)">
+  <div ng-switch-when="Monde" style="margin-left:-8px;z-index:1000;position:absolute;top:94%;left:26%;">
+  <img width="20" src="img/earthWhite.png" >
+  </div>
+  <div ng-switch-when="Amis" style="margin-left:-9px;z-index:1000;position:absolute;margin-top:1px;top:94%;left:26%;">
+  <img width="20" src="img/friends.png" >
+  </div>
 </div>
 
 <div ng-switch on="pollToDisplay.gender">
 <i ng-switch-when="male"  class="icon ion-male light" style="font-size:20px;margin-left:-8px;z-index:1000;position:absolute;top:94%;left:42%;"></i>
-<i ng-switch-when="female" class="icon ion-female light" style="font-size:20px;margin-left:-4px;z-index:1000;position:absolute;top:94%;left:42%;"></i>
-<img ng-switch-when="mixte" width="22" src="img/genderWhite.png" style="margin-top:2px;margin-left:-10px;z-index:1000;position:absolute;top:94%;left:42%;">
+<i ng-switch-when="female" class="icon ion-female light" style="font-size:20px;margin-top:1px;margin-left:-3px;z-index:1000;position:absolute;top:94%;left:42%;"></i>
+<div ng-switch-when="mixte" style="margin-top:2px;margin-left:-10px;z-index:1000;position:absolute;top:94%;left:42%;">
+<img  width="22" src="img/genderWhite.png" >
+</div>
 </div>
 
 <div ng-switch on="pollToDisplay.range">

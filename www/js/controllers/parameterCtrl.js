@@ -65,6 +65,8 @@ $scope.showActionSheetParameters = function() {
     }
   });
 };
+
+
 //////////////////////// Change Pass Modal ////////////////////////////////
 
 $ionicModal.fromTemplateUrl('modals/changePassword.html', {
@@ -354,5 +356,6 @@ $scope.logOut = function() {
     }); 
   }
 };
+
 
 });

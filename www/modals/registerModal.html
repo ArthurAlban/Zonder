@@ -14,14 +14,15 @@
 
 <ion-slide>
 
-<form name="registerFirstStepForm" novalidate>
+<form name="registerFirstStepForm" ng-submit="nextStepRegister()" novalidate>
   <div id="divRegisterFirstStep">
+
     <div class="item item-icon-left item-icon-right labelZonder">
       <i class="icon iconZonderLeft"> 
         <img ng-if="mailIsValid" src="img/mail.png" width="25">
         <img ng-if="!mailIsValid" src="img/mailRed.png" width="25">
       </i>
-      <input class="inputZonder"  name="email" type="email" ng-model="userData.email" placeholder="email address" ng-maxlength="50" ng-change="checkEmail()" required>
+      <input class="inputZonder" name="email" type="email" ng-model="userData.email" placeholder="email address" ng-maxlength="50" ng-change="checkEmail()" required>
       <i class="icon iconZonderRight">
         <img ng-click="displayMailPopup()" ng-if="!mailIsValid" src="img/error.png" width="20">
       </i>
@@ -32,7 +33,7 @@
         <img ng-if="passwordIsValid" src="img/lock.png" width="25">
         <img ng-if="!passwordIsValid" src="img/lockRed.png" width="25">
       </i>
-      <input class="inputZonder"  name="password" ng-change="checkPasswordIsValid()" type="password" ng-model="userData.password"  placeholder="password" ng-maxlength="20" required>
+      <input class="inputZonder" name="password" ng-change="checkPasswordIsValid()" type="password" ng-model="userData.password"  placeholder="password" ng-maxlength="20" required>
       <i class="icon iconZonderRight">
         <img ng-if="!passwordIsValid" src="img/error.png" width="20" ng-click="displayPasswordPopup()">
       </i>
@@ -60,6 +61,15 @@
       </i>
     </div>
     
+  </div>
+
+  <div id="divTermsAndConditionButton">
+    <p class="termsAndConditions">
+      I accept <a href="#">«Terms and Conditions»</a>
+    </p>
+    <button class="button buttonZonder buttonRegister">
+      NEXT STEP
+    </button>
   </div>
 </form>
 
@@ -103,26 +113,20 @@
 </div>
 
 </div>
-</form>
-</ion-slide>
-
-</ion-slide-box>
 
 <div id="divTermsAndConditionButton">
   <p class="termsAndConditions">
     I accept <a href="#">«Terms and Conditions»</a>
   </p>
-
-  <button class="button buttonZonder buttonRegister" ng-show="displayNextButton" ng-click="nextStepRegister()">
-    NEXT STEP
-  </button>
-
-  <button class="button buttonZonder buttonRegister" ng-show="!displayNextButton" ng-click="checkSecondStep()">
+  <button class="button buttonZonder buttonRegister" ng-click="checkSecondStep()">
     REGISTER NOW
   </button>
-
-  
 </div>
+
+</form>
+</ion-slide>
+
+</ion-slide-box>
 
 <p ng-click="closeRegisterModal()" class="footerRegister">
   ALREADY HAVE AN ACCOUNT ?

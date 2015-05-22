@@ -84,12 +84,53 @@ $scope.getStatusForPoll = function(data){
 	}
 };
 
+$scope.queriesForUserInfoPollsView = new Array();
+$scope.queriesForUserPhotoPollsView = new Array();
+
 $scope.getUserAndPhotosInfos = function(pollArray, callback){
-	async.parallel([function(callback){$scope.getUsersInfos(pollArray, callback)},
-		function(callback){$scope.getUsersPhoto(pollArray, callback)}], 
+	async.parallel([function(callback){$scope.getUsersInfosPolls(pollArray, callback)},
+		function(callback){$scope.getUsersPhotoPolls(pollArray, callback)}], 
 		function(err, res){
 			callback();
 		});
+};
+
+$scope.getUsersInfosPolls = function(pollArray, callback){
+  angular.forEach(pollArray, function(poll, key){
+    var q = function(callback){
+      UserService.getFriendInfoFromId(poll.authorId).then(function(d){
+        angular.forEach(pollArray, function(p, k){
+          if(p.id == poll.id){
+            p.authorPseudo = d.pseudo;
+          }
+        });
+        callback();
+      }, function(status){
+        console.log("Impossible de récuperer les infos pour l'utilisateurs");
+      });
+    };
+    $scope.queriesForUserInfoPollsView.push(q);
+  });
+  callback();
+};
+
+$scope.getUsersPhotoPolls = function(pollArray, callback){
+  angular.forEach(pollArray, function(poll, key){
+    var q = function(callback){
+      UserService.getFriendPhotoFromId(poll.authorId).then(function(d){
+        angular.forEach(pollArray, function(p, k){
+          if(p.id == poll.id){
+            p.authorPhoto = d.photo;
+          }
+        });
+        callback();
+      }, function(status){
+        console.log("Impossible de récuperer les infos pour l'utilisateurs");
+      });
+    };
+    $scope.queriesForUserPhotoPollsView.push(q);
+  });
+  callback();
 };
 
 /// comparer id toppolls et id data && vérifier meme taille si pareil alors 304 si un différent alors 200
@@ -99,8 +140,8 @@ $scope.verifiyChangeAndUpdate = function(callback){
 			$scope.bufferPolls = data.poll;
 			$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
 			$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
-			$scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
-			$scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
+			$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
+			$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
 			async.series([function(callback){$scope.getPollsInfos($scope.bufferPolls, callback);}, 
 				$scope.queriesExecPollsInfos,
 				function(callback){$scope.getInfoPhoto($scope.bufferPolls, callback);},
@@ -139,8 +180,8 @@ $scope.verifiyChangeAndUpdateFirstTime = function(callback){
 				$scope.bufferPolls = data.poll;
 				$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
 				$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
-				$scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
-				$scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
+				$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
+				$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
 				async.series([function(callback){$scope.getPollsInfos($scope.bufferPolls, callback);}, 
 					$scope.queriesExecPollsInfos,
 					function(callback){$scope.getInfoPhoto($scope.bufferPolls, callback);},
@@ -176,8 +217,8 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 			function(err, res){
 				$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
 				$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
-				$scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
-				$scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
+				$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
+				$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
 				$scope.$broadcast('scroll.infiniteScrollComplete');
 				$scope.$apply();
 			});
@@ -189,8 +230,8 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 			function(err, res){
 				$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
 				$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
-				$scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
-				$scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
+				$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
+				$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
 				if($scope.displayPolls.length > 4){
 					$scope.displayInfiniteScroll = true;
 				}
@@ -203,16 +244,16 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 $scope.pullToRefresh = function(){
 	$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
 	$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
-	$scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
-	$scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
+	$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
+	$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
 	async.series([function(callback){$scope.getPollsInfos($scope.displayPolls, callback);}, 
 		$scope.queriesExecPollsInfos,
 		],
 		function(err, res){
 			$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
 			$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
-			$scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
-			$scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
+			$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
+			$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
 			$scope.$broadcast('scroll.refreshComplete');
 		});
 };

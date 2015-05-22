@@ -1,5 +1,10 @@
 zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService) {
 
+  $scope.goToProfile = function(){
+    $state.go('showProfile');
+  };
+
+
   $scope.myPhoto = $window.localStorage['photo'];
   $scope.myPseudo = $window.localStorage['pseudo'];
 
@@ -205,6 +210,7 @@ $scope.slideHasChangedInCreateZonder = function(index){
     $scope.showCloseButton = true;
   }
   if(index == 1){
+    $scope.initTabImageToInternet();
   	$scope.displayNextButtonQuestion = false;
   	$scope.displayNextButtonChoosePhoto = true;
   	$scope.displayCreateButton = false;
@@ -221,6 +227,7 @@ $scope.disableSwipeCreateZonder = function() {
 };
 
 $scope.nextStepPhoto = function(){
+  console.log("question" + $scope.createPoll.question);
   $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
   $scope.displayNextButtonQuestion = false;
 };
@@ -395,6 +402,7 @@ $scope.showActionSheetPhotoSourceForPhotoLeft = function() {
         $scope.choosePhotoLeft();
       }
       if(index == 2){
+        $scope.sideImage = "left";
         $scope.openChooseGooglePhotoModal();
       }
       return true;
@@ -459,6 +467,7 @@ $scope.showActionSheetPhotoSourceForPhotoRight = function() {
         $scope.choosePhotoRight();
       }
       if(index == 2){
+        $scope.sideImage = "right";
         $scope.openChooseGooglePhotoModal();
       }
       return true;
@@ -757,6 +766,8 @@ $scope.setMixtPoll = function() {
   $scope.checkOptionInCreatePoll();
 };
 
+
+
 //////////////// resize image ///////////////////
 
 
@@ -869,7 +880,6 @@ $scope.resizeImageHeightGeneral = function(imgWidth, imgHeight, divWidth, divHei
     imgInfoResizeWidth = $scope.resizeImageWidthGeneral(imgWidthFinal, imgHeightFinal, divWidth, divHeight);
     return {"positionLeft": imgInfoResizeWidth.positionLeft, "positionTop": imgInfoResizeWidth.positionTop, "imgWidth": imgInfoResizeWidth.imgWidth, "imgHeight": imgInfoResizeWidth.imgHeight};
   }
-
   return {"positionLeft": positionLeft, "positionTop": positionTop, "imgWidth": imgWidthFinal, "imgHeight": imgHeightFinal};
 };
 
@@ -890,6 +900,25 @@ $scope.setPositionImageInCommentsAndPollModal = function(imgWidth, imgHeight){
   return imgInfo;
 };
 
+$scope.setPositionImageInSearchGoogle = function(imgWidth, imgHeight){
+  var imgInfo = new Array();
+  console.log("4");
+
+  var viewportWidth = window.screen.width;
+  var viewportHeight = window.screen.height * 0.55;
+
+  console.log("5");
+  if(imgWidth <= imgHeight){
+    console.log("portrait");
+    imgInfo = $scope.resizeImageWidthGeneral(imgWidth, imgHeight, viewportWidth, viewportHeight);
+  }
+  else{
+    console.log("paysage");
+    imgInfo = $scope.resizeImageHeightGeneral(imgWidth, imgHeight, viewportWidth, viewportHeight);
+  }
+
+  return imgInfo;
+};
 /////////////// create poll ///////////////////////
 
 $scope.createPollFunction = function() {
@@ -920,6 +949,80 @@ $scope.createPollFunction = function() {
 
 /////////////// search image google ///////////////
 
+$scope.slideHasChangedInGoogleSearch = function(index) {
+  $scope.currentSlider = index;
+  if(index == 2){
+    $scope.showExplenationSwipe = false;
+  }
+};
+
+$scope.selectImage = function(){
+  if($scope.sideImage == "left"){
+    console.log("left");
+    $scope.createPoll.photoLeft = $scope.tabImageToInternet[$scope.currentSlider].image;
+     async.series([function(callback){
+      var image = new Image();
+      image.src = $scope.createPoll.photoLeft;
+      image.onload = function(){
+        $scope.imgLeftInfo.imgWidth = image.width;
+        $scope.imgLeftInfo.imgHeight = image.height;
+        console.log("imgWidth" + $scope.imgLeftInfo.imgWidth);
+        console.log("imgHeight" + $scope.imgLeftInfo.imgHeight);
+        callback();
+      };
+    },function(callback){
+      $scope.imgLeftInfo = $scope.setPositionImage(true, $scope.imgLeftInfo.imgWidth, $scope.imgLeftInfo.imgHeight);
+      callback();
+    }], function(err, res){
+      $scope.displayButtonLeft = false;
+      $scope.closeChooseGooglePhotoModal();
+      $scope.$apply();
+    });
+  }
+  else if($scope.sideImage == "right"){
+    console.log("right");
+    $scope.createPoll.photoRight = $scope.tabImageToInternet[$scope.currentSlider].image;
+     async.series([function(callback){
+      var image = new Image();
+      image.src = $scope.createPoll.photoRight;
+      image.onload = function(){
+        $scope.imgRightInfo.imgWidth = image.width;
+        $scope.imgRightInfo.imgHeight = image.height;
+        callback();
+      };
+    },function(callback){
+      $scope.imgRightInfo = $scope.setPositionImage(false, $scope.imgRightInfo.imgWidth, $scope.imgRightInfo.imgHeight);
+      callback();
+    }], function(err, res){
+      $scope.displayButtonRight = false;
+      $scope.closeChooseGooglePhotoModal();
+      $scope.$apply();
+    });
+  }
+}
+
+$scope.initTabImageToInternet = function(){
+  $scope.loadingImage = false;
+  $scope.showSliderGoogleSearch = false;
+  $scope.showExplenationSwipe = true;
+  $scope.showNoFoundPicture = false;
+  $scope.tabImageToInternet = new Array();
+  for(i = 0; i<10; i++){
+    var image = {};
+    $scope.currentSlider = 0;
+    image.image  = "img/transparencyBackground.png";
+    image.height = "";
+    image.width = "";
+    image.url = "";
+    image.positionLeft = "";
+    image.positionTop = "";
+    image.imgWidth = "";
+    image.imgHeight = "";
+    image.load = true;
+    $scope.tabImageToInternet.push(image);
+  }
+};
+
 $ionicModal.fromTemplateUrl('modals/chooseGooglePhoto.html', {
   scope: $scope,
   animation: 'slide-in-up'
@@ -938,6 +1041,171 @@ $scope.closeChooseGooglePhotoModal = function() {
 $scope.$on('$destroy', function() {
   $scope.chooseGooglePhotoModal.remove();
 });
+
+
+$scope.queriesForInfosAndResizeImage = new Array();
+
+$scope.getImageFromGoogle = function(query, callback){
+  UserService.getImageFromGoogle(query).then(function(data) {
+    $scope.showNoFoundPicture = false;
+    var cpt = 0;
+
+    if(!data.items){
+      $scope.showNoFoundPicture = true;
+    }
+
+    angular.forEach(data.items, function(item, key){
+      $scope.tabImageToInternet[cpt].url = item.link;
+      cpt++;
+    });
+
+    if(cpt != 10){
+      for(i = cpt; i<10; i ++){
+        $scope.tabImageToInternet[i].url = "";
+      }
+    }
+      async.parallel([function(callback){$scope.getInfosAndResizeImage($scope.tabImageToInternet, callback)}],
+        function(err, res){
+          callback();
+        });
+  }, function(status){
+    console.log("Impossible de récuperer les images");
+    callback();
+  });
+};
+
+
+$scope.getInfosAndResizeImage = function(tabImageToInternet, callback){
+ angular.forEach(tabImageToInternet, function(image, key){
+  var q = function(callback){
+    if(image.url){
+      var canvas = document.createElement('CANVAS');
+      var ctx = canvas.getContext('2d');
+      var img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.src = image.url;
+      
+      async.series([function(callback){
+        img.onload = function(){
+          canvas.height = img.height;
+          canvas.width = img.width;
+          image.height = canvas.height;
+          image.width = canvas.width;
+          ctx.drawImage(img,0,0);
+          image.image = canvas.toDataURL('image/jpeg');
+          var imageInternetInfoTmp = $scope.setPositionImageInSearchGoogle(image.width, image.height);
+          image.positionLeft = imageInternetInfoTmp.positionLeft;
+          image.positionTop = imageInternetInfoTmp.positionTop;
+          image.imgWidth = imageInternetInfoTmp.imgWidth;
+          image.imgHeight = imageInternetInfoTmp.imgHeight;
+          image.load = true;
+          canvas = null; 
+          callback();
+        };
+      }], function(err, res){
+        callback();
+      });
+    }
+    else{
+      image.image  = "img/transparencyBackground.png";
+      image.height = "";
+      image.width = "";
+      image.positionLeft = "";
+      image.positionTop = "";
+      image.imgWidth = "";
+      image.imgHeight = "";
+      image.load = false;
+      callback();
+    }
+};
+$scope.queriesForInfosAndResizeImage.push(q);
+});
+callback();
+};
+
+
+$scope.queriesExecInfosAndResizeImage= function(callback){
+  async.series($scope.queriesForInfosAndResizeImage,function(err, res){
+    callback();
+  });
+};
+
+
+$scope.fillImageFromGoogle = function(query){
+  if(query){
+    $scope.loadingImage = true;
+    async.series([function(callback){$scope.getImageFromGoogle(query, callback)}, $scope.queriesExecInfosAndResizeImage], 
+      function(err, result){
+       $scope.loadingImage = false;
+       console.log("fin fin fin fin");
+       $scope.queriesForInfosAndResizeImage.splice(0, $scope.queriesForInfosAndResizeImage.length);
+       if(!$scope.showNoFoundPicture){
+        $scope.showSliderGoogleSearch = true;
+      }
+      else{
+         $scope.showSliderGoogleSearch = false;
+      } 
+      $scope.$apply();
+    });
+  }
+  else{
+    console.log("ZZZZZZZ");
+  }
+};
+
+// $scope.nextImage = function(){
+//   if(!$scope.loadingImage){
+//     $scope.loadingImage = true;
+//     $scope.indiceImage++;
+//     $scope.showBackButton = true;
+//     if($scope.indiceImage == 9){
+//       $scope.showNextButton = false;
+//     }
+//     $scope.urlToResizedBase64Image($scope.tabImageToInternet[$scope.indiceImage]);
+//   }
+// };
+
+// $scope.backImage = function(){
+//   if(!$scope.loadingImage){
+//     $scope.loadingImage = true;
+//     $scope.indiceImage--;
+//     $scope.showNextButton = true;
+//     if($scope.indiceImage == 0){
+//       $scope.showBackButton = false;
+//     }
+//     $scope.urlToResizedBase64Image($scope.tabImageToInternet[$scope.indiceImage]);
+//   }
+// };
+
+// $scope.urlToResizedBase64Image = function(url){
+//   var canvas = document.createElement('CANVAS');
+//   var ctx = canvas.getContext('2d');
+//   var img = new Image();
+//   img.crossOrigin = 'Anonymous';
+//   img.src = url;
+//   img.onload = function(){
+//     canvas.height = img.height;
+//     canvas.width = img.width;
+    
+//     $scope.imageToInternet.height = canvas.height;
+//     $scope.imageToInternet.width = canvas.width;
+
+//       ctx.drawImage(img,0,0);
+//       $scope.imageToInternet.image = canvas.toDataURL('image/jpeg');
+//        //resize de tpmImg
+//          $scope.$apply();
+//        var imageInternetInfoTmp = $scope.setPositionImageInSearchGoogle($scope.imageToInternet.width, $scope.imageToInternet.height);
+//        $scope.imageInternetInfo.positionLeft = imageInternetInfoTmp.positionLeft;
+//        $scope.imageInternetInfo.positionTop = imageInternetInfoTmp.positionTop;
+//        $scope.imageInternetInfo.imgWidth = imageInternetInfoTmp.imgWidth;
+//        $scope.imageInternetInfo.imgHeight = imageInternetInfoTmp.imgHeight;
+//        // $scope.imgSrc = tmpImg
+//        $scope.loadingImage = false;
+//        canvas = null; 
+//         $scope.$apply();
+//   };
+
+// };
 
 /////////////////////// fin create poll ///////////////////////
 
@@ -1003,6 +1271,7 @@ $scope.getPollsInfos = function(pollArray, callback){
               var time = $scope.getTimeHoursMinutesFromPoll(p);
               p.timeElapsedHours = time.hours;
               p.timeElapsedMinutes = time.minutes;
+              p.timeElapsedDays = time.day;
             }
           });
 callback();
@@ -1397,7 +1666,9 @@ $scope.getTimeHoursMinutesFromPoll = function(poll){
   var pollTime = new Array();
   pollTime.minutes = minPoll[0];
   pollTime.hours = hoursPoll;
-
+  if(hoursPoll > 23){
+    pollTime.day = Math.floor((hoursPoll/24));
+  }
   return pollTime;
 };
 

@@ -1,4 +1,4 @@
-zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal, $ionicActionSheet, $cordovaCamera) {
+zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal, $ionicActionSheet, $cordovaCamera, $cordovaKeyboard) {
   $scope.animateTriangles = false;
 	$ionicPlatform.ready(function() {
 		$scope.animateTriangles = true;
@@ -140,7 +140,8 @@ $scope.setDisplayMailErrorFalse = function(){
   $scope.displayMailerror = false;
 };
 
-$scope.sendNewPassword = function(mail){
+$scope.sendNewPassword = function(){
+  var mail = $scope.data.mail;
   UserService.checkEmail(mail).then(function(data){
     if(data.result == "notFound")  {
       $scope.displayMailerror = true;
@@ -279,11 +280,13 @@ $scope.slideHasChangedInRegister = function(index){
 };
 
 $scope.nextStepRegister = function(){
+  console.log("test");
   $scope.checkFirstStep();
   if($scope.firstStepValid){
     $ionicSlideBoxDelegate.$getByHandle('registerSlider').next();
     $scope.displayNextButton = false;
     $ionicSlideBoxDelegate.$getByHandle('registerSlider').enableSlide(true);
+    $cordovaKeyboard.close();
   }
 };
 

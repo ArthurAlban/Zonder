@@ -7,14 +7,18 @@
 
 <ion-slide>
 
-<div id="contentTextAreaCreateZonder">
-  <textarea class="questionCreateZonder" ng-change="charactersLeft()" id="textAreaQuestionCreateZonder" ng-model="createPoll.question" rows="8" cols="18" maxlength="90" placeholder="WHAT IS YOUR QUESTION ?">
+<form id="contentTextAreaCreateZonder">
+  <textarea type="text" class="questionCreateZonder" ng-change="charactersLeft()" id="textAreaQuestionCreateZonder" ng-model="createPoll.question" rows="8" cols="18" maxlength="90" placeholder="WHAT IS YOUR QUESTION ?">
   </textarea>
-</div>
+</form>
 
 <div id="contentCharactersLeftCreateZonder">
   <span class="fontCharacters">Characters left: {{charLeft}}</span>
 </div>
+
+<button ng-disabled="!showNextButtonForCreatePoll" ng-show="displayNextButtonQuestion" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepPhoto()">
+    NEXT
+ </button>
 
 </ion-slide>
 
@@ -44,6 +48,11 @@
     <img src='{{createPoll.photoRight}}' ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegImage + 'deg)',  'width': imgRightInfo.imgWidth + 'px', 'height': imgRightInfo.imgHeight + 'px', 'margin-left': imgRightInfo.positionLeft + 'px', 'margin-top': imgRightInfo.positionTop + 'px'}">
   </a>
 </div>
+
+ <button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepOption()">
+    NEXT
+ </button>
+
 </ion-slide>
 
 
@@ -159,6 +168,10 @@
 
 </div>
 
+<button ng-disabled="!showFinishButtonCreatePoll" ng-show="displayCreateButton" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="createPollFunction()">
+    CREATE
+ </button>
+
 </ion-slide>
 
 </ion-slide-box>
@@ -227,17 +240,5 @@
       <button ng-click="chooseRange()" class="buttonPopup button">OK</button>
     </p>
   </div>
-
-<button ng-disabled="!showNextButtonForCreatePoll" ng-show="displayNextButtonQuestion" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepPhoto()">
-    NEXT
- </button>
-
- <button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepOption()">
-    NEXT
- </button>
-
-  <button ng-disabled="!showFinishButtonCreatePoll" ng-show="displayCreateButton" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="createPollFunction()">
-    CREATE
- </button>
 
 </ion-modal-view>

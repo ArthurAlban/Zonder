@@ -20,7 +20,8 @@ $ionicModal.fromTemplateUrl('modals/pollModal.html', {
 $scope.openPollModal = function(poll) {
 	console.log("openPollModal");
 	$scope.pollToDisplay = poll;
-	$scope.pollToDisplay.gender = "mixte";
+	$scope.pollToDisplay.gender = "female";
+	$scope.pollToDisplay.range = "Monde";
 
 	console.log("1");
 	$scope.imgLeftInfoPollModal = $scope.setPositionImageInCommentsAndPollModal($scope.pollToDisplay.imageWidthLeft, $scope.pollToDisplay.imageHeightLeft);

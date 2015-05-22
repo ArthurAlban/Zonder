@@ -2,19 +2,55 @@
 
 <img id="closeCreateZonder" class="imgClick" ng-click="closeChooseGooglePhotoModal()" src="img/close.png">
 
-<form style="position:absolute;left:0;top:15%;">
+<!-- <form style="position:absolute;left:0;top:15%;">
 <div class="labelZonder">
       <img class="imgLeft" src="img/loupeGrey.png" width="25">
       <input class="input" name="search" type="search" ng-model="search" placeholder="What are you searching for" ng-maxlength="50">
-      <button ng-click="" type="submit" name="submit" style="font-size:10px;width:70px;height:30px" class="buttonPopup button imgRight">SEARCH</button>
+      <button class="button-clear" class="fontPseudoFriends" ng-click="getPhotoFromGoogle(search)" style="padding:0;position:absolute;left:85%;top:0;width:15%;height:30px;font-size:14px;color:#717070;text-align:center;"><b>Search</b></button>
+</div>
+</form>
+ -->
+
+<form style="position:absolute;left:0;top:15%;">
+<div class="item-input-inset">
+  <label class="item-input-wrapper" style="width:72vw;">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input class="fontSearch" name="search" type="search" ng-model="search" style="width:64vw;" placeholder="What are you searching for" ng-maxlength="50">
+  </label>
+  <button class="button button-clear fontPseudoFriends" ng-click="fillImageFromGoogle(search)" style="color:#ffffff;">
+    Search
+  </button>
 </div>
 </form>
 
-<div style="position:absolute;top:28%;width:100%;height:55%;border-top:1px solid #e8eaf1;border-bottom:1px solid #e8eaf1;">
-<img src="img/transparencyBackground.png">
+<div ng-show="showSliderGoogleSearch && !showNoFoundPicture" class="sample-show-hide" style="position:absolute;left:0;top:24%;width:100%;text-align:center">
+	<img ng-repeat="imageToInternet in tabImageToInternet" src="img/slider.png" width="8" style="margin-left:4px;" ng-class="{activeSliderCurrent: $index === currentSlider, activeSliderOther: $index !== currentSlider}">
 </div>
 
-<button ng-disabled="" ng-show="true" class="button buttonZonder buttonRegister" ng-click="" style="position:absolute;top:85%;">
+<div style="overflow:hidden;position:absolute;top:28%;width:100vw;height:55vh;border-top:1px solid #e8eaf1;border-bottom:1px solid #e8eaf1;">
+
+ <div ng-show="loadingImage" class="centeredContent card sample-show-hide" style="z-index:1000;width:42px;height:42px;position:absolute;top:50%;left:50%;margin-left:-21px;margin-top:-21px;background-color:rgba(0,0,0,0.6)">
+<ion-spinner class="spinnerLoading" icon="spiral"></ion-spinner>
+</div>
+
+ <p ng-show="showNoFoundPicture" class="sample-show-hide titlePopup" style="position:absolute;left:0;top:25%;color:#ffffff;font-size:14px;background: transparent">No pictures match, please try something else !</p>
+
+<ion-slide-box ng-if="showSliderGoogleSearch && !showNoFoundPicture" class="fade-in" delegate-handle="searchImageSlider" show-pager="false" style="position:absolute;top:0;width:100vw;height:55vh;" on-slide-changed="slideHasChangedInGoogleSearch($index)">
+
+<ion-slide ng-repeat="imageToInternet in tabImageToInternet" style="overflow:hidden;width:100vw;height:55vh;">
+
+ <p ng-show="!imageToInternet.load && !showNoFoundPicture" class="titlePopup" style="position:absolute;left:0;top:25%;color:#ffffff;font-size:14px;background: transparent">No more pictures match !</p>
+
+<img ng-style="{'width': imageToInternet.imgWidth + 'px', 'height': imageToInternet.imgHeight + 'px', 'margin-left': imageToInternet.positionLeft + 'px', 'margin-top': imageToInternet.positionTop + 'px'}" src={{imageToInternet.image}}>
+
+</ion-slide>
+</ion-slide-box>
+
+</div>
+
+<p ng-show="showExplenationSwipe && !showNoFoundPicture" class="sample-show-hide posExplicationSwipe">Swipe to change picture</p>
+
+<button ng-disabled="!showSliderGoogleSearch && showNoFoundPicture" class="button buttonZonder buttonRegister" ng-click="selectImage()" style="position:absolute;top:88%;">
   THIS
 </button>
 

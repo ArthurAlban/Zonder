@@ -61,7 +61,7 @@
 <div id="triangles"> <img style="width:100%" src="img/splashTriangles.png" ></div>
 
 <img src="img/menu.png" menu-toggle="left" id="posButtonMenu" class="imgClick sizeButtonImage">
-<img src="{{myPhoto}}" ng-click="showActionSheetPhotoSource()" class="profilImg">
+<img src="{{myPhoto}}" ng-click="goToProfile()" class="profilImg">
 <label class="fontBrandonBlack" id="posPseudoUser">{{myPseudo}}</label>
 
 <div class="divTransparency"></div>
@@ -92,7 +92,7 @@
 			<div class="col colHeader imgClick">
 				<div ng-click="goToSlide(2)" style="position:relative" class="ongletHeader">
 					<img src="img/friends.png" width="28" class="imgHeader">
-					<img style="position:absolute;top:6%;left:58%;" width="12" src="img/notification.png">
+					<img ng-if="requestFriends.length" style="position:absolute;top:6%;left:58%;" width="12" src="img/notification.png">
 					<span class="fontBrandonBlackMenu spanHeaderFriends">Friends</span>
 
 				</div>
@@ -218,6 +218,10 @@
 <ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
 <ion-refresher pulling-icon="ion-chevron-down" spinner="spiral" on-refresh="pullToRefresh()"></ion-refresher>
 
+<div ng-show="!displayPolls.length" class="sample-show-hide" style="position:relative;left:10%;top:5vh;width:80%;height:30px;text-align:center;">
+    <span class="titlePopup" style="width:100%;color:#939191;font-size:14px;background: transparent">You have no voted zonder yet !</span>
+</div>
+
 <div ng-repeat="poll in displayPolls" ng-click="openPollModal(poll)" class="divContentZonder marginTopPullUp">
 
 	<div class="headerZonder">
@@ -227,7 +231,9 @@
 		<div class="contentHeader">
 			<div class="contentHeaderHeader">
 				<p class="sizeContentPseudo fontPseudoZonder"> {{poll.authorPseudo}} </p>
-				<p class="posTimer fontTimeZonder"> {{poll.timeElapsedHours}}h{{poll.timeElapsedMinutes}} ago </p>
+				<p ng-if="!poll.timeElapsedDays" class="posTimer fontTimeZonder"> {{poll.timeElapsedHours}}h{{poll.timeElapsedMinutes}} ago </p>
+				<p ng-if="poll.timeElapsedDays<31" class="posTimer fontTimeZonder"> {{poll.timeElapsedDays}} days ago </p>
+				<p ng-if="poll.timeElapsedDays>31" class="posTimer fontTimeZonder"> months ago </p>
 			</div>
 			<div class="contentHeaderFooter">
 				<p class="fontQuestionZonder questionPosStyle"> {{poll.question}}</p>
@@ -273,10 +279,6 @@
 			<div class="fontVoteCommentsZonder">{{poll.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
 			<div class="fontVoteCommentsZonder marginComments">{{poll.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
-		<!-- <div class="contentIconFavouriteComments"> 
-			<img width="18" class="marginIconComments" src="img/commentsIcon.png">
-		</div> -->
-
 	</div>
 	<div class="separatorZonder"></div>
 </div>
@@ -293,6 +295,10 @@
 <ion-slide ng-controller="friendsCtrl" class="heightIonSlide">
 
 <ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
+
+<div ng-show="!displayRequestFriends.length && !displayFriends.length" class="sample-show-hide" style="position:relative;left:10%;top:5vh;width:80%;height:30px;text-align:center;">
+    <span class="titlePopup" style="width:100%;color:#939191;font-size:14px;background: transparent">You have no friends yet, find them !</span>
+</div>
 
 <div ng-repeat="requestFriend in displayRequestFriends" class="contentItemFriend">
 	<div class="contentFriend">
@@ -314,22 +320,6 @@
 		<img width="5" class="imgClick" ng-click="showActionSheetRequestFriends(requestFriend.id)" src="img/actionSheetVertical.png">
 	</div>
 </div>
-
-<!-- <div ng-repeat="addFriend in displayAddFriends" class="contentItemFriend">
-<img width="46" height="46" style="border:1px solid #dadada;" class="roundImage" src="{{addFriend.photo}}">
-<img class="posNotification" width="10" src="img/notification.png">
-<div class="contentTextFriend">
-<p class="fontPseudoNewFriends"> {{addFriend.pseudo}} 
-<span class="fontNewFriendsInformation">received your invitation</span> 
-</p>
-<div class="contentFlexFlexStart"> 
-<p class="fontPollsFriends">{{addFriend.nbPolls}} <span class="fontPollsFriendsText">zonders</span></p>
-<div style="margin-left:2px;margin-right:2px"class="fontPollsFriendsText">/</div>
-<p class="fontPollsFriends">{{addFriend.nbFriends}} <span class="fontPollsFriendsText">friends</span></p>
-</div>
-<p class="fontFooterFriends" style="margin-top:10px"> See {{addFriend.pseudo}}’s profile </p>
-</div>
-</div> -->
 
 <div ng-repeat="friend in displayFriends" class="contentItemFriend">
 	<div class="contentFriend">

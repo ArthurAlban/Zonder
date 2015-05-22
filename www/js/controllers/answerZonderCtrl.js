@@ -234,9 +234,10 @@ $scope.checkLengthAndGetMorePoll = function(){
 	}
 };
 
-window.setTimeout(function(){
-  $scope.firstLoadPoll();
-}, 2000);
+$scope.firstLoadPoll();
+// window.setTimeout(function(){
+//   $scope.firstLoadPoll();
+// }, 2000);
 
 ///////////// Action sheet option poll ////////////
 $scope.showActionsheetAnswerZonderUp = function() {
