@@ -1,14 +1,14 @@
-zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal, $ionicActionSheet, $cordovaCamera, $cordovaKeyboard) {
+zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal, $ionicActionSheet, $cordovaCamera, $cordovaPush, $cordovaKeyboard) {
   $scope.animateTriangles = false;
-	$ionicPlatform.ready(function() {
-		$scope.animateTriangles = true;
-		$scope.$apply();
-	});
+  $ionicPlatform.ready(function() {
+    $scope.animateTriangles = true;
+    $scope.$apply();
+  });
 
 	// Called to navigate to the main app
-   $scope.toLogin = function() {
+ $scope.toLogin = function() {
    $ionicSlideBoxDelegate.$getByHandle('toolTipSlider').slide(3);
-  };
+ };
 
   // Called each time the slide changes
   $scope.slideChanged = function(index) {
@@ -23,24 +23,45 @@ zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootSco
   $scope.user.mail = "";
   $scope.user.pass = "";
 
-$scope.setDisplayMailErrorFalse = function(){
-  $scope.displayMailError = false;
-};
+  $scope.setDisplayMailErrorFalse = function(){
+    $scope.displayMailError = false;
+  };
 
-$scope.login = function (mail, password) {
- if(mail !== undefined && password !== undefined) {
-    /*  $rootScope.loadingIndicator = $ionicLoading.show({
-        template: "<div class='loadingTest'></div>",
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 600,
-        showDelay: 500
-      });*/
-    UserService.logIn(mail, password).then(function(d){
-      $window.localStorage['isLog'] = "true";
-      $window.localStorage['token'] = d.token;
-      $scope.displayMailError = false;
-      UserService.getUserInfoForLocalStorage().then(function(data){
+/*
+  $scope.unregisterFromApp = function(){
+   $ionicPlatform.ready(function () {
+   $cordovaPush.unregister().then(function(result) {
+      // Success!
+      console.log("unregisterSSSS " + result);
+    }, function(err) {
+      // Error
+    });
+ }, function(err){
+  console.log("err");
+ });
+
+ };
+ */
+ $scope.login = function (mail, password) {
+  if(mail !== undefined && password !== undefined) {
+      // $rootScope.loadingIndicator = $ionicLoading.show({
+      //   template: "<div class='loadingTest'></div>",
+      //   animation: 'fade-in',
+      //   showBackdrop: true,
+      //   maxWidth: 600,
+      //   showDelay: 500
+      // });
+UserService.logIn(mail, password).then(function(d){
+  $window.localStorage['isLog'] = "true";
+  $window.localStorage['token'] = d.token;
+  // $scope.displayMailError = false;
+  $ionicPlatform.ready(function() {
+    $cordovaPush.register({badge: true, sound: true, alert: true}).then(function(result) {
+      $window.localStorage['deviceToken'] = result;
+      UserService.registerDevice({device: result}).then(function(){
+
+       UserService.getUserInfoForLocalStorage().then(function(data){
+
         $window.localStorage['pseudo'] = data.pseudo;
         $window.localStorage['email'] = data.email;
         $window.localStorage['gender'] = data.gender;
@@ -59,17 +80,32 @@ $scope.login = function (mail, password) {
         }
         $scope.toHome();
         //$rootScope.loadingIndicator.hide();
-        }, function(m){
-        });
-      },function(status) {
-        console.log("impossible de se loguer");
-        $scope.displayMailError = true;
-        $window.setTimeout(function() { 
-          $scope.displayMailError = false;
-          $scope.$apply();
-        }, 3000);
+      }, function(m){
+
       });
+
+
+     },function(status) {
+      console.log("impossible de se loguer");
+      //$scope.displayMailError = true;
+      // $window.setTimeout(function() { 
+      //   $scope.displayMailError = false;
+      //   $scope.$apply();
+      // }, 3000);
+    });
+
+}, function (err) {
+  console.log(err);
+});
+
+});
+
+}, function(message){
+  console.log(message);
+});
+
 }
+
 };
 
 $scope.validLogin = function() {
@@ -77,11 +113,11 @@ $scope.validLogin = function() {
   var rePass = new RegExp("^[a-zA-Z0-9]{5,50}$");
   if(reMail.test($scope.user.mail) && rePass.test($scope.user.pass)) {
    // $scope.userData = angular.copy(user);
-    $scope.login($scope.user.mail, $scope.user.pass);
-  }
-  else{
-    $scope.displayMailError = true;
-  }
+   $scope.login($scope.user.mail, $scope.user.pass);
+ }
+ else{
+  $scope.displayMailError = true;
+}
 
 };  
 
@@ -90,8 +126,9 @@ $scope.isUnchanged = function (user){
 };
 
 $scope.toHome = function(){
-  console.log("log");
+  console.log("toHome");
   $state.go('home');
+    console.log("toHome2");
 };
 
 ///////////// forgot pass /////////////////
@@ -149,15 +186,15 @@ $scope.sendNewPassword = function(){
     if(data.result == "found"){ 
       UserService.resetPassword(mail).then(function(data){
         $scope.closeForgotPasswordModal();
-    }, function(msg){
-      $scope.displayMailerror = true;
-      console.log("msg " + msg);
-    });
-  }
-},function(status) {
-  $scope.displayMailerror = true;
-  console.log("impossible de vérifier l'email");
-});
+      }, function(msg){
+        $scope.displayMailerror = true;
+        console.log("msg " + msg);
+      });
+    }
+  },function(status) {
+    $scope.displayMailerror = true;
+    console.log("impossible de vérifier l'email");
+  });
 };
 
 
@@ -290,7 +327,6 @@ $scope.nextStepRegister = function(){
   }
 };
 
-
 $scope.checkEmail = function(){
   if($scope.userData.email){
     if($scope.userData.email.length){
@@ -341,21 +377,21 @@ $scope.checkPasswords = function(){
 };
 
 $scope.checkPasswordIsValid = function(){
-    var rePass = new RegExp("^[a-zA-Z0-9]{5,50}$");
-    if($scope.userData.password.length > 5){
-      if(rePass.test($scope.userData.password)){
-        $scope.passwordIsValid = true;
-        $scope.passwordIsValidDirty = true;
-      }
-      else{
-        $scope.passwordIsValid = false;
-        $scope.passwordIsValidDirty = false;
-      }
+  var rePass = new RegExp("^[a-zA-Z0-9]{5,50}$");
+  if($scope.userData.password.length > 5){
+    if(rePass.test($scope.userData.password)){
+      $scope.passwordIsValid = true;
+      $scope.passwordIsValidDirty = true;
     }
     else{
-        $scope.passwordIsValid = false;
-        $scope.passwordIsValidDirty = false;
+      $scope.passwordIsValid = false;
+      $scope.passwordIsValidDirty = false;
     }
+  }
+  else{
+    $scope.passwordIsValid = false;
+    $scope.passwordIsValidDirty = false;
+  }
 };
 
 $scope.checkPseudo = function(){
@@ -462,10 +498,11 @@ $scope.checkSecondStep = function(){
 };
 
 $scope.toHomeSignUp = function(){
+  console.log("toHomeSignUp");
   $state.go('home');
   $scope.closeRegisterModal();
 };
-
+/*
 $scope.signUp = function() {
   $scope.userInfo.password = $scope.userData.password;
   $scope.userInfo.email = $scope.userData.email;
@@ -483,43 +520,56 @@ $scope.signUp = function() {
   else {
     $scope.userInfo.gender = false;
   }
-    UserService.signUp($scope.userInfo).then(function(){
-      UserService.sendSignUpMail($scope.userInfo.email, $scope.userInfo.password).then(function(){
-        UserService.logIn($scope.userInfo.email, $scope.userInfo.password).then(function(d){
-          $window.localStorage['isLog'] = "true";
-          $window.localStorage['token'] = d.token;
-          UserService.getUserInfoForLocalStorage().then(function(data){
-            $window.localStorage['pseudo'] = data.pseudo;
-            $window.localStorage['email'] = data.email;
-            $window.localStorage['gender'] = data.gender;
-            $window.localStorage['photo'] = data.photo;
-            if(data.notifFriends) {
-              $window.localStorage['notifFriends'] = "true";
-            }
-            else {
-              $window.localStorage['notifFriends'] = "false";
-            }           
-            if(data.notifPolls) {
-              $window.localStorage['notifPolls'] = "true";
-            }
-            else {
-              $window.localStorage['notifPolls'] = "false";
-            }
-            $scope.toHomeSignUp();
-          }, function(msg){
-            console.log(msg);
+  UserService.signUp($scope.userInfo).then(function(){
+    UserService.sendSignUpMail($scope.userInfo.email, $scope.userInfo.password).then(function(){
+      UserService.logIn($scope.userInfo.email, $scope.userInfo.password).then(function(d){
+        $window.localStorage['isLog'] = "true";
+        $window.localStorage['token'] = d.token;
+        $ionicPlatform.ready(function () {
+         $cordovaPush.register({badge: true, sound: true, alert: true}).then(function (result) {
+          UserService.registerDevice({device: result}).then(function(){
+            UserService.getUserInfoForLocalStorage().then(function(data){
+              $window.localStorage['pseudo'] = data.pseudo;
+              $window.localStorage['email'] = data.email;
+              $window.localStorage['gender'] = data.gender;
+              $window.localStorage['photo'] = data.photo;
+              if(data.notifFriends) {
+                $window.localStorage['notifFriends'] = "true";
+              }
+              else {
+                $window.localStorage['notifFriends'] = "false";
+              }           
+              if(data.notifPolls) {
+                $window.localStorage['notifPolls'] = "true";
+              }
+              else {
+                $window.localStorage['notifPolls'] = "false";
+              }
+              $scope.toHomeSignUp();
+            }, function(msg){
+              console.log(msg);
+            });
+          },function(m){
+            console.log(m);
           });
-        },function(msg){
-          console.log(msg);
+        }, function(){
+          console.log("error in $cordovaPushregister");
         });
-      },function(m){
-        console.log("Impossible de sendemail");
-      });
+});
+
+
+
+},function(msg){
+  console.log(msg);
+});
+},function(m){
+  console.log("Impossible de sendemail");
+});
 },function(status){
   console.log("Impossible de signUp");
 });
 
 };
-
+*/
 
 });

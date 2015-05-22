@@ -7922,7 +7922,7 @@ a.button {
   border: 0 none !important;
   width: 100%;
   left: 1px;
-  -webkit-transition: left 0.5s ease; }
+  -webkit-transition: left 0.5s linear; }
 
 .labelZonderHide {
   position: relative;
@@ -7931,7 +7931,7 @@ a.button {
   border: 0 none !important;
   width: 100%;
   left: 101%;
-  -webkit-transition: left 0.5s ease; }
+  -webkit-transition: left 0.5s linear; }
 
 .labelZonderFriendsHide {
   position: relative;
@@ -7940,7 +7940,7 @@ a.button {
   border: 0 none !important;
   width: 100%;
   left: -100%;
-  -webkit-transition: left 0.5s ease; }
+  -webkit-transition: left 0.5s linear; }
 
 .iconZonderLeft {
   margin-left: 13px; }

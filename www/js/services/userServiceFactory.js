@@ -36,6 +36,16 @@ zonder.factory('UserService', function($http, $q) {
          });
             return deferred.promise;
         },
+        registerDevice: function(device){
+            var deferred = $q.defer();
+            $http.post("http://192.168.240.4" + '/user/registerDevice', {device : device})
+            .success(function(data){
+                deferred.resolve(data);
+            }).error(function(data, status){
+                deferred.reject(status);
+            });
+            return deferred.promise;
+        },
         logOut: function() {
             var deferred = $q.defer();
             $http.post("http://192.168.240.4" + '/user/logout')
@@ -332,6 +342,26 @@ checkPseudo: function(pseudo){
 getImageFromGoogle: function(query){
     var deferred = $q.defer();
     $http.post("http://192.168.240.4" + '/user/getImageFromGoogle', {query : query})
+    .success(function(data){
+        deferred.resolve(data);
+    }).error(function(data, status){
+        deferred.reject(status);
+    });
+    return deferred.promise;
+},
+sendNotif: function(){
+    var deferred = $q.defer();
+    $http.post("http://192.168.240.4" + '/user/sendNotifToAlban')
+    .success(function(data){
+        deferred.resolve(data);
+    }).error(function(data, status){
+        deferred.reject(status);
+    });
+    return deferred.promise;
+},
+unregisterDevice: function(device){
+    var deferred = $q.defer();
+    $http.post("http://192.168.240.4" + '/user/unregisterDevice', {device : device})
     .success(function(data){
         deferred.resolve(data);
     }).error(function(data, status){

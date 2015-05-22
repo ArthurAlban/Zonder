@@ -1,4 +1,4 @@
-zonder.controller('parameterCtrl', function($window, $scope, $state, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, UserService) {
+zonder.controller('parameterCtrl', function($window, $scope, $state, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, UserService, $ionicPlatform, $cordovaPush) {
 	
 	$scope.sliderPollsProfile = true;
 	$scope.sliderFriendsProfile = false;
@@ -338,23 +338,40 @@ $scope.changePass = function(){
 };
 
 ////////////// log out /////////////////
-
 $scope.logOut = function() {
   if($window.localStorage['isLog'] == "true") {
-    UserService.logOut().then(function() {
-      $window.localStorage['token'] = "";
-      $window.localStorage['isLog'] = "false";
-      $window.localStorage['pseudo'] = "";
-      $window.localStorage['email'] = "";
-      $window.localStorage['gender'] = "";
-      $window.localStorage['photo'] = "";
-      $window.localStorage['notifFriends'] = "";
-      $window.localStorage['notifPolls'] = "";
-      $state.go('animatedSplashscreen');
-    },function(status) {
-      console.log("Logout Impossible");
-    }); 
-  }
+   $ionicPlatform.ready(function () {
+    var options = {};
+    $cordovaPush.unregister(options).then(function(result) {
+        console.log("tokeneeeee " + $window.localStorage['deviceToken']);
+
+      UserService.unregisterDevice($window.localStorage['deviceToken']).then(function(){
+        UserService.logOut().then(function() {
+
+          $window.localStorage['token'] = "";
+          $window.localStorage['isLog'] = "false";
+          $window.localStorage['pseudo'] = "";
+          $window.localStorage['email'] = "";
+          $window.localStorage['gender'] = "";
+          $window.localStorage['photo'] = "";
+          $window.localStorage['notifFriends'] = "";
+          $window.localStorage['notifPolls'] = "";
+          $window.localStorage['deviceToken'] = "";
+
+          $state.go('animatedSplashscreen');
+          
+
+        },function(status) {
+          console.log("Logout Impossible");
+        });
+      }, function(satus){
+        console.log("error in unregisterDevice" + msg);
+      }); 
+    }, function(err) {
+      console.log("error in cordovaPush.unregister");
+    });
+  });
+ }
 };
 
 

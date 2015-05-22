@@ -7,10 +7,10 @@
 
 <ion-slide>
 
-<form id="contentTextAreaCreateZonder">
-  <textarea type="text" class="questionCreateZonder" ng-change="charactersLeft()" id="textAreaQuestionCreateZonder" ng-model="createPoll.question" rows="8" cols="18" maxlength="90" placeholder="WHAT IS YOUR QUESTION ?">
-  </textarea>
-</form>
+<div id="contentTextAreaCreateZonder">
+    <textarea class="questionCreateZonder" ng-change="charactersLeft()" id="textAreaQuestionCreateZonder" ng-model="createPoll.question" rows="8" cols="18" maxlength="90" placeholder="WHAT IS YOUR QUESTION ?">
+    </textarea>
+</div>
 
 <div id="contentCharactersLeftCreateZonder">
   <span class="fontCharacters">Characters left: {{charLeft}}</span>
