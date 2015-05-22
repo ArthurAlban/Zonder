@@ -12,6 +12,7 @@ zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
   $ionicPlatform.ready(function() {
     $cordovaSplashscreen.hide();  
 
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
   if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -54,6 +55,7 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   // if none of the above states are matched, use this as the fallback
 
   if(window.localStorage['isLog'] == "true") {
+    
     $urlRouterProvider.otherwise('/home');
   }
   else{

@@ -4,7 +4,6 @@ zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ion
     $state.go('showProfile');
   };
 
-
   $scope.myPhoto = $window.localStorage['photo'];
   $scope.myPseudo = $window.localStorage['pseudo'];
 
@@ -302,8 +301,13 @@ $scope.createPoll.range = "";
 $scope.charLeft = 90;
 
 $scope.charactersLeft = function(){
-  $scope.charLeft = (90 - $scope.createPoll.question.length);
-  $scope.createPoll.question = $scope.createPoll.question.toLowerCase();
+  var resSplit = $scope.createPoll.question.split("\n");
+  var nbLineBreak = resSplit.length - 1;
+  /*if($scope.createPoll.question.length == 0 || $scope.createPoll.question.length == 1){
+    nbLineBreak = 0;
+  }*/
+  console.log("nbLineBreak" + nbLineBreak);
+  $scope.charLeft = (90 - ($scope.createPoll.question.length + nbLineBreak));
   if($scope.createPoll.question.length > 2){
     $scope.showNextButtonForCreatePoll = true;
   }
@@ -535,9 +539,18 @@ $scope.setWorldPoll  = function() {
   $scope.checkOptionInCreatePoll();
 };
 
+$scope.sendNotif = function(){
+  UserService.sendNotif().then(function(data){
+    console.log("Cest envoyé");
+  }, function(status){
+    console.log("Cest pas envoyé");
+  });
+};
+
 $scope.getFriendsCreatePoll = function(callback){
   UserService.getAllFriends().then(function(data){
     $scope.friends = data.friends;
+    console.log("JSON.stringify(friends)" + JSON.stringify(data.friends));
     angular.forEach($scope.friends, function(f, k){
       if(!f.gender){
         f.photo = "img/profilTest.png";
@@ -898,18 +911,19 @@ $scope.resizeImageHeightVoteAndZonder = function(imgWidth, imgHeight, divWidth, 
 
 
 /////////////// create poll ///////////////////////
-
 $scope.createPollFunction = function() {
   if($scope.createPoll.range == "Amis"){
     for(friend in $scope.friends){
       if($scope.friends[friend].selected){
-        $scope.friendsConcerned.push($scope.friends[friend].id);
+        $scope.friendsConcerned.push({"id":$scope.friends[friend].id});
       }
     }
   }
   else if($scope.createPoll.range == "Monde"){
     $scope.createPoll.usersConcerned = ($scope.hundredPeopleRange*100) + ($scope.decadePeopleRange*10);
   }
+  $scope.createPoll.question = $scope.createPoll.question.replace(/(\r\n|\n|\r)/gm," ");
+  $scope.createPoll.question = $scope.createPoll.question.toLowerCase();
 
   $scope.createPoll.timePoll = ($scope.hours*3600) + ($scope.decadeMinutes*600);
 
@@ -1421,6 +1435,5 @@ $scope.getTimeHoursMinutesFromPoll = function(poll){
   }
   return pollTime;
 };
-
 
 });
