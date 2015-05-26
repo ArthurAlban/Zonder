@@ -56,9 +56,9 @@ UserService.logIn(mail, password).then(function(d){
   $window.localStorage['token'] = d.token;
   // $scope.displayMailError = false;
   $ionicPlatform.ready(function() {
-    $cordovaPush.register({badge: true, sound: true, alert: true}).then(function(result) {
-      $window.localStorage['deviceToken'] = result;
-      UserService.registerDevice({device: result}).then(function(){
+    // $cordovaPush.register({badge: true, sound: true, alert: true}).then(function(result) {
+    //   $window.localStorage['deviceToken'] = result;
+    //   UserService.registerDevice({device: result}).then(function(){
 
        UserService.getUserInfoForLocalStorage().then(function(data){
 
@@ -84,25 +84,27 @@ UserService.logIn(mail, password).then(function(d){
 
       });
 
+  //    }, function (err) {
+  //     //registerDevice
+  //     console.log(err);
+  //   });
 
-     },function(status) {
-      console.log("impossible de se loguer");
+  //   }, function(message){
+  //   //registerCordova
+  //   console.log(message);
+  // });
+
+});
+
+},function(status) {
+  console.log("impossible de se loguer");
       //$scope.displayMailError = true;
       // $window.setTimeout(function() { 
       //   $scope.displayMailError = false;
       //   $scope.$apply();
       // }, 3000);
-    });
-
-}, function (err) {
-  console.log(err);
 });
 
-});
-
-}, function(message){
-  console.log(message);
-});
 
 }
 
@@ -128,7 +130,7 @@ $scope.isUnchanged = function (user){
 $scope.toHome = function(){
   console.log("toHome");
   $state.go('home');
-    console.log("toHome2");
+  console.log("toHome2");
 };
 
 ///////////// forgot pass /////////////////
