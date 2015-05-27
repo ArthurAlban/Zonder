@@ -111,19 +111,10 @@
 <img ng-class="{photoLineImpair:friendWhoVotedLeft.ligneImpair,photoLineSpecific:friendWhoVotedLeft.firstPositionPair,photoLinePair2:friendWhoVotedLeft.position}" style="width:12vw;height:12vw;border-radius:100%;border:2px solid #ffffff;" src={{friendWhoVotedLeft.photo}} ng-repeat="friendWhoVotedLeft in pollToDisplay.whoVotedLeft">
 </ion-scroll>
 
-<!-- <div ng-show="pollToDisplay.whoVotedWhat.length && displaySectionVotes" class="sample-show-hide"  style="border:1px solid red;width:100%;position:absolute;left:0;top:60%;max-height:30%;overflow:hidden;display: -webkit-flex;-webkit-align-items: flex-start;-webkit-justify-content: flex-start;">
-<div style="display: -webkit-flex;border:1px solid red; width:10px;height:10px"></div>
-<div style="display: -webkit-flex;border:1px solid red; width:10px;height:10px"></div>
-<div style="display: -webkit-flex;border:1px solid red; width:10px;height:10px"></div>
-<div style="display: -webkit-flex;border:1px solid red; width:10px;height:10px"></div>
-<div> -->
-
-<ion-scroll ng-show="pollToDisplay.whoVotedWhat.length && displaySectionVotes" class="sample-show-hide" has-bouncing="false" direction="y" zooming="false" delegate-handle="vertical" style="border:1px solid red;width:100%;position:absolute;left:0;top:60%;max-height:30%;overflow:hidden;">
-
+<ion-scroll ng-show="pollToDisplay.whoVotedWhat.length && displaySectionVotes" class="sample-show-hide" has-bouncing="false" direction="y" zooming="false" delegate-handle="vertical" style="width:100%;position:absolute;left:0;top:60%;max-height:30%;overflow:hidden;">
 <img ng-repeat="friendWhoVotedRight in pollToDisplay.whoVotedRight"
 style="width:12vw;height:12vw;border:2px solid #ffffff;border-radius:100%" ng-class="{photoLineImpair:friendWhoVotedRight.ligneImpair,photoLineSpecific:friendWhoVotedRight.firstPositionPair,photoLinePair2:friendWhoVotedRight.position}" src={{friendWhoVotedRight.photo}}>
-
 </ion-scroll>
-<!--  -->
+
 
 </ion-modal-view>

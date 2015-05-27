@@ -91,7 +91,6 @@ zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ion
       buttons: [
       { text: 'Album <i class="icon ion-images"></i>' },
       { text: 'Camera <i class="icon ion-camera"></i>' },
-      { text: 'Internet <i class="icon ion-earth"></i>' },
       ],
       cancelText: 'Cancel',
       cancel: function() {
@@ -104,9 +103,6 @@ zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ion
         if(index == 1){
           $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
           $scope.changeProfilePicture();
-        }
-        if(index == 2){
-          $window.open("https://www.google.com", "_system");
         }
         return true;
       }
@@ -335,7 +331,8 @@ $scope.friendsConcerned = new Array();
 $scope.friends = new Array();
 $scope.friendsAreLoaded = false;
 
-$scope.search = "";
+$scope.search = {};
+$scope.search.googleSearch = "";
 
 $scope.createPoll = {};
 $scope.createPoll.question = "";
@@ -999,6 +996,8 @@ $scope.createPollFunction = function() {
   $scope.createPoll.timePoll = ($scope.hours*3600) + ($scope.decadeMinutes*600);
 
   $scope.createPoll.friendsConcerned = $scope.friendsConcerned;
+  $scope.createPoll.namePhotoLeft = $scope.createPoll.namePhotoLeft.toUpperCase();
+  $scope.createPoll.namePhotoRight = $scope.createPoll.namePhotoRight.toUpperCase();
   $scope.createPoll.question = $scope.createPoll.question.charAt(0).toUpperCase() + $scope.createPoll.question.slice(1);
   $scope.closeCreateZonderModal();
   PollService.createPoll($scope.createPoll).then(function(data) {
@@ -1070,6 +1069,9 @@ $scope.initTabImageToInternet = function(){
   $scope.showExplenationSwipe = true;
   $scope.showNoFoundPicture = false;
   $scope.tabImageToInternet = new Array();
+  console.log("lol" + $scope.search.googleSearch);
+  $scope.search.googleSearch = "";
+  console.log("lol" + $scope.search.googleSearch);
   for(i = 0; i<10; i++){
     var image = {};
     $scope.currentSlider = 0;
@@ -1196,6 +1198,7 @@ $scope.queriesExecInfosAndResizeImage= function(callback){
 
 $scope.fillImageFromGoogle = function(query){
   if(query){
+    console.log("query" + query);
     $scope.loadingImage = true;
     async.series([function(callback){$scope.getImageFromGoogle(query, callback)}, $scope.queriesExecInfosAndResizeImage], 
       function(err, result){

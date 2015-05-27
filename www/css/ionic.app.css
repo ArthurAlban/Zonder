@@ -7930,7 +7930,7 @@ a.button {
   margin-bottom: 2px;
   border: 0 none !important;
   width: 100%;
-  left: 101%;
+  left: 100%;
   -webkit-transition: left 0.5s linear; }
 
 .labelZonderFriendsHide {
@@ -8716,7 +8716,7 @@ a.button {
 
 .borderSelected {
   border-radius: 100%;
-  border: 2px solid #35c3c1; }
+  border: 2px solid #f79f03; }
 
 .fontYourOption {
   color: #ffffff;
@@ -8926,11 +8926,11 @@ a.button {
 
 .optionTranslateUp {
   -webkit-transform: translateY(0vh);
-  -webkit-transition: all 0.5s linear; }
+  -webkit-transition: all 0.5s ease; }
 
 .optionTranslateDown {
   -webkit-transform: translateY(calc( 50vh + 150px));
-  -webkit-transition: all 0.5s linear; }
+  -webkit-transition: all 0.5s ease; }
 
 #closeTimePicker {
   position: absolute;
@@ -9067,11 +9067,11 @@ a.button {
 
 .translateLoadingFriendsHide {
   -webkit-transform: translateY(0vh);
-  -webkit-transition: all 1s ease; }
+  -webkit-transition: all 3s ease; }
 
 .translateLoadingFriendsShow {
   -webkit-transform: translateY(10vh);
-  -webkit-transition: all 1s ease; }
+  -webkit-transition: all 3s ease; }
 
 /*.translate-down{
 -webkit-animation-delay: 0.5s;
@@ -9103,11 +9103,11 @@ a.button {
 */
 .scaleLoadingFriendsDown {
   -webkit-transform: scale(0);
-  -webkit-transition: all 0.5s ease; }
+  -webkit-transition: all 2s ease; }
 
 .scaleLoadingFriendsUp {
   -webkit-transform: scale(1);
-  -webkit-transition: all 0.5s ease; }
+  -webkit-transition: all 2s ease; }
 
 /*// animation de scale 
 .scale-out{

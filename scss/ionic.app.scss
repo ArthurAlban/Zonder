@@ -434,7 +434,7 @@ height:60px !important;
 margin-bottom:2px;
 border: 0 none !important;
 width:100%;
-left:101%;
+left:100%;
 -webkit-transition: left 0.5s linear;
 }
 
@@ -1451,7 +1451,7 @@ border-radius:100%;
 }
 .borderSelected {
 border-radius:100%;
-border:2px solid rgb(53,195,193);
+border:2px solid rgb(247,159,3);
 }
 
 .fontYourOption{
@@ -1690,12 +1690,12 @@ height: 250px;
 
 .optionTranslateUp{
 -webkit-transform: translateY(0vh); 
--webkit-transition: all 0.5s linear;
+-webkit-transition: all 0.5s ease;
 }
 
 .optionTranslateDown{
 -webkit-transform: translateY(calc( 50vh + 150px )); 
--webkit-transition: all 0.5s linear;
+-webkit-transition: all 0.5s ease;
 }
 
 

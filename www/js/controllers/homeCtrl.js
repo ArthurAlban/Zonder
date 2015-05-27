@@ -493,7 +493,7 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 				window.setTimeout(function(){
 				$scope.loadingFriends = false;
 				$scope.$apply();
-			}, 2000);
+			}, 4000);
 
 				$scope.$apply();
 			});
@@ -518,7 +518,7 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 			window.setTimeout(function(){
 				$scope.loadingFriends = false;
 				$scope.$apply();
-			}, 2000);
+			}, 4000);
 
 			
 			$scope.$apply();
