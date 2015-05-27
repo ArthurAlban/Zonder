@@ -55,6 +55,7 @@ $scope.nbLoads = 0;
 $scope.displayPolls = new Array();
 $scope.displayInfiniteScroll = false;
 
+$scope.loadingPolls = true;
 
 $scope.firstBufferPolls = function(callback){
 	if(!$scope.displayPolls.length){
@@ -96,41 +97,41 @@ $scope.getUserAndPhotosInfos = function(pollArray, callback){
 };
 
 $scope.getUsersInfosPolls = function(pollArray, callback){
-  angular.forEach(pollArray, function(poll, key){
-    var q = function(callback){
-      UserService.getFriendInfoFromId(poll.authorId).then(function(d){
-        angular.forEach(pollArray, function(p, k){
-          if(p.id == poll.id){
-            p.authorPseudo = d.pseudo;
-          }
-        });
-        callback();
-      }, function(status){
-        console.log("Impossible de récuperer les infos pour l'utilisateurs");
-      });
-    };
-    $scope.queriesForUserInfoPollsView.push(q);
-  });
-  callback();
+	angular.forEach(pollArray, function(poll, key){
+		var q = function(callback){
+			UserService.getFriendInfoFromId(poll.authorId).then(function(d){
+				angular.forEach(pollArray, function(p, k){
+					if(p.id == poll.id){
+						p.authorPseudo = d.pseudo;
+					}
+				});
+				callback();
+			}, function(status){
+				console.log("Impossible de récuperer les infos pour l'utilisateurs");
+			});
+		};
+		$scope.queriesForUserInfoPollsView.push(q);
+	});
+	callback();
 };
 
 $scope.getUsersPhotoPolls = function(pollArray, callback){
-  angular.forEach(pollArray, function(poll, key){
-    var q = function(callback){
-      UserService.getFriendPhotoFromId(poll.authorId).then(function(d){
-        angular.forEach(pollArray, function(p, k){
-          if(p.id == poll.id){
-            p.authorPhoto = d.photo;
-          }
-        });
-        callback();
-      }, function(status){
-        console.log("Impossible de récuperer les infos pour l'utilisateurs");
-      });
-    };
-    $scope.queriesForUserPhotoPollsView.push(q);
-  });
-  callback();
+	angular.forEach(pollArray, function(poll, key){
+		var q = function(callback){
+			UserService.getFriendPhotoFromId(poll.authorId).then(function(d){
+				angular.forEach(pollArray, function(p, k){
+					if(p.id == poll.id){
+						p.authorPhoto = d.photo;
+					}
+				});
+				callback();
+			}, function(status){
+				console.log("Impossible de récuperer les infos pour l'utilisateurs");
+			});
+		};
+		$scope.queriesForUserPhotoPollsView.push(q);
+	});
+	callback();
 };
 
 /// comparer id toppolls et id data && vérifier meme taille si pareil alors 304 si un différent alors 200
@@ -211,6 +212,7 @@ $scope.verifiyChangeAndUpdateFirstTime = function(callback){
 
 
 $scope.loadPollsCtrl = function(isLoadMorePoll){
+	$scope.loadingPolls = true;
 	if(isLoadMorePoll){
 		$scope.nbLoads++;
 		async.series([$scope.verifiyChangeAndUpdate],
@@ -220,6 +222,10 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 				$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
 				$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
 				$scope.$broadcast('scroll.infiniteScrollComplete');
+				window.setTimeout(function(){
+					$scope.loadingPolls = false;
+					$scope.$apply();
+				}, 2000);
 				$scope.$apply();
 			});
 	}
@@ -235,6 +241,10 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 				if($scope.displayPolls.length > 4){
 					$scope.displayInfiniteScroll = true;
 				}
+				window.setTimeout(function(){
+					$scope.loadingPolls = false;
+					$scope.$apply();
+				}, 2000);
 				$scope.$apply();
 			});
 	}
@@ -242,20 +252,26 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 
 
 $scope.pullToRefresh = function(){
-	$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
-	$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
-	$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
-	$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
-	async.series([function(callback){$scope.getPollsInfos($scope.displayPolls, callback);}, 
-		$scope.queriesExecPollsInfos,
-		],
-		function(err, res){
-			$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
-			$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
-			$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
-			$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
-			$scope.$broadcast('scroll.refreshComplete');
-		});
+	if(!$scope.loadingPolls){
+		console.log("pullToRefresh");
+		$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
+		$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
+		$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
+		$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
+		async.series([function(callback){$scope.getPollsInfos($scope.displayPolls, callback);}, 
+			$scope.queriesExecPollsInfos,
+			],
+			function(err, res){
+				$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
+				$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
+				$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
+				$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
+				$scope.$broadcast('scroll.refreshComplete');
+			});
+	}
+	else{
+		$scope.$broadcast('scroll.refreshComplete');
+	}
 };
 
 ///////////////////// Loading Friends /////////////////////////
@@ -303,8 +319,8 @@ $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
   		return true;
   	}
 
-	var lengthToString = $scope.displayFriends.length.toString();
-	var nbLoadsMax = $scope.displayFriends.length / 10;
+  	var lengthToString = $scope.displayFriends.length.toString();
+  	var nbLoadsMax = $scope.displayFriends.length / 10;
 
 
   	if($scope.confirmFriend){
@@ -325,8 +341,8 @@ $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
   	}
   	
 
-	return false;
-};
+  	return false;
+  };
 
 
 // $scope.getStatusForAddFriends = function(data){
@@ -491,9 +507,9 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 				$scope.$broadcast('scroll.infiniteScrollComplete');
 				
 				window.setTimeout(function(){
-				$scope.loadingFriends = false;
-				$scope.$apply();
-			}, 4000);
+					$scope.loadingFriends = false;
+					$scope.$apply();
+				}, 2000);
 
 				$scope.$apply();
 			});
@@ -518,7 +534,7 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 			window.setTimeout(function(){
 				$scope.loadingFriends = false;
 				$scope.$apply();
-			}, 4000);
+			}, 2000);
 
 			
 			$scope.$apply();

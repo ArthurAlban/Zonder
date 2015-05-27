@@ -8372,7 +8372,7 @@ a.button {
   position: relative;
   width: 86%;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 4%;
   height: 48px;
   display: -webkit-flex;
   -webkit-align-items: center;
@@ -8716,7 +8716,7 @@ a.button {
 
 .borderSelected {
   border-radius: 100%;
-  border: 2px solid #f79f03; }
+  border: 2px solid #35c3c1; }
 
 .fontYourOption {
   color: #ffffff;
@@ -9017,6 +9017,10 @@ a.button {
   stroke: #fff;
   fill: #fff; }
 
+.spinnerLoadingBlack svg {
+  width: 28px;
+  height: 28px; }
+
 .photoLinePair2 {
   margin-left: 4%; }
 
@@ -9065,13 +9069,21 @@ a.button {
   -webkit-transform: translateX(0vw);
   -webkit-transition: all 0.5s ease; }
 
-.translateLoadingFriendsHide {
+.translateLoadingHide {
   -webkit-transform: translateY(0vh);
-  -webkit-transition: all 3s ease; }
+  -webkit-transition: all 0.5s ease 0.2s; }
 
-.translateLoadingFriendsShow {
+.translateLoadingShow {
   -webkit-transform: translateY(10vh);
-  -webkit-transition: all 3s ease; }
+  -webkit-transition: all 0.5s ease; }
+
+.scaleLoadingDown {
+  -webkit-transform: scale(0);
+  -webkit-transition: all 0.2s ease; }
+
+.scaleLoadingUp {
+  -webkit-transform: scale(1);
+  -webkit-transition: all 0.5s ease 0.5s; }
 
 /*.translate-down{
 -webkit-animation-delay: 0.5s;
@@ -9101,14 +9113,6 @@ a.button {
 	height:10vh;
 }
 */
-.scaleLoadingFriendsDown {
-  -webkit-transform: scale(0);
-  -webkit-transition: all 2s ease; }
-
-.scaleLoadingFriendsUp {
-  -webkit-transform: scale(1);
-  -webkit-transition: all 2s ease; }
-
 /*// animation de scale 
 .scale-out{
 -webkit-transform: scale(1);
@@ -9133,7 +9137,7 @@ a.button {
 @-webkit-keyframes scaleOut { 
 	from { -webkit-transform: scale(1); } 
 	to { -webkit-transform: scale(0); } 
-}*/
+	}*/
 .animateTriangles {
   -webkit-transform: translateY(-16vh);
   -webkit-transition: all 1s ease; }
