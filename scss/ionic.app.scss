@@ -25,1758 +25,1758 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 //permet de mettre en full height un element
 .fullHeight{
-height:100%;
+	height:100%;
 }
 
 // taille en px d'un bouton image (close / menu etc)
 .sizeButtonImage{
-width:24px;
+	width:24px;
 }
 
 //font bouton du bottom
 .brandonBold{
-color:#ffffff;
-font-size:3vw;
-font-family:'BrandonBold';
-line-height:1.265;
-text-transform: uppercase;;
-letter-spacing:0.075em;
+	color:#ffffff;
+	font-size:3vw;
+	font-family:'BrandonBold';
+	line-height:1.265;
+	text-transform: uppercase;;
+	letter-spacing:0.075em;
 }
 
 // permet de mettre une image en rond 
 .roundImage {
-border-radius:100%;
+	border-radius:100%;
 }
 
 
 // image de fond d'écran étoilé (sauf iphone 4)
 .background {
-background-image: url('../img/background.jpg');
-background-size:cover;
-background-position:center;
+	background-image: url('../img/background.jpg');
+	background-size:cover;
+	background-position:center;
 }
 
 // position des triangles en haut (sauf iphone 4 et 5)
 #triangles{
-z-index:10;
-position:absolute;
-width:100%;
-margin-top: -16vh;
+	z-index:10;
+	position:absolute;
+	width:100%;
+	margin-top: -16vh;
 }
 
 // type de font brandonMedium (text au dessus du bouton)
 .fontSmallBrandonMedium{
-color:#ffffff;
-font-size:2.5vw;
-font-family:'BrandonMedium';
-line-height:1.4;
-letter-spacing:0.075em;
+	color:#ffffff;
+	font-size:2.5vw;
+	font-family:'BrandonMedium';
+	line-height:1.4;
+	letter-spacing:0.075em;
 }
 
 // type de font brandonBlack (text lié au pseudo)
 .fontBrandonBlack{
-color:#ffffff;
-font-size:10px;
-font-family:'BrandonBlack';
-line-height:1.265;
-letter-spacing:0.075em;
+	color:#ffffff;
+	font-size:10px;
+	font-family:'BrandonBlack';
+	line-height:1.265;
+	letter-spacing:0.075em;
 }
 
 // type de font brandonBlack (text lié au menu)
 .fontBrandonBlackMenu{
-color:#ffffff;
-font-size:10px;
-font-family:'BrandonBlack';
-line-height:1.265;
-letter-spacing:0.075em;
+	color:#ffffff;
+	font-size:10px;
+	font-family:'BrandonBlack';
+	line-height:1.265;
+	letter-spacing:0.075em;
 }
 
 // button de l'application
 .buttonZonder{
-height:50px;
-width:80%;
-border-radius: 4px;
-border:0 none;
-background-color:rgb(247, 159, 3);
-color:rgb(252, 249, 240);
-font-size:20px;
-font-family:'BrandonBold';
-letter-spacing:0.075em;
-line-height: 1.026;
+	height:50px;
+	width:80%;
+	border-radius: 4px;
+	border:0 none;
+	background-color:rgb(247, 159, 3);
+	color:rgb(252, 249, 240);
+	font-size:20px;
+	font-family:'BrandonBold';
+	letter-spacing:0.075em;
+	line-height: 1.026;
 }
 
 // couleur d'erreur pour le text 
 .colorError{
-color:#ec7149;
+	color:#ec7149;
 }
 
 // permet de centrer un element à l'interieur d'une div
 .centeredContent{
-position: absolute;
-left: 0;
-top: 0;
-right: 0;
-bottom: 0;
-display: -webkit-box;
-display: -webkit-flex;
-display: -moz-box;
-display: -moz-flex;
-display: -ms-flexbox;
-display: flex;
--webkit-box-pack: center;
--ms-flex-pack: center;
--webkit-justify-content: center;
--moz-justify-content: center;
-justify-content: center;
--webkit-box-align: center;
--ms-flex-align: center;
--webkit-align-items: center;
--moz-align-items: center;
-align-items: center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	-moz-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	align-items: center;
 }
 
 .checkBoxZonderMale {
-border: none !important;
-position:absolute !important;
-top:1px !important;
-left:140px !important;
-width:40px !important;
-height:100% !important;
-background-color:rgba(0,0,0,0) !important;
-padding:0 !important;
-font-size:2px !important;
+	border: none !important;
+	position:absolute !important;
+	top:1px !important;
+	left:140px !important;
+	width:40px !important;
+	height:100% !important;
+	background-color:rgba(0,0,0,0) !important;
+	padding:0 !important;
+	font-size:2px !important;
 }
 
 .divCheckBoxZonderMale {
-margin-left:31px;
+	margin-left:31px;
 }
 
 .checkBoxZonderFemale {
-border: none !important;
-position:absolute !important;
-top:1px !important;
-left:220px !important;
-width:40px !important;
-height:100% !important;
-background-color:rgba(0,0,0,0) !important;
-padding:0 !important;
+	border: none !important;
+	position:absolute !important;
+	top:1px !important;
+	left:220px !important;
+	width:40px !important;
+	height:100% !important;
+	background-color:rgba(0,0,0,0) !important;
+	padding:0 !important;
 }
 
 .divCheckBoxZonderFemale {
-margin-left:27px;
+	margin-left:27px;
 }
 ///////////////////// splashscreen and tooltip /////////////////////
 
 // div qui contient le bouton et son text au dessus
 #divTextAndButton{
-position:relative;
-top:76.5%;
-margin: 0 auto;
-width:80%;
+	position:relative;
+	top:76.5%;
+	margin: 0 auto;
+	width:80%;
 }
 
 // row pour register and password
 #rowText{
-position:relative;
-padding:0;
-margin:0;
-height:20px;
-width:100%;
+	position:relative;
+	padding:0;
+	margin:0;
+	height:20px;
+	width:100%;
 }
 
 #divSeparateurRow{
-height:50%;
-margin-top:6px;
-border-left:1px solid #FFFFFF;
+	height:50%;
+	margin-top:6px;
+	border-left:1px solid #FFFFFF;
 }
 
 #textLeftInRow{
-margin-right:2px;
-text-align:right;
+	margin-right:2px;
+	text-align:right;
 }
 
 #textRightInRow{
-margin-right:2px;
-text-align:left;
+	margin-right:2px;
+	text-align:left;
 }
 
 #buttonSignIn{
-margin-top:4px;
-width:100%;
+	margin-top:4px;
+	width:100%;
 }
 
 // div qui contient la form du login
 #divFormLogin{
-position:absolute;
-top:27%;
-width:100%;
+	position:absolute;
+	top:27%;
+	width:100%;
 }
 
 // taille et index pour les triangles du haut
 #posTriangleTop{
-z-index:10;
-width:100%;
+	z-index:10;
+	width:100%;
 }
 
 // logo en bandeau pour pourvoir le positionner au bon endroit de l'écran
 #logoBandeau{
-z-index:10;
-position:absolute;
-top:43.5%;
-left:0;
-width:100%;
+	z-index:10;
+	position:absolute;
+	top:43.5%;
+	left:0;
+	width:100%;
 }
 
 // slide box in the tooltip
 #slideBoxTooltip{
-z-index:15;
-position:absolute;
-top:0;
-width:100%;
-height:100%;
+	z-index:15;
+	position:absolute;
+	top:0;
+	width:100%;
+	height:100%;
 }
 
 // titre tooltip
 .posTitleTooltip{
-position:absolute;
-top:30%;
-width:100%;
-padding-left:10%;
-padding-right:22%;
-text-align:left;
+	position:absolute;
+	top:30%;
+	width:100%;
+	padding-left:10%;
+	padding-right:22%;
+	text-align:left;
 }
 
 .titleTooltip{
-font-family:'BrandonBold';
-font-size:8.5vw;
-line-height:1;
-letter-spacing:-0.075em;
-color:#ffffff;
+	font-family:'BrandonBold';
+	font-size:8.5vw;
+	line-height:1;
+	letter-spacing:-0.075em;
+	color:#ffffff;
 }
 
 // sous titre tooltip
 .posSubtitleTooltip{
-position:absolute;
-top:65%;
-width:100%;
-padding-left:10%;
-padding-right:23%;
-text-align:left;
+	position:absolute;
+	top:65%;
+	width:100%;
+	padding-left:10%;
+	padding-right:23%;
+	text-align:left;
 }
 
 .subtitleTooltip{
-font-family:'BrandonLight';
-font-size:16px;
-font-size:5vw;
-line-height:1.2;
-color:#ffffff;
+	font-family:'BrandonLight';
+	font-size:16px;
+	font-size:5vw;
+	line-height:1.2;
+	color:#ffffff;
 }
 
 // text Skip the explanations tooltip
 .footerTooltip{
-width:100%;
-position:absolute;
-top:95%;
-color:#ffffff;
-font-size:8px;
-font-size:3vw;
-font-family:'BrandonLight';
-letter-spacing:0.075em;
-line-height:1.711;
-text-align:center;
+	width:100%;
+	position:absolute;
+	top:95%;
+	color:#ffffff;
+	font-size:8px;
+	font-size:3vw;
+	font-family:'BrandonLight';
+	letter-spacing:0.075em;
+	line-height:1.711;
+	text-align:center;
 }
 
 .posExplicationSwipe{
-position:absolute;
-top:83%;
-width:100%;
-color:#ffffff;
-font-size:8px;
-font-size:3vw;
-font-family:'BrandonLight';
-letter-spacing:0.075em;
-line-height:1.711;
-text-align:center;
+	position:absolute;
+	top:83%;
+	width:100%;
+	color:#ffffff;
+	font-size:8px;
+	font-size:3vw;
+	font-family:'BrandonLight';
+	letter-spacing:0.075em;
+	line-height:1.711;
+	text-align:center;
 }
 
 ////////////// change pass //////////////
 
 #buttonSavePassword{
-position:absolute;
-left:50%;
-margin-left:-40%;
-top:81%;
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:81%;
 }
 
 ///////////////////// forgotPassword /////////////////////
 #imgCloseForgotPassword{
-width:28px;
-z-index:11;
-position:absolute;
-left:12px;
-top:36px;
+	width:28px;
+	z-index:11;
+	position:absolute;
+	left:12px;
+	top:36px;
 }
 
 #contentForgotPassword{
-position:absolute;
-width:100%;
-top:27%;
+	position:absolute;
+	width:100%;
+	top:27%;
 }
 
 #buttonForgetPassword {
-position:absolute;
-left:50%;
-margin-left:-40%;
-top:81%;
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
+	top:81%;
 }
 
 .indicationForgotPassword {
-margin-top:8px;
-padding-left:5%;
-padding-right:5%;
-text-transform: uppercase;
-text-align:center;
+	margin-top:8px;
+	padding-left:5%;
+	padding-right:5%;
+	text-transform: uppercase;
+	text-align:center;
 }
 ///////////////////// register /////////////////////
 
 // text already have an account
 .footerRegister {
-position:absolute;
-top:95%;
-text-align:center;
-width:100%;
-line-height: 1.711;
-font-size:8.184px;
-font-family:'BrandonMedium';
-color:#ffffff;
+	position:absolute;
+	top:95%;
+	text-align:center;
+	width:100%;
+	line-height: 1.711;
+	font-size:8.184px;
+	font-family:'BrandonMedium';
+	color:#ffffff;
 }
 
 // text terms and conditions + hyperlien
 .termsAndConditions {
-position:relative;
-text-align:center;
-width:100%;
-line-height: 1.711;
-font-size:8.184px;
-font-family:'OpenSansRegular';
-color:#ffffff;
+	position:relative;
+	text-align:center;
+	width:100%;
+	line-height: 1.711;
+	font-size:8.184px;
+	font-family:'OpenSansRegular';
+	color:#ffffff;
 }
 .termsAndConditions a {
-color:#ffffff;
+	color:#ffffff;
 }
 
 //Slide box du register
 #registerSlideBox {
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
 }
 
 //div contenant les labels pour la firstep de l'incscription
 #divRegisterFirstStep {
-position:absolute;
-top:27%;
-width:100%;
+	position:absolute;
+	top:27%;
+	width:100%;
 }
 
 //div contenant les labels pour la second step de l'incscription
 #divRegisterSecondStep {
-position:absolute;
-top:27%;
-width:100%;
+	position:absolute;
+	top:27%;
+	width:100%;
 }
 
 // div contenant les terme and condition dans register
 #divTermsAndConditionButton{
-position:absolute;
-top:75%;
-width:100%;
+	position:absolute;
+	top:75%;
+	width:100%;
 }
 //position du boutton pour passer a letape suivante et l'inscription
 .buttonRegister{
-position:absolute;
-left:50%;
-margin-left:-40%;
+	position:absolute;
+	left:50%;
+	margin-left:-40%;
 }
 
 //font pour les label de zonder
 @mixin fontLabelZonderInputAndText {
-line-height: 1.313 !important;
-font-size:18px !important;
-font-family: 'OpenSansRegular' !important;
-color:#adafbc !important;
+	line-height: 1.313 !important;
+	font-size:18px !important;
+	font-family: 'OpenSansRegular' !important;
+	color:#adafbc !important;
 }
 
 .fontSearch{
-@include fontLabelZonderInputAndText;
-font-size:12px !important;
+	@include fontLabelZonderInputAndText;
+	font-size:12px !important;
 }
 
 .inputLowerCaseOnly{
-text-transform: lowercase;
+	text-transform: lowercase;
 }
 
 .labelZonder {
-position: relative;
-height:60px !important;
-margin-bottom:2px;
-border: 0 none !important;
-width:100%;
-left:1px;
--webkit-transition: left 0.5s linear;
+	position: relative;
+	height:60px !important;
+	margin-bottom:2px;
+	border: 0 none !important;
+	width:100%;
+	left:1px;
+	-webkit-transition: left 0.5s linear;
 }
 
 .labelZonderHide{
-position: relative;
-height:60px !important;
-margin-bottom:2px;
-border: 0 none !important;
-width:100%;
-left:101%;
--webkit-transition: left 0.5s linear;
+	position: relative;
+	height:60px !important;
+	margin-bottom:2px;
+	border: 0 none !important;
+	width:100%;
+	left:101%;
+	-webkit-transition: left 0.5s linear;
 }
 
 .labelZonderFriendsHide{
-position: relative;
-height:60px !important;
-margin-bottom:2px;
-border: 0 none !important;
-width:100%;
-left:-100%;
--webkit-transition: left 0.5s linear;
+	position: relative;
+	height:60px !important;
+	margin-bottom:2px;
+	border: 0 none !important;
+	width:100%;
+	left:-100%;
+	-webkit-transition: left 0.5s linear;
 }
 
 .iconZonderLeft{
-margin-left: 13px;
+	margin-left: 13px;
 }
 
 .iconZonderRight{
-margin-right: 10px;
+	margin-right: 10px;
 }
 
 .inputZonder{
-@include fontLabelZonderInputAndText;
-margin-left: 30px !important;
-width:80% !important;
+	@include fontLabelZonderInputAndText;
+	margin-left: 30px !important;
+	width:80% !important;
 }
 
 .textZonder{
-@include fontLabelZonderInputAndText;
-margin:-14px 0 0 30px !important;
-line-height:60px !important;
-height:60px !important;
+	@include fontLabelZonderInputAndText;
+	margin:-14px 0 0 30px !important;
+	line-height:60px !important;
+	height:60px !important;
 }
 
 .imgLeftRound{
-border-radius: 100%; 
-width:25px;
-height:25px;
+	border-radius: 100%; 
+	width:25px;
+	height:25px;
 }
 
 .checkboxZonder {
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 .labelContainerZonder {
-margin-left:30px;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	margin-left:30px;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 //text du choix de la check box
 .textCheckbox{
-@include fontLabelZonderInputAndText;
+	@include fontLabelZonderInputAndText;
 }
 
 ////////////////////// home ////////////////////////
 
 //overlay sideMenu
 .overlaySideMenu{
-position:absolute;
-top:0;
-left:0;
-z-index:26;
-width:100%;
-height:100%;
-background-color:rgba(0,0,0,0.7)
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:26;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.7)
 }
 
 //createur du zonder
 .fontPseudoZonder{
-color: #717070;
-font-size:8px;
-font-family:'OpenSansExtraBold';
-line-height:1.023;
-text-transform: uppercase;
+	color: #717070;
+	font-size:8px;
+	font-family:'OpenSansExtraBold';
+	line-height:1.023;
+	text-transform: uppercase;
 }
 
 .fontPseudoTextZonder{
-font-family:'OpenSansSemibold';
-color: #bdbbbb;
+	font-family:'OpenSansSemibold';
+	color: #bdbbbb;
 }
 
 //time zonder
 .fontTimeZonder{
-color:#f79f03;
-font-size:6px;
-font-family:'OpenSansBold';
-line-height:1.023;
-letter-spacing:0.075em;
-text-transform: uppercase;
+	color:#f79f03;
+	font-size:6px;
+	font-family:'OpenSansBold';
+	line-height:1.023;
+	letter-spacing:0.075em;
+	text-transform: uppercase;
 }
 
 //font question zonder
 .fontQuestionZonder{
-font-size:9px;
-font-family:'OpenSansIt';
-line-height: 1.338;
-text-align: left;
-color: #7d7c7c;
+	font-size:9px;
+	font-family:'OpenSansIt';
+	line-height: 1.338;
+	text-align: left;
+	color: #7d7c7c;
 }
 
 //font vote and comments 
 .fontVoteCommentsZonder{
-color: #c7c5c5;
-font-size:8px;
-font-family:'OpenSansBold';
-line-height:0.565;
-letter-spacing:0.075em;
-text-transform: uppercase;
+	color: #c7c5c5;
+	font-size:8px;
+	font-family:'OpenSansBold';
+	line-height:0.565;
+	letter-spacing:0.075em;
+	text-transform: uppercase;
 }
 
 //font vote and comments 
 .fontVoteCommentsTextZonder{
-color: #c7c5c5;
-font-size:8px;
-font-family:'OpenSansRegular';
-line-height:0.565;
-letter-spacing:0.075em;
-text-transform: uppercase;
+	color: #c7c5c5;
+	font-size:8px;
+	font-family:'OpenSansRegular';
+	line-height:0.565;
+	letter-spacing:0.075em;
+	text-transform: uppercase;
 }
 
 
 //font Titre photo
 .fontTitlePhotoZonder{
-color: #ffffff;
-font-size:2.5vw;
-font-family:'OpenSansExtraBold';
-line-height:1;
-letter-spacing:0.100em;
-text-transform: uppercase;
+	color: #ffffff;
+	font-size:2.5vw;
+	font-family:'OpenSansExtraBold';
+	line-height:1;
+	letter-spacing:0.100em;
+	text-transform: uppercase;
 }
 
 //font nombre de vote photo poll (progression bar)
 .fontVotePhotoZonder{
-color: #ffffff;
-font-size:6px;
-font-family:'OpenSansExtraBold';
-line-height:8px;
-letter-spacing:0.100em;
-text-transform: uppercase;
-height: 100%;
-margin-top:1px;
-margin-left: 2px;
-margin-right: 2px;
+	color: #ffffff;
+	font-size:6px;
+	font-family:'OpenSansExtraBold';
+	line-height:8px;
+	letter-spacing:0.100em;
+	text-transform: uppercase;
+	height: 100%;
+	margin-top:1px;
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
 // div de selection des onglets
 .divSelectorTab{
-position:relative;
-width:100%;
-height:7px;
+	position:relative;
+	width:100%;
+	height:7px;
 }
 
 //position ion slide
 .heightIonSlide{
-height:calc( 100vh - 200px );
+	height:calc( 100vh - 200px );
 }
 
 //position ion-scroll
 .heightIonScroll{
-  height:calc( 100vh - 200px );
+	height:calc( 100vh - 200px );
 }
 
 ///////////////////  CSS d'un Zonder //////////////////
 //conteneur du zonder
 .divContentZonder{
-  position:relative;
-  width:80%;
-  margin:auto;
+	position:relative;
+	width:80%;
+	margin:auto;
 }
 
 .marginTopPullUp{
-  margin-top:4%;
+	margin-top:4%;
 }
 
 //header du zonder
 .headerZonder{
-width:100%;
-height:46px;
-display: -webkit-flex;
--webkit-align-items: flex-start;
--webkit-justify-content: flex-start;
+	width:100%;
+	height:46px;
+	display: -webkit-flex;
+	-webkit-align-items: flex-start;
+	-webkit-justify-content: flex-start;
 }
 
 //div contenant la question/pseudo/time and wheel dans le header
 .contentHeader{
-height:100%;
-margin-left:9px;
-width:calc( 100% - 46px );
-display:-webkit-flex;
--webkit-flex-direction:column;
--webkit-justify-content:flex-start;
--webkit-align-items:center;
+	height:100%;
+	margin-left:9px;
+	width:calc( 100% - 46px );
+	display:-webkit-flex;
+	-webkit-flex-direction:column;
+	-webkit-justify-content:flex-start;
+	-webkit-align-items:center;
 }
 
 //div contenant pseudo and time
 .contentHeaderHeader{
-width:100%;
-height:20%;
-display: -webkit-flex;
--webkit-align-items: flex-start;
--webkit-justify-content: space-between;
+	width:100%;
+	height:20%;
+	display: -webkit-flex;
+	-webkit-align-items: flex-start;
+	-webkit-justify-content: space-between;
 }
 
 //size content pseudo
 .sizeContentPseudo{
-width:calc( 100% - 46px );
+	width:calc( 100% - 46px );
 }
 
 //placement timer
 .posTimer{
-margin-top:1px;
+	margin-top:1px;
 }
 
 //content div footer
 .contentHeaderFooter{
-width:100%;
-height:80%;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	width:100%;
+	height:80%;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 //size and pos paragraphe question
 .questionPosStyle{
-margin-top:8px;
-width:calc( 100% - 24px );
-webkit-hyphens: auto;
+	margin-top:8px;
+	width:calc( 100% - 24px );
+	webkit-hyphens: auto;
 }
 
 //position wheel
 .posWheel{
-margin-top:4px;
-margin-left:10px;
+	margin-top:4px;
+	margin-left:10px;
 }
 
 //content photos
 .contentPhotos{
-margin-top:6px;
-width:100%;
-height:30vw;
-overflow: hidden;
-display: -webkit-flex;
--webkit-align-items: flex-start;
--webkit-justify-content: flex-start;
+	margin-top:6px;
+	width:100%;
+	height:30vw;
+	overflow: hidden;
+	display: -webkit-flex;
+	-webkit-align-items: flex-start;
+	-webkit-justify-content: flex-start;
 }
 
 //content photos poll
 .contentPhotosPoll{
-width:100%;
-height:30vw;
-overflow: hidden;
-display: -webkit-flex;
--webkit-align-items: flex-start;
--webkit-justify-content: flex-start;
+	width:100%;
+	height:30vw;
+	overflow: hidden;
+	display: -webkit-flex;
+	-webkit-align-items: flex-start;
+	-webkit-justify-content: flex-start;
 }
 
 ///// zonder dans poll ////
 //content progression poll
 .contentProgressionPoll{
-position:relative;
-margin-top:6px;
-width:100%;
-height:10px;
-display: -webkit-flex;
--webkit-align-items: flex-start;
--webkit-justify-content: flex-start;
+	position:relative;
+	margin-top:6px;
+	width:100%;
+	height:10px;
+	display: -webkit-flex;
+	-webkit-align-items: flex-start;
+	-webkit-justify-content: flex-start;
 }
 
 //content progression bar
 .contentProgressionBar{
-position:relative;
-width:50%;
-height:100%;
+	position:relative;
+	width:50%;
+	height:100%;
 }
 
 //content bar photo left
 .contentBarPhotoLeft{
-position:absolute;
-left:0;
-//width:60%; // a changer selon le pourcentage //
-height:100%;
-background-color:#f79f03;
-text-align:right;
+	position:absolute;
+	left:0;
+	//width:60%; // a changer selon le pourcentage //
+	height:100%;
+	background-color:#f79f03;
+	text-align:right;
 }
 
 //content bar photo right
 .contentBarPhotoRight{
-position:absolute;
-right:0;
-//width:40%; // a changer selon le pourcentage //
-height:100%;
-background-color:#dadada;
-text-align:left;
+	position:absolute;
+	right:0;
+	//width:40%; // a changer selon le pourcentage //
+	height:100%;
+	background-color:#dadada;
+	text-align:left;
 }
 ///// fin spec zonder poll ////////
 
 //contentPhotoLeft
 .contentPhotoLeft{
-position:relative;
-width:50%;
-height:100%;
-overflow:hidden;
+	position:relative;
+	width:50%;
+	height:100%;
+	overflow:hidden;
 }
 
 //style Title photo
 .titlePhoto{
-padding:3px;
-background-color:rgba(0,0,0,0.47);
-position:absolute;
-left:6px;
-bottom:6px;
-margin:0;
-max-width:70%;
--webkit-hyphens: auto;
+	padding:3px;
+	background-color:rgba(0,0,0,0.47);
+	position:absolute;
+	left:6px;
+	bottom:6px;
+	margin:0;
+	max-width:70%;
+	-webkit-hyphens: auto;
 }
 
 //style Title photo poll modal
 .titlePhotoPollModal{
-padding:3px;
-background-color:rgba(0,0,0,0.47);
-position:absolute;
-left:10px;
-bottom:46px;
-margin:0;
-max-width:70%;
--webkit-hyphens: auto;
+	padding:3px;
+	background-color:rgba(0,0,0,0.47);
+	position:absolute;
+	left:10px;
+	bottom:46px;
+	margin:0;
+	max-width:70%;
+	-webkit-hyphens: auto;
 }
 
 //content footer zonder
 .footerZonder{
-margin-top:4px;
-position:relative;
-height:16px;
-width:100%;
+	margin-top:4px;
+	position:relative;
+	height:16px;
+	width:100%;
 }
 
 //content votes and comments
 .contentVotesComments{
-position:absolute;
-left:0;
-height:100%;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	position:absolute;
+	left:0;
+	height:100%;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 //décalage comments / votes
 .marginComments{
-margin-left:5px;
+	margin-left:5px;
 }
 
 //content favorite and write comments
 .contentIconFavouriteComments{
-position:absolute;
-right:0;
-height: 100%;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	position:absolute;
+	right:0;
+	height: 100%;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 //décalage favourite / comments
 .marginIconComments{
-margin-left:8px;
+	margin-left:8px;
 }
 /////////////////// Fin ZOnder //////////////////////
 
 //separator ZOnder
 .divSeparator{
-margin-top:6%;
-margin-bottom:9%;
-margin-left:-40%;
-position:relative;
-left:50%;
-width:80%;
-/*border-top:1px solid #dadada;*/
-display:-webkit-flex;
--webkit-justify-content:flex-start;
-/*-webkit-align-content:center;*/
--webkit-align-items:flex-start;
+	margin-top:6%;
+	margin-bottom:9%;
+	margin-left:-40%;
+	position:relative;
+	left:50%;
+	width:80%;
+	/*border-top:1px solid #dadada;*/
+	display:-webkit-flex;
+	-webkit-justify-content:flex-start;
+	/*-webkit-align-content:center;*/
+	-webkit-align-items:flex-start;
 }
 
 .separatorLeft{
-width:42.5%;
-border-top:1px solid #dadada;
+	width:42.5%;
+	border-top:1px solid #dadada;
 }
 
 .separatorRight{
-width:42.5%;
-border-top:1px solid #dadada;
+	width:42.5%;
+	border-top:1px solid #dadada;
 }
 
 //separator Poll Modal
 .divSeparatorPollModal{
-position:absolute;
-top:50%;
-left:50%;
-width:80%;
-margin-left:-40%;
-margin-top:-1px;
-display:-webkit-flex;
--webkit-justify-content:flex-start;
--webkit-align-items:flex-start;
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:80%;
+	margin-left:-40%;
+	margin-top:-1px;
+	display:-webkit-flex;
+	-webkit-justify-content:flex-start;
+	-webkit-align-items:flex-start;
 }
 
 .separatorLeftPollModal{
-width:42.5%;
-border-top:2px solid #ffffff;
-border-radius:10px;
+	width:42.5%;
+	border-top:2px solid #ffffff;
+	border-radius:10px;
 }
 
 .separatorRightPollModal{
-width:42.5%;
-border-top:2px solid #ffffff;
-border-radius:10px;
+	width:42.5%;
+	border-top:2px solid #ffffff;
+	border-radius:10px;
 }
 
 //Separateur pour ngrepeat dans onglet Zonder
 .separatorZonder{
-margin-top:10%;
-position:relative;
-width:100%;
-border-top:1px solid #dadada;
+	margin-top:10%;
+	position:relative;
+	width:100%;
+	border-top:1px solid #dadada;
 }
 
 //button footer find friends and create poll
 .buttonfooter{
-z-index:25;
-position:absolute;
-bottom:0;
-height:30px;
-width:100%;
-background-color:#f79f03;
-display:-webkit-flex;
--webkit-flex-direction:row;
--webkit-justify-content:flex-start;
--webkit-align-items:center;
+	z-index:25;
+	position:absolute;
+	bottom:0;
+	height:30px;
+	width:100%;
+	background-color:#f79f03;
+	display:-webkit-flex;
+	-webkit-flex-direction:row;
+	-webkit-justify-content:flex-start;
+	-webkit-align-items:center;
 }
 .buttonfooter img{
-margin-left:15px;
+	margin-left:15px;
 }
 #createPoll{
-margin-left:55%;
+	margin-left:55%;
 }
 #findFriends{
-margin-left:62%
+	margin-left:62%
 }
 
 //slider box position
 #sliderBoxHome{
-position:relative;
-/*top:0px;*/
-background:rgb(255,255,255);
+	position:relative;
+	/*top:0px;*/
+	background:rgb(255,255,255);
 }
 
 //div transparente haut de view
 .divTransparency{
-position:relative;
-width:100%;
-height:104px;
+	position:relative;
+	width:100%;
+	height:104px;
 }
 
 //div position Header
 .posHeader{
-position:relative;
-width:100%;
-height:59px;
+	position:relative;
+	width:100%;
+	height:59px;
 }
 
 // design du Header dans la page home à 3 onglets
 .divHeader{
-position:absolute;
-width:100%;
-top:0px;
+	position:absolute;
+	width:100%;
+	top:0px;
 } 
 .divHeader .rowHeader{
-height:59px;
-padding:0;
-margin:0;
+	height:59px;
+	padding:0;
+	margin:0;
 } 
 .colHeader{
-height:100%;
-color:#ffffff;
+	height:100%;
+	color:#ffffff;
 } 
 .colorJaunePale{
-background-color:#fcdd86;
+	background-color:#fcdd86;
 }
 .colorJaunePoussin{
-background-color:#f9cc3d;
+	background-color:#f9cc3d;
 }
 .colorJauneOrange{
-background-color:#e8b000;
+	background-color:#e8b000;
 }
 .ongletHeader{
-display:-webkit-flex;
--webkit-flex-direction:column;
--webkit-justify-content:flex-start;
--webkit-align-items:center;
+	display:-webkit-flex;
+	-webkit-flex-direction:column;
+	-webkit-justify-content:flex-start;
+	-webkit-align-items:center;
 } 
 .imgHeader{
-margin-top:5px;
+	margin-top:5px;
 } 
 .spanHeader{
-margin-top:5px;
-text-transform:uppercase;
+	margin-top:5px;
+	text-transform:uppercase;
 } 
 .spanHeaderFriends{
-margin-top:10px;
-text-transform:uppercase;
+	margin-top:10px;
+	text-transform:uppercase;
 } 
 
 // position de l'image de profil (sauf iphone 4 et 5)
 .profilImg{
-z-index:11;
-position:absolute;
-right:22px;
-top:22px;
-height:46px;
-width:46px;
-border:2px solid #ffffff;
-border-radius: 100%;
+	z-index:11;
+	position:absolute;
+	right:22px;
+	top:22px;
+	height:46px;
+	width:46px;
+	border:2px solid #ffffff;
+	border-radius: 100%;
 }
 
 //Position du bouton Menu de la page home
 #posButtonMenu{
-z-index:11;
-position:absolute;
-left:20px;
-top:32px;
+	z-index:11;
+	position:absolute;
+	left:20px;
+	top:32px;
 }
 
 //Position du bouton Menu de la page home
 #posPseudoUser{
-z-index:11;
-position:absolute;
-right:20vw;
-top:40px;
-text-transform:uppercase;
+	z-index:11;
+	position:absolute;
+	right:20vw;
+	top:40px;
+	text-transform:uppercase;
 }
 
 //////////////// Friends ////////////////////
 
 // content item friends
 .contentItemFriend{
-position:relative;
-width:86%;
-margin:auto;
-margin-top:20px;
-height:48px;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	position:relative;
+	width:86%;
+	margin:auto;
+	margin-top:4%;
+	height:48px;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 //content text friend
 .contentTextFriend{
-height:100%;
-margin-left:12px;
-width:calc( 100% - 48px );
-display:-webkit-flex;
--webkit-flex-direction:column;
--webkit-justify-content:flex-start;
+	height:100%;
+	margin-left:12px;
+	width:calc( 100% - 48px );
+	display:-webkit-flex;
+	-webkit-flex-direction:column;
+	-webkit-justify-content:flex-start;
 }
 
 //content Zonders and Friends
 .contentFlexFlexStart{
-display: -webkit-flex;
--webkit-align-items: flex-start;
--webkit-justify-content: flex-start;
+	display: -webkit-flex;
+	-webkit-align-items: flex-start;
+	-webkit-justify-content: flex-start;
 }
 
 // position img notification
 .posNotification{
-position:absolute;
-top:1px;
-left:33px;
+	position:absolute;
+	top:1px;
+	left:33px;
 }
 
 //font question zonder
 .fontFooterFriends{
-font-size:8px;
-font-family:'OpenSansIt';
-line-height: 1.338;
-text-align: left;
-letter-spacing:0.075em;
-color: #bdbbbb;
+	font-size:8px;
+	font-family:'OpenSansIt';
+	line-height: 1.338;
+	text-align: left;
+	letter-spacing:0.075em;
+	color: #bdbbbb;
 }
 
 //friends pseudo
 .fontPseudoFriends{
-color:#939191;
-font-size:12px;
-font-family:'OpenSansExtraBold';
-line-height:12px;
-letter-spacing:0.075em;
-text-transform: uppercase;
+	color:#939191;
+	font-size:12px;
+	font-family:'OpenSansExtraBold';
+	line-height:12px;
+	letter-spacing:0.075em;
+	text-transform: uppercase;
 }
 
 //new friends pseudo
 .fontPseudoNewFriends{
-color:#f79f03;
-font-size:12px;
-font-family:'OpenSansExtraBold';
-line-height:8px;
-letter-spacing:0.075em;
-text-transform: uppercase;
+	color:#f79f03;
+	font-size:12px;
+	font-family:'OpenSansExtraBold';
+	line-height:8px;
+	letter-spacing:0.075em;
+	text-transform: uppercase;
 }
 
 //new friends text informations
 .fontNewFriendsInformation{
-color:#f79f03;
-font-size:8px;
-font-family:'OpenSansIt';
-line-height:8px;
-letter-spacing:0.075em;
+	color:#f79f03;
+	font-size:8px;
+	font-family:'OpenSansIt';
+	line-height:8px;
+	letter-spacing:0.075em;
 }
 
 //font polls and friends 
 .fontPollsFriends{
-color: #bdbbbb;
-font-size:8px;
-font-family:'OpenSansExtraBold';
-line-height:8px;
-letter-spacing:0.075em;
-text-transform: uppercase;
+	color: #bdbbbb;
+	font-size:8px;
+	font-family:'OpenSansExtraBold';
+	line-height:8px;
+	letter-spacing:0.075em;
+	text-transform: uppercase;
 }
 
 //font polls and friends 
 .fontPollsFriendsText{
-color: #bdbbbb;
-font-size:8px;
-font-family:'OpenSansRegular';
-line-height:8px;
-letter-spacing:0.075em;
-text-transform: uppercase;
+	color: #bdbbbb;
+	font-size:8px;
+	font-family:'OpenSansRegular';
+	line-height:8px;
+	letter-spacing:0.075em;
+	text-transform: uppercase;
 }
 
 .contentFriend{
-width:95%;
-height:100%;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	width:95%;
+	height:100%;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 .contentFriendActionSheet{
-width: 5%;
-height: 100%;
-display: -webkit-flex;
--webkit-align-items: flex-start;
--webkit-justify-content: flex-end;
+	width: 5%;
+	height: 100%;
+	display: -webkit-flex;
+	-webkit-align-items: flex-start;
+	-webkit-justify-content: flex-end;
 }
 
 ///////////////////// profile ////////////////////
 
 //button close
 .posButtonClose{
-z-index:26;
-position:absolute;
-width:28px;
-left:12px;
-top:36px;
+	z-index:26;
+	position:absolute;
+	width:28px;
+	left:12px;
+	top:36px;
 }
 
 //button parameter profile
 .posParameterProfile{
-z-index:26;
-position:absolute;
-padding:4px;
-right:32px;
-top:75px;
+	z-index:26;
+	position:absolute;
+	padding:4px;
+	right:32px;
+	top:75px;
 }
 
 ///////////////////// animation /////////////////////
 
 // animation des triangles du haut, translation vers le haut
 .animateTriangles{
--webkit-transform: translateY(-16vh);
--webkit-transition: all 1s ease;
+	-webkit-transform: translateY(-16vh);
+	-webkit-transition: all 1s ease;
 }
 
 ////////////////////// Side Menu ////////////////////////
 //div contenant les options du sidemenu
 #divMenusSideMenu{
-position: absolute;
-top:86px;
-width:100%;
+	position: absolute;
+	top:86px;
+	width:100%;
 }
 
 //div contenant les choix des notifs
 #divOptionToggleMenu{
-position:absolute;
-bottom:0px;
-width:100%;
+	position:absolute;
+	bottom:0px;
+	width:100%;
 }
 
 //icone close sidemenu
 #closeSideMenu{
-position:absolute;
-top:32px;
-width:28px;
-left:15px;
+	position:absolute;
+	top:32px;
+	width:28px;
+	left:15px;
 }
 
 //text MENU sideMenu
 #textMenuSideMenu{
-position:absolute;
-top:34px;
-left:70px;
+	position:absolute;
+	top:34px;
+	left:70px;
 }
 
 //font du text menu
 .fontOpenSansExtraBoldSideMenu {
-color:#ffffff;
-font-size:17px;
-font-family:'OpenSansExtraBold';
-line-height:1.265;
-letter-spacing:0.075em;
+	color:#ffffff;
+	font-size:17px;
+	font-family:'OpenSansExtraBold';
+	line-height:1.265;
+	letter-spacing:0.075em;
 }
 
 //font des texte dans les options du menu
 @mixin fontOpenSansRegularSideMenu {
-color:#ffffff;
-font-size:18px;
-font-family:'OpenSansRegular';
-line-height:1.265;
+	color:#ffffff;
+	font-size:18px;
+	font-family:'OpenSansRegular';
+	line-height:1.265;
 }
 
 //classe des options du side menu imgLeft Text imgRight
 .optionMenuSideMenu {
-width:100%;
-height:50px;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	width:100%;
+	height:50px;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 //element dimage de gauche
 .optionMenuSideMenu .imgLeft {
-margin-left:30px;
+	margin-left:30px;
 }
 
 //element de texte
 .optionMenuSideMenu .text {
-margin-left:30px;
-width:130px;
-@include fontOpenSansRegularSideMenu;
+	margin-left:30px;
+	width:130px;
+	@include fontOpenSansRegularSideMenu;
 }
 
 //element d'image de droite
 .optionMenuSideMenu .imgRight {
-margin-left:22px;
+	margin-left:22px;
 }
 
 //font pour les sidemenuoption Toggle
 @mixin fontOpenSansRegularSideMenuToggle {
-color:#ffffff;
-font-size:13px;
-font-family:'OpenSansRegular';
-line-height:1.265;
+	color:#ffffff;
+	font-size:13px;
+	font-family:'OpenSansRegular';
+	line-height:1.265;
 }
 
 //class des options du sidemenu avec des toggle
 .optionToggleMenu {
-width:100%;
-height:50px;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	width:100%;
+	height:50px;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 //element de texte du toggle
 .optionToggleMenu .text {
-width:150px;
-margin-left:30px;
-@include fontOpenSansRegularSideMenuToggle;
+	width:150px;
+	margin-left:30px;
+	@include fontOpenSansRegularSideMenuToggle;
 
 }
 
 //element contenant le toggle
 .optionToggleMenu .toggleDiv{
-height:18px;
-width:32px;
-margin-left:18px;
+	height:18px;
+	width:32px;
+	margin-left:18px;
 }
 
 //font du logout
 @mixin fontOpenSansRegularSideMenuLogout {
-color:#ffffff;
-font-size:13px;
-font-family:'OpenSansRegular';
-line-height:1.365;
+	color:#ffffff;
+	font-size:13px;
+	font-family:'OpenSansRegular';
+	line-height:1.365;
 }
 
 //menu de logout dans le side menu
 .logoutSideMenu{
-height:60px;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	height:60px;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 //element dimage
 .logoutSideMenu .imgLeft{
-margin-left:30px;
+	margin-left:30px;
 }
 
 //element de texte
 .logoutSideMenu .text{
-margin-left:20px;
-@include fontOpenSansRegularSideMenuLogout;
+	margin-left:20px;
+	@include fontOpenSansRegularSideMenuLogout;
 }
 
 //background sideMenu
 .backgroundSideMenu{
-background-image: url('../img/backgroundBlur.jpg');
-background-size: cover;
+	background-image: url('../img/backgroundBlur.jpg');
+	background-size: cover;
 }
 
 ///////////////////// Popup /////////////////////
 @mixin fontTitlePopup {
-font-size:12px;
-font-family: 'BrandonBold';
-color: #000;
-line-height:12px;
-letter-spacing:0.075em;
+	font-size:12px;
+	font-family: 'BrandonBold';
+	color: #000;
+	line-height:12px;
+	letter-spacing:0.075em;
 }
 
 @mixin fontTextPopup {
-font-size:10px;
-font-family: 'OpenSansIt';
-color: #000;
-line-height:1.6;
+	font-size:10px;
+	font-family: 'OpenSansIt';
+	color: #000;
+	line-height:1.6;
 }
 
 //overlay de la popup
 .overlayPopup {
-position:absolute;
-top:0;
-left:0;
-z-index:30;
-width:100vw;
-height:100vh;
-background-color: rgba(0, 0, 0, 0.6);
-display: -webkit-flex;
--webkit-align-content: center;
--webkit-align-items: center;
--webkit-justify-content: center;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:30;
+	width:100vw;
+	height:100vh;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: -webkit-flex;
+	-webkit-align-content: center;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
 }
 
 //conteneur principal de la popup
 .popupZonder{
-width:70vw;
-display: -webkit-flex;
--webkit-flex-direction: column;
--webkit-align-items: flex-start;
--webkit-justify-content: flex-start;
+	width:70vw;
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	-webkit-align-items: flex-start;
+	-webkit-justify-content: flex-start;
 }
 
 //conteneur du logo
 .imgPopup{
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: center;
-width:100%;
-padding-bottom: 10px;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	width:100%;
+	padding-bottom: 10px;
 }
 
 //conteneur du titre de la popup
 .contentTitle {
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: center;
-width:100%;
-padding-top:25px;
-background-color : #fff;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	width:100%;
+	padding-top:25px;
+	background-color : #fff;
 }
 
 //titre de la popup
 .titlePopup{
-width:100%;
-@include fontTitlePopup;
-text-align: center;
+	width:100%;
+	@include fontTitlePopup;
+	text-align: center;
 }
 
 //contenteu du text de la popup
 .contentText {
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: center;
-width:100%;
-background-color : #fff;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	width:100%;
+	background-color : #fff;
 }
 
 //texte de la popup
 .textPopup{
-width:80%;
-@include fontTextPopup;
-text-align: center;
-padding-bottom: 10px;
+	width:80%;
+	@include fontTextPopup;
+	text-align: center;
+	padding-bottom: 10px;
 }
 
 //conteneur du boutton
 .contentButton {
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: center;
-width:100%;
-background-color : #fff;
-padding-bottom:20px;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	width:100%;
+	background-color : #fff;
+	padding-bottom:20px;
 }
 
 //boutton de la popup
 .buttonPopup{
-height:20px;
-width:60px;
-border-radius: 4px;
-border:0 none;
-background-color:rgb(247, 159, 3);
-color:rgb(252, 249, 240);
-font-size:11px;
-font-family:'BrandonBold';
-letter-spacing:0.075em;
-line-height: 11px !important;
+	height:20px;
+	width:60px;
+	border-radius: 4px;
+	border:0 none;
+	background-color:rgb(247, 159, 3);
+	color:rgb(252, 249, 240);
+	font-size:11px;
+	font-family:'BrandonBold';
+	letter-spacing:0.075em;
+	line-height: 11px !important;
 }
 
 ///////////////////// createZonder /////////////////////
 
 .fullSize{
-width:100%;
-height:100%;
+	width:100%;
+	height:100%;
 }
 
 .specDivFriends{
-margin-top:4px;
-left:13px;
-padding:0;
-position:relative;
-height:66px;
+	margin-top:4px;
+	left:13px;
+	padding:0;
+	position:relative;
+	height:66px;
 }
 
 .specDivAll{
-position:relative;
-height:100%;
-margin:0 10px 0 0;
+	position:relative;
+	height:100%;
+	margin:0 10px 0 0;
 }
 
 .specImg{
-width:40px;
-height:40px;
-position:relative;
+	width:40px;
+	height:40px;
+	position:relative;
 }
 
 .specText{
-color:#000000;
-position:absolute;
-top:40px;
-left:0;
-right:0;
-text-align:center;
-font-size: 8px;
+	color:#000000;
+	position:absolute;
+	top:40px;
+	left:0;
+	right:0;
+	text-align:center;
+	font-size: 8px;
 }
 
 .fontOptionCreateZonder{
-font-size:14px ;
-font-family: 'OpenSansRegular';
-color:#adafbc !important;
+	font-size:14px ;
+	font-family: 'OpenSansRegular';
+	color:#adafbc !important;
 }
 
 .specNotFriends{
-position:relative;
-left:50%;
-margin: 0 0 0 -100px;
-width:200px;
-height:50px;
-color:#cccccc;
-text-align:center;
+	position:relative;
+	left:50%;
+	margin: 0 0 0 -100px;
+	width:200px;
+	height:50px;
+	color:#cccccc;
+	text-align:center;
 }
 
 .specDivFriends{
-position:relative;
-height:100%;
-margin:0 2px 0 2px;
+	position:relative;
+	height:100%;
+	margin:0 2px 0 2px;
 }
 
 .divTargetAndFriends{
-position:relative;
-width:100%;
-height:60px;
-padding:0;
-margin:0;
+	position:relative;
+	width:100%;
+	height:60px;
+	padding:0;
+	margin:0;
 }
 
 .specTarget{
-position:absolute;
+	position:absolute;
 }
 
 .specFriends{
-position:absolute;
-padding:4px 0 0 0;
+	position:absolute;
+	padding:4px 0 0 0;
 }
 
 .specButtonCreateZonder{
-position:absolute;
-top:85%;
+	position:absolute;
+	top:85%;
 }
 
 .borderNotSelected {
-border-radius:100%;
+	border-radius:100%;
 }
 .borderSelected {
-border-radius:100%;
-border:2px solid rgb(53,195,193);
+	border-radius:100%;
+	border:2px solid rgb(53,195,193);
 }
 
 .fontYourOption{
-color:#ffffff;
-font-size:7vw;
-font-family:'BrandonBold';
-line-height:1;
-letter-spacing:-0.075em;
-text-transform: uppercase;
+	color:#ffffff;
+	font-size:7vw;
+	font-family:'BrandonBold';
+	line-height:1;
+	letter-spacing:-0.075em;
+	text-transform: uppercase;
 }
 
 #slideBoxCreateZonder{
-position:absolute;
-top:0;
-width:100%;
-height:100%;
+	position:absolute;
+	top:0;
+	width:100%;
+	height:100%;
 } 
 
 #closeCreateZonder{
-position:absolute;
-z-index: 16;
-top:32px;
-width:28px;
-left:15px;
+	position:absolute;
+	z-index: 16;
+	top:32px;
+	width:28px;
+	left:15px;
 }
 
 #backCreateZonder{
-position:absolute;
-z-index: 16;
-top:32px;
-width:16px;
-left:15px;
+	position:absolute;
+	z-index: 16;
+	top:32px;
+	width:16px;
+	left:15px;
 }
 
 #posDivCameraLeft{
-position:absolute;
-z-index: 16;
-top:36%;
-left:18%;
+	position:absolute;
+	z-index: 16;
+	top:36%;
+	left:18%;
 }
 
 .textAreaNamePhotoCreateZonder{ 
-color:#ffffff;
-font-size:5vw;
-font-family:'BrandonBold';
-line-height:1;
-letter-spacing:-0.075em;
-text-transform: uppercase;
+	color:#ffffff;
+	font-size:5vw;
+	font-family:'BrandonBold';
+	line-height:1;
+	letter-spacing:-0.075em;
+	text-transform: uppercase;
 }
 
 .textAreaNamePhotoCreateZonderPlaceholder::-webkit-input-placeholder { 
-color:#ffffff;
-font-size:5vw;
-font-family:'BrandonBold';
-line-height:1;
-letter-spacing:-0.075em;
-text-transform: uppercase;
+	color:#ffffff;
+	font-size:5vw;
+	font-family:'BrandonBold';
+	line-height:1;
+	letter-spacing:-0.075em;
+	text-transform: uppercase;
 }
 
 #posDivNamePhotoLeft{
-position:absolute;
-z-index: 16;
-top:36%;
-left:-3%;
-text-align:center;
-background-color: transparent;
+	position:absolute;
+	z-index: 16;
+	top:36%;
+	left:-3%;
+	text-align:center;
+	background-color: transparent;
 }
 
 #posDivCameraRight{
-position:absolute;
-z-index: 16;
-top:62%;
-right:18%;
+	position:absolute;
+	z-index: 16;
+	top:62%;
+	right:18%;
 }
 
 #posDivNamePhotoRight{
-position:absolute;
-z-index: 16;
-top:63%;
-right:-3%;
-text-align:center;
-background-color: transparent;
+	position:absolute;
+	z-index: 16;
+	top:63%;
+	right:-3%;
+	text-align:center;
+	background-color: transparent;
 }
 
 //font add picture
 .addPictureFont{
-color:#ffffff;
-font-size:5vw;
-font-family:'BrandonBold';
-line-height:2.327;
-letter-spacing:-0.075em;
-text-transform: uppercase;
+	color:#ffffff;
+	font-size:5vw;
+	font-family:'BrandonBold';
+	line-height:2.327;
+	letter-spacing:-0.075em;
+	text-transform: uppercase;
 }
 
 .sample-show-hide {
 }
 
 .sample-show-hide {
--webkit-transition:all linear 0.5s;
-transition:all linear 0.5s;
+	-webkit-transition:all linear 0.5s;
+	transition:all linear 0.5s;
 }
 
 .sample-show-hide.ng-hide {
-opacity:0;
+	opacity:0;
 }
 
 #contentTextAreaCreateZonder{
-position:absolute;
-top:30%;
-left:11%;
+	position:absolute;
+	top:30%;
+	left:11%;
 }
 
 .questionCreateZonder{
-background-color: transparent;
-font-family:'BrandonBold';
-font-size:6vw;
-line-height:1;
-letter-spacing:-0.075em;
-text-transform: uppercase;
-color:#fff;
+	background-color: transparent;
+	font-family:'BrandonBold';
+	font-size:6vw;
+	line-height:1;
+	letter-spacing:-0.075em;
+	text-transform: uppercase;
+	color:#fff;
 }
 
 #textAreaQuestionCreateZonder::-webkit-input-placeholder { 
-color:#fff;
-font-family:'BrandonBold';
-font-size:8.5vw;
-line-height:1;
-letter-spacing:-0.075em;
-text-transform: uppercase;
+	color:#fff;
+	font-family:'BrandonBold';
+	font-size:8.5vw;
+	line-height:1;
+	letter-spacing:-0.075em;
+	text-transform: uppercase;
 }
 
 #contentCharactersLeftCreateZonder{
-position:absolute;
-top:70%;
-right:12%;
+	position:absolute;
+	top:70%;
+	right:12%;
 }
 
 .charactersLeftCreateZonder{
-font-family:'BrandonLight';
-font-size:14px;
-font-size:5vw;
-line-height:1.2;
-color:#ffffff;
+	font-family:'BrandonLight';
+	font-size:14px;
+	font-size:5vw;
+	line-height:1.2;
+	color:#ffffff;
 }
 
 //font characters
 .fontCharacters{
-font-size:12px;
-font-family:'OpenSansIt';
-line-height: 1.338;
-color: #ffffff;
+	font-size:12px;
+	font-family:'OpenSansIt';
+	line-height: 1.338;
+	color: #ffffff;
 }
 
 /* /////////////////  test image triangle ////////////////////////*/
 
 .pageOption {
-overflow: hidden;
-position: relative;
-top:28%;
-margin: 0 auto;
-width: 100vw; height: 55vh;
-border-top:1px solid #e8eaf1;
-border-bottom:1px solid #e8eaf1;
+	overflow: hidden;
+	position: relative;
+	top:28%;
+	margin: 0 auto;
+	width: 100vw; height: 55vh;
+	border-top:1px solid #e8eaf1;
+	border-bottom:1px solid #e8eaf1;
 }
 .option, .option img {width: 100%; height: 100%; }
 .option {
-overflow: hidden;
-position: absolute;  
+	overflow: hidden;
+	position: absolute;  
 }
 .option:first-child {
--webkit-transform-origin: 100% 0;
+	-webkit-transform-origin: 100% 0;
 }
 .option:last-child {
-border-left:2px solid #e8eaf1;
--webkit-transform-origin: 0 100%;
+	border-left:2px solid #e8eaf1;
+	-webkit-transform-origin: 0 100%;
 }
 .option img { opacity: .65; transition: .5s; }
 .option img:hover { opacity: 1; }
 .option img, .option:after {
--webkit-transform-origin: inherit;
+	-webkit-transform-origin: inherit;
 }
 
 
 .nameTranslateLeft{
-opacity:1;
--webkit-transform: translateX(20%); 
--webkit-transition: all 0.5s linear;
+	opacity:1;
+	-webkit-transform: translateX(20%); 
+	-webkit-transition: all 0.5s linear;
 }
 
 .nameTranslateRight{
-opacity:1;
--webkit-transform: translateX(-19%); 
--webkit-transition: all 0.5s linear;
+	opacity:1;
+	-webkit-transform: translateX(-19%); 
+	-webkit-transition: all 0.5s linear;
 }
 
 ///////////////////// Target Picker /////////////////////
 #overlayTargetPicker{
-position:absolute;
-top:0;
-left:0;
-z-index:30 !important;
-width:100vw;
-height:100vh;
-background-color: rgba(0, 0, 0, 0.6);
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:30 !important;
+	width:100vw;
+	height:100vh;
+	background-color: rgba(0, 0, 0, 0.6);
 }
 
 
 #closeTargetPicker {
-position: absolute;
-top:10px;
-left:10px;
+	position: absolute;
+	top:10px;
+	left:10px;
 }
 
 ///////////////////// Time Picker /////////////////////
 #overlayTimePicker{
-position:absolute;
-top:0;
-left:0;
-z-index:30 !important;
-width:100vw;
-height:100vh;
-background-color: rgba(0, 0, 0, 0.6);
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:30 !important;
+	width:100vw;
+	height:100vh;
+	background-color: rgba(0, 0, 0, 0.6);
 }
 
 
 .contentPickerHide{
-position: absolute;
-left:50vw;
-top:-150px;
-margin-left: -100px;
-margin-top: -125px;
-background-color: #FFF;
-width: 200px;
-height: 250px;
+	position: absolute;
+	left:50vw;
+	top:-150px;
+	margin-left: -100px;
+	margin-top: -125px;
+	background-color: #FFF;
+	width: 200px;
+	height: 250px;
 }
 
 .optionTranslateUp{
--webkit-transform: translateY(0vh); 
--webkit-transition: all 0.5s linear;
+	-webkit-transform: translateY(0vh); 
+	-webkit-transition: all 0.5s linear;
 }
 
 .optionTranslateDown{
--webkit-transform: translateY(calc( 50vh + 150px )); 
--webkit-transition: all 0.5s linear;
+	-webkit-transform: translateY(calc( 50vh + 150px )); 
+	-webkit-transition: all 0.5s linear;
 }
 
 
 #closeTimePicker {
-position: absolute;
-top:10px;
-left:10px;
+	position: absolute;
+	top:10px;
+	left:10px;
 }
 
 .timePicker {
-position: absolute;
-border: 1px solid blue;
-top:45px;
-height: 170px;
-width: 100%;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: center;
--webkit-flex-direction : column;
+	position: absolute;
+	border: 1px solid blue;
+	top:45px;
+	height: 170px;
+	width: 100%;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	-webkit-flex-direction : column;
 }
 
 //conteneur du titre de la popup
 .contentTitleTimePicker {
-position: absolute;
-width:100%;
-top:17px;
+	position: absolute;
+	width:100%;
+	top:17px;
 }
 
 //titre de la popup
 .titlePopupTimePicker{
-width:100%;
-@include fontTitlePopup;
-text-align: center;
+	width:100%;
+	@include fontTitlePopup;
+	text-align: center;
 }
 
 .contentButton {
-position: absolute;
-width:100%;
-background-color : #fff;
-top:235px;
+	position: absolute;
+	width:100%;
+	background-color : #fff;
+	top:235px;
 }
 
 .contentPlus {
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: center;
-width: 100%;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	width: 100%;
 }
 
 .contentMinus {
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: center;
-width: 100%;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	width: 100%;
 }
 
 .contentTime {
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: center;
-width: 100%;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+	width: 100%;
 }
 
 .fontTime{
-font-size:30px;
-font-family: 'BrandonBold';
-color: #000;
-line-height:30px;
-letter-spacing:0.075em;
+	font-size:30px;
+	font-family: 'BrandonBold';
+	color: #000;
+	line-height:30px;
+	letter-spacing:0.075em;
 }
 
 // content item question
 .contentItemQuestionPollModal{
-position:absolute;
-width:84%;
-top:30px;
-left:14%;
-height:48px;
-display: -webkit-flex;
--webkit-align-items: center;
--webkit-justify-content: flex-start;
+	position:absolute;
+	width:84%;
+	top:30px;
+	left:14%;
+	height:48px;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-justify-content: flex-start;
 }
 
 ///////////////////// animation /////////////////////
@@ -1792,10 +1792,15 @@ display: -webkit-flex;
 }
 
 .spinnerLoading svg {
-  width: 28px;
-  height: 28px;
-  stroke: #fff;
-  fill: #fff;
+	width: 28px;
+	height: 28px;
+	stroke: #fff;
+	fill: #fff;
+}
+
+.spinnerLoadingBlack svg {
+	width: 28px;
+	height: 28px;
 }
 
 .photoLinePair2{
@@ -1858,15 +1863,28 @@ display: -webkit-flex;
 	-webkit-transition: all 0.5s ease;
 }
 
-.translateLoadingFriendsHide{
+
+
+.translateLoadingHide{
 	-webkit-transform: translateY(0vh); 
-	-webkit-transition: all 1s ease;
+	-webkit-transition: all 0.5s ease 0.2s;
 }
 
-.translateLoadingFriendsShow{
+.translateLoadingShow{
 	-webkit-transform: translateY(10vh); 
-	-webkit-transition: all 1s ease;
+	-webkit-transition: all 0.5s ease;
 }
+
+.scaleLoadingDown{
+	-webkit-transform: scale(0); 
+	-webkit-transition: all 0.2s ease;
+}
+
+.scaleLoadingUp{
+	-webkit-transform: scale(1); 
+	-webkit-transition: all 0.5s ease 0.5s;
+}
+
 
 /*.translate-down{
 -webkit-animation-delay: 0.5s;
@@ -1896,15 +1914,7 @@ display: -webkit-flex;
 	height:10vh;
 }
 */
-.scaleLoadingFriendsDown{
-	-webkit-transform: scale(0); 
-	-webkit-transition: all 0.5s ease;
-}
 
-.scaleLoadingFriendsUp{
-	-webkit-transform: scale(1); 
-	-webkit-transition: all 0.5s ease;
-}
 
 /*// animation de scale 
 .scale-out{
@@ -1930,356 +1940,356 @@ display: -webkit-flex;
 @-webkit-keyframes scaleOut { 
 	from { -webkit-transform: scale(1); } 
 	to { -webkit-transform: scale(0); } 
-}*/
-
-// animation des triangles du haut, translation vers le haut
-.animateTriangles{
--webkit-transform: translateY(-16vh);
--webkit-transition: all 1s ease;
-}
-
-// animation de fade out 
-.fade-out{
-opacity: 1;
--webkit-animation-delay: 1s;
--webkit-animation: fadeOut 1s forwards linear;
-}
-
-// animation de fade in
-.fade-in{
-opacity:0;
--webkit-animation:fadeIn 1s forwards linear;
-}
-
-// animation de fade out 
-.fade-out-slider{
-opacity: 1;
--webkit-animation: fadeOut 1s forwards linear;
-}
-
-.fade-in-button{
-opacity:0;
--webkit-transition:all linear 0.5s;
-}
-//fade in tooltip (délai pour faire apparaitre le text après l'animation de fade out du logo)
-.fade-in.tooltip{
--webkit-animation-delay: 1.1s;
-}
-
-//effet de fade in 
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-//effet de fade out
-@-webkit-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
-
-//animation de fade sur une image pour avoir le meme effet qu'un clique sur un bouton
-.imgClick:active{
-opacity: 1;
--webkit-animation: fadeOut 0.6s linear;
-}
-
-// transition entre des modaux
-.slide-in-right {
--webkit-transform: translate3d(100%, 0, 0);
-transform: translate3d(100%, 0, 0); }
-
-.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
--webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
-
-.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
--webkit-transform: translate3d(0, 0, 0);
-transform: translate3d(0, 0, 0); }
-
-.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
--webkit-transition: all ease-in-out 250ms;
-transition: all ease-in-out 250ms; }
-
-@-webkit-keyframes scaleOut {
-from {
--webkit-transform: scale(1);
-opacity: 1; }
-
-to {
--webkit-transform: scale(0.8);
-opacity: 0; } }
-
-@keyframes scaleOut {
-from {
-transform: scale(1);
-opacity: 1; }
-
-to {
-transform: scale(0.8);
-opacity: 0; } }
-
-@-webkit-keyframes superScaleIn {
-from {
--webkit-transform: scale(1.2);
-opacity: 0; }
-
-to {
--webkit-transform: scale(1);
-opacity: 1; } }
-
-@keyframes superScaleIn {
-from {
-transform: scale(1.2);
-opacity: 0; }
-
-to {
-transform: scale(1);
-opacity: 1; } }
-///////////////////// font /////////////////////
-
-@font-face {
-font-family: 'BrandonBoldIt';
-src: url('../fonts/brandon-grotesque/Brandon_bld_it.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonBold';
-src: url('../fonts/brandon-grotesque/Brandon_bld.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonBlackIt';
-src: url('../fonts/brandon-grotesque/Brandon_blk_it.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonBlack';
-src: url('../fonts/brandon-grotesque/Brandon_blk.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonLightIt';
-src: url('../fonts/brandon-grotesque/Brandon_light_it.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonLight';
-src: url('../fonts/brandon-grotesque/Brandon_light.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonMediumIt';
-src: url('../fonts/brandon-grotesque/Brandon_med_it.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonMedium';
-src: url('../fonts/brandon-grotesque/Brandon_med.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonRegularIt';
-src: url('../fonts/brandon-grotesque/Brandon_reg_it.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonRegular';
-src: url('../fonts/brandon-grotesque/Brandon_reg.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonThintIt';
-src: url('../fonts/brandon-grotesque/Brandon_thin_it.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'BrandonThin';
-src: url('../fonts/brandon-grotesque/Brandon_thin.otf') format("opentype");
-}
-
-@font-face {
-font-family: 'OpenSansBoldIt';
-src: url('../fonts/open-sans/OpenSans-BoldItalic.ttf') format("truetype");
-}
-
-@font-face {
-font-family: 'OpenSansBold';
-src: url('../fonts/open-sans/OpenSans-Bold.ttf') format("truetype");
-}
-
-@font-face {
-font-family: 'OpenSansExtraBoldIt';
-src: url('../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf') format("truetype");
-}
-
-@font-face {
-font-family: 'OpenSansExtraBold';
-src: url('../fonts/open-sans/OpenSans-ExtraBold.ttf') format("truetype");
-}
-
-@font-face {
-font-family: 'OpenSansIt';
-src: url('../fonts/open-sans/OpenSans-Italic.ttf') format("truetype");
-}
-
-@font-face {
-font-family: 'OpenSansLight';
-src: url('../fonts/open-sans/OpenSans-Light.ttf') format("truetype");
-}
-
-@font-face {
-font-family: 'OpenSansLightItalic';
-src: url('../fonts/open-sans/OpenSans-LightItalic.ttf') format("truetype");
-}
-
-@font-face {
-font-family: 'OpenSansRegular';
-src: url('../fonts/open-sans/OpenSans-Regular.ttf') format("truetype");
-}
-
-@font-face {
-font-family: 'OpenSansSemibold';
-src: url('../fonts/open-sans/OpenSans-Semibold.ttf') format("truetype");
-}
-
-@font-face {
-font-family: 'OpenSansSemiboldItalic';
-src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype");
-}
-
-///////////////////// Media (difference entre les différents model d'iphone) /////////////////////////////////
-
-
-/////////////// iphone 5 //////////////////
-
-@media screen and (device-aspect-ratio: 40/71) {
-
-.heightIonSlide{
-height:calc( 100vh - 180px );
-}
-
-//position ion-scroll
-.heightIonScroll{
-  margin:0;
-  height:calc( 100vh - 180px );
-}
-
-//button parameter profile
-.posParameterProfile{
-z-index:26;
-position:absolute;
-right:22px;
-top:72px;
-}
-
-//div transparente haut de view
-.divTransparency{
-position:relative;
-width:100%;
-height:84px;
-}
-
-.divHeader{
-position:absolute;
-width:100%;
-top:0px;
-} 
-
-// position des triangles en haut (que iphone 5)
-#triangles{
-z-index:10;
-position:absolute;
-width:100%;
-margin-top: -16vh;
-}
-
-// animation des triangles dans la view splashscreen (que iphone 4)
-.animateTriangles{
--webkit-transform: translateY(-16vh);
--webkit-transition: all 1s ease;
-}
-
-// position de l'image de profil (que iphone 5)
-.profilImg{
-z-index:11;
-position:absolute;
-right:13px;
-top:22px;
-height:46px;
-width:46px;
-border-radius: 100%;
-}
-
-}
-
-///////////// iphone 4 ////////////////////
-@media screen and (device-aspect-ratio: 2/3) {
-
-.heightIonSlide{
-height:calc( 100vh - 180px );
-}
-
-//position ion-scroll
-.heightIonScroll{
-  height:calc( 100vh - 180px );
-}
-//button parameter profile
-.posParameterProfile{
-z-index:26;
-position:absolute;
-right:22px;
-top:72px;
-}
-
-//div transparente haut de view
-.divTransparency{
-position:relative;
-width:100%;
-height:84px;
-}
-
-.divHeader{
-position:absolute;
-width:100%;
-top:0px;
-} 
-
-// logo en bandeau pour pourvoir le positionner au bon endroit de l'écran
-#logoBandeau{
-z-index:10;
-position:absolute;
-top:45.5%;
-left:0;
-width:100%;
-}
-
-// position de l'image de profil (que iphone 4)
-.profilImg{
-z-index:11;
-position:absolute;
-right:13px;
-top:22px;
-height:46px;
-width:46px;
-border-radius: 100%;
-}
-
-// image de fond d'écran étoilé (que iphone 4)
-.background{
-background-image: url('../img/backgroundIphone4.jpg');
-background-size:cover;
-background-position:center;
-}
-
-// image des triangles en haut (que iphone 4)
-#triangles{
-z-index:10;
-position:absolute;
-width:100%;
-margin-top: -19vh;
-}
-
-// animation des triangles dans la view splashscreen (que iphone 4)
-.animateTriangles{
--webkit-transform: translateY(-19vh);
--webkit-transition: all 1s ease;
-}
-
-}
+	}*/
+
+	// animation des triangles du haut, translation vers le haut
+	.animateTriangles{
+		-webkit-transform: translateY(-16vh);
+		-webkit-transition: all 1s ease;
+	}
+
+	// animation de fade out 
+	.fade-out{
+		opacity: 1;
+		-webkit-animation-delay: 1s;
+		-webkit-animation: fadeOut 1s forwards linear;
+	}
+
+	// animation de fade in
+	.fade-in{
+		opacity:0;
+		-webkit-animation:fadeIn 1s forwards linear;
+	}
+
+	// animation de fade out 
+	.fade-out-slider{
+		opacity: 1;
+		-webkit-animation: fadeOut 1s forwards linear;
+	}
+
+	.fade-in-button{
+		opacity:0;
+		-webkit-transition:all linear 0.5s;
+	}
+	//fade in tooltip (délai pour faire apparaitre le text après l'animation de fade out du logo)
+	.fade-in.tooltip{
+		-webkit-animation-delay: 1.1s;
+	}
+
+	//effet de fade in 
+	@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+	//effet de fade out
+	@-webkit-keyframes fadeOut { from { opacity:1; } to { opacity:0; } }
+
+	//animation de fade sur une image pour avoir le meme effet qu'un clique sur un bouton
+	.imgClick:active{
+		opacity: 1;
+		-webkit-animation: fadeOut 0.6s linear;
+	}
+
+	// transition entre des modaux
+	.slide-in-right {
+		-webkit-transform: translate3d(100%, 0, 0);
+		transform: translate3d(100%, 0, 0); }
+
+		.slide-in-right.ng-enter, .slide-in-right > .ng-enter {
+			-webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+			transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms; }
+
+			.slide-in-right.ng-enter-active, .slide-in-right > .ng-enter-active {
+				-webkit-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0); }
+
+				.slide-in-right.ng-leave, .slide-in-right > .ng-leave {
+					-webkit-transition: all ease-in-out 250ms;
+					transition: all ease-in-out 250ms; }
+
+					@-webkit-keyframes scaleOut {
+						from {
+							-webkit-transform: scale(1);
+							opacity: 1; }
+
+							to {
+								-webkit-transform: scale(0.8);
+								opacity: 0; } }
+
+								@keyframes scaleOut {
+									from {
+										transform: scale(1);
+										opacity: 1; }
+
+										to {
+											transform: scale(0.8);
+											opacity: 0; } }
+
+											@-webkit-keyframes superScaleIn {
+												from {
+													-webkit-transform: scale(1.2);
+													opacity: 0; }
+
+													to {
+														-webkit-transform: scale(1);
+														opacity: 1; } }
+
+														@keyframes superScaleIn {
+															from {
+																transform: scale(1.2);
+																opacity: 0; }
+
+																to {
+																	transform: scale(1);
+																	opacity: 1; } }
+																	///////////////////// font /////////////////////
+
+																	@font-face {
+																		font-family: 'BrandonBoldIt';
+																		src: url('../fonts/brandon-grotesque/Brandon_bld_it.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonBold';
+																		src: url('../fonts/brandon-grotesque/Brandon_bld.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonBlackIt';
+																		src: url('../fonts/brandon-grotesque/Brandon_blk_it.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonBlack';
+																		src: url('../fonts/brandon-grotesque/Brandon_blk.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonLightIt';
+																		src: url('../fonts/brandon-grotesque/Brandon_light_it.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonLight';
+																		src: url('../fonts/brandon-grotesque/Brandon_light.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonMediumIt';
+																		src: url('../fonts/brandon-grotesque/Brandon_med_it.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonMedium';
+																		src: url('../fonts/brandon-grotesque/Brandon_med.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonRegularIt';
+																		src: url('../fonts/brandon-grotesque/Brandon_reg_it.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonRegular';
+																		src: url('../fonts/brandon-grotesque/Brandon_reg.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonThintIt';
+																		src: url('../fonts/brandon-grotesque/Brandon_thin_it.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'BrandonThin';
+																		src: url('../fonts/brandon-grotesque/Brandon_thin.otf') format("opentype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansBoldIt';
+																		src: url('../fonts/open-sans/OpenSans-BoldItalic.ttf') format("truetype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansBold';
+																		src: url('../fonts/open-sans/OpenSans-Bold.ttf') format("truetype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansExtraBoldIt';
+																		src: url('../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf') format("truetype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansExtraBold';
+																		src: url('../fonts/open-sans/OpenSans-ExtraBold.ttf') format("truetype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansIt';
+																		src: url('../fonts/open-sans/OpenSans-Italic.ttf') format("truetype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansLight';
+																		src: url('../fonts/open-sans/OpenSans-Light.ttf') format("truetype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansLightItalic';
+																		src: url('../fonts/open-sans/OpenSans-LightItalic.ttf') format("truetype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansRegular';
+																		src: url('../fonts/open-sans/OpenSans-Regular.ttf') format("truetype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansSemibold';
+																		src: url('../fonts/open-sans/OpenSans-Semibold.ttf') format("truetype");
+																	}
+
+																	@font-face {
+																		font-family: 'OpenSansSemiboldItalic';
+																		src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype");
+																	}
+
+																	///////////////////// Media (difference entre les différents model d'iphone) /////////////////////////////////
+
+
+																	/////////////// iphone 5 //////////////////
+
+																	@media screen and (device-aspect-ratio: 40/71) {
+
+																		.heightIonSlide{
+																			height:calc( 100vh - 180px );
+																		}
+
+																		//position ion-scroll
+																		.heightIonScroll{
+																			margin:0;
+																			height:calc( 100vh - 180px );
+																		}
+
+																		//button parameter profile
+																		.posParameterProfile{
+																			z-index:26;
+																			position:absolute;
+																			right:22px;
+																			top:72px;
+																		}
+
+																		//div transparente haut de view
+																		.divTransparency{
+																			position:relative;
+																			width:100%;
+																			height:84px;
+																		}
+
+																		.divHeader{
+																			position:absolute;
+																			width:100%;
+																			top:0px;
+																		} 
+
+																		// position des triangles en haut (que iphone 5)
+																		#triangles{
+																			z-index:10;
+																			position:absolute;
+																			width:100%;
+																			margin-top: -16vh;
+																		}
+
+																		// animation des triangles dans la view splashscreen (que iphone 4)
+																		.animateTriangles{
+																			-webkit-transform: translateY(-16vh);
+																			-webkit-transition: all 1s ease;
+																		}
+
+																		// position de l'image de profil (que iphone 5)
+																		.profilImg{
+																			z-index:11;
+																			position:absolute;
+																			right:13px;
+																			top:22px;
+																			height:46px;
+																			width:46px;
+																			border-radius: 100%;
+																		}
+
+																	}
+
+																	///////////// iphone 4 ////////////////////
+																	@media screen and (device-aspect-ratio: 2/3) {
+
+																		.heightIonSlide{
+																			height:calc( 100vh - 180px );
+																		}
+
+																		//position ion-scroll
+																		.heightIonScroll{
+																			height:calc( 100vh - 180px );
+																		}
+																		//button parameter profile
+																		.posParameterProfile{
+																			z-index:26;
+																			position:absolute;
+																			right:22px;
+																			top:72px;
+																		}
+
+																		//div transparente haut de view
+																		.divTransparency{
+																			position:relative;
+																			width:100%;
+																			height:84px;
+																		}
+
+																		.divHeader{
+																			position:absolute;
+																			width:100%;
+																			top:0px;
+																		} 
+
+																		// logo en bandeau pour pourvoir le positionner au bon endroit de l'écran
+																		#logoBandeau{
+																			z-index:10;
+																			position:absolute;
+																			top:45.5%;
+																			left:0;
+																			width:100%;
+																		}
+
+																		// position de l'image de profil (que iphone 4)
+																		.profilImg{
+																			z-index:11;
+																			position:absolute;
+																			right:13px;
+																			top:22px;
+																			height:46px;
+																			width:46px;
+																			border-radius: 100%;
+																		}
+
+																		// image de fond d'écran étoilé (que iphone 4)
+																		.background{
+																			background-image: url('../img/backgroundIphone4.jpg');
+																			background-size:cover;
+																			background-position:center;
+																		}
+
+																		// image des triangles en haut (que iphone 4)
+																		#triangles{
+																			z-index:10;
+																			position:absolute;
+																			width:100%;
+																			margin-top: -19vh;
+																		}
+
+																		// animation des triangles dans la view splashscreen (que iphone 4)
+																		.animateTriangles{
+																			-webkit-transform: translateY(-19vh);
+																			-webkit-transition: all 1s ease;
+																		}
+
+																	}
 
 

@@ -216,13 +216,18 @@
 
 <ion-slide ng-controller="pollsCtrl" class="heightIonSlide" >
 <ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
-<ion-refresher pulling-icon="ion-chevron-down" spinner="spiral" on-refresh="pullToRefresh()"></ion-refresher>
 
-<div ng-show="!displayPolls.length" class="sample-show-hide" style="position:relative;left:10%;top:5vh;width:80%;height:30px;text-align:center;">
+<ion-refresher ng-show="!loadingPolls" pulling-icon="ion-chevron-down" spinner="spiral" on-refresh="pullToRefresh()"></ion-refresher>
+
+<div ng-show="!displayPolls.length && !loadingPolls" class="sample-show-hide" style="position:relative;left:10%;top:5vh;width:80%;height:30px;text-align:center;">
     <span class="titlePopup" style="width:100%;color:#939191;font-size:14px;background: transparent">You have no voted zonder yet !</span>
 </div>
 
-<div ng-repeat="poll in displayPolls" ng-click="openPollModal(poll)" class="divContentZonder marginTopPullUp">
+<div ng-show="loadingPolls" ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls}" style="position:absolute;top:-10vh;left:0;width:100%;height:10vh;" class="centeredContent">
+	<ion-spinner class="spinnerLoadingBlack" icon="spiral" ng-class="{scaleLoadingDown:!loadingPolls,scaleLoadingUp:loadingPolls}" style="margin-top:-5px"></ion-spinner>
+</div>	
+
+<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls}" ng-repeat="poll in displayPolls" ng-click="openPollModal(poll)" class="divContentZonder marginTopPullUp">
 
 	<div class="headerZonder">
 
@@ -283,7 +288,7 @@
 	<div class="separatorZonder"></div>
 </div>
 
-<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScroll" on-infinite="loadPollsCtrl(true)" immediate-check="false">
+<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScroll && !loadingPolls" on-infinite="loadPollsCtrl(true)" immediate-check="false">
 </ion-infinite-scroll>
 
 </ion-scroll>
@@ -300,11 +305,11 @@
     <span class="titlePopup" style="width:100%;color:#939191;font-size:14px;background: transparent">You have no friends yet, find them !</span>
 </div>
 
-<div ng-show="loadingFriends" ng-class="{translateLoadingFriendsHide:!loadingFriends,translateLoadingFriendsShow:loadingFriends}" style="position:absolute;top:-10vh;left:0;width:100%;height:10vh;" class="centeredContent">
-	<ion-spinner class="spinnerLoading" icon="spiral" ng-class="{scaleLoadingFriendsUp:!loadingFriends,scaleLoadingFriendsUp:loadingFriends}" style="margin-top:-5px"></ion-spinner>
+<div ng-show="loadingFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" style="position:absolute;top:-10vh;left:0;width:100%;height:10vh;" class="centeredContent">
+	<ion-spinner class="spinnerLoadingBlack" icon="spiral" ng-class="{scaleLoadingDown:!loadingFriends,scaleLoadingUp:loadingFriends}" style="margin-top:-5px"></ion-spinner>
 </div>
 
-<div ng-repeat="requestFriend in displayRequestFriends" ng-class="{translateLoadingFriendsHide:!loadingFriends,translateLoadingFriendsShow:loadingFriends}" class="contentItemFriend">
+<div ng-repeat="requestFriend in displayRequestFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend">
 	<div class="contentFriend">
 		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{requestFriend.photo}}">
 		<img class="posNotification" width="10" src="img/notification.png">
@@ -320,12 +325,12 @@
 			<p class="fontFooterFriends" style="margin-top:8px"> See {{requestFriend.pseudo}}’s profile </p>
 		</div>
 	</div> 
-	<div class="contentFriendActionSheet">
-		<img width="5" class="imgClick" ng-click="showActionSheetRequestFriends(requestFriend.id)" src="img/actionSheetVertical.png">
+	<div class="contentFriendActionSheet" ng-click="showActionSheetRequestFriends(requestFriend.id)">
+		<img width="5" class="imgClick"  src="img/actionSheetVertical.png">
 	</div>
 </div>
 
-<div ng-repeat="friend in displayFriends" ng-class="{translateLoadingFriendsHide:!loadingFriends,translateLoadingFriendsShow:loadingFriends}" class="contentItemFriend">
+<div ng-repeat="friend in displayFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend">
 	<div class="contentFriend">
 		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{friend.photo}}">
 		<div class="contentTextFriend">
@@ -339,12 +344,12 @@
 			<p class="fontFooterFriends" style="margin-top:10px"> See {{friend.pseudo}}’s profile </p>
 		</div>
 	</div> 
-	<div class="contentFriendActionSheet">
-		<img width="5" class="imgClick" ng-click="showActionSheetFriends(friend.id)" src="img/actionSheetVertical.png">
+	<div class="contentFriendActionSheet" style="border:1px solid red;" ng-click="showActionSheetFriends(friend.id)">
+		<img width="5" class="imgClick" src="img/actionSheetVertical.png">
 	</div>
 </div>
 
-<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScrollForFriends" on-infinite="loadFriendsCtrl(true)" immediate-check="false">
+<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScrollForFriends && !loadingFriends" on-infinite="loadFriendsCtrl(true)" immediate-check="false">
 </ion-infinite-scroll>
 </ion-scroll>
 </ion-slide>
