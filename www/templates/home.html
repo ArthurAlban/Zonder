@@ -296,11 +296,15 @@
 
 <ion-scroll direction="y" has-bouncing="false" class="heightIonScroll" delegate-handle="vertical">
 
-<div ng-show="!displayRequestFriends.length && !displayFriends.length" class="sample-show-hide" style="position:relative;left:10%;top:5vh;width:80%;height:30px;text-align:center;">
+<div ng-show="!displayRequestFriends.length && !displayFriends.length && !loadingFriends" class="sample-show-hide" style="position:relative;left:10%;top:5vh;width:80%;height:30px;text-align:center;">
     <span class="titlePopup" style="width:100%;color:#939191;font-size:14px;background: transparent">You have no friends yet, find them !</span>
 </div>
 
-<div ng-repeat="requestFriend in displayRequestFriends" class="contentItemFriend">
+<div ng-show="loadingFriends" ng-class="{translateLoadingFriendsHide:!loadingFriends,translateLoadingFriendsShow:loadingFriends}" style="position:absolute;top:-10vh;left:0;width:100%;height:10vh;" class="centeredContent">
+	<ion-spinner class="spinnerLoading" icon="spiral" ng-class="{scaleLoadingFriendsUp:!loadingFriends,scaleLoadingFriendsUp:loadingFriends}" style="margin-top:-5px"></ion-spinner>
+</div>
+
+<div ng-repeat="requestFriend in displayRequestFriends" ng-class="{translateLoadingFriendsHide:!loadingFriends,translateLoadingFriendsShow:loadingFriends}" class="contentItemFriend">
 	<div class="contentFriend">
 		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{requestFriend.photo}}">
 		<img class="posNotification" width="10" src="img/notification.png">
@@ -321,7 +325,7 @@
 	</div>
 </div>
 
-<div ng-repeat="friend in displayFriends" class="contentItemFriend">
+<div ng-repeat="friend in displayFriends" ng-class="{translateLoadingFriendsHide:!loadingFriends,translateLoadingFriendsShow:loadingFriends}" class="contentItemFriend">
 	<div class="contentFriend">
 		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{friend.photo}}">
 		<div class="contentTextFriend">

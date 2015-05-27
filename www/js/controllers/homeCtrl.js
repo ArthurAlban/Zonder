@@ -279,6 +279,8 @@ $scope.confirmFriend = false;
 
 $scope.displayInfiniteScrollForFriends = false;
 
+$scope.loadingFriends = true;
+
 
 $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
 	if(!$scope.displayFriends.length && !$scope.displayRequestFriends.length){
@@ -479,6 +481,7 @@ $scope.checkAndLoadRequestFriends = function(callback){
 };
 
 $scope.loadFriendsCtrl = function(isLoadMoreFriends){
+	$scope.loadingFriends = true;
 	if(isLoadMoreFriends){
 		$scope.nbLoadsFriends++;
 		async.series([$scope.loadMoreFriends],
@@ -486,10 +489,17 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 				$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 				$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
 				$scope.$broadcast('scroll.infiniteScrollComplete');
+				
+				window.setTimeout(function(){
+				$scope.loadingFriends = false;
+				$scope.$apply();
+			}, 2000);
+
 				$scope.$apply();
 			});
 	}
 	else{
+		$scope.loadingFriends = true;
 		async.series([
 			function(callback){$scope.firstBufferFriends(isLoadMoreFriends, callback);},
 			$scope.checkAndLoadRequestFriends,
@@ -504,6 +514,13 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 			}
 			$rootScope.friendsHaveChanged = false;
 			$scope.confirmFriend = false;
+
+			window.setTimeout(function(){
+				$scope.loadingFriends = false;
+				$scope.$apply();
+			}, 2000);
+
+			
 			$scope.$apply();
 		});
 	}

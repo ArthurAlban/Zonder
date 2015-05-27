@@ -1858,6 +1858,80 @@ display: -webkit-flex;
 	-webkit-transition: all 0.5s ease;
 }
 
+.translateLoadingFriendsHide{
+	-webkit-transform: translateY(0vh); 
+	-webkit-transition: all 1s ease;
+}
+
+.translateLoadingFriendsShow{
+	-webkit-transform: translateY(10vh); 
+	-webkit-transition: all 1s ease;
+}
+
+/*.translate-down{
+-webkit-animation-delay: 0.5s;
+-webkit-animation: translateDown 0.5s forwards linear;
+}
+
+@-webkit-keyframes translateDown { 
+	from { -webkit-transform: translateY(0vh) } 
+	to { -webkit-transform: translateY(10vh); } 
+}
+
+.translate-up{
+-webkit-animation-delay: 0.5s;
+-webkit-animation: translateUp 0.5s forwards linear;
+}
+
+@-webkit-keyframes translateUp { 
+	from { -webkit-transform: translateY(10vh) } 
+	to { -webkit-transform: translateY(0vh); } 
+}
+
+.loadingFriends{
+	position:absolute;
+	top:-10vh;
+	left:0;
+	width:100%;
+	height:10vh;
+}
+*/
+.scaleLoadingFriendsDown{
+	-webkit-transform: scale(0); 
+	-webkit-transition: all 0.5s ease;
+}
+
+.scaleLoadingFriendsUp{
+	-webkit-transform: scale(1); 
+	-webkit-transition: all 0.5s ease;
+}
+
+/*// animation de scale 
+.scale-out{
+-webkit-transform: scale(1);
+-webkit-animation-delay: 0.5s;
+-webkit-animation: scaleIn 0.5s forwards linear;
+}
+
+// animation de scale 
+.scale-in{
+-webkit-transform: scale(0);
+-webkit-animation-delay: 0.5s;
+-webkit-animation: scaleIn 0.5s forwards linear;
+}
+
+//effet de scale in
+@-webkit-keyframes scaleIn { 
+	from { -webkit-transform: scale(0); } 
+	to { -webkit-transform: scale(1); } 
+}
+
+//effet de scale out
+@-webkit-keyframes scaleOut { 
+	from { -webkit-transform: scale(1); } 
+	to { -webkit-transform: scale(0); } 
+}*/
+
 // animation des triangles du haut, translation vers le haut
 .animateTriangles{
 -webkit-transform: translateY(-16vh);
