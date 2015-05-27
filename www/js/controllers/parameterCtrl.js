@@ -346,7 +346,7 @@ $scope.logOut = function() {
         // console.log("tokeneeeee " + $window.localStorage['deviceToken']);
 
       // UserService.unregisterDevice($window.localStorage['deviceToken']).then(function(){
-       
+
         UserService.logOut().then(function() {
 
           $window.localStorage['token'] = "";
@@ -372,9 +372,10 @@ $scope.logOut = function() {
     // }, function(err) {
     //   console.log("error in cordovaPush.unregister");
     // });
-  });
- }
+});
+}
 };
+
 
 
 });
