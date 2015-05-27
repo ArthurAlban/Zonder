@@ -7,6 +7,55 @@ zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ion
   $scope.myPhoto = $window.localStorage['photo'];
   $scope.myPseudo = $window.localStorage['pseudo'];
 
+  if($window.localStorage['notifPolls'] == "true"){
+    $scope.acceptNotifPolls = true;
+  }
+  else{
+    $scope.acceptNotifPolls = false;
+  }
+
+  if($window.localStorage['notifFriends'] == "true"){
+    $scope.acceptNotifFriends = true;
+  }
+  else{
+    $scope.acceptNotifFriends = false;
+  }
+
+
+  //////////////// Notifications Friends / Poll /////////////////////
+
+  $scope.changeAcceptNotifFriends = function(){
+    $scope.acceptNotifFriends = !$scope.acceptNotifFriends;
+    console.log("changeAcceptNotifFriends + $scope.acceptNotifFriends " + $scope.acceptNotifFriends);
+    UserService.notificationFriends($scope.acceptNotifFriends).then(function(){
+      if($scope.acceptNotifFriends){
+        $window.localStorage['notifFriends'] = "true";
+      }
+      else{
+        $window.localStorage['notifFriends'] = "false";
+      }
+    }, function(satus){
+      console.log("Error in notificationFriends");
+    });
+
+  };
+
+  $scope.changeAcceptNotifPolls = function(){
+    $scope.acceptNotifPolls = !$scope.acceptNotifPolls;
+    console.log("changeAcceptNotifPolls + $scope.acceptNotifPolls " + $scope.acceptNotifPolls);
+    UserService.notificationPolls($scope.acceptNotifPolls).then(function(){
+      if($scope.acceptNotifPolls){
+        $window.localStorage['notifPolls'] = "true";
+      }
+      else{
+        $window.localStorage['notifPolls'] = "false";
+      }
+    }, function(satus){
+      console.log("Error in notificationsPolls");
+    });
+
+  };
+
   //////////////////////// Change Profile Photo////////////////////////////////
 
   $scope.changeProfilePicture = function(){
@@ -210,10 +259,10 @@ $scope.slideHasChangedInCreateZonder = function(index){
   }
   if(index == 1){
     $scope.initTabImageToInternet();
-  	$scope.displayNextButtonQuestion = false;
-  	$scope.displayNextButtonChoosePhoto = true;
-  	$scope.displayCreateButton = false;
-  	$scope.showCloseButton = false;
+    $scope.displayNextButtonQuestion = false;
+    $scope.displayNextButtonChoosePhoto = true;
+    $scope.displayCreateButton = false;
+    $scope.showCloseButton = false;
   }
   if(index == 2){
   	$scope.displayNextButtonChoosePhoto = false;
@@ -974,7 +1023,7 @@ $scope.selectImage = function(){
   if($scope.sideImage == "left"){
     console.log("left");
     $scope.createPoll.photoLeft = $scope.tabImageToInternet[$scope.currentSlider].image;
-     async.series([function(callback){
+    async.series([function(callback){
       var image = new Image();
       image.src = $scope.createPoll.photoLeft;
       image.onload = function(){
@@ -996,7 +1045,7 @@ $scope.selectImage = function(){
   else if($scope.sideImage == "right"){
     console.log("right");
     $scope.createPoll.photoRight = $scope.tabImageToInternet[$scope.currentSlider].image;
-     async.series([function(callback){
+    async.series([function(callback){
       var image = new Image();
       image.src = $scope.createPoll.photoRight;
       image.onload = function(){
@@ -1078,10 +1127,10 @@ $scope.getImageFromGoogle = function(query, callback){
         $scope.tabImageToInternet[i].url = "";
       }
     }
-      async.parallel([function(callback){$scope.getInfosAndResizeImage($scope.tabImageToInternet, callback)}],
-        function(err, res){
-          callback();
-        });
+    async.parallel([function(callback){$scope.getInfosAndResizeImage($scope.tabImageToInternet, callback)}],
+      function(err, res){
+        callback();
+      });
   }, function(status){
     console.log("Impossible de récuperer les images");
     callback();
@@ -1131,8 +1180,8 @@ $scope.getInfosAndResizeImage = function(tabImageToInternet, callback){
       image.load = false;
       callback();
     }
-};
-$scope.queriesForInfosAndResizeImage.push(q);
+  };
+  $scope.queriesForInfosAndResizeImage.push(q);
 });
 callback();
 };
@@ -1157,10 +1206,10 @@ $scope.fillImageFromGoogle = function(query){
         $scope.showSliderGoogleSearch = true;
       }
       else{
-         $scope.showSliderGoogleSearch = false;
-      } 
-      $scope.$apply();
-    });
+       $scope.showSliderGoogleSearch = false;
+     } 
+     $scope.$apply();
+   });
   }
   else{
     console.log("ZZZZZZZ");
@@ -1200,7 +1249,7 @@ $scope.fillImageFromGoogle = function(query){
 //   img.onload = function(){
 //     canvas.height = img.height;
 //     canvas.width = img.width;
-    
+
 //     $scope.imageToInternet.height = canvas.height;
 //     $scope.imageToInternet.width = canvas.width;
 
