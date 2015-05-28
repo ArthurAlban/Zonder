@@ -1285,6 +1285,7 @@ $scope.queriesForUserPhoto = new Array();
 $scope.getPollsVoted = function(callback){
   PollService.getPollsVoted(0).then(function(data){
     $rootScope.lengthTab = data.lengthGlobal;
+    console.log("data.poll" + data.poll);
     if(data.poll != "allPollsLoaded"){
       $rootScope.pollsVoted = data.poll;
       async.parallel([function(callback){$scope.getPollsInfos($rootScope.pollsVoted, callback)}, 
@@ -1357,6 +1358,7 @@ else {
 
 
 $scope.getInfoPhoto = function(pollArray, callback){
+  console.log("4");
   if(pollArray.length){
     angular.forEach(pollArray, function(poll, key){
       var q = function(callback){
@@ -1455,7 +1457,9 @@ $scope.queriesExecUsersInfos = function(callback){
 };
 
 $scope.queriesExecInfoPhoto = function(callback){
+  console.log("44");
   async.parallel($scope.queriesForInfoPhoto,function(err, res){
+    console.log("444444444");
     callback();
   });
 };
@@ -1475,6 +1479,8 @@ $scope.parallelQueriesExecAllInfos = function(callback){
 $scope.retrievePollsForRootScope = function(){
   async.series([$scope.getPollsVoted, $scope.queriesExecPollsInfos, $scope.parallelQueriesExecAllInfos], 
     function(err, result){
+      console.log("finnnnnnn main");
+      console.log("rootScope" + JSON.stringify($rootScope.pollsVoted));
       $scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
       $scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
       $scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);

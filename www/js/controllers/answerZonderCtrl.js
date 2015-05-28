@@ -20,8 +20,8 @@ $scope.queriesForPollsInfosPhotoAnswerZonder = new Array();
 
 $scope.getPollsToBeLoaded = function(callback){
 	// faire route server qui récupére 6 sondages lié à l'algo de distribution des polls
-	$scope.pollsToBeLoaded.push({id : "555f48be4319f57022000007"});
-	$scope.pollsToBeLoaded.push({id : "555f1c8bfd1b8d7821000005"});
+	$scope.pollsToBeLoaded.push({id : "5566e590873c17501f000004"});
+	$scope.pollsToBeLoaded.push({id : "5566e5d3e093df1818000004"});
 	callback();
 };
 
@@ -340,6 +340,7 @@ $scope.getCommentsPhotoUser = function(poll, callback){
 			UserService.getFriendPhotoFromId(comment.idAuthor).then(function(d){
 				angular.forEach(poll.comments, function(c, k){
 					if(c.id == comment.id){
+						console.log("photoAuthor" + d.photo);
 						c.photoAuthorComments = d.photo;
 						callback();
 					}
@@ -472,15 +473,12 @@ $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
 
   $scope.sendCommentUp = function(){
   	PollService.sendComment($scope.pollUp.id, $window.localStorage['pseudo'],$scope.pollUp.writeComment).then(function(d){
-  		console.log("data" + JSON.stringify(d));
   		var pollTmp = {};
   		pollTmp.author = d.comment.author;
   		pollTmp.comment = d.comment.comment;
   		pollTmp.photoAuthorComments = $window.localStorage['photo'];
-  		 console.log("pollTmp" + JSON.stringify(pollTmp));
 
   		$scope.pollUp.comments.push(pollTmp);
-  		console.log("comments after" + JSON.stringify($scope.pollUp.comments));
   		$scope.pollUp.writeComment = "";
   		$scope.$apply();
   	}, function(status){
@@ -490,15 +488,12 @@ $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
 
 $scope.sendCommentDown = function(){
   	PollService.sendComment($scope.pollDown.id, $window.localStorage['pseudo'],$scope.pollDown.writeComment).then(function(d){
-  		console.log("data" + JSON.stringify(d));
   		var pollTmp = {};
   		pollTmp.author = d.comment.author;
   		pollTmp.comment = d.comment.comment;
   		pollTmp.photoAuthorComments = $window.localStorage['photo'];
-  		console.log("pollTmp" + JSON.stringify(pollTmp));
 
   		$scope.pollDown.comments.push(pollTmp);
-  		console.log("comments after" + JSON.stringify($scope.pollDown.comments));
   		$scope.pollDown.writeComment = "";
   		$scope.$apply();
   	}, function(status){

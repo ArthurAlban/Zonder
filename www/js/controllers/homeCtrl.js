@@ -59,8 +59,19 @@ $scope.loadingPolls = true;
 
 $scope.firstBufferPolls = function(callback){
 	if(!$scope.displayPolls.length){
-		$scope.displayPolls = $rootScope.pollsVoted;
-		callback();
+		console.log("2");
+		console.log("pollsvoted" + JSON.stringify($rootScope.pollsVoted));
+		if(!$rootScope.pollsVoted.length){
+			console.log("false");
+			console.log("displayPolls" + JSON.stringify($scope.displayPolls));
+			callback();
+		}
+		else{
+			console.log("true");
+			$scope.displayPolls = $rootScope.pollsVoted;
+			console.log("displaysPolls" + JSON.stringify($scope.displayPolls));
+			callback();
+		}
 	}
 	else{
 		callback();
@@ -71,16 +82,23 @@ $scope.firstBufferPolls = function(callback){
 $scope.stat = true;
 
 $scope.getStatusForPoll = function(data){
-
+	console.log("test 1");
 	if(data.lengthGlobal != $rootScope.lengthTab){
+		console.log("test 2");
 		return true;
 	}
 	else{
 		for(var i = 0; i < data.poll.length; i++){
-			if(data.poll[i].id != $scope.displayPolls[i].id){
+			console.log("test 333");
+			if(data.poll == "allPollsLoaded"){
+				return true;
+			}
+			else if(data.poll[i].id != $scope.displayPolls[i].id){
+				console.log("test 3");
 				return true;
 			}
 		}
+		console.log("test 4");
 		return false;
 	}
 };
@@ -134,6 +152,17 @@ $scope.getUsersPhotoPolls = function(pollArray, callback){
 	callback();
 };
 
+$scope.queriesExecUsersInfosPolls = function(callback){
+  async.parallel($scope.queriesForUserInfoPollsView,function(err, res){
+    callback();
+  });
+};
+
+$scope.queriesExecUsersPhotoPolls = function(callback){
+  async.parallel($scope.queriesForUserPhotoPollsView,function(err, res){
+    callback();
+  });
+};
 /// comparer id toppolls et id data && vérifier meme taille si pareil alors 304 si un différent alors 200
 $scope.verifiyChangeAndUpdate = function(callback){
 	PollService.getPollsVoted($scope.nbLoads).then(function(data){
@@ -148,8 +177,8 @@ $scope.verifiyChangeAndUpdate = function(callback){
 				function(callback){$scope.getInfoPhoto($scope.bufferPolls, callback);},
 				$scope.queriesExecInfoPhoto,
 				function(callback){$scope.getUserAndPhotosInfos($scope.bufferPolls, callback);},
-				$scope.queriesExecUsersInfos,
-				$scope.queriesExecUsersPhoto
+				$scope.queriesExecUsersInfosPolls,
+				$scope.queriesExecUsersPhotoPolls
 				],
 				function(err, res){
 					angular.forEach($scope.bufferPolls, function(p, k){
@@ -188,8 +217,8 @@ $scope.verifiyChangeAndUpdateFirstTime = function(callback){
 					function(callback){$scope.getInfoPhoto($scope.bufferPolls, callback);},
 					$scope.queriesExecInfoPhoto,
 					function(callback){$scope.getUserAndPhotosInfos($scope.bufferPolls, callback);},
-					$scope.queriesExecUsersInfos,
-					$scope.queriesExecUsersPhoto
+					$scope.queriesExecUsersInfosPolls,
+					$scope.queriesExecUsersPhotoPolls
 					],
 					function(err, res){
 						$scope.displayPolls = angular.copy($scope.bufferPolls);
@@ -212,7 +241,6 @@ $scope.verifiyChangeAndUpdateFirstTime = function(callback){
 
 
 $scope.loadPollsCtrl = function(isLoadMorePoll){
-	$scope.loadingPolls = true;
 	if(isLoadMorePoll){
 		$scope.nbLoads++;
 		async.series([$scope.verifiyChangeAndUpdate],
@@ -222,18 +250,17 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 				$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
 				$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
 				$scope.$broadcast('scroll.infiniteScrollComplete');
-				window.setTimeout(function(){
-					$scope.loadingPolls = false;
-					$scope.$apply();
-				}, 2000);
 				$scope.$apply();
 			});
 	}
 	else{
+		$scope.loadingPolls = true;
+		console.log("1");
 		async.series([
 			$scope.firstBufferPolls, 
 			$scope.verifiyChangeAndUpdateFirstTime], 
 			function(err, res){
+				console.log("4");
 				$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
 				$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
 				$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
@@ -242,6 +269,7 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 					$scope.displayInfiniteScroll = true;
 				}
 				window.setTimeout(function(){
+					console.log("loading polls");
 					$scope.loadingPolls = false;
 					$scope.$apply();
 				}, 2000);
@@ -497,7 +525,6 @@ $scope.checkAndLoadRequestFriends = function(callback){
 };
 
 $scope.loadFriendsCtrl = function(isLoadMoreFriends){
-	$scope.loadingFriends = true;
 	if(isLoadMoreFriends){
 		$scope.nbLoadsFriends++;
 		async.series([$scope.loadMoreFriends],
@@ -505,12 +532,6 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 				$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 				$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
 				$scope.$broadcast('scroll.infiniteScrollComplete');
-				
-				window.setTimeout(function(){
-					$scope.loadingFriends = false;
-					$scope.$apply();
-				}, 2000);
-
 				$scope.$apply();
 			});
 	}
@@ -532,6 +553,7 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 			$scope.confirmFriend = false;
 
 			window.setTimeout(function(){
+				console.log("loading friends");
 				$scope.loadingFriends = false;
 				$scope.$apply();
 			}, 2000);
