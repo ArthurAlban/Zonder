@@ -7930,7 +7930,7 @@ a.button {
   margin-bottom: 2px;
   border: 0 none !important;
   width: 100%;
-  left: 101%;
+  left: 100%;
   -webkit-transition: left 0.5s linear; }
 
 .labelZonderFriendsHide {
@@ -8926,11 +8926,11 @@ a.button {
 
 .optionTranslateUp {
   -webkit-transform: translateY(0vh);
-  -webkit-transition: all 0.5s linear; }
+  -webkit-transition: all 0.5s ease; }
 
 .optionTranslateDown {
   -webkit-transform: translateY(calc( 50vh + 150px));
-  -webkit-transition: all 0.5s linear; }
+  -webkit-transition: all 0.5s ease; }
 
 #closeTimePicker {
   position: absolute;

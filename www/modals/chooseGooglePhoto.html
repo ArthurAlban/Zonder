@@ -15,9 +15,9 @@
 <div class="item-input-inset">
   <label class="item-input-wrapper" style="width:72vw;">
     <i class="icon ion-ios-search placeholder-icon"></i>
-    <input class="fontSearch" name="search" type="search" ng-model="search" style="width:64vw;" placeholder="What are you searching for" ng-maxlength="50">
+    <input class="fontSearch" name="search" type="search" ng-model="search.googleSearch" style="width:64vw;" placeholder="What are you searching for" ng-maxlength="50">
   </label>
-  <button class="button button-clear fontPseudoFriends" ng-click="fillImageFromGoogle(search)" style="color:#ffffff;">
+  <button class="button button-clear fontPseudoFriends" ng-click="fillImageFromGoogle(search.googleSearch)" style="color:#ffffff;">
     Search
   </button>
 </div>
