@@ -227,7 +227,7 @@
 	<ion-spinner class="spinnerLoadingBlack" icon="spiral" ng-class="{scaleLoadingDown:!loadingPolls,scaleLoadingUp:loadingPolls}" style="margin-top:-5px"></ion-spinner>
 </div>	
 
-<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls}" ng-repeat="poll in displayPolls" ng-click="openPollModal(poll)" class="divContentZonder marginTopPullUp">
+<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls,fadeOutNoDelay:poll.isRemoved}" ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp">
 
 	<div class="headerZonder">
 
@@ -235,20 +235,20 @@
 
 		<div class="contentHeader">
 			<div class="contentHeaderHeader">
-				<p class="sizeContentPseudo fontPseudoZonder"> {{poll.authorPseudo}} </p>
-				<p ng-if="!poll.timeElapsedDays" class="posTimer fontTimeZonder"> {{poll.timeElapsedHours}}h{{poll.timeElapsedMinutes}} ago </p>
-				<p ng-if="poll.timeElapsedDays<31" class="posTimer fontTimeZonder"> {{poll.timeElapsedDays}} days ago </p>
-				<p ng-if="poll.timeElapsedDays>31" class="posTimer fontTimeZonder"> months ago </p>
+				<p ng-click="openPollModal(poll)" class="sizeContentPseudo fontPseudoZonder"> {{poll.authorPseudo}} </p>
+				<p ng-click="openPollModal(poll)" ng-if="!poll.timeElapsedDays" class="posTimer fontTimeZonder"> {{poll.timeElapsedHours}}h{{poll.timeElapsedMinutes}} ago </p>
+				<p ng-click="openPollModal(poll)" ng-if="poll.timeElapsedDays<31" class="posTimer fontTimeZonder"> {{poll.timeElapsedDays}} days ago </p>
+				<p ng-click="openPollModal(poll)" ng-if="poll.timeElapsedDays>31" class="posTimer fontTimeZonder"> months ago </p>
 			</div>
 			<div class="contentHeaderFooter">
-				<p class="fontQuestionZonder questionPosStyle"> {{poll.question}}</p>
-				<img width="13" class="posWheel" src="img/wheelOption.png">
+				<p ng-click="openPollModal(poll)" class="fontQuestionZonder questionPosStyle"> {{poll.question}}</p>
+				<img width="13" class="posWheel" ng-click="showActionSheetPollWheelChoiceChoice(poll.id)" src="img/wheelOption.png">
 			</div>
 		</div>
 
 	</div>
 
-	<div class="contentProgressionPoll">
+	<div class="contentProgressionPoll" ng-click="openPollModal(poll)">
 
 		<div class="contentProgressionBar">
 			<div class="contentBarPhotoLeft" ng-style="{'width' : poll.pourcentagePhotoLeft + '%'}">
@@ -259,7 +259,7 @@
 			</div>
 		</div>
 
-		<div class="contentProgressionBar">
+		<div class="contentProgressionBar" ng-click="openPollModal(poll)"> 
 			<div class="contentBarPhotoRight" ng-style="{'width' : poll.pourcentagePhotoRight + '%'}">
 				<p ng-if="poll.pourcentagePhotoRight>0&&poll.pourcentagePhotoRight<=15" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
 				<p ng-if="poll.pourcentagePhotoRight>15&&poll.pourcentagePhotoRight<=40" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
@@ -268,7 +268,7 @@
 		</div>
 	</div>
 
-	<div class="contentPhotosPoll">
+	<div class="contentPhotosPoll" ng-click="openPollModal(poll)">
 		<div class="contentPhotoLeft">
 			<img ng-style="{'width': poll.specImgLeftWidth + 'px', 'height': poll.specImgLeftHeight + 'px', 'margin-left': poll.specImgLeftPositionLeft + 'px', 'margin-top': poll.specImgLeftPositionTop + 'px'}" src="{{poll.photoLeft}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{poll.firstName}}</p>
@@ -279,7 +279,7 @@
 		</div>
 	</div>
 
-	<div class="footerZonder">
+	<div class="footerZonder" ng-click="openPollModal(poll)">
 		<div class="contentVotesComments"> 
 			<div class="fontVoteCommentsZonder">{{poll.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
 			<div class="fontVoteCommentsZonder marginComments">{{poll.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
@@ -288,7 +288,7 @@
 	<div class="separatorZonder"></div>
 </div>
 
-<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScroll && !loadingPolls" on-infinite="loadPollsCtrl(true)" immediate-check="false">
+<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScroll" on-infinite="loadPollsCtrl(true)" immediate-check="false">
 </ion-infinite-scroll>
 
 </ion-scroll>

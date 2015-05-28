@@ -1735,4 +1735,5 @@ $scope.getTimeHoursMinutesFromPoll = function(poll){
   return pollTime;
 };
 
+
 });

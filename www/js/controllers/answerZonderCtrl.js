@@ -20,8 +20,8 @@ $scope.queriesForPollsInfosPhotoAnswerZonder = new Array();
 
 $scope.getPollsToBeLoaded = function(callback){
 	// faire route server qui récupére 6 sondages lié à l'algo de distribution des polls
-	$scope.pollsToBeLoaded.push({id : "555f48be4319f57022000007"});
-	$scope.pollsToBeLoaded.push({id : "555f1c8bfd1b8d7821000005"});
+	$scope.pollsToBeLoaded.push({id : "556701275abe6f8813000004"});
+	$scope.pollsToBeLoaded.push({id : "5567015f5abe6f8813000005"});
 	callback();
 };
 

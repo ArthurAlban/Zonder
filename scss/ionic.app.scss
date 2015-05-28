@@ -1942,6 +1942,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	to { -webkit-transform: scale(0); } 
 	}*/
 
+// animation de fade out sans delay
+	.fadeOutNoDelay{
+		opacity: 1;
+		-webkit-animation: fadeOut 1s forwards linear;
+	}
+
 	// animation des triangles du haut, translation vers le haut
 	.animateTriangles{
 		-webkit-transform: translateY(-16vh);

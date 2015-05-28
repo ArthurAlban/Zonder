@@ -504,7 +504,7 @@ $scope.toHomeSignUp = function(){
   $state.go('home');
   $scope.closeRegisterModal();
 };
-/*
+
 $scope.signUp = function() {
   $scope.userInfo.password = $scope.userData.password;
   $scope.userInfo.email = $scope.userData.email;
@@ -527,9 +527,9 @@ $scope.signUp = function() {
       UserService.logIn($scope.userInfo.email, $scope.userInfo.password).then(function(d){
         $window.localStorage['isLog'] = "true";
         $window.localStorage['token'] = d.token;
-        $ionicPlatform.ready(function () {
-         $cordovaPush.register({badge: true, sound: true, alert: true}).then(function (result) {
-          UserService.registerDevice({device: result}).then(function(){
+        // $ionicPlatform.ready(function () {
+          // $cordovaPush.register({badge: true, sound: true, alert: true}).then(function (result) {
+          // UserService.registerDevice({device: result}).then(function(){
             UserService.getUserInfoForLocalStorage().then(function(data){
               $window.localStorage['pseudo'] = data.pseudo;
               $window.localStorage['email'] = data.email;
@@ -551,13 +551,13 @@ $scope.signUp = function() {
             }, function(msg){
               console.log(msg);
             });
-          },function(m){
-            console.log(m);
-          });
-        }, function(){
-          console.log("error in $cordovaPushregister");
-        });
-});
+          // },function(m){
+            // console.log(m);
+          // });
+        // }, function(){
+          // console.log("error in $cordovaPushregister");
+        // });
+// });
 
 
 
@@ -572,6 +572,6 @@ $scope.signUp = function() {
 });
 
 };
-*/
+
 
 });

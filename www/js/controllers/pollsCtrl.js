@@ -1,20 +1,20 @@
-zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, UserService, CommentService, PollService, $rootScope, $window){
+zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, UserService, CommentService, PollService, $rootScope, $window, $ionicActionSheet){
 
-$scope.commentToDisplay = new Array();
+	$scope.commentToDisplay = new Array();
 
-$scope.displaySectionComments = false;
-$scope.displaySectionVotes = false;
-$scope.displayPourcentageAndOpacity = true;
+	$scope.displaySectionComments = false;
+	$scope.displaySectionVotes = false;
+	$scope.displayPourcentageAndOpacity = true;
 
-$scope.imgLeftInfoPollModal = new Array();
-$scope.imgRightInfoPollModal = new Array();
+	$scope.imgLeftInfoPollModal = new Array();
+	$scope.imgRightInfoPollModal = new Array();
 
 ///////////////////////////////  slide 1 ///////////////////////////
 $ionicModal.fromTemplateUrl('modals/pollModal.html', {
-  scope: $scope,
-  animation: 'slide-in-right'
+	scope: $scope,
+	animation: 'slide-in-right'
 }).then(function(modal) {
-  $scope.pollModal = modal;
+	$scope.pollModal = modal;
 });
 
 $scope.openPollModal = function(poll) {
@@ -33,15 +33,15 @@ $scope.openPollModal = function(poll) {
 };
 
 $scope.closePollModal = function() {
-  $scope.displaySectionComments = false;
-  $scope.displaySectionVotes = false;
-  $scope.displayPourcentageAndOpacity = true;
-  $scope.pollToDisplay.writeComment = "";
-  $scope.pollModal.hide();
+	$scope.displaySectionComments = false;
+	$scope.displaySectionVotes = false;
+	$scope.displayPourcentageAndOpacity = true;
+	$scope.pollToDisplay.writeComment = "";
+	$scope.pollModal.hide();
 };
 
 $scope.$on('$destroy', function() {
-  $scope.pollModal.remove();
+	$scope.pollModal.remove();
 });
 
 $scope.$on('modal.hidden', function() {
@@ -103,6 +103,7 @@ $scope.getPollInfos = function(poll, callback){
 		poll.friendsConcerned = d.friendsConcerned;
 		poll.usersConcerned = d.usersConcerned;
 		poll.isOver = d.isOver;
+		poll.isRemoved = false;
 
 		var time = $scope.getTimeHoursMinutesFromPoll(poll);
 		poll.timeElapsedHours = time.hours;
@@ -214,9 +215,9 @@ $scope.displayComments = function(poll){
 				$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
 				$scope.$apply();
 			});
-};
+	};
 
- $scope.comments = function(displaySectionComments){
+	$scope.comments = function(displaySectionComments){
 		$scope.displaySectionVotes = false;
 		$scope.displaySectionComments = !displaySectionComments;
 		$scope.displayPourcentageFunction();
@@ -225,22 +226,22 @@ $scope.displayComments = function(poll){
 		}
 	}
 
- $scope.sendComment = function(){
-  	PollService.sendComment($scope.pollToDisplay.id, $window.localStorage['pseudo'],$scope.pollToDisplay.writeComment).then(function(d){
-  		console.log("data" + JSON.stringify(d));
-  		var pollTmp = {};
-  		pollTmp.author = d.comment.author;
-  		pollTmp.comment = d.comment.comment;
-  		pollTmp.photoAuthorComments = $window.localStorage['photo'];
-  		 console.log("pollTmp" + JSON.stringify(pollTmp));
+	$scope.sendComment = function(){
+		PollService.sendComment($scope.pollToDisplay.id, $window.localStorage['pseudo'],$scope.pollToDisplay.writeComment).then(function(d){
+			console.log("data" + JSON.stringify(d));
+			var pollTmp = {};
+			pollTmp.author = d.comment.author;
+			pollTmp.comment = d.comment.comment;
+			pollTmp.photoAuthorComments = $window.localStorage['photo'];
+			console.log("pollTmp" + JSON.stringify(pollTmp));
 
-  		$scope.pollToDisplay.comments.push(pollTmp);
-  		$scope.pollToDisplay.writeComment = "";
-  		$scope.$apply();
-  	}, function(status){
-  		console.log("Impossible d'envoyer le commentaire");
-  	});
-  };
+			$scope.pollToDisplay.comments.push(pollTmp);
+			$scope.pollToDisplay.writeComment = "";
+			$scope.$apply();
+		}, function(status){
+			console.log("Impossible d'envoyer le commentaire");
+		});
+	};
 
 ///////////////////////////////// vote friends ////////////////////////////////////////////
 
@@ -397,10 +398,10 @@ $scope.displayVoteFriends = function(poll){
 
 
 $scope.votes = function(displaySectionVotes){
-		$scope.displaySectionComments = false;
-		$scope.displaySectionVotes = !displaySectionVotes;
-		$scope.displayPourcentageFunction();
-		console.log("LOOOOOOOL");
+	$scope.displaySectionComments = false;
+	$scope.displaySectionVotes = !displaySectionVotes;
+	$scope.displayPourcentageFunction();
+	console.log("LOOOOOOOL");
 		// $scope.pollToDisplay.whoVotedLeft.splice(0, $scope.pollToDisplay.whoVotedLeft.length);
 		// $scope.pollToDisplay.whoVotedRight .splice(0, $scope.pollToDisplay.whoVotedRight.length);
 		$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
@@ -410,4 +411,5 @@ $scope.votes = function(displaySectionVotes){
 			$scope.displayVoteFriends($scope.pollToDisplay);
 		}
 	};
+
 });

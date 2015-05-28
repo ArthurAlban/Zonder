@@ -212,6 +212,7 @@ $scope.verifiyChangeAndUpdateFirstTime = function(callback){
 
 
 $scope.loadPollsCtrl = function(isLoadMorePoll){
+	console.log("ROOOTSCOPE " + $rootScope.pollsVoted.length);
 	$scope.loadingPolls = true;
 	if(isLoadMorePoll){
 		$scope.nbLoads++;
@@ -273,6 +274,77 @@ $scope.pullToRefresh = function(){
 		$scope.$broadcast('scroll.refreshComplete');
 	}
 };
+
+
+
+	$scope.deletePollInDisplayPoll = function(pollId){
+		var ind = 0;
+
+		console.log("$scope.displayPollsLENGTH " + $scope.displayPolls.length);
+		console.log("rootScope.pollsVotedLEGNTH" + $rootScope.pollsVoted.length);
+		for(var i = 0; i < $scope.displayPolls.length; i++){
+			if($scope.displayPolls[i].id == pollId){
+				console.log("deletePollInDisplayPoll ind " + i);
+				ind = i;
+			}
+		}
+		//console.log("$scope.displayPolls[i].isRemoved " + $scope.displayPolls[ind].isRemoved);
+		//$scope.displayPolls[ind].isRemoved = true;
+		//console.log("$scope.displayPolls[i].isRemoved " + $scope.displayPolls[ind].isRemoved);
+
+		$scope.displayPolls.splice(ind, 1);
+		$rootScope.lengthTab--;
+		console.log("$scope.displayPollsLENGTH " + $scope.displayPolls.length);
+		//var indRootScope = -1;
+		console.log("rootScope.pollsVotedLEGNTH" + $rootScope.pollsVoted.length);
+
+		/*for (var j = 0; j < $rootScope.pollsVoted.length; j++) {
+			if($rootScope.pollsVoted[j].id == pollId){
+				indRootScope = j;
+			}
+		};
+
+		if(indRootScope >= 0){
+			console.log("delete i rootScope");
+			$rootScope.pollsVoted.splice(indRootScope, 1);
+		}
+		console.log("deletefin");*/
+		$scope.$apply();
+	};
+
+	$scope.removePollFromUser = function(pollId){
+		console.log("removePollFromUser");
+		PollService.deletePollInPollsVoted(pollId).then(function(data){
+			console.log("delOK");
+			$scope.deletePollInDisplayPoll(pollId);
+			console.log("delinappOK");
+		}, function(status){
+			console.log("Error when delete poll " + status);
+		});
+	};
+
+	$scope.showActionSheetPollWheelChoiceChoice = function(pollId) {
+
+		$ionicActionSheet.show({
+			buttons: [
+			{ text: 'Remove' },
+			{ text: 'Report this poll' }
+			],
+			cancelText: 'Cancel',
+			cancel: function() {
+			},
+			buttonClicked: function(index) {
+				if(index == 0){
+					console.log("ionicActionSheetDELETE");
+					$scope.removePollFromUser(pollId);
+				}
+				if(index == 1){
+					$scope.reportThisPoll(pollId);
+				}
+				return true;
+			}
+		});
+	};
 
 ///////////////////// Loading Friends /////////////////////////
 
@@ -504,8 +576,7 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 			function(err, res){
 				$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 				$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
-				$scope.$broadcast('scroll.infiniteScrollComplete');
-				
+				$scope.$broadcast('scroll.infiniteScrollComplete');		
 				window.setTimeout(function(){
 					$scope.loadingFriends = false;
 					$scope.$apply();
