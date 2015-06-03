@@ -227,7 +227,7 @@
 	<ion-spinner class="spinnerLoadingBlack" icon="spiral" ng-class="{scaleLoadingDown:!loadingPolls,scaleLoadingUp:loadingPolls}" style="margin-top:-5px"></ion-spinner>
 </div>	
 
-<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls,fadeOutNoDelay:poll.isRemoved}" ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp">
+<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls,fadeOutNoDelay:poll.isRemoved}" ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp deletescalezonder"  >
 
 	<div class="headerZonder">
 
@@ -309,7 +309,7 @@
 	<ion-spinner class="spinnerLoadingBlack" icon="spiral" ng-class="{scaleLoadingDown:!loadingFriends,scaleLoadingUp:loadingFriends}" style="margin-top:-5px"></ion-spinner>
 </div>
 
-<div ng-repeat="requestFriend in displayRequestFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend">
+<div ng-repeat="requestFriend in displayRequestFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend deletescalefriend">
 	<div class="contentFriend">
 		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{requestFriend.photo}}">
 		<img class="posNotification" width="10" src="img/notification.png">
@@ -330,7 +330,7 @@
 	</div>
 </div>
 
-<div ng-repeat="friend in displayFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend">
+<div ng-repeat="friend in displayFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend deletescalefriend">
 	<div class="contentFriend">
 		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{friend.photo}}">
 		<div class="contentTextFriend">

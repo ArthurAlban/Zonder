@@ -1,4 +1,18 @@
-zonder.controller('homeCtrl', function($scope, $state, $window, $ionicActionSheet, $ionicSlideBoxDelegate, $rootScope,$ionicSideMenuDelegate,UserService, PollService) {
+zonder.controller('homeCtrl', function($ionicPlatform, $scope, $state, $window, $ionicActionSheet, $ionicSlideBoxDelegate, $rootScope,$ionicSideMenuDelegate,UserService, PollService) {
+
+
+
+
+	$ionicPlatform.ready(function(){
+
+		var source = new EventSource(UserService.serverEvents());
+		console.log("serverEvents1111");
+		source.addEventListener('message',
+		 function(event){
+			console.log("eeeeeeeeeeeee");
+		}, false);
+		console.log("serverEvents" + JSON.stringify(source));
+	});
 
 	$scope.sliderVote = true;
 	$scope.sliderPolls = false;
@@ -277,17 +291,17 @@ $scope.pullToRefresh = function(){
 
 
 
-	$scope.deletePollInDisplayPoll = function(pollId){
-		var ind = 0;
+$scope.deletePollInDisplayPoll = function(pollId){
+	var ind = 0;
 
-		console.log("$scope.displayPollsLENGTH " + $scope.displayPolls.length);
-		console.log("rootScope.pollsVotedLEGNTH" + $rootScope.pollsVoted.length);
-		for(var i = 0; i < $scope.displayPolls.length; i++){
-			if($scope.displayPolls[i].id == pollId){
-				console.log("deletePollInDisplayPoll ind " + i);
-				ind = i;
-			}
+	console.log("$scope.displayPollsLENGTH " + $scope.displayPolls.length);
+	console.log("rootScope.pollsVotedLEGNTH" + $rootScope.pollsVoted.length);
+	for(var i = 0; i < $scope.displayPolls.length; i++){
+		if($scope.displayPolls[i].id == pollId){
+			console.log("deletePollInDisplayPoll ind " + i);
+			ind = i;
 		}
+	}
 		//console.log("$scope.displayPolls[i].isRemoved " + $scope.displayPolls[ind].isRemoved);
 		//$scope.displayPolls[ind].isRemoved = true;
 		//console.log("$scope.displayPolls[i].isRemoved " + $scope.displayPolls[ind].isRemoved);

@@ -1,4 +1,5 @@
 zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal, $ionicActionSheet, $cordovaCamera, $cordovaPush, $cordovaKeyboard) {
+
   $scope.animateTriangles = false;
   $ionicPlatform.ready(function() {
     $scope.animateTriangles = true;

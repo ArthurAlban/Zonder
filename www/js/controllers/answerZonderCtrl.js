@@ -1,4 +1,4 @@
-zonder.controller('answerZonderCtrl', function($scope, $state, $window, $ionicModal, CommentService, PollService, UserService, $ionicActionSheet, $cordovaSocialSharing){
+zonder.controller('answerZonderCtrl', function($scope, $state, $window, $ionicModal, CommentService, PollService, UserService, $ionicActionSheet, $cordovaSocialSharing, $cordovaStatusbar){
 
 ///////////////// Récupération des polls ////////////////////////////
 
@@ -405,8 +405,9 @@ $ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
 	if($scope.pollUp.comments.length){
 		$scope.displayComments($scope.pollUp);
 	}
-	
+
     $scope.commentsModalUp.show();
+    $cordovaStatusbar.hide();
   };
 
   $scope.closeCommentsModalUp = function() {
@@ -415,6 +416,7 @@ $ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
   	$scope.pollUp.writeComment = "";
   	// $scope.pollUp = [];
     $scope.commentsModalUp.hide();
+    $cordovaStatusbar.show();
     $scope.$apply();
   };
 
@@ -448,6 +450,7 @@ $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
 	}
 	
     $scope.commentsModalDown.show();
+    $cordovaStatusbar.hide();
   };
 
   $scope.closeCommentsModalDown = function() {
@@ -455,6 +458,7 @@ $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
 	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
   	$scope.pollDown.writeComment = "";
     $scope.commentsModalDown.hide();
+    $cordovaStatusbar.show();
     $scope.$apply();
   };
 

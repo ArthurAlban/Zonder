@@ -1,4 +1,4 @@
-zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, UserService, CommentService, PollService, $rootScope, $window, $ionicActionSheet){
+zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, UserService, CommentService, PollService, $rootScope, $window, $ionicActionSheet, $cordovaStatusbar){
 
 	$scope.commentToDisplay = new Array();
 
@@ -30,6 +30,7 @@ $scope.openPollModal = function(poll) {
 	console.log("2");
 	$scope.refreshPoll($scope.pollToDisplay);
 	$scope.pollModal.show();
+	$cordovaStatusbar.hide();
 };
 
 $scope.closePollModal = function() {
@@ -38,6 +39,7 @@ $scope.closePollModal = function() {
 	$scope.displayPourcentageAndOpacity = true;
 	$scope.pollToDisplay.writeComment = "";
 	$scope.pollModal.hide();
+	$cordovaStatusbar.show();
 };
 
 $scope.$on('$destroy', function() {

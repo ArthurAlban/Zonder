@@ -6,37 +6,31 @@
 // 'starter.controllers' is found in controllers.js
 var zonder = angular.module('zonder', ['ionic', 'ngCordova'])
 
-zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen) {
+zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen, $cordovaStatusbar) {
   $rootScope.animateTooltip = false;
-  
+
   $ionicPlatform.ready(function() {
-    $cordovaSplashscreen.hide();  
-
-
+    $cordovaSplashscreen.hide();
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
   if (window.cordova && window.cordova.plugins.Keyboard) {
     cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
   }
-  if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
 
-    $rootScope.friends = new Array();
-    $rootScope.requestFriends = new Array();
-    $rootScope.addFriends = new Array();
-    $rootScope.pollsVoted = new Array();
-    $rootScope.myPolls = new Array();
+  $rootScope.friends = new Array();
+  $rootScope.requestFriends = new Array();
+  $rootScope.addFriends = new Array();
+  $rootScope.pollsVoted = new Array();
+  $rootScope.myPolls = new Array();
 
-    $rootScope.lengthTab = 0;
-    
-    $rootScope.friendsHaveChanged = false;
+  $rootScope.lengthTab = 0;
 
-    $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
-    $rootScope.destinationType = Camera.DestinationType.DATA_URL;
-    $rootScope.sideMenuIsOpen = false;
-  });
+  $rootScope.friendsHaveChanged = false;
+
+  $rootScope.pictureSource = Camera.PictureSourceType.CAMERA;
+  $rootScope.destinationType = Camera.DestinationType.DATA_URL;
+  $rootScope.sideMenuIsOpen = false;
+});
 });
 
 zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -55,7 +49,7 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   // if none of the above states are matched, use this as the fallback
 
   if(window.localStorage['isLog'] == "true") {
-    
+
     $urlRouterProvider.otherwise('/home');
   }
   else{
