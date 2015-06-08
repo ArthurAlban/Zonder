@@ -227,7 +227,7 @@
 	<ion-spinner class="spinnerLoadingBlack" icon="spiral" ng-class="{scaleLoadingDown:!loadingPolls,scaleLoadingUp:loadingPolls}" style="margin-top:-5px"></ion-spinner>
 </div>	
 
-<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls,fadeOutNoDelay:poll.isRemoved}" ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp deletescalezonder"  >
+<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShowPoll:loadingPolls,fadeOutNoDelay:poll.isRemoved}" ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp deletescalezonder"  >
 
 	<div class="headerZonder">
 

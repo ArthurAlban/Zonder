@@ -8180,6 +8180,7 @@ a.button {
   left: 6px;
   bottom: 6px;
   margin: 0;
+  width: auto;
   max-width: 70%;
   -webkit-hyphens: auto; }
 
@@ -8518,7 +8519,7 @@ a.button {
   opacity: 1; }
 
 .animateTriangles {
-  -webkit-transform: translateY(-16vh);
+  -webkit-transform: translateY(-16%);
   -webkit-transition: all 1s ease; }
 
 #divMenusSideMenu {
@@ -8971,11 +8972,11 @@ a.button {
   height: 250px; }
 
 .optionTranslateUp {
-  -webkit-transform: translateY(0vh);
+  -webkit-transform: translateY(0%);
   -webkit-transition: all 0.5s ease; }
 
 .optionTranslateDown {
-  -webkit-transform: translateY(calc( 50vh + 150px));
+  -webkit-transform: translateY(459px);
   -webkit-transition: all 0.5s ease; }
 
 #closeTimePicker {
@@ -9089,38 +9090,42 @@ a.button {
 
 .pourcentageTranslateUpFirst {
   opacity: 0;
-  -webkit-transform: translateY(-25vh);
-  -webkit-transition: all 0.5s linear; }
+  -webkit-transform: translateY(-400%);
+  -webkit-transition: all 0.8s linear; }
 
 .pourcentageTranslateDownFirst {
   opacity: 1;
-  -webkit-transform: translateY(0vh);
-  -webkit-transition: all 0.5s linear; }
+  -webkit-transform: translateY(0%);
+  -webkit-transition: all 0.8s linear; }
 
 .pourcentageTranslateUpSecond {
   opacity: 1;
-  -webkit-transform: translateY(0vh);
-  -webkit-transition: all 0.5s linear; }
+  -webkit-transform: translateY(0%);
+  -webkit-transition: all 0.8s linear; }
 
 .pourcentageTranslateDownSecond {
   opacity: 0;
-  -webkit-transform: translateY(25vh);
-  -webkit-transition: all 0.5s linear; }
+  -webkit-transform: translateY(400%);
+  -webkit-transition: all 0.6s linear; }
 
 .translateNamePhotoHide {
-  -webkit-transform: translateX(-70vw);
+  -webkit-transform: translateX(-110%);
   -webkit-transition: all 0.5s ease; }
 
 .translateNamePhotoShow {
-  -webkit-transform: translateX(0vw);
+  -webkit-transform: translateX(0%);
   -webkit-transition: all 0.5s ease; }
 
 .translateLoadingHide {
-  -webkit-transform: translateY(0vh);
+  -webkit-transform: translateY(0%);
   -webkit-transition: all 0.5s ease 0.2s; }
 
 .translateLoadingShow {
-  -webkit-transform: translateY(10vh);
+  -webkit-transform: translateY(100%);
+  -webkit-transition: all 0.5s ease; }
+
+.translateLoadingShowPoll {
+  -webkit-transform: translateY(24%);
   -webkit-transition: all 0.5s ease; }
 
 .scaleLoadingDown {
@@ -9371,6 +9376,9 @@ a.button {
   src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype"); }
 
 @media screen and (device-aspect-ratio: 40/71) {
+  .optionTranslateDown {
+    -webkit-transform: translateY(409px);
+    -webkit-transition: all 0.5s ease; }
   .heightIonSlide {
     height: calc( 100vh - 180px); }
   .heightIonScroll {
@@ -9395,7 +9403,7 @@ a.button {
     width: 100%;
     margin-top: -16vh; }
   .animateTriangles {
-    -webkit-transform: translateY(-16vh);
+    -webkit-transform: translateY(-44%);
     -webkit-transition: all 1s ease; }
   .profilImg {
     z-index: 11;
@@ -9407,6 +9415,9 @@ a.button {
     border-radius: 100%; } }
 
 @media screen and (device-aspect-ratio: 2/3) {
+  .optionTranslateDown {
+    -webkit-transform: translateY(365px);
+    -webkit-transition: all 0.5s ease; }
   .heightIonSlide {
     height: calc( 100vh - 180px); }
   .heightIonScroll {
@@ -9448,5 +9459,14 @@ a.button {
     width: 100%;
     margin-top: -19vh; }
   .animateTriangles {
-    -webkit-transform: translateY(-19vh);
+    -webkit-transform: translateY(-44%);
     -webkit-transition: all 1s ease; } }
+
+@media screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+  .optionTranslateDown {
+    -webkit-transform: translateY(493px);
+    -webkit-transition: all 0.5s ease; }
+  .heightIonSlide {
+    height: calc( 736px - 200px); }
+  .heightIonScroll {
+    height: calc( 736px - 200px); } }

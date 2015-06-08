@@ -1,4 +1,7 @@
 // Ionic Starter App
+var handleOpenURL = function(url){
+
+}
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -37,7 +40,6 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $httpProvider.interceptors.push('TokenInterceptor');
 
   $stateProvider
-
   .state('animatedSplashscreen', {
     url: "/animatedSplashscreen",
     templateUrl: "templates/animatedSplashscreen.html"
@@ -49,7 +51,6 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   // if none of the above states are matched, use this as the fallback
 
   if(window.localStorage['isLog'] == "true") {
-
     $urlRouterProvider.otherwise('/home');
   }
   else{

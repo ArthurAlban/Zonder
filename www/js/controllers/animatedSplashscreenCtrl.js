@@ -238,12 +238,12 @@ $scope.closepopups = function() {
 $ionicModal.fromTemplateUrl('modals/registerModal.html', {
   scope: $scope,
   animation: 'slide-in-right'
-}).then(function(modal) {
+  }).then(function(modal) {
   $scope.registerModal = modal;
 });
 
 $scope.openRegisterModal = function() {
-  $scope.registerModal.show();
+    $scope.registerModal.show();
 };
 
 $scope.closeRegisterModal = function() {
