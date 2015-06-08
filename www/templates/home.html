@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="true" ng-controller="mainCtrl">
+<ion-side-menus enable-menu-with-back-views="true" ng-controller="mainCtrl" cache-view="false">
 
 <ion-side-menu width="250" class="backgroundSideMenu" side="left" ng-controller="parameterCtrl">
 
@@ -46,7 +46,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="logoutSideMenu" menu-close ng-click="logOut()">
+	<div class="logoutSideMenu" ng-click="logOut()">
 		<img width="20" class="imgLeft" src="img/logout.png">
 		<span class="text">Log out</span>
 	</div>
@@ -57,6 +57,8 @@
 <ion-side-menu-content ng-controller="homeCtrl" class="background">
 
 <div ng-if="divOpacity" fade-directive class="overlaySideMenu"></div>
+
+<div ng-if="showHome">
 
 <div id="triangles"> <img style="width:100%" src="img/splashTriangles.png" ></div>
 
@@ -132,7 +134,7 @@
 
 	</div>
 
-	<div class="contentPhotos" id="share">
+	<div class="contentPhotos">
 		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'left')">
 			<img ng-style="{'width': imgPollUpLeftInfo.imgWidth + 'px', 'height': imgPollUpLeftInfo.imgHeight + 'px', 'margin-left': imgPollUpLeftInfo.positionLeft + 'px', 'margin-top': imgPollUpLeftInfo.positionTop + 'px'}" src="{{pollUp.photoLeft}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.firstName}}</p>
@@ -149,7 +151,7 @@
 			<div class="fontVoteCommentsZonder marginComments">{{pollUp.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
 		<div class="contentIconFavouriteComments" ng-click="openCommentsModalUp()" > 
-			<img width="20" ng-click="openCommentsModalUp()" class="marginIconComments" src="img/commentsIcon.png">
+			<img width="20" class="marginIconComments" src="img/commentsIcon.png">
 		</div>
 
 	</div>
@@ -158,7 +160,7 @@
 
 <div class="divSeparator">
 	<div class="separatorLeft"></div>
-	<img width="5%" style="margin-left:5%;margin-right:5%;margin-top:-2.2%" src="img/logo.png">
+	<img width="5%" style="margin-left:5vw;margin-right:5vw;margin-top:-2.2%" src="img/logo.png">
 	<div class="separatorRight"></div>
 </div>
 
@@ -201,8 +203,8 @@
 			<div class="fontVoteCommentsZonder">{{pollDown.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
 			<div class="fontVoteCommentsZonder marginComments">{{pollDown.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
-		<div class="contentIconFavouriteComments"> 
-			<img width="20" ng-click="openCommentsModalDown()" class="marginIconComments" src="img/commentsIcon.png" >
+		<div class="contentIconFavouriteComments" ng-click="openCommentsModalDown()"> 
+			<img width="20" class="marginIconComments" src="img/commentsIcon.png" >
 		</div>
 
 	</div>
@@ -212,6 +214,7 @@
 
 </ion-slide>
 
+
 <!-- /////////////// poll //////////////// -->
 
 <ion-slide ng-controller="pollsCtrl" class="heightIonSlide" >
@@ -219,15 +222,15 @@
 
 <ion-refresher ng-show="!loadingPolls" pulling-icon="ion-chevron-down" spinner="spiral" on-refresh="pullToRefresh()"></ion-refresher>
 
-<div ng-show="!displayPolls.length && !loadingPolls" class="sample-show-hide" style="position:relative;left:10%;top:5vh;width:80%;height:30px;text-align:center;">
-    <span class="titlePopup" style="width:100%;color:#939191;font-size:14px;background: transparent">You have no voted zonder yet !</span>
+<div ng-show="!displayPolls.length && !loadingPolls" class="sample-show-hide" style="position:relative;left:10vw;top:5vh;width:80vw;height:30px;text-align:center;">
+    <span class="titlePopup" style="width:100vw;color:#939191;font-size:14px;background: transparent">You have no voted zonder yet !</span>
 </div>
 
-<div ng-show="loadingPolls" ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls}" style="position:absolute;top:-10vh;left:0;width:100%;height:10vh;" class="centeredContent">
+<div ng-show="loadingPolls" ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls}" style="position:absolute;top:-10vh;left:0;width:100vw;height:10vh;border:1px solid red" class="centeredContent">
 	<ion-spinner class="spinnerLoadingBlack" icon="spiral" ng-class="{scaleLoadingDown:!loadingPolls,scaleLoadingUp:loadingPolls}" style="margin-top:-5px"></ion-spinner>
 </div>	
 
-<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls}" ng-repeat="poll in displayPolls" ng-click="openPollModal(poll)" class="divContentZonder marginTopPullUp">
+<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls,fadeOutNoDelay:poll.isRemoved}" ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp">
 
 	<div class="headerZonder">
 
@@ -235,20 +238,20 @@
 
 		<div class="contentHeader">
 			<div class="contentHeaderHeader">
-				<p class="sizeContentPseudo fontPseudoZonder"> {{poll.authorPseudo}} </p>
-				<p ng-if="!poll.timeElapsedDays" class="posTimer fontTimeZonder"> {{poll.timeElapsedHours}}h{{poll.timeElapsedMinutes}} ago </p>
-				<p ng-if="poll.timeElapsedDays<31" class="posTimer fontTimeZonder"> {{poll.timeElapsedDays}} days ago </p>
-				<p ng-if="poll.timeElapsedDays>31" class="posTimer fontTimeZonder"> months ago </p>
+				<p ng-click="openPollModal(poll)" class="sizeContentPseudo fontPseudoZonder"> {{poll.authorPseudo}} </p>
+				<p ng-click="openPollModal(poll)" ng-if="!poll.timeElapsedDays" class="posTimer fontTimeZonder"> {{poll.timeElapsedHours}}h{{poll.timeElapsedMinutes}} ago </p>
+				<p ng-click="openPollModal(poll)" ng-if="poll.timeElapsedDays<31" class="posTimer fontTimeZonder"> {{poll.timeElapsedDays}} days ago </p>
+				<p ng-click="openPollModal(poll)" ng-if="poll.timeElapsedDays>31" class="posTimer fontTimeZonder"> months ago </p>
 			</div>
 			<div class="contentHeaderFooter">
-				<p class="fontQuestionZonder questionPosStyle"> {{poll.question}}</p>
-				<img width="13" class="posWheel" src="img/wheelOption.png">
+				<p ng-click="openPollModal(poll)" class="fontQuestionZonder questionPosStyle"> {{poll.question}}</p>
+				<img width="13" class="posWheel" ng-click="showActionSheetPollWheelChoiceChoice(poll.id)" src="img/wheelOption.png">
 			</div>
 		</div>
 
 	</div>
 
-	<div class="contentProgressionPoll">
+	<div class="contentProgressionPoll" ng-click="openPollModal(poll)">
 
 		<div class="contentProgressionBar">
 			<div class="contentBarPhotoLeft" ng-style="{'width' : poll.pourcentagePhotoLeft + '%'}">
@@ -259,7 +262,7 @@
 			</div>
 		</div>
 
-		<div class="contentProgressionBar">
+		<div class="contentProgressionBar" ng-click="openPollModal(poll)"> 
 			<div class="contentBarPhotoRight" ng-style="{'width' : poll.pourcentagePhotoRight + '%'}">
 				<p ng-if="poll.pourcentagePhotoRight>0&&poll.pourcentagePhotoRight<=15" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
 				<p ng-if="poll.pourcentagePhotoRight>15&&poll.pourcentagePhotoRight<=40" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
@@ -268,7 +271,7 @@
 		</div>
 	</div>
 
-	<div class="contentPhotosPoll">
+	<div class="contentPhotosPoll" ng-click="openPollModal(poll)">
 		<div class="contentPhotoLeft">
 			<img ng-style="{'width': poll.specImgLeftWidth + 'px', 'height': poll.specImgLeftHeight + 'px', 'margin-left': poll.specImgLeftPositionLeft + 'px', 'margin-top': poll.specImgLeftPositionTop + 'px'}" src="{{poll.photoLeft}}">
 			<p class="fontTitlePhotoZonder titlePhoto">{{poll.firstName}}</p>
@@ -279,7 +282,7 @@
 		</div>
 	</div>
 
-	<div class="footerZonder">
+	<div class="footerZonder" ng-click="openPollModal(poll)">
 		<div class="contentVotesComments"> 
 			<div class="fontVoteCommentsZonder">{{poll.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
 			<div class="fontVoteCommentsZonder marginComments">{{poll.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
@@ -288,11 +291,13 @@
 	<div class="separatorZonder"></div>
 </div>
 
-<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScroll && !loadingPolls" on-infinite="loadPollsCtrl(true)" immediate-check="false">
+<ion-infinite-scroll spinner="spiral" ng-if="displayInfiniteScroll" on-infinite="loadPollsCtrl(true)" immediate-check="false">
 </ion-infinite-scroll>
 
 </ion-scroll>
 </ion-slide>
+
+
 
 <!-- /////////////// friends //////////////// -->
 
@@ -366,6 +371,7 @@
 	<span class="brandonBold" id="findFriends">find friends</span>
 </div>
 
+</div>
 </ion-side-menu-content>
 
 </ion-side-menus>

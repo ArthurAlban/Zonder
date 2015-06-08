@@ -1,5 +1,14 @@
 zonder.controller('homeCtrl', function($scope, $state, $window, $ionicActionSheet, $ionicSlideBoxDelegate, $rootScope,$ionicSideMenuDelegate,UserService, PollService) {
 
+$scope.displayCtrl = function(){
+	console.log("homeCtrl");
+};
+	
+	window.setTimeout(function(){
+				$scope.displayCtrl();
+	}, 2000);
+	
+
 	$scope.sliderVote = true;
 	$scope.sliderPolls = false;
 	$scope.sliderFriends = false;
@@ -59,17 +68,11 @@ $scope.loadingPolls = true;
 
 $scope.firstBufferPolls = function(callback){
 	if(!$scope.displayPolls.length){
-		console.log("2");
-		console.log("pollsvoted" + JSON.stringify($rootScope.pollsVoted));
 		if(!$rootScope.pollsVoted.length){
-			console.log("false");
-			console.log("displayPolls" + JSON.stringify($scope.displayPolls));
 			callback();
 		}
 		else{
-			console.log("true");
 			$scope.displayPolls = $rootScope.pollsVoted;
-			console.log("displaysPolls" + JSON.stringify($scope.displayPolls));
 			callback();
 		}
 	}
@@ -82,23 +85,18 @@ $scope.firstBufferPolls = function(callback){
 $scope.stat = true;
 
 $scope.getStatusForPoll = function(data){
-	console.log("test 1");
 	if(data.lengthGlobal != $rootScope.lengthTab){
-		console.log("test 2");
 		return true;
 	}
 	else{
 		for(var i = 0; i < data.poll.length; i++){
-			console.log("test 333");
 			if(data.poll == "allPollsLoaded"){
 				return true;
 			}
 			else if(data.poll[i].id != $scope.displayPolls[i].id){
-				console.log("test 3");
 				return true;
 			}
 		}
-		console.log("test 4");
 		return false;
 	}
 };
@@ -255,12 +253,10 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 	}
 	else{
 		$scope.loadingPolls = true;
-		console.log("1");
 		async.series([
 			$scope.firstBufferPolls, 
 			$scope.verifiyChangeAndUpdateFirstTime], 
 			function(err, res){
-				console.log("4");
 				$scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
 				$scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
 				$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
@@ -269,7 +265,6 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 					$scope.displayInfiniteScroll = true;
 				}
 				window.setTimeout(function(){
-					console.log("loading polls");
 					$scope.loadingPolls = false;
 					$scope.$apply();
 				}, 2000);
@@ -301,6 +296,72 @@ $scope.pullToRefresh = function(){
 		$scope.$broadcast('scroll.refreshComplete');
 	}
 };
+
+
+
+	$scope.deletePollInDisplayPoll = function(pollId){
+		var ind = 0;
+
+		for(var i = 0; i < $scope.displayPolls.length; i++){
+			if($scope.displayPolls[i].id == pollId){
+				console.log("deletePollInDisplayPoll ind " + i);
+				ind = i;
+			}
+		}
+		//console.log("$scope.displayPolls[i].isRemoved " + $scope.displayPolls[ind].isRemoved);
+		//$scope.displayPolls[ind].isRemoved = true;
+		//console.log("$scope.displayPolls[i].isRemoved " + $scope.displayPolls[ind].isRemoved);
+
+		$scope.displayPolls.splice(ind, 1);
+		$rootScope.lengthTab--;
+		//var indRootScope = -1;
+
+		/*for (var j = 0; j < $rootScope.pollsVoted.length; j++) {
+			if($rootScope.pollsVoted[j].id == pollId){
+				indRootScope = j;
+			}
+		};
+
+		if(indRootScope >= 0){
+			console.log("delete i rootScope");
+			$rootScope.pollsVoted.splice(indRootScope, 1);
+		}
+		console.log("deletefin");*/
+		$scope.$apply();
+	};
+
+	$scope.removePollFromUser = function(pollId){
+		console.log("removePollFromUser");
+		PollService.deletePollInPollsVoted(pollId).then(function(data){
+			console.log("delOK");
+			$scope.deletePollInDisplayPoll(pollId);
+			console.log("delinappOK");
+		}, function(status){
+			console.log("Error when delete poll " + status);
+		});
+	};
+
+	$scope.showActionSheetPollWheelChoiceChoice = function(pollId) {
+
+		$ionicActionSheet.show({
+			buttons: [
+			{ text: 'Remove' },
+			{ text: 'Report this poll' }
+			],
+			cancelText: 'Cancel',
+			cancel: function() {
+			},
+			buttonClicked: function(index) {
+				if(index == 0){
+					$scope.removePollFromUser(pollId);
+				}
+				if(index == 1){
+					$scope.reportThisPoll(pollId);
+				}
+				return true;
+			}
+		});
+	};
 
 ///////////////////// Loading Friends /////////////////////////
 

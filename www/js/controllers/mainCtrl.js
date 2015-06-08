@@ -1,5 +1,18 @@
-zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService) {
+zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService, $ionicLoading, $ionicPlatform, $cordovaKeyboard) {
 
+ $scope.testtoto = function(){
+  if(!$rootScope.loadingLogIn) {
+    console.log("$rootScope.showHome" + $rootScope.showHome);
+    $rootScope.loadingIndicator = $ionicLoading.show({
+      templateUrl:'templates/loading.html',
+      animation: 'fade-in',
+      showBackdrop: false,
+    });
+  }
+};
+  
+  $scope.testtoto();
+  
   $scope.goToProfile = function(){
     $state.go('showProfile');
   };
@@ -222,6 +235,7 @@ $scope.decreaseDecadePeopleRange = function(){
  }
 };
 
+
 $ionicModal.fromTemplateUrl('modals/createZonderModal.html', {
   scope: $scope,
   animation: 'slide-in-right'
@@ -229,14 +243,27 @@ $ionicModal.fromTemplateUrl('modals/createZonderModal.html', {
   $scope.createZonderModal = modal;
 });
 
+$scope.preloadModal = function(){
+  $scope.openCreateZonderModal();
+    window.setTimeout(function() {
+   $scope.closeCreateZonderModal();
+   $scope.$apply();
+ }, 200);
+  
+};
+
 $scope.openCreateZonderModal = function() {
-  $scope.createZonderModal.show();
+  console.log("open");
+   $scope.createZonderModal.show();
+   console.log("open2");
 };
 
 $scope.closeCreateZonderModal = function() {
+  console.log("close");
   $scope.createZonderModal.hide();
-  
+  console.log("close2");
 };
+
 
 $scope.$on('$destroy', function() {
   $scope.createZonderModal.remove();
@@ -244,6 +271,7 @@ $scope.$on('$destroy', function() {
 
 $scope.closeAndClearCreateZonderModal = function(){
   $scope.closeCreateZonderModal();
+  $cordovaKeyboard.close();
   $scope.clearModal();
 };
 
@@ -319,6 +347,7 @@ $scope.clearModal = function(){
   $scope.timeIsSelected = false;
   $scope.targetIsSelected = false;
   $scope.charLeft = 90;
+  $scope.showSliderPhoto = false;
 };
 
 $scope.showCloseButton = true;
@@ -347,10 +376,12 @@ $scope.createPoll.timePoll = 3600;
 $scope.createPoll.gender = "";
 $scope.createPoll.range = "";
 
+$scope.showSliderPhoto = false;
 /////////////////  slider question /////////////////////////
 $scope.charLeft = 90;
 
 $scope.charactersLeft = function(){
+  $scope.showSliderPhoto = true;
   var resSplit = $scope.createPoll.question.split("\n");
   var nbLineBreak = resSplit.length - 1;
   /*if($scope.createPoll.question.length == 0 || $scope.createPoll.question.length == 1){
@@ -1285,7 +1316,6 @@ $scope.queriesForUserPhoto = new Array();
 $scope.getPollsVoted = function(callback){
   PollService.getPollsVoted(0).then(function(data){
     $rootScope.lengthTab = data.lengthGlobal;
-    console.log("data.poll" + data.poll);
     if(data.poll != "allPollsLoaded"){
       $rootScope.pollsVoted = data.poll;
       async.parallel([function(callback){$scope.getPollsInfos($rootScope.pollsVoted, callback)}, 
@@ -1457,9 +1487,7 @@ $scope.queriesExecUsersInfos = function(callback){
 };
 
 $scope.queriesExecInfoPhoto = function(callback){
-  console.log("44");
   async.parallel($scope.queriesForInfoPhoto,function(err, res){
-    console.log("444444444");
     callback();
   });
 };
@@ -1479,17 +1507,32 @@ $scope.parallelQueriesExecAllInfos = function(callback){
 $scope.retrievePollsForRootScope = function(){
   async.series([$scope.getPollsVoted, $scope.queriesExecPollsInfos, $scope.parallelQueriesExecAllInfos], 
     function(err, result){
-      console.log("finnnnnnn main");
-      console.log("rootScope" + JSON.stringify($rootScope.pollsVoted));
+      console.log("fin retrive poll");
       $scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
       $scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
       $scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
       $scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
+      console.log("finloading");
+
+      // $rootScope.loadingIndicator.hide();
+      window.setTimeout(function(){
+        $ionicPlatform.ready(function() {
+          $rootScope.loadingIndicator.hide();
+          $scope.$apply();
+        });
+      }, 4000);
+      console.log("finloadingOK");
+       $rootScope.showHome = true;
+       $scope.$apply();
     });
 };
 
+// marche car on force l'attente à 2 sec mais normalement c'est sur le device ready
 window.setTimeout(function(){
-  $scope.retrievePollsForRootScope();
+  console.log("je lance retrieve poll");
+    $scope.retrievePollsForRootScope();
+    $scope.preloadModal();
+    console.log("je lance retrieve poll2");
 }, 2000);
 
 //////////////////////// Retrieve Friends ////////////////////////////////
@@ -1743,5 +1786,6 @@ $scope.getTimeHoursMinutesFromPoll = function(poll){
   }
   return pollTime;
 };
+
 
 });

@@ -1,4 +1,4 @@
-<ion-modal-view class="background">
+<ion-modal-view class="background" style="width:100%">
 <img id="closeCreateZonder" ng-show="showCloseButton" class="imgClick" ng-click="closeAndClearCreateZonderModal()" src="img/close.png">
 
 <img id="backCreateZonder" ng-show="!showCloseButton" class="imgClick" ng-click="backStep()" src="img/arrowBack.png">
@@ -23,6 +23,7 @@
 </ion-slide>
 
 <ion-slide>
+
 
 <div ng-show="displayButtonLeft" class="sample-show-hide" id="posDivCameraLeft" ng-click="showActionSheetPhotoSourceForPhotoLeft()" style=" display: -webkit-flex;-webkit-flex-direction: column;-webkit-align-items: center;-webkit-justify-content: flex-start;">
   <div class="addPictureFont">add picture</div>
@@ -52,6 +53,8 @@
  <button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepOption()">
     NEXT
  </button>
+
+
 
 </ion-slide>
 
@@ -120,7 +123,6 @@
   </div>   
 </div>
 
-<!-- bidouillage -->
 
     <div class="divTargetAndFriends"> 
     <div class="item item-icon-left item-icon-right specTarget" ng-click="openTargetPicker()" ng-class="{labelZonder:animateTarget, labelZonderHide:!animateTarget}">
@@ -164,7 +166,7 @@
     </div>
   </ion-scroll>
  </div>
- </div> <!-- fin bidouillage -->
+ </div> 
 
 </div>
 

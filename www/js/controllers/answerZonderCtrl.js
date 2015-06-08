@@ -20,8 +20,8 @@ $scope.queriesForPollsInfosPhotoAnswerZonder = new Array();
 
 $scope.getPollsToBeLoaded = function(callback){
 	// faire route server qui récupére 6 sondages lié à l'algo de distribution des polls
-	$scope.pollsToBeLoaded.push({id : "5566e590873c17501f000004"});
-	$scope.pollsToBeLoaded.push({id : "5566e5d3e093df1818000004"});
+	$scope.pollsToBeLoaded.push({id : "556701275abe6f8813000004"});
+	$scope.pollsToBeLoaded.push({id : "5567015f5abe6f8813000005"});
 	callback();
 };
 
@@ -125,12 +125,6 @@ $scope.queriesExecPollsInfosAnswerZonder = function(callback){
 };
 
 
-$scope.queriesExecPollsInfosPhotoAnswerZonder = function(callback){
-  async.parallel($scope.queriesForPollsInfosPhotoAnswerZonder,function(err, res){
-    callback();
-  });
-};
-
 
 $scope.getUsersInfosAnswerZonder = function(pollArray, callback){
 	angular.forEach(pollArray, function(poll, key){
@@ -170,10 +164,10 @@ $scope.getUsersPhotoAnswerZonder = function(pollArray, callback){
 	callback();
 };
 
-$scope.queriesExecUsersPhotoAnswerZonder = function(callback){
-  async.parallel($scope.queriesForUserPhotoAnswerZonder,function(err, res){
-    callback();
-  });
+$scope.queriesParallelInfosUsersAndPollPhotoAnswerZonder = function(callback) {
+	async.parallel([$scope.queriesExecUsersInfosAnswerZonder, $scope.queriesExecUsersPhotoAnswerZonder, $scope.queriesExecPollsInfosPhotoAnswerZonder], function(err, res){
+		callback();
+	});
 };
 
 $scope.queriesExecUsersInfosAnswerZonder = function(callback){
@@ -182,11 +176,18 @@ $scope.queriesExecUsersInfosAnswerZonder = function(callback){
   });
 };
 
-$scope.queriesParallelInfosUsersAndPollPhotoAnswerZonder = function(callback) {
-	async.parallel([$scope.queriesExecUsersInfosAnswerZonder, $scope.queriesExecUsersPhotoAnswerZonder, $scope.queriesExecPollsInfosPhotoAnswerZonder], function(err, res){
-		callback();
-	});
+$scope.queriesExecUsersPhotoAnswerZonder = function(callback){
+  async.parallel($scope.queriesForUserPhotoAnswerZonder,function(err, res){
+    callback();
+  });
 };
+
+$scope.queriesExecPollsInfosPhotoAnswerZonder = function(callback){
+  async.parallel($scope.queriesForPollsInfosPhotoAnswerZonder,function(err, res){
+    callback();
+  });
+};
+
 
 $scope.updateInformationsPolls = function(callback){
 	async.series([$scope.getPollsToBeLoaded,
@@ -382,6 +383,7 @@ $scope.displayComments = function(poll){
 		// A faire quand on change de sondage $scope.comments.splice(0, $scope.comments.length);
 		async.series([function(callback){$scope.getInfosCommentsAndUser(poll, callback)}, $scope.queriesParallel], 
 			function(err, result){
+				console.log("fin displayComments");
 				$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
 				$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
 				$scope.$apply();
@@ -414,7 +416,6 @@ $ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
   	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
 	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
   	$scope.pollUp.writeComment = "";
-  	// $scope.pollUp = [];
     $scope.commentsModalUp.hide();
     $scope.$apply();
   };
@@ -476,6 +477,7 @@ $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
   		var pollTmp = {};
   		pollTmp.author = d.comment.author;
   		pollTmp.comment = d.comment.comment;
+  		pollTmp.id = d.comment._id;
   		pollTmp.photoAuthorComments = $window.localStorage['photo'];
 
   		$scope.pollUp.comments.push(pollTmp);
@@ -491,6 +493,7 @@ $scope.sendCommentDown = function(){
   		var pollTmp = {};
   		pollTmp.author = d.comment.author;
   		pollTmp.comment = d.comment.comment;
+  		pollTmp.id = d.comment._id;
   		pollTmp.photoAuthorComments = $window.localStorage['photo'];
 
   		$scope.pollDown.comments.push(pollTmp);
