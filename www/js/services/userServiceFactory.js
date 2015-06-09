@@ -368,6 +368,16 @@ unregisterDevice: function(device){
         deferred.reject(status);
     });
     return deferred.promise;
+},
+serverEvents: function(){
+    var deferred = $q.defer();
+    $http.get("http://192.168.240.13" + '/user/serverEvents')
+    .success(function(data){
+        deferred.resolve(data);
+    }).error(function(data, status){
+        deferred.reject(status);
+    });
+    return deferred.promise;
 }
 
 };

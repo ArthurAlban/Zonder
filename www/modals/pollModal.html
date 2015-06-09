@@ -1,6 +1,8 @@
 <ion-modal-view style="background-color: rgb(0,0,0)">
 
-<img id="closeCreateZonder" class="imgClick" ng-click="closePollModal()" src="img/close.png">
+<img class="closeCreateZonderPollModal imgClick" ng-click="closePollModal()" src="img/close.png">
+
+<button class="button button-energized" ng-click="votesTest()" style="z-index:1000;position:absolute;left:60%;top:5px">TEST</button>
 
 <div style="position:relative;overflow:hidden;height:50vh;width:100%;">
 	 <img src='{{pollToDisplay.photoLeft}}' ng-class="{opacityImage:!displayPourcentageAndOpacity, opacityImageActif:displayPourcentageAndOpacity}" ng-style="{'width': imgLeftInfoPollModal.imgWidth + 'px', 'height': imgLeftInfoPollModal.imgHeight + 'px', 'margin-left': imgLeftInfoPollModal.positionLeft + 'px', 'margin-top': imgLeftInfoPollModal.positionTop + 'px'}">
@@ -43,11 +45,16 @@
 <div ng-click="comments(displaySectionComments)" style="position:absolute;height:22px;top:94%;left:8%;display:-webkit-flex;-webkit-justify-content:center;-webkit-align-items:center;"><img width="20" src="img/parameterProfile.png"></div>
 
 <!-- <div ng-switch on="pollToDisplay.range"> -->
-  <div ng-click="votesTest(displaySectionVotes)" style="margin-left:-8px;z-index:1000;position:absolute;top:94%;left:26%;">
+  
+  <button style="z-index:1000;position:absolute;top:94%;left:26%;border:1px solid red" class="button button-icon" ng-click="votesTest()">
+    <i> <img width="40" src="img/earthWhite.png" >
+    </i>
+  </button>
+  <!-- <div ng-click="votesTest()" style="margin-left:-8px;z-index:1000;position:absolute;top:94%;left:26%;">
   <img width="20" src="img/earthWhite.png" >
-  </div>
- <!--  <div ng-switch-when="Amis" ng-click="votesTest(displaySectionVotes)" style="margin-left:-9px;z-index:1000;position:absolute;margin-top:1px;top:94%;left:26%;">
-  <img width="20" src="img/friends.png" >
+  </div> -->
+  <!-- <div ng-switch-when="Amis" style="margin-left:-9px;z-index:1000;position:absolute;margin-top:1px;top:94%;left:26%;">
+  <img ng-click="votesTest()" width="20" src="img/friends.png" >
   </div> -->
 <!-- </div> -->
 
@@ -101,11 +108,11 @@
     <span class="fontPseudoFriends" style="width:100%;color:#ffffff;font-size:14px;background: transparent">No friends voted !</span>
 </div>
 
-<ion-scroll ng-show="pollToDisplay.whoVotedWhat.length && displaySectionVotes" class="sample-show-hide" has-bouncing="false" direction="y" zooming="false" delegate-handle="vertical" style="width:100%;position:absolute;left:0;top:15%;max-height:30%;overflow:hidden;">
+<ion-scroll ng-show="displaySectionVotes" class="sample-show-hide" has-bouncing="false" direction="y" zooming="false" delegate-handle="vertical" style="width:100%;position:absolute;left:0;top:5%;max-height:44.8%;overflow:hidden;">
 <img ng-class="{photoLineImpair:friendWhoVotedLeft.ligneImpair,photoLineSpecific:friendWhoVotedLeft.firstPositionPair,photoLinePair2:friendWhoVotedLeft.position}" style="width:12vw;height:12vw;border-radius:100%;border:2px solid #ffffff;" src={{friendWhoVotedLeft.photo}} ng-repeat="friendWhoVotedLeft in pollToDisplay.whoVotedLeft">
 </ion-scroll>
 
-<ion-scroll ng-show="pollToDisplay.whoVotedWhat.length && displaySectionVotes" class="sample-show-hide" has-bouncing="false" direction="y" zooming="false" delegate-handle="vertical" style="width:100%;position:absolute;left:0;top:50.3%;max-height:43%;overflow:hidden;">
+<ion-scroll ng-show="displaySectionVotes" class="sample-show-hide" has-bouncing="false" direction="y" zooming="false" delegate-handle="vertical" style="width:100%;position:absolute;left:0;top:50.5%;max-height:43%;overflow:hidden;">
 <img ng-repeat="friendWhoVotedRight in pollToDisplay.whoVotedRight"
 style="width:12vw;height:12vw;border:2px solid #ffffff;border-radius:100%" ng-class="{photoLineImpair:friendWhoVotedRight.ligneImpair,photoLineSpecific:friendWhoVotedRight.firstPositionPair,photoLinePair2:friendWhoVotedRight.position}" src={{friendWhoVotedRight.photo}}>
 </ion-scroll>

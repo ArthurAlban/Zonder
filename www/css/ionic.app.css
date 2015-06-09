@@ -2901,8 +2901,8 @@ a.subdued {
 .action-sheet-wrapper {
   -webkit-transform: translate3d(0, 100%, 0);
   transform: translate3d(0, 100%, 0);
-  -webkit-transition: all cubic-bezier(.36, .66, .04, 1) 500ms;
-  transition: all cubic-bezier(.36, .66, .04, 1) 500ms;
+  -webkit-transition: all cubic-bezier(.36, .66, .04, 1) 100ms;
+  transition: all cubic-bezier(.36, .66, .04, 1) 100ms;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -8491,42 +8491,54 @@ a.button {
   right: 32px;
   top: 75px; }
 
-/* -------------------
-	test loading
-	-------------------- */
-.loadingTest {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -60px 0 0 -60px;
-  background: #fff;
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-  border: 10px solid #19bee1; }
+.deletescalezonder.ng-leave.deletescalezonder.ng-leave-active {
+  -webkit-transform: scaleY(0);
+  -moz-transform: scaleY(0);
+  -ms-transform: scaleY(0);
+  -o-transform: scaleY(0);
+  transform: scaleY(0);
+  height: 0px;
+  opacity: 0; }
 
-.loadingTest:after {
-  content: '';
-  background: transparent;
-  width: 140%;
-  height: 140%;
-  position: absolute;
-  border-radius: 100%;
-  top: -20%;
-  left: -20%;
-  opacity: 0.7;
-  box-shadow: rgba(255, 255, 255, 0.6) -4px -5px 3px -3px;
-  -webkit-animation: rotate 2s infinite linear; }
+.deletescalezonder.ng-leave {
+  -webkit-transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -webkit-transform: scaleY(1);
+  -moz-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  -o-transform: scaleY(1);
+  transform: scaleY(1);
+  height: 200px;
+  opacity: 1; }
 
-@-webkit-keyframes rotate {
-  0% {
-    -webkit-transform: rotateZ(0deg); }
+.deletescalefriend.ng-leave.deletescalefriend.ng-leave-active {
+  -webkit-transform: scaleY(0);
+  -moz-transform: scaleY(0);
+  -ms-transform: scaleY(0);
+  -o-transform: scaleY(0);
+  transform: scaleY(0);
+  height: 0px;
+  opacity: 0; }
 
-  100% {
-    -webkit-transform: rotateZ(360deg); } }
+.deletescalefriend.ng-leave {
+  -webkit-transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -moz-transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -ms-transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -o-transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  transition: 500ms cubic-bezier(0.25, 0.25, 0.75, 0.75) all;
+  -webkit-transform: scaleY(1);
+  -moz-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  -o-transform: scaleY(1);
+  transform: scaleY(1);
+  height: 50px;
+  opacity: 1; }
 
 .animateTriangles {
-  -webkit-transform: translateY(-16vh);
+  -webkit-transform: translateY(-16%);
   -webkit-transition: all 1s ease; }
 
 #divMenusSideMenu {
@@ -8762,7 +8774,7 @@ a.button {
   padding: 4px 0 0 0; }
 
 .specButtonCreateZonder {
-  position: absolute;
+  position: fixed;
   top: 85vh; }
 
 .borderNotSelected {
@@ -8790,6 +8802,13 @@ a.button {
   position: absolute;
   z-index: 16;
   top: 32px;
+  width: 28px;
+  left: 15px; }
+
+.closeCreateZonderPollModal {
+  position: absolute;
+  z-index: 16;
+  top: 8px;
   width: 28px;
   left: 15px; }
 
@@ -8883,7 +8902,7 @@ a.button {
 
 #contentCharactersLeftCreateZonder {
   position: absolute;
-  top: 70%;
+  top: 0%;
   right: 12%; }
 
 .charactersLeftCreateZonder {
@@ -8903,7 +8922,7 @@ a.button {
 .pageOption {
   overflow: hidden;
   position: relative;
-  top: 28vh;
+  top: 0%;
   margin: 0 auto;
   width: 100vw;
   height: 55vh;
@@ -8979,11 +8998,11 @@ a.button {
   height: 250px; }
 
 .optionTranslateUp {
-  -webkit-transform: translateY(0vh);
+  -webkit-transform: translateY(0%);
   -webkit-transition: all 0.5s ease; }
 
 .optionTranslateDown {
-  -webkit-transform: translateY(calc( 50% + 150px));
+  -webkit-transform: translateY(459px);
   -webkit-transition: all 0.5s ease; }
 
 #closeTimePicker {
@@ -9133,6 +9152,46 @@ a.button {
 .photoLineImpair {
   margin-left: 4%; }
 
+.pourcentageTranslateUpFirst {
+  opacity: 0;
+  -webkit-transform: translateY(-400%);
+  -webkit-transition: all 0.8s linear; }
+
+.pourcentageTranslateDownFirst {
+  opacity: 1;
+  -webkit-transform: translateY(0%);
+  -webkit-transition: all 0.8s linear; }
+
+.pourcentageTranslateUpSecond {
+  opacity: 1;
+  -webkit-transform: translateY(0%);
+  -webkit-transition: all 0.8s linear; }
+
+.pourcentageTranslateDownSecond {
+  opacity: 0;
+  -webkit-transform: translateY(400%);
+  -webkit-transition: all 0.6s linear; }
+
+.translateNamePhotoHide {
+  -webkit-transform: translateX(-110%);
+  -webkit-transition: all 0.5s ease; }
+
+.translateNamePhotoShow {
+  -webkit-transform: translateX(0%);
+  -webkit-transition: all 0.5s ease; }
+
+.translateLoadingHide {
+  -webkit-transform: translateY(0%);
+  -webkit-transition: all 0.5s ease 0.2s; }
+
+.translateLoadingShow {
+  -webkit-transform: translateY(100%);
+  -webkit-transition: all 0.5s ease; }
+
+.translateLoadingShowPoll {
+  -webkit-transform: translateY(24%);
+  -webkit-transition: all 0.5s ease; }
+
 .custom-color-icon {
   color: #f79f03; }
 
@@ -9143,42 +9202,6 @@ a.button {
 .opacityImageActif {
   opacity: 0.8;
   -webkit-transition: all 1s linear; }
-
-.pourcentageTranslateUpFirst {
-  opacity: 0;
-  -webkit-transform: translateY(-25vh);
-  -webkit-transition: all 0.5s linear; }
-
-.pourcentageTranslateDownFirst {
-  opacity: 1;
-  -webkit-transform: translateY(0vh);
-  -webkit-transition: all 0.5s linear; }
-
-.pourcentageTranslateUpSecond {
-  opacity: 1;
-  -webkit-transform: translateY(0vh);
-  -webkit-transition: all 0.5s linear; }
-
-.pourcentageTranslateDownSecond {
-  opacity: 0;
-  -webkit-transform: translateY(25vh);
-  -webkit-transition: all 0.5s linear; }
-
-.translateNamePhotoHide {
-  -webkit-transform: translateX(-70vw);
-  -webkit-transition: all 0.5s ease; }
-
-.translateNamePhotoShow {
-  -webkit-transform: translateX(0vw);
-  -webkit-transition: all 0.5s ease; }
-
-.translateLoadingHide {
-  -webkit-transform: translateY(0vh);
-  -webkit-transition: all 0.5s ease 0.2s; }
-
-.translateLoadingShow {
-  -webkit-transform: translateY(10vh);
-  -webkit-transition: all 0.5s ease; }
 
 .scaleLoadingDown {
   -webkit-transform: scale(0);
@@ -9428,6 +9451,9 @@ a.button {
   src: url('../fonts/open-sans/OpenSans-SemiboldItalic.ttf') format("truetype"); }
 
 @media screen and (device-aspect-ratio: 40/71) {
+  .optionTranslateDown {
+    -webkit-transform: translateY(409px);
+    -webkit-transition: all 0.5s ease; }
   .heightIonSlide {
     /*height:100vh;*/
     /*margin-top: -180px;*/
@@ -9459,7 +9485,7 @@ a.button {
     width: 100%;
     margin-top: -16vh; }
   .animateTriangles {
-    -webkit-transform: translateY(-18%);
+    -webkit-transform: translateY(-44%);
     -webkit-transition: all 1s ease; }
   .profilImg {
     z-index: 11;
@@ -9471,6 +9497,9 @@ a.button {
     border-radius: 100%; } }
 
 @media screen and (device-aspect-ratio: 2/3) {
+  .optionTranslateDown {
+    -webkit-transform: translateY(365px);
+    -webkit-transition: all 0.5s ease; }
   .heightIonSlide {
     /*height:100vh;
 																			margin-top: -180px;
@@ -9535,7 +9564,7 @@ a.button {
     width: 100%;
     margin-top: -19vh; }
   .animateTriangles {
-    -webkit-transform: translateY(-19vh);
+    -webkit-transform: translateY(-44%);
     -webkit-transition: all 1s ease; }
   .animateTrianglesLoading {
     -webkit-animation: translateLoading 1.5s forwards ease; }
@@ -9546,3 +9575,12 @@ a.button {
     100% {
       -webkit-transform: translateY(-19vh); } }
  }
+
+@media screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+  .optionTranslateDown {
+    -webkit-transform: translateY(493px);
+    -webkit-transition: all 0.5s ease; }
+  .heightIonSlide {
+    height: calc( 736px - 200px); }
+  .heightIonScroll {
+    height: calc( 736px - 200px); } }

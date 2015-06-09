@@ -226,11 +226,11 @@
     <span class="titlePopup" style="width:100vw;color:#939191;font-size:14px;background: transparent">You have no voted zonder yet !</span>
 </div>
 
-<div ng-show="loadingPolls" ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls}" style="position:absolute;top:-10vh;left:0;width:100vw;height:10vh;border:1px solid red" class="centeredContent">
+<div ng-show="loadingPolls" ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls}" style="position:absolute;top:-10vh;left:0;width:100vw;height:10vh;" class="centeredContent">
 	<ion-spinner class="spinnerLoadingBlack" icon="spiral" ng-class="{scaleLoadingDown:!loadingPolls,scaleLoadingUp:loadingPolls}" style="margin-top:-5px"></ion-spinner>
 </div>	
 
-<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShow:loadingPolls,fadeOutNoDelay:poll.isRemoved}" ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp">
+<div ng-class="{translateLoadingHide:!loadingPolls,translateLoadingShowPoll:loadingPolls,fadeOutNoDelay:poll.isRemoved}" ng-repeat="poll in displayPolls" class="divContentZonder marginTopPullUp deletescalezonder"  >
 
 	<div class="headerZonder">
 
@@ -314,7 +314,7 @@
 	<ion-spinner class="spinnerLoadingBlack" icon="spiral" ng-class="{scaleLoadingDown:!loadingFriends,scaleLoadingUp:loadingFriends}" style="margin-top:-5px"></ion-spinner>
 </div>
 
-<div ng-repeat="requestFriend in displayRequestFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend">
+<div ng-repeat="requestFriend in displayRequestFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend deletescalefriend">
 	<div class="contentFriend">
 		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{requestFriend.photo}}">
 		<img class="posNotification" width="10" src="img/notification.png">
@@ -335,7 +335,7 @@
 	</div>
 </div>
 
-<div ng-repeat="friend in displayFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend">
+<div ng-repeat="friend in displayFriends" ng-class="{translateLoadingHide:!loadingFriends,translateLoadingShow:loadingFriends}" class="contentItemFriend deletescalefriend">
 	<div class="contentFriend">
 		<img width="48" height="48" style="border:1px solid #dadada;" class="roundImage" src="{{friend.photo}}">
 		<div class="contentTextFriend">
@@ -349,7 +349,7 @@
 			<p class="fontFooterFriends" style="margin-top:10px"> See {{friend.pseudo}}’s profile </p>
 		</div>
 	</div> 
-	<div class="contentFriendActionSheet" style="border:1px solid red;" ng-click="showActionSheetFriends(friend.id)">
+	<div class="contentFriendActionSheet" ng-click="showActionSheetFriends(friend.id)">
 		<img width="5" class="imgClick" src="img/actionSheetVertical.png">
 	</div>
 </div>

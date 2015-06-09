@@ -1,17 +1,8 @@
 zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal, $ionicActionSheet, $cordovaCamera, $cordovaPush, $cordovaKeyboard, $ionicLoading) {
-  
-  $scope.preloadModalRegister = function(){
-    $scope.openRegisterModal();
-    window.setTimeout(function() {
-      $scope.closeRegisterModal();
-     $scope.$apply();
-   }, 200);
-  };
 
-   // $scope.preloadModalRegister();
-   
   $scope.animateTriangles = false;
   $ionicPlatform.ready(function() {
+    console.log("splash");
     $scope.animateTriangles = true;
     $scope.$apply();
   });
@@ -255,9 +246,7 @@ $scope.closepopups = function() {
   });
 
 $scope.openRegisterModal = function() {
-  console.log("open");
   $scope.registerModal.show();
-  console.log("open2");
 };
 
 $scope.closeRegisterModal = function() {

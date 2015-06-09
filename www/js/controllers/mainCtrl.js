@@ -10,29 +10,29 @@ zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ion
     });
   }
 };
-  
-  $scope.testtoto();
-  
-  $scope.goToProfile = function(){
-    $state.go('showProfile');
-  };
 
-  $scope.myPhoto = $window.localStorage['photo'];
-  $scope.myPseudo = $window.localStorage['pseudo'];
+$scope.testtoto();
 
-  if($window.localStorage['notifPolls'] == "true"){
-    $scope.acceptNotifPolls = true;
-  }
-  else{
-    $scope.acceptNotifPolls = false;
-  }
+$scope.goToProfile = function(){
+  $state.go('showProfile');
+};
 
-  if($window.localStorage['notifFriends'] == "true"){
-    $scope.acceptNotifFriends = true;
-  }
-  else{
-    $scope.acceptNotifFriends = false;
-  }
+$scope.myPhoto = $window.localStorage['photo'];
+$scope.myPseudo = $window.localStorage['pseudo'];
+
+if($window.localStorage['notifPolls'] == "true"){
+  $scope.acceptNotifPolls = true;
+}
+else{
+  $scope.acceptNotifPolls = false;
+}
+
+if($window.localStorage['notifFriends'] == "true"){
+  $scope.acceptNotifFriends = true;
+}
+else{
+  $scope.acceptNotifFriends = false;
+}
 
 
   //////////////// Notifications Friends / Poll /////////////////////
@@ -245,7 +245,7 @@ $ionicModal.fromTemplateUrl('modals/createZonderModal.html', {
 
 $scope.preloadModal = function(){
   $scope.openCreateZonderModal();
-    window.setTimeout(function() {
+  window.setTimeout(function() {
    $scope.closeCreateZonderModal();
    $scope.$apply();
  }, 200);
@@ -254,8 +254,8 @@ $scope.preloadModal = function(){
 
 $scope.openCreateZonderModal = function() {
   console.log("open");
-   $scope.createZonderModal.show();
-   console.log("open2");
+  $scope.createZonderModal.show();
+  console.log("open2");
 };
 
 $scope.closeCreateZonderModal = function() {
@@ -1522,17 +1522,16 @@ $scope.retrievePollsForRootScope = function(){
         });
       }, 4000);
       console.log("finloadingOK");
-       $rootScope.showHome = true;
-       $scope.$apply();
+      $rootScope.showHome = true;
+      $scope.$apply();
     });
 };
 
 // marche car on force l'attente à 2 sec mais normalement c'est sur le device ready
 window.setTimeout(function(){
   console.log("je lance retrieve poll");
-    $scope.retrievePollsForRootScope();
-    $scope.preloadModal();
-    console.log("je lance retrieve poll2");
+  $scope.retrievePollsForRootScope();
+  $scope.preloadModal();
 }, 2000);
 
 //////////////////////// Retrieve Friends ////////////////////////////////

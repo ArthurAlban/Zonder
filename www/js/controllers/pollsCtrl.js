@@ -1,10 +1,6 @@
-zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, UserService, CommentService, PollService, $rootScope, $window, $ionicActionSheet){
+zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, UserService, CommentService, PollService, $rootScope, $window, $ionicActionSheet, $cordovaStatusbar, $state){
 
 	$scope.commentToDisplay = new Array();
-
-	$scope.displaySectionComments = false;
-	$scope.displaySectionVotes = false;
-	$scope.displayPourcentageAndOpacity = true;
 
 	$scope.imgLeftInfoPollModal = new Array();
 	$scope.imgRightInfoPollModal = new Array();
@@ -18,8 +14,11 @@ $ionicModal.fromTemplateUrl('modals/pollModal.html', {
 });
 
 $scope.openPollModal = function(poll) {
+	$scope.displaySectionComments = false;
+	$scope.displaySectionVotes = false;
 	$scope.loadingVote = false;
 	$scope.loadVote = true;
+	$scope.displayPourcentageAndOpacity = true;
 	$scope.pollToDisplay = angular.copy(poll);
 	$scope.pollToDisplay.gender = "female";
 	$scope.pollToDisplay.range = "Monde";
@@ -27,6 +26,12 @@ $scope.openPollModal = function(poll) {
 	$scope.imgRightInfoPollModal = $scope.setPositionImageInCommentsAndPollModal($scope.pollToDisplay.imageWidthRight, $scope.pollToDisplay.imageHeightRight);
 	$scope.refreshPoll($scope.pollToDisplay);
 	$scope.pollModal.show();
+
+	$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
+	$scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
+	$scope.displayVoteFriends($scope.pollToDisplay);
+
+	$cordovaStatusbar.hide();
 };
 
 $scope.closePollModal = function() {
@@ -38,6 +43,7 @@ $scope.closePollModal = function() {
 	$scope.pollToDisplay.writeComment = "";
 	$scope.pollModal.hide();
 	$scope.pollToDisplay = {};
+	$cordovaStatusbar.show();
 };
 
 $scope.$on('$destroy', function() {
@@ -314,6 +320,8 @@ $scope.queriesParallelPhotoFriends = function(callback) {
 };
 
 $scope.displayVoteFriends = function(poll){
+	$scope.loadingVote = true;
+
 	var ligneImpairLeft = true;
 	var positionLeft = false;
 
@@ -393,25 +401,36 @@ $scope.displayVoteFriends = function(poll){
 };
 
 
-$scope.votesTest = function(displaySectionVotesTest){
+$scope.votesTest = function(){
 	console.log("debut")
 	$scope.displaySectionComments = false;
 	console.log("debut 1");
-	$scope.displaySectionVotes = !displaySectionVotesTest;
-	$scope.displayPourcentageFunction();
-	console.log("debut 3");
-	$scope.$apply();
-	$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
-	$scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
-
-	if($scope.displaySectionVotes && $scope.pollToDisplay.whoVotedWhat.length && $scope.loadVote && !$scope.loadingVote){ 
-		console.log("Loading");
-		$scope.loadingVote = true;
-		$window.setTimeout(function() {
-			console.log("StartTimeOut");
-			$scope.displayVoteFriends($scope.pollToDisplay);
-		}, 3000);
+	$scope.displaySectionVotes = !$scope.displaySectionVotes;
+	console.log("$scope.displaySectionVotes" + $scope.displaySectionVotes);
+	
+	if($scope.displaySectionVotes){
+		$scope.displayPourcentageAndOpacity = false;
+		console.log("falssssssssse");
 	}
+	else{
+		$scope.displayPourcentageAndOpacity = true;
+		console.log("true");
+	}
+
+	// $scope.displayPourcentageFunction();
+
+	// $scope.$apply();
+
+	// $scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
+	// $scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
+	// if($scope.displaySectionVotes && $scope.pollToDisplay.whoVotedWhat.length && $scope.loadVote && !$scope.loadingVote){ 
+	// 	console.log("Loading");
+	// 	$scope.loadingVote = true;
+	// 	$window.setTimeout(function() {
+	// 		console.log("StartTimeOut");
+	// 		$scope.displayVoteFriends($scope.pollToDisplay);
+	// 	}, 3000);
+	// }
 }; 	
 
 });

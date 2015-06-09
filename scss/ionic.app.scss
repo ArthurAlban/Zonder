@@ -15,6 +15,7 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
@@ -1142,51 +1143,65 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 ///////////////////// animation /////////////////////
 
-/* -------------------
-	test loading
-	-------------------- */
+// animation suppression sondages
 
-	.loadingTest {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		margin: -60px 0 0 -60px;
-		background: #fff;
-		width: 100px;
-		height: 100px;
-		border-radius: 100%;
-		border: 10px solid #19bee1;
-	}
-	.loadingTest:after {
-		content: '';
-		background: transparent;
-		width: 140%;
-		height: 140%;
-		position: absolute;
-		border-radius: 100%;
-		top: -20%;
-		left: -20%;
-		opacity: 0.7;
-		box-shadow: rgba(255, 255, 255, 0.6) -4px -5px 3px -3px;
-		-webkit-animation: rotate 2s infinite linear;
-	}
 
-	@-webkit-keyframes rotate {
-		0% {
-			-webkit-transform: rotateZ(0deg);
-		}
-		100% {
-			-webkit-transform: rotateZ(360deg);
-		}
-	}
+.deletescalezonder.ng-leave.deletescalezonder.ng-leave-active,{
+	-webkit-transform: scaleY(0);
+	-moz-transform: scaleY(0);
+	-ms-transform: scaleY(0);
+	-o-transform: scaleY(0);
+	transform: scaleY(0);
+	height: 0px;
+	opacity: 0;
+}
 
-	/////////////
+.deletescalezonder.ng-leave {
+	-webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-moz-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-ms-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-o-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-webkit-transform: scaleY(1);
+	-moz-transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	-o-transform: scaleY(1);
+	transform: scaleY(1);
+	height: 200px;
+	opacity: 1;
+}
 
-	// animation des triangles du haut, translation vers le haut
-	.animateTriangles{
-		-webkit-transform: translateY(-16vh);
-		-webkit-transition: all 1s ease;
-	}
+
+.deletescalefriend.ng-leave.deletescalefriend.ng-leave-active,{
+	-webkit-transform: scaleY(0);
+	-moz-transform: scaleY(0);
+	-ms-transform: scaleY(0);
+	-o-transform: scaleY(0);
+	transform: scaleY(0);
+	height: 0px;
+	opacity: 0;
+}
+
+.deletescalefriend.ng-leave {
+	-webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-moz-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-ms-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-o-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-webkit-transform: scaleY(1);
+	-moz-transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	-o-transform: scaleY(1);
+	transform: scaleY(1);
+	height: 50px;
+	opacity: 1;
+}
+
+// animation des triangles du haut, translation vers le haut
+.animateTriangles{
+	-webkit-transform: translateY(-16%);
+	-webkit-transition: all 1s ease;
+}
 
 	////////////////////// Side Menu ////////////////////////
 	//div contenant les options du sidemenu
@@ -1510,7 +1525,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	}
 
 	.specButtonCreateZonder{
-		position:absolute;
+		position:fixed;
 		top:85vh;
 	}
 
@@ -1542,6 +1557,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		position:absolute;
 		z-index: 16;
 		top:32px;
+		width:28px;
+		left:15px;
+	}
+
+	.closeCreateZonderPollModal{
+		position:absolute;
+		z-index: 16;
+		top:8px;
 		width:28px;
 		left:15px;
 	}
@@ -1653,7 +1676,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 	#contentCharactersLeftCreateZonder{
 		position:absolute;
-		top:70%;
+		top:0%;
 		right:12%;
 	}
 
@@ -1678,7 +1701,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	.pageOption {
 		overflow: hidden;
 		position: relative;
-		top:28vh;
+		top:0%;
 		margin: 0 auto;
 		width: 100vw; height: 55vh;
 		border-top:1px solid #e8eaf1;
@@ -1744,7 +1767,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		background-color: rgba(0, 0, 0, 0.6);
 	}
 
-
 	.contentPickerHide{
 		position: absolute;
 		left:50vw;
@@ -1756,16 +1778,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		height: 250px;
 	}
 
-	.optionTranslateUp{
-		-webkit-transform: translateY(0vh); 
-		-webkit-transition: all 0.5s ease;
-	}
+.optionTranslateUp{
+	-webkit-transform: translateY(0%); 
+	-webkit-transition: all 0.5s ease;
+}
 
-	.optionTranslateDown{
-		-webkit-transform: translateY(calc( 50% + 150px )); 
-		-webkit-transition: all 0.5s ease;
-	}
-
+.optionTranslateDown{
+	-webkit-transform: translateY(459px); 
+	-webkit-transition: all 0.5s ease;
+}
 
 	#closeTimePicker {
 		position: absolute;
@@ -1946,6 +1967,55 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		margin-left:4%;
 	}
 
+.pourcentageTranslateUpFirst{
+	opacity:0;
+	-webkit-transform: translateY(-400%); 
+	-webkit-transition: all 0.8s linear;
+}
+
+.pourcentageTranslateDownFirst{
+	opacity:1;
+	-webkit-transform: translateY(0%); 
+	-webkit-transition: all 0.8s linear;
+}
+
+.pourcentageTranslateUpSecond{
+	opacity:1;
+	-webkit-transform: translateY(0%); 
+	-webkit-transition: all 0.8s linear;
+}
+
+.pourcentageTranslateDownSecond{
+	opacity:0;
+	-webkit-transform: translateY(400%); 
+	-webkit-transition: all 0.6s linear;
+}
+
+.translateNamePhotoHide{
+	-webkit-transform: translateX(-110%); 
+	-webkit-transition: all 0.5s ease;
+}
+
+.translateNamePhotoShow{
+	-webkit-transform: translateX(0%); 
+	-webkit-transition: all 0.5s ease;
+}
+
+.translateLoadingHide{
+	-webkit-transform: translateY(0%); 
+	-webkit-transition: all 0.5s ease 0.2s;
+}
+
+.translateLoadingShow{
+	-webkit-transform: translateY(100%); 
+	-webkit-transition: all 0.5s ease;
+}
+
+.translateLoadingShowPoll{
+	-webkit-transform: translateY(24%); 
+	-webkit-transition: all 0.5s ease;
+}
+
 	.custom-color-icon{
 		color:#f79f03;
 	}
@@ -1960,51 +2030,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		-webkit-transition: all 1s linear;
 	}
 
-	.pourcentageTranslateUpFirst{
-		opacity:0;
-		-webkit-transform: translateY(-25vh); 
-		-webkit-transition: all 0.5s linear;
-	}
-
-	.pourcentageTranslateDownFirst{
-		opacity:1;
-		-webkit-transform: translateY(0vh); 
-		-webkit-transition: all 0.5s linear;
-	}
-
-	.pourcentageTranslateUpSecond{
-		opacity:1;
-		-webkit-transform: translateY(0vh); 
-		-webkit-transition: all 0.5s linear;
-	}
-
-	.pourcentageTranslateDownSecond{
-		opacity:0;
-		-webkit-transform: translateY(+25vh); 
-		-webkit-transition: all 0.5s linear;
-	}
-
-	.translateNamePhotoHide{
-		-webkit-transform: translateX(-70vw); 
-		-webkit-transition: all 0.5s ease;
-	}
-
-	.translateNamePhotoShow{
-		-webkit-transform: translateX(0vw); 
-		-webkit-transition: all 0.5s ease;
-	}
-
-
-
-	.translateLoadingHide{
-		-webkit-transform: translateY(0vh); 
-		-webkit-transition: all 0.5s ease 0.2s;
-	}
-
-	.translateLoadingShow{
-		-webkit-transform: translateY(10vh); 
-		-webkit-transition: all 0.5s ease;
-	}
 
 	.scaleLoadingDown{
 		-webkit-transform: scale(0); 
@@ -2092,11 +2117,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		-webkit-animation: fadeOut 1s forwards linear;
 	}
 
+
 	// animation de fade in
 	.fade-in{
 		opacity:0;
 		-webkit-animation:fadeIn 1s forwards linear;
 	}
+
 
 	// animation de fade out 
 	.fade-out-slider{
@@ -2295,6 +2322,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																	/////////////// iphone 5 //////////////////
 
 																	@media screen and (device-aspect-ratio: 40/71) {
+																		.optionTranslateDown{
+																			-webkit-transform: translateY(409px); 
+																			-webkit-transition: all 0.5s ease;
+																		}
 
 																		.heightIonSlide{
 																			/*height:100vh;*/
@@ -2344,7 +2375,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 																		// animation des triangles dans la view splashscreen (que iphone 4)
 																		.animateTriangles{
-																			-webkit-transform: translateY(-18%);
+
+																			-webkit-transform: translateY(-44%);
 																			-webkit-transition: all 1s ease;
 																		}
 
@@ -2363,6 +2395,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 																	///////////// iphone 4 ////////////////////
 																	@media screen and (device-aspect-ratio: 2/3) {
+
+																		.optionTranslateDown{
+																			-webkit-transform: translateY(365px); 
+																			-webkit-transition: all 0.5s ease;
+																		}
 
 																		.heightIonSlide{
 																			/*height:100vh;
@@ -2459,7 +2496,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																		}
 																		// animation des triangles dans la view splashscreen (que iphone 4)
 																		.animateTriangles{
-																			-webkit-transform: translateY(-19vh);
+																			-webkit-transform: translateY(-44%);
 																			-webkit-transition: all 1s ease;
 																		}
 
@@ -2478,6 +2515,23 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																			}
 																		}
 
+																	}
+
+																	///////////// iphone 6  plus ////////////////////
+																	@media screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3){
+																		.optionTranslateDown{
+																			-webkit-transform: translateY(493px); 
+																			-webkit-transition: all 0.5s ease;
+																		}
+																		//position ion slide
+																		.heightIonSlide{
+																			height:calc( 736px - 200px );
+																		}
+
+																		//position ion-scroll
+																		.heightIonScroll{
+																			height:calc( 736px - 200px );
+																		}
 																	}
 
 
