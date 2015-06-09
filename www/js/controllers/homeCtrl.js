@@ -1,18 +1,24 @@
 zonder.controller('homeCtrl', function($ionicPlatform, $scope, $state, $window, $ionicActionSheet, $ionicSlideBoxDelegate, $rootScope,$ionicSideMenuDelegate,UserService, PollService) {
 
+	// $ionicPlatform.ready(function(){
 
+	// 	var source = new EventSource(UserService.serverEvents());
+	// 	console.log("serverEvents1111");
+	// 	source.addEventListener('message',
+	// 	 function(event){
+	// 		console.log("eeeeeeeeeeeee");
+	// 	}, false);
+	// 	console.log("serverEvents" + JSON.stringify(source));
+	// });
 
-
-	$ionicPlatform.ready(function(){
-
-		var source = new EventSource(UserService.serverEvents());
-		console.log("serverEvents1111");
-		source.addEventListener('message',
-		 function(event){
-			console.log("eeeeeeeeeeeee");
-		}, false);
-		console.log("serverEvents" + JSON.stringify(source));
-	});
+$scope.displayCtrl = function(){
+	console.log("homeCtrl");
+};
+	
+	window.setTimeout(function(){
+				$scope.displayCtrl();
+	}, 2000);
+	
 
 	$scope.sliderVote = true;
 	$scope.sliderPolls = false;
@@ -73,8 +79,13 @@ $scope.loadingPolls = true;
 
 $scope.firstBufferPolls = function(callback){
 	if(!$scope.displayPolls.length){
-		$scope.displayPolls = $rootScope.pollsVoted;
-		callback();
+		if(!$rootScope.pollsVoted.length){
+			callback();
+		}
+		else{
+			$scope.displayPolls = $rootScope.pollsVoted;
+			callback();
+		}
 	}
 	else{
 		callback();
@@ -85,13 +96,15 @@ $scope.firstBufferPolls = function(callback){
 $scope.stat = true;
 
 $scope.getStatusForPoll = function(data){
-
 	if(data.lengthGlobal != $rootScope.lengthTab){
 		return true;
 	}
 	else{
 		for(var i = 0; i < data.poll.length; i++){
-			if(data.poll[i].id != $scope.displayPolls[i].id){
+			if(data.poll == "allPollsLoaded"){
+				return true;
+			}
+			else if(data.poll[i].id != $scope.displayPolls[i].id){
 				return true;
 			}
 		}
@@ -148,6 +161,17 @@ $scope.getUsersPhotoPolls = function(pollArray, callback){
 	callback();
 };
 
+$scope.queriesExecUsersInfosPolls = function(callback){
+  async.parallel($scope.queriesForUserInfoPollsView,function(err, res){
+    callback();
+  });
+};
+
+$scope.queriesExecUsersPhotoPolls = function(callback){
+  async.parallel($scope.queriesForUserPhotoPollsView,function(err, res){
+    callback();
+  });
+};
 /// comparer id toppolls et id data && vérifier meme taille si pareil alors 304 si un différent alors 200
 $scope.verifiyChangeAndUpdate = function(callback){
 	PollService.getPollsVoted($scope.nbLoads).then(function(data){
@@ -162,8 +186,8 @@ $scope.verifiyChangeAndUpdate = function(callback){
 				function(callback){$scope.getInfoPhoto($scope.bufferPolls, callback);},
 				$scope.queriesExecInfoPhoto,
 				function(callback){$scope.getUserAndPhotosInfos($scope.bufferPolls, callback);},
-				$scope.queriesExecUsersInfos,
-				$scope.queriesExecUsersPhoto
+				$scope.queriesExecUsersInfosPolls,
+				$scope.queriesExecUsersPhotoPolls
 				],
 				function(err, res){
 					angular.forEach($scope.bufferPolls, function(p, k){
@@ -202,8 +226,8 @@ $scope.verifiyChangeAndUpdateFirstTime = function(callback){
 					function(callback){$scope.getInfoPhoto($scope.bufferPolls, callback);},
 					$scope.queriesExecInfoPhoto,
 					function(callback){$scope.getUserAndPhotosInfos($scope.bufferPolls, callback);},
-					$scope.queriesExecUsersInfos,
-					$scope.queriesExecUsersPhoto
+					$scope.queriesExecUsersInfosPolls,
+					$scope.queriesExecUsersPhotoPolls
 					],
 					function(err, res){
 						$scope.displayPolls = angular.copy($scope.bufferPolls);
@@ -226,8 +250,6 @@ $scope.verifiyChangeAndUpdateFirstTime = function(callback){
 
 
 $scope.loadPollsCtrl = function(isLoadMorePoll){
-	console.log("ROOOTSCOPE " + $rootScope.pollsVoted.length);
-	$scope.loadingPolls = true;
 	if(isLoadMorePoll){
 		$scope.nbLoads++;
 		async.series([$scope.verifiyChangeAndUpdate],
@@ -237,14 +259,11 @@ $scope.loadPollsCtrl = function(isLoadMorePoll){
 				$scope.queriesForUserPhotoPollsView.splice(0, $scope.queriesForUserPhotoPollsView.length);
 				$scope.queriesForUserInfoPollsView.splice(0, $scope.queriesForUserInfoPollsView.length);
 				$scope.$broadcast('scroll.infiniteScrollComplete');
-				window.setTimeout(function(){
-					$scope.loadingPolls = false;
-					$scope.$apply();
-				}, 2000);
 				$scope.$apply();
 			});
 	}
 	else{
+		$scope.loadingPolls = true;
 		async.series([
 			$scope.firstBufferPolls, 
 			$scope.verifiyChangeAndUpdateFirstTime], 
@@ -308,9 +327,7 @@ $scope.deletePollInDisplayPoll = function(pollId){
 
 		$scope.displayPolls.splice(ind, 1);
 		$rootScope.lengthTab--;
-		console.log("$scope.displayPollsLENGTH " + $scope.displayPolls.length);
 		//var indRootScope = -1;
-		console.log("rootScope.pollsVotedLEGNTH" + $rootScope.pollsVoted.length);
 
 		/*for (var j = 0; j < $rootScope.pollsVoted.length; j++) {
 			if($rootScope.pollsVoted[j].id == pollId){
@@ -349,7 +366,6 @@ $scope.deletePollInDisplayPoll = function(pollId){
 			},
 			buttonClicked: function(index) {
 				if(index == 0){
-					console.log("ionicActionSheetDELETE");
 					$scope.removePollFromUser(pollId);
 				}
 				if(index == 1){
@@ -583,19 +599,13 @@ $scope.checkAndLoadRequestFriends = function(callback){
 };
 
 $scope.loadFriendsCtrl = function(isLoadMoreFriends){
-	$scope.loadingFriends = true;
 	if(isLoadMoreFriends){
 		$scope.nbLoadsFriends++;
 		async.series([$scope.loadMoreFriends],
 			function(err, res){
 				$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 				$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
-				$scope.$broadcast('scroll.infiniteScrollComplete');		
-				window.setTimeout(function(){
-					$scope.loadingFriends = false;
-					$scope.$apply();
-				}, 2000);
-
+				$scope.$broadcast('scroll.infiniteScrollComplete');
 				$scope.$apply();
 			});
 	}
@@ -617,6 +627,7 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 			$scope.confirmFriend = false;
 
 			window.setTimeout(function(){
+				console.log("loading friends");
 				$scope.loadingFriends = false;
 				$scope.$apply();
 			}, 2000);

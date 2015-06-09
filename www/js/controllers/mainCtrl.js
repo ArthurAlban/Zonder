@@ -1,25 +1,38 @@
-zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService) {
+zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService, $ionicLoading, $ionicPlatform, $cordovaKeyboard) {
 
-  $scope.goToProfile = function(){
-    $state.go('showProfile');
-  };
+ $scope.testtoto = function(){
+  if(!$rootScope.loadingLogIn) {
+    console.log("$rootScope.showHome" + $rootScope.showHome);
+    $rootScope.loadingIndicator = $ionicLoading.show({
+      templateUrl:'templates/loading.html',
+      animation: 'fade-in',
+      showBackdrop: false,
+    });
+  }
+};
 
-  $scope.myPhoto = $window.localStorage['photo'];
-  $scope.myPseudo = $window.localStorage['pseudo'];
+$scope.testtoto();
 
-  if($window.localStorage['notifPolls'] == "true"){
-    $scope.acceptNotifPolls = true;
-  }
-  else{
-    $scope.acceptNotifPolls = false;
-  }
+$scope.goToProfile = function(){
+  $state.go('showProfile');
+};
 
-  if($window.localStorage['notifFriends'] == "true"){
-    $scope.acceptNotifFriends = true;
-  }
-  else{
-    $scope.acceptNotifFriends = false;
-  }
+$scope.myPhoto = $window.localStorage['photo'];
+$scope.myPseudo = $window.localStorage['pseudo'];
+
+if($window.localStorage['notifPolls'] == "true"){
+  $scope.acceptNotifPolls = true;
+}
+else{
+  $scope.acceptNotifPolls = false;
+}
+
+if($window.localStorage['notifFriends'] == "true"){
+  $scope.acceptNotifFriends = true;
+}
+else{
+  $scope.acceptNotifFriends = false;
+}
 
 
   //////////////// Notifications Friends / Poll /////////////////////
@@ -222,6 +235,7 @@ $scope.decreaseDecadePeopleRange = function(){
  }
 };
 
+
 $ionicModal.fromTemplateUrl('modals/createZonderModal.html', {
   scope: $scope,
   animation: 'slide-in-right'
@@ -229,14 +243,27 @@ $ionicModal.fromTemplateUrl('modals/createZonderModal.html', {
   $scope.createZonderModal = modal;
 });
 
+$scope.preloadModal = function(){
+  $scope.openCreateZonderModal();
+  window.setTimeout(function() {
+   $scope.closeCreateZonderModal();
+   $scope.$apply();
+ }, 200);
+  
+};
+
 $scope.openCreateZonderModal = function() {
+  console.log("open");
   $scope.createZonderModal.show();
+  console.log("open2");
 };
 
 $scope.closeCreateZonderModal = function() {
+  console.log("close");
   $scope.createZonderModal.hide();
-  
+  console.log("close2");
 };
+
 
 $scope.$on('$destroy', function() {
   $scope.createZonderModal.remove();
@@ -244,6 +271,7 @@ $scope.$on('$destroy', function() {
 
 $scope.closeAndClearCreateZonderModal = function(){
   $scope.closeCreateZonderModal();
+  $cordovaKeyboard.close();
   $scope.clearModal();
 };
 
@@ -319,6 +347,7 @@ $scope.clearModal = function(){
   $scope.timeIsSelected = false;
   $scope.targetIsSelected = false;
   $scope.charLeft = 90;
+  $scope.showSliderPhoto = false;
 };
 
 $scope.showCloseButton = true;
@@ -347,10 +376,12 @@ $scope.createPoll.timePoll = 3600;
 $scope.createPoll.gender = "";
 $scope.createPoll.range = "";
 
+$scope.showSliderPhoto = false;
 /////////////////  slider question /////////////////////////
 $scope.charLeft = 90;
 
 $scope.charactersLeft = function(){
+  $scope.showSliderPhoto = true;
   var resSplit = $scope.createPoll.question.split("\n");
   var nbLineBreak = resSplit.length - 1;
   /*if($scope.createPoll.question.length == 0 || $scope.createPoll.question.length == 1){
@@ -1357,6 +1388,7 @@ else {
 
 
 $scope.getInfoPhoto = function(pollArray, callback){
+  console.log("4");
   if(pollArray.length){
     angular.forEach(pollArray, function(poll, key){
       var q = function(callback){
@@ -1475,15 +1507,31 @@ $scope.parallelQueriesExecAllInfos = function(callback){
 $scope.retrievePollsForRootScope = function(){
   async.series([$scope.getPollsVoted, $scope.queriesExecPollsInfos, $scope.parallelQueriesExecAllInfos], 
     function(err, result){
+      console.log("fin retrive poll");
       $scope.queriesForPollsInfos.splice(0, $scope.queriesForPollsInfos.length);
       $scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
       $scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
       $scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
+      console.log("finloading");
+
+      // $rootScope.loadingIndicator.hide();
+      window.setTimeout(function(){
+        $ionicPlatform.ready(function() {
+          $rootScope.loadingIndicator.hide();
+          $scope.$apply();
+        });
+      }, 4000);
+      console.log("finloadingOK");
+      $rootScope.showHome = true;
+      $scope.$apply();
     });
 };
 
+// marche car on force l'attente à 2 sec mais normalement c'est sur le device ready
 window.setTimeout(function(){
+  console.log("je lance retrieve poll");
   $scope.retrievePollsForRootScope();
+  $scope.preloadModal();
 }, 2000);
 
 //////////////////////// Retrieve Friends ////////////////////////////////

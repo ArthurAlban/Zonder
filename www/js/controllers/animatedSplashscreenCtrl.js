@@ -1,7 +1,8 @@
-zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal, $ionicActionSheet, $cordovaCamera, $cordovaPush, $cordovaKeyboard) {
+zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootScope, $state, $ionicPlatform, $ionicSlideBoxDelegate, UserService, $ionicModal, $ionicActionSheet, $cordovaCamera, $cordovaPush, $cordovaKeyboard, $ionicLoading) {
 
   $scope.animateTriangles = false;
   $ionicPlatform.ready(function() {
+    console.log("splash");
     $scope.animateTriangles = true;
     $scope.$apply();
   });
@@ -44,14 +45,14 @@ zonder.controller('animatedSplashscreenCtrl', function($window, $scope, $rootSco
  };
  */
  $scope.login = function (mail, password) {
+  $rootScope.loadingLogIn = true;
   if(mail !== undefined && password !== undefined) {
-      // $rootScope.loadingIndicator = $ionicLoading.show({
-      //   template: "<div class='loadingTest'></div>",
-      //   animation: 'fade-in',
-      //   showBackdrop: true,
-      //   maxWidth: 600,
-      //   showDelay: 500
-      // });
+      $rootScope.loadingIndicator = $ionicLoading.show({
+        templateUrl:'templates/loadingLogin.html',
+        animation: 'fade-in',
+        showBackdrop: false
+      });
+      console.log("débutloading");
 UserService.logIn(mail, password).then(function(d){
   $window.localStorage['isLog'] = "true";
   $window.localStorage['token'] = d.token;
@@ -79,6 +80,10 @@ UserService.logIn(mail, password).then(function(d){
         else {
           $window.localStorage['notifPolls'] = "false";
         }
+        // window.setTimeout(function(){
+        //   $scope.toHome();
+        // }, 1000);
+
         $scope.toHome();
         //$rootScope.loadingIndicator.hide();
       }, function(m){
@@ -129,9 +134,7 @@ $scope.isUnchanged = function (user){
 };
 
 $scope.toHome = function(){
-  console.log("toHome");
   $state.go('home');
-  console.log("toHome2");
 };
 
 ///////////// forgot pass /////////////////
@@ -235,20 +238,22 @@ $scope.closepopups = function() {
   $scope.passwordIdenticalPopup = false;
 };
 
-$ionicModal.fromTemplateUrl('modals/registerModal.html', {
-  scope: $scope,
-  animation: 'slide-in-right'
+  $ionicModal.fromTemplateUrl('modals/registerModal.html', {
+    scope: $scope,
+    animation: 'slide-in-right'
   }).then(function(modal) {
-  $scope.registerModal = modal;
-});
+    $scope.registerModal = modal;
+  });
 
 $scope.openRegisterModal = function() {
-    $scope.registerModal.show();
+  $scope.registerModal.show();
 };
 
 $scope.closeRegisterModal = function() {
+  console.log("close");
   $scope.clearRegisterModal();
   $scope.registerModal.hide();
+  console.log("close2");
 };
 
 $scope.$on('$destroy', function() {
@@ -553,15 +558,12 @@ $scope.signUp = function() {
               console.log(msg);
             });
           // },function(m){
-            // console.log(m);
+          //   console.log(m);
           // });
         // }, function(){
-          // console.log("error in $cordovaPushregister");
+        //   console.log("error in $cordovaPushregister");
         // });
-// });
-
-
-
+//});
 },function(msg){
   console.log(msg);
 });

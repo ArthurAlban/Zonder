@@ -1,4 +1,4 @@
-<ion-modal-view class="background">
+<ion-modal-view class="background" style="width:100%">
 <img id="closeCreateZonder" ng-show="showCloseButton" class="imgClick" ng-click="closeAndClearCreateZonderModal()" src="img/close.png">
 
 <img id="backCreateZonder" ng-show="!showCloseButton" class="imgClick" ng-click="backStep()" src="img/arrowBack.png">
@@ -12,17 +12,23 @@
     </textarea>
 </div>
 
-<div id="contentCharactersLeftCreateZonder">
-  <span class="fontCharacters">Characters left: {{charLeft}}</span>
+<div style="position:absolute;top:70%;width:100%">
+  <div id="contentCharactersLeftCreateZonder">
+    <span class="fontCharacters">Characters left: {{charLeft}}</span>
+  </div>
+  <button ng-disabled="!showNextButtonForCreatePoll" class="button buttonZonder buttonRegister" style="position:relative;margin-top:50px" ng-click="nextStepPhoto()">
+      NEXT
+    </button>
 </div>
 
-<button ng-disabled="!showNextButtonForCreatePoll" ng-show="displayNextButtonQuestion" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepPhoto()">
+<!-- <button ng-disabled="!showNextButtonForCreatePoll" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepPhoto()">
     NEXT
- </button>
+ </button> -->
 
 </ion-slide>
 
 <ion-slide>
+
 
 <div ng-show="displayButtonLeft" class="sample-show-hide" id="posDivCameraLeft" ng-click="showActionSheetPhotoSourceForPhotoLeft()" style=" display: -webkit-flex;-webkit-flex-direction: column;-webkit-align-items: center;-webkit-justify-content: flex-start;">
   <div class="addPictureFont">add picture</div>
@@ -40,6 +46,7 @@
 <textarea ng-class="{nameTranslateRight:!displayButtonRight}" id="posDivNamePhotoRight" ng-change="checkChoicePhotoInCreatePoll()" rows="3" cols="14" maxlength="26" ng-show="!displayButtonRight" class="sample-show-hide textAreaNamePhotoCreateZonder textAreaNamePhotoCreateZonderPlaceholder" ng-model="createPoll.namePhotoRight" placeholder="PHOTO NAME"></textarea>
 
 
+<div style="position:absolute;top:28vh;width:100vw;">
 <div class='pageOption'>
   <a class='option' ng-click="showActionSheetPhotoSourceForPhotoLeft()" ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegBackground + 'deg)'}">
     <img src='{{createPoll.photoLeft}}' ng-style="{'-webkit-transform': 'skewX(' + photoSkewAngleDegImage + 'deg)', 'width': imgLeftInfo.imgWidth + 'px', 'height': imgLeftInfo.imgHeight + 'px', 'margin-left': imgLeftInfo.positionLeft + 'px', 'margin-top': imgLeftInfo.positionTop + 'px'}">
@@ -49,9 +56,11 @@
   </a>
 </div>
 
- <button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepOption()">
+<button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister" style="position:relative;margin-top:30px" ng-click="nextStepOption()">
     NEXT
  </button>
+
+</div>
 
 </ion-slide>
 
@@ -120,7 +129,6 @@
   </div>   
 </div>
 
-<!-- bidouillage -->
 
     <div class="divTargetAndFriends"> 
     <div class="item item-icon-left item-icon-right specTarget" ng-click="openTargetPicker()" ng-class="{labelZonder:animateTarget, labelZonderHide:!animateTarget}">
@@ -164,7 +172,7 @@
     </div>
   </ion-scroll>
  </div>
- </div> <!-- fin bidouillage -->
+ </div> 
 
 </div>
 

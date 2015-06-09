@@ -1,4 +1,4 @@
-zonder.controller('parameterCtrl', function($window, $scope, $state, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, UserService, $ionicPlatform, $cordovaPush) {
+zonder.controller('parameterCtrl', function($window, $scope, $rootScope, $state, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, UserService, $ionicPlatform, $cordovaPush) {
 	
 	$scope.sliderPollsProfile = true;
 	$scope.sliderFriendsProfile = false;
@@ -358,7 +358,7 @@ $scope.logOut = function() {
           $window.localStorage['notifFriends'] = "";
           $window.localStorage['notifPolls'] = "";
           $window.localStorage['deviceToken'] = "";
-
+          $rootScope.loadingLogIn = false;
           $state.go('animatedSplashscreen');
           
 

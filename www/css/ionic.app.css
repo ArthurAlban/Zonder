@@ -7632,6 +7632,12 @@ a.button {
   width: 100%;
   margin-top: -16vh; }
 
+.trianglesLoading {
+  z-index: 10;
+  position: absolute;
+  width: 100%;
+  margin-top: -16vh; }
+
 .fontSmallBrandonMedium {
   color: #ffffff;
   font-size: 2.5vw;
@@ -7757,6 +7763,15 @@ a.button {
   z-index: 10;
   width: 100%; }
 
+.posTriangleTopLoading {
+  z-index: 10;
+  width: 100%; }
+
+.posTriangleTopLoadingLogin {
+  z-index: 10;
+  width: 100%;
+  margin-top: -16vh; }
+
 #logoBandeau {
   z-index: 10;
   position: absolute;
@@ -7879,11 +7894,11 @@ a.button {
   color: #ffffff; }
 
 #registerSlideBox {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%; }
+  width: 100vw;
+  height: 100vh; }
 
 #divRegisterFirstStep {
   position: absolute;
@@ -7910,7 +7925,11 @@ a.button {
   font-size: 18px !important;
   font-family: 'OpenSansRegular' !important;
   color: #adafbc !important;
-  font-size: 12px !important; }
+  font-size: 12px !important;
+  width: 100% !important; }
+
+.inputSearchSize {
+  width: 100% !important; }
 
 .inputLowerCaseOnly {
   text-transform: lowercase; }
@@ -8064,10 +8083,10 @@ a.button {
   height: 7px; }
 
 .heightIonSlide {
-  height: calc( 100vh - 200px); }
+  height: calc( 667px - 200px); }
 
 .heightIonScroll {
-  height: calc( 100vh - 200px); }
+  height: calc( 667px - 200px); }
 
 .divContentZonder {
   position: relative;
@@ -8174,13 +8193,16 @@ a.button {
   overflow: hidden; }
 
 .titlePhoto {
-  padding: 3px;
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-bottom: 4px;
   background-color: rgba(0, 0, 0, 0.47);
   position: absolute;
   left: 6px;
-  bottom: 6px;
+  bottom: 7px;
   margin: 0;
-  max-width: 70%;
+  max-width: 80px;
   -webkit-hyphens: auto; }
 
 .titlePhotoPollModal {
@@ -8228,10 +8250,8 @@ a.button {
   position: relative;
   left: 50%;
   width: 80%;
-  /*border-top:1px solid #dadada;*/
   display: -webkit-flex;
   -webkit-justify-content: flex-start;
-  /*-webkit-align-content:center;*/
   -webkit-align-items: flex-start; }
 
 .separatorLeft {
@@ -8754,8 +8774,8 @@ a.button {
   padding: 4px 0 0 0; }
 
 .specButtonCreateZonder {
-  position: absolute;
-  top: 85%; }
+  position: fixed;
+  top: 85vh; }
 
 .borderNotSelected {
   border-radius: 100%; }
@@ -8782,6 +8802,13 @@ a.button {
   position: absolute;
   z-index: 16;
   top: 32px;
+  width: 28px;
+  left: 15px; }
+
+.closeCreateZonderPollModal {
+  position: absolute;
+  z-index: 16;
+  top: 8px;
   width: 28px;
   left: 15px; }
 
@@ -8852,7 +8879,7 @@ a.button {
   opacity: 0; }
 
 #contentTextAreaCreateZonder {
-  position: absolute;
+  position: relative;
   top: 30%;
   left: 11%; }
 
@@ -8875,7 +8902,7 @@ a.button {
 
 #contentCharactersLeftCreateZonder {
   position: absolute;
-  top: 70%;
+  top: 0%;
   right: 12%; }
 
 .charactersLeftCreateZonder {
@@ -8895,7 +8922,7 @@ a.button {
 .pageOption {
   overflow: hidden;
   position: relative;
-  top: 28%;
+  top: 0%;
   margin: 0 auto;
   width: 100vw;
   height: 55vh;
@@ -9049,6 +9076,55 @@ a.button {
   -webkit-align-items: center;
   -webkit-justify-content: flex-start; }
 
+#load {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  height: 140px;
+  width: 140px;
+  margin-left: -70px; }
+
+#load img {
+  -webkit-animation: loading 1.8s infinite alternate;
+  animation: loading 1.8s infinite alternate; }
+
+#load img:nth-of-type(2) {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s; }
+
+#load img:nth-of-type(3) {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s; }
+
+#load img:nth-of-type(4) {
+  -webkit-animation-delay: 1.5s;
+  animation-delay: 1.5s; }
+
+#load img:nth-of-type(5) {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s; }
+
+#load img:nth-of-type(6) {
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5s; }
+
+@-webkit-keyframes loading {
+  0% {
+    opacity: 0; }
+
+  100% {
+    opacity: 1; } }
+
+.animateTrianglesLoading {
+  -webkit-animation: translateLoading 1.5s forwards ease; }
+
+@-webkit-keyframes translateLoading {
+  0% {
+    -webkit-transform: translateY(0vh); }
+
+  100% {
+    -webkit-transform: translateY(-16vh); } }
+
 .activeSliderCurrent {
   opacity: 1;
   -webkit-transition: all 0.4s ease; }
@@ -9075,17 +9151,6 @@ a.button {
 
 .photoLineImpair {
   margin-left: 4%; }
-
-.custom-color-icon {
-  color: #f79f03; }
-
-.opacityImage {
-  opacity: 0.6;
-  -webkit-transition: all 1s linear; }
-
-.opacityImageActif {
-  opacity: 0.8;
-  -webkit-transition: all 1s linear; }
 
 .pourcentageTranslateUpFirst {
   opacity: 0;
@@ -9126,6 +9191,17 @@ a.button {
 .translateLoadingShowPoll {
   -webkit-transform: translateY(24%);
   -webkit-transition: all 0.5s ease; }
+
+.custom-color-icon {
+  color: #f79f03; }
+
+.opacityImage {
+  opacity: 0.6;
+  -webkit-transition: all 1s linear; }
+
+.opacityImageActif {
+  opacity: 0.8;
+  -webkit-transition: all 1s linear; }
 
 .scaleLoadingDown {
   -webkit-transform: scale(0);
@@ -9379,10 +9455,17 @@ a.button {
     -webkit-transform: translateY(409px);
     -webkit-transition: all 0.5s ease; }
   .heightIonSlide {
-    height: calc( 100vh - 180px); }
+    /*height:100vh;*/
+    /*margin-top: -180px;*/
+    /*padding-top: 180px;*/
+    /*border:1px solid yellow;*/
+    height: calc( 568px - 180px); }
   .heightIonScroll {
-    margin: 0;
-    height: calc( 100vh - 180px); }
+    /*margin:0;*/
+    /*height:60vh !important;*/
+    /*margin-top: -180px;*/
+    /*padding-top: 180px;*/
+    height: calc( 568px - 180px); }
   .posParameterProfile {
     z-index: 26;
     position: absolute;
@@ -9418,9 +9501,21 @@ a.button {
     -webkit-transform: translateY(365px);
     -webkit-transition: all 0.5s ease; }
   .heightIonSlide {
-    height: calc( 100vh - 180px); }
+    /*height:100vh;
+																			margin-top: -180px;
+																			padding-top: 180px;*/
+    /*border:1px solid blue;*/
+    height: calc( 480px - 180px); }
   .heightIonScroll {
-    height: calc( 100vh - 180px); }
+    /*height:100vh;
+																			margin-top: -180px;*/
+    /*padding-top: 180px;*/
+    /*border:1px solid red;*/
+    height: calc( 480px - 180px); }
+  #divTermsAndConditionButton {
+    position: absolute;
+    top: 78%;
+    width: 100%; }
   .posParameterProfile {
     z-index: 26;
     position: absolute;
@@ -9440,6 +9535,13 @@ a.button {
     top: 45.5%;
     left: 0;
     width: 100%; }
+  #load {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    height: 140px;
+    width: 140px;
+    margin-left: -70px; }
   .profilImg {
     z-index: 11;
     position: absolute;
@@ -9457,9 +9559,22 @@ a.button {
     position: absolute;
     width: 100%;
     margin-top: -19vh; }
+  .posTriangleTopLoadingLogin {
+    z-index: 10;
+    width: 100%;
+    margin-top: -19vh; }
   .animateTriangles {
     -webkit-transform: translateY(-44%);
-    -webkit-transition: all 1s ease; } }
+    -webkit-transition: all 1s ease; }
+  .animateTrianglesLoading {
+    -webkit-animation: translateLoading 1.5s forwards ease; }
+  @-webkit-keyframes translateLoading {
+    0% {
+      -webkit-transform: translateY(0vh); }
+
+    100% {
+      -webkit-transform: translateY(-19vh); } }
+ }
 
 @media screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
   .optionTranslateDown {

@@ -65,6 +65,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	margin-top: -16vh;
 }
 
+// position des triangles en haut (sauf iphone 4 et 5)
+.trianglesLoading{
+	z-index:10;
+	position:absolute;
+	width:100%;
+	margin-top: -16vh;
+}
+
 // type de font brandonMedium (text au dessus du bouton)
 .fontSmallBrandonMedium{
 	color:#ffffff;
@@ -219,6 +227,17 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	width:100%;
 }
 
+.posTriangleTopLoading{
+	z-index:10;
+	width:100%;
+}
+
+.posTriangleTopLoadingLogin{
+	z-index:10;
+	width:100%;
+	margin-top:-16vh;
+}
+
 // logo en bandeau pour pourvoir le positionner au bon endroit de l'écran
 #logoBandeau{
 	z-index:10;
@@ -227,6 +246,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	left:0;
 	width:100%;
 }
+
 
 // slide box in the tooltip
 #slideBoxTooltip{
@@ -368,11 +388,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 //Slide box du register
 #registerSlideBox {
-	position:absolute;
+	position:relative;
 	top:0;
 	left:0;
-	width:100%;
-	height:100%;
+	width:100vw;
+	height:100vh;
 }
 
 //div contenant les labels pour la firstep de l'incscription
@@ -395,6 +415,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	top:75%;
 	width:100%;
 }
+
 //position du boutton pour passer a letape suivante et l'inscription
 .buttonRegister{
 	position:absolute;
@@ -413,6 +434,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .fontSearch{
 	@include fontLabelZonderInputAndText;
 	font-size:12px !important;
+	width:100% !important;
+}
+
+.inputSearchSize{
+	width:100% !important;
 }
 
 .inputLowerCaseOnly{
@@ -594,12 +620,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 //position ion slide
 .heightIonSlide{
-	height:calc( 100vh - 200px );
+	height:calc( 667px - 200px );
 }
 
 //position ion-scroll
 .heightIonScroll{
-	height:calc( 100vh - 200px );
+	height:calc( 667px - 200px );
 }
 
 ///////////////////  CSS d'un Zonder //////////////////
@@ -746,13 +772,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 //style Title photo
 .titlePhoto{
-	padding:3px;
+	padding-top:2px;
+	padding-left:2px;
+	padding-right:2px;
+	padding-bottom:4px;
 	background-color:rgba(0,0,0,0.47);
 	position:absolute;
 	left:6px;
-	bottom:6px;
+	bottom:7px;
 	margin:0;
-	max-width: 70%;
+	max-width:80px;
 	-webkit-hyphens: auto;
 }
 
@@ -815,10 +844,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	position:relative;
 	left:50%;
 	width:80%;
-	/*border-top:1px solid #dadada;*/
 	display:-webkit-flex;
 	-webkit-justify-content:flex-start;
-	/*-webkit-align-content:center;*/
 	-webkit-align-items:flex-start;
 }
 
@@ -1175,573 +1202,580 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	-webkit-transition: all 1s ease;
 }
 
-////////////////////// Side Menu ////////////////////////
-//div contenant les options du sidemenu
-#divMenusSideMenu{
-	position: absolute;
-	top:86px;
-	width:100%;
-}
-
-//div contenant les choix des notifs
-#divOptionToggleMenu{
-	position:absolute;
-	bottom:0px;
-	width:100%;
-}
-
-//icone close sidemenu
-#closeSideMenu{
-	position:absolute;
-	top:32px;
-	width:28px;
-	left:15px;
-}
-
-//text MENU sideMenu
-#textMenuSideMenu{
-	position:absolute;
-	top:34px;
-	left:70px;
-}
-
-//font du text menu
-.fontOpenSansExtraBoldSideMenu {
-	color:#ffffff;
-	font-size:17px;
-	font-family:'OpenSansExtraBold';
-	line-height:1.265;
-	letter-spacing:0.075em;
-}
-
-//font des texte dans les options du menu
-@mixin fontOpenSansRegularSideMenu {
-	color:#ffffff;
-	font-size:18px;
-	font-family:'OpenSansRegular';
-	line-height:1.265;
-}
-
-//classe des options du side menu imgLeft Text imgRight
-.optionMenuSideMenu {
-	width:100%;
-	height:50px;
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: flex-start;
-}
-
-//element dimage de gauche
-.optionMenuSideMenu .imgLeft {
-	margin-left:30px;
-}
-
-//element de texte
-.optionMenuSideMenu .text {
-	margin-left:30px;
-	width:130px;
-	@include fontOpenSansRegularSideMenu;
-}
-
-//element d'image de droite
-.optionMenuSideMenu .imgRight {
-	margin-left:22px;
-}
-
-//font pour les sidemenuoption Toggle
-@mixin fontOpenSansRegularSideMenuToggle {
-	color:#ffffff;
-	font-size:13px;
-	font-family:'OpenSansRegular';
-	line-height:1.265;
-}
-
-//class des options du sidemenu avec des toggle
-.optionToggleMenu {
-	width:100%;
-	height:50px;
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: flex-start;
-}
-
-//element de texte du toggle
-.optionToggleMenu .text {
-	width:150px;
-	margin-left:30px;
-	@include fontOpenSansRegularSideMenuToggle;
-
-}
-
-//element contenant le toggle
-.optionToggleMenu .toggleDiv{
-	height:18px;
-	width:32px;
-	margin-left:18px;
-}
-
-//font du logout
-@mixin fontOpenSansRegularSideMenuLogout {
-	color:#ffffff;
-	font-size:13px;
-	font-family:'OpenSansRegular';
-	line-height:1.365;
-}
-
-//menu de logout dans le side menu
-.logoutSideMenu{
-	height:60px;
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: flex-start;
-}
-
-//element dimage
-.logoutSideMenu .imgLeft{
-	margin-left:30px;
-}
-
-//element de texte
-.logoutSideMenu .text{
-	margin-left:20px;
-	@include fontOpenSansRegularSideMenuLogout;
-}
-
-//background sideMenu
-.backgroundSideMenu{
-	background-image: url('../img/backgroundBlur.jpg');
-	background-size: cover;
-}
-
-///////////////////// Popup /////////////////////
-@mixin fontTitlePopup {
-	font-size:12px;
-	font-family: 'BrandonBold';
-	color: #000;
-	line-height:12px;
-	letter-spacing:0.075em;
-}
-
-@mixin fontTextPopup {
-	font-size:10px;
-	font-family: 'OpenSansIt';
-	color: #000;
-	line-height:1.6;
-}
-
-//overlay de la popup
-.overlayPopup {
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:30;
-	width:100vw;
-	height:100vh;
-	background-color: rgba(0, 0, 0, 0.6);
-	display: -webkit-flex;
-	-webkit-align-content: center;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-}
-
-//conteneur principal de la popup
-.popupZonder{
-	width:70vw;
-	display: -webkit-flex;
-	-webkit-flex-direction: column;
-	-webkit-align-items: flex-start;
-	-webkit-justify-content: flex-start;
-}
-
-//conteneur du logo
-.imgPopup{
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-	width:100%;
-	padding-bottom: 10px;
-}
-
-//conteneur du titre de la popup
-.contentTitle {
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-	width:100%;
-	padding-top:25px;
-	background-color : #fff;
-}
-
-//titre de la popup
-.titlePopup{
-	width:100%;
-	@include fontTitlePopup;
-	text-align: center;
-}
-
-//contenteu du text de la popup
-.contentText {
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-	width:100%;
-	background-color : #fff;
-}
-
-//texte de la popup
-.textPopup{
-	width:80%;
-	@include fontTextPopup;
-	text-align: center;
-	padding-bottom: 10px;
-}
-
-//conteneur du boutton
-.contentButton {
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-	width:100%;
-	background-color : #fff;
-	padding-bottom:20px;
-}
-
-//boutton de la popup
-.buttonPopup{
-	height:20px;
-	width:60px;
-	border-radius: 4px;
-	border:0 none;
-	background-color:rgb(247, 159, 3);
-	color:rgb(252, 249, 240);
-	font-size:11px;
-	font-family:'BrandonBold';
-	letter-spacing:0.075em;
-	line-height: 11px !important;
-}
-
-///////////////////// createZonder /////////////////////
-
-.fullSize{
-	width:100%;
-	height:100%;
-}
-
-.specDivFriends{
-	margin-top:4px;
-	left:13px;
-	padding:0;
-	position:relative;
-	height:66px;
-}
-
-.specDivAll{
-	position:relative;
-	height:100%;
-	margin:0 10px 0 0;
-}
-
-.specImg{
-	width:40px;
-	height:40px;
-	position:relative;
-}
-
-.specText{
-	color:#000000;
-	position:absolute;
-	top:40px;
-	left:0;
-	right:0;
-	text-align:center;
-	font-size: 8px;
-}
-
-.fontOptionCreateZonder{
-	font-size:14px ;
-	font-family: 'OpenSansRegular';
-	color:#adafbc !important;
-}
-
-.specNotFriends{
-	position:relative;
-	left:50%;
-	margin: 0 0 0 -100px;
-	width:200px;
-	height:50px;
-	color:#cccccc;
-	text-align:center;
-}
-
-.specDivFriends{
-	position:relative;
-	height:100%;
-	margin:0 2px 0 2px;
-}
-
-.divTargetAndFriends{
-	position:relative;
-	width:100%;
-	height:60px;
-	padding:0;
-	margin:0;
-}
-
-.specTarget{
-	position:absolute;
-}
-
-.specFriends{
-	position:absolute;
-	padding:4px 0 0 0;
-}
-
-.specButtonCreateZonder{
-	position:absolute;
-	top:85%;
-}
-
-.borderNotSelected {
-	border-radius:100%;
-}
-.borderSelected {
-	border-radius:100%;
-	border:2px solid rgb(53,195,193);
-}
-
-.fontYourOption{
-	color:#ffffff;
-	font-size:7vw;
-	font-family:'BrandonBold';
-	line-height:1;
-	letter-spacing:-0.075em;
-	text-transform: uppercase;
-}
-
-#slideBoxCreateZonder{
-	position:absolute;
-	top:0;
-	width:100%;
-	height:100%;
-} 
-
-#closeCreateZonder{
-	position:absolute;
-	z-index: 16;
-	top:32px;
-	width:28px;
-	left:15px;
-}
-
-#backCreateZonder{
-	position:absolute;
-	z-index: 16;
-	top:32px;
-	width:16px;
-	left:15px;
-}
-
-#posDivCameraLeft{
-	position:absolute;
-	z-index: 16;
-	top:36%;
-	left:18%;
-}
-
-.textAreaNamePhotoCreateZonder{ 
-	color:#ffffff;
-	font-size:5vw;
-	font-family:'BrandonBold';
-	line-height:1;
-	letter-spacing:-0.075em;
-	text-transform: uppercase;
-}
-
-.textAreaNamePhotoCreateZonderPlaceholder::-webkit-input-placeholder { 
-	color:#ffffff;
-	font-size:5vw;
-	font-family:'BrandonBold';
-	line-height:1;
-	letter-spacing:-0.075em;
-	text-transform: uppercase;
-}
-
-#posDivNamePhotoLeft{
-	position:absolute;
-	z-index: 16;
-	top:36%;
-	left:-3%;
-	text-align:center;
-	background-color: transparent;
-}
-
-#posDivCameraRight{
-	position:absolute;
-	z-index: 16;
-	top:62%;
-	right:18%;
-}
-
-#posDivNamePhotoRight{
-	position:absolute;
-	z-index: 16;
-	top:63%;
-	right:-3%;
-	text-align:center;
-	background-color: transparent;
-}
-
-//font add picture
-.addPictureFont{
-	color:#ffffff;
-	font-size:5vw;
-	font-family:'BrandonBold';
-	line-height:2.327;
-	letter-spacing:-0.075em;
-	text-transform: uppercase;
-}
-
-.sample-show-hide {
-}
-
-.sample-show-hide {
-	-webkit-transition:all linear 0.5s;
-	transition:all linear 0.5s;
-}
-
-.sample-show-hide.ng-hide {
-	opacity:0;
-}
-
-#contentTextAreaCreateZonder{
-	position:absolute;
-	top:30%;
-	left:11%;
-}
-
-.questionCreateZonder{
-	background-color: transparent;
-	font-family:'BrandonBold';
-	font-size:6vw;
-	line-height:1;
-	letter-spacing:-0.075em;
-	text-transform: uppercase;
-	color:#fff;
-}
-
-#textAreaQuestionCreateZonder::-webkit-input-placeholder { 
-	color:#fff;
-	font-family:'BrandonBold';
-	font-size:8.5vw;
-	line-height:1;
-	letter-spacing:-0.075em;
-	text-transform: uppercase;
-}
-
-#contentCharactersLeftCreateZonder{
-	position:absolute;
-	top:70%;
-	right:12%;
-}
-
-.charactersLeftCreateZonder{
-	font-family:'BrandonLight';
-	font-size:14px;
-	font-size:5vw;
-	line-height:1.2;
-	color:#ffffff;
-}
-
-//font characters
-.fontCharacters{
-	font-size:12px;
-	font-family:'OpenSansIt';
-	line-height: 1.338;
-	color: #ffffff;
-}
-
-/* /////////////////  test image triangle ////////////////////////*/
-
-.pageOption {
-	overflow: hidden;
-	position: relative;
-	top:28%;
-	margin: 0 auto;
-	width: 100vw; height: 55vh;
-	border-top:1px solid #e8eaf1;
-	border-bottom:1px solid #e8eaf1;
-}
-.option, .option img {width: 100%; height: 100%; }
-.option {
-	overflow: hidden;
-	position: absolute;  
-}
-.option:first-child {
-	-webkit-transform-origin: 100% 0;
-}
-.option:last-child {
-	border-left:2px solid #e8eaf1;
-	-webkit-transform-origin: 0 100%;
-}
-.option img { opacity: .65; transition: .5s; }
-.option img:hover { opacity: 1; }
-.option img, .option:after {
-	-webkit-transform-origin: inherit;
-}
-
-
-.nameTranslateLeft{
-	opacity:1;
-	-webkit-transform: translateX(20%); 
-	-webkit-transition: all 0.5s linear;
-}
-
-.nameTranslateRight{
-	opacity:1;
-	-webkit-transform: translateX(-19%); 
-	-webkit-transition: all 0.5s linear;
-}
-
-///////////////////// Target Picker /////////////////////
-#overlayTargetPicker{
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:30 !important;
-	width:100vw;
-	height:100vh;
-	background-color: rgba(0, 0, 0, 0.6);
-}
-
-
-#closeTargetPicker {
-	position: absolute;
-	top:10px;
-	left:10px;
-}
-
-///////////////////// Time Picker /////////////////////
-#overlayTimePicker{
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:30 !important;
-	width:100vw;
-	height:100vh;
-	background-color: rgba(0, 0, 0, 0.6);
-}
-
-
-.contentPickerHide{
-	position: absolute;
-	left:50vw;
-	top:-150px;
-	margin-left: -100px;
-	margin-top: -125px;
-	background-color: #FFF;
-	width: 200px;
-	height: 250px;
-}
+	////////////////////// Side Menu ////////////////////////
+	//div contenant les options du sidemenu
+	#divMenusSideMenu{
+		position: absolute;
+		top:86px;
+		width:100%;
+	}
+
+	//div contenant les choix des notifs
+	#divOptionToggleMenu{
+		position:absolute;
+		bottom:0px;
+		width:100%;
+	}
+
+	//icone close sidemenu
+	#closeSideMenu{
+		position:absolute;
+		top:32px;
+		width:28px;
+		left:15px;
+	}
+
+	//text MENU sideMenu
+	#textMenuSideMenu{
+		position:absolute;
+		top:34px;
+		left:70px;
+	}
+
+	//font du text menu
+	.fontOpenSansExtraBoldSideMenu {
+		color:#ffffff;
+		font-size:17px;
+		font-family:'OpenSansExtraBold';
+		line-height:1.265;
+		letter-spacing:0.075em;
+	}
+
+	//font des texte dans les options du menu
+	@mixin fontOpenSansRegularSideMenu {
+		color:#ffffff;
+		font-size:18px;
+		font-family:'OpenSansRegular';
+		line-height:1.265;
+	}
+
+	//classe des options du side menu imgLeft Text imgRight
+	.optionMenuSideMenu {
+		width:100%;
+		height:50px;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: flex-start;
+	}
+
+	//element dimage de gauche
+	.optionMenuSideMenu .imgLeft {
+		margin-left:30px;
+	}
+
+	//element de texte
+	.optionMenuSideMenu .text {
+		margin-left:30px;
+		width:130px;
+		@include fontOpenSansRegularSideMenu;
+	}
+
+	//element d'image de droite
+	.optionMenuSideMenu .imgRight {
+		margin-left:22px;
+	}
+
+	//font pour les sidemenuoption Toggle
+	@mixin fontOpenSansRegularSideMenuToggle {
+		color:#ffffff;
+		font-size:13px;
+		font-family:'OpenSansRegular';
+		line-height:1.265;
+	}
+
+	//class des options du sidemenu avec des toggle
+	.optionToggleMenu {
+		width:100%;
+		height:50px;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: flex-start;
+	}
+
+	//element de texte du toggle
+	.optionToggleMenu .text {
+		width:150px;
+		margin-left:30px;
+		@include fontOpenSansRegularSideMenuToggle;
+
+	}
+
+	//element contenant le toggle
+	.optionToggleMenu .toggleDiv{
+		height:18px;
+		width:32px;
+		margin-left:18px;
+	}
+
+	//font du logout
+	@mixin fontOpenSansRegularSideMenuLogout {
+		color:#ffffff;
+		font-size:13px;
+		font-family:'OpenSansRegular';
+		line-height:1.365;
+	}
+
+	//menu de logout dans le side menu
+	.logoutSideMenu{
+		height:60px;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: flex-start;
+	}
+
+	//element dimage
+	.logoutSideMenu .imgLeft{
+		margin-left:30px;
+	}
+
+	//element de texte
+	.logoutSideMenu .text{
+		margin-left:20px;
+		@include fontOpenSansRegularSideMenuLogout;
+	}
+
+	//background sideMenu
+	.backgroundSideMenu{
+		background-image: url('../img/backgroundBlur.jpg');
+		background-size: cover;
+	}
+
+	///////////////////// Popup /////////////////////
+	@mixin fontTitlePopup {
+		font-size:12px;
+		font-family: 'BrandonBold';
+		color: #000;
+		line-height:12px;
+		letter-spacing:0.075em;
+	}
+
+	@mixin fontTextPopup {
+		font-size:10px;
+		font-family: 'OpenSansIt';
+		color: #000;
+		line-height:1.6;
+	}
+
+	//overlay de la popup
+	.overlayPopup {
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:30;
+		width:100vw;
+		height:100vh;
+		background-color: rgba(0, 0, 0, 0.6);
+		display: -webkit-flex;
+		-webkit-align-content: center;
+		-webkit-align-items: center;
+		-webkit-justify-content: center;
+	}
+
+	//conteneur principal de la popup
+	.popupZonder{
+		width:70vw;
+		display: -webkit-flex;
+		-webkit-flex-direction: column;
+		-webkit-align-items: flex-start;
+		-webkit-justify-content: flex-start;
+	}
+
+	//conteneur du logo
+	.imgPopup{
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: center;
+		width:100%;
+		padding-bottom: 10px;
+	}
+
+	//conteneur du titre de la popup
+	.contentTitle {
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: center;
+		width:100%;
+		padding-top:25px;
+		background-color : #fff;
+	}
+
+	//titre de la popup
+	.titlePopup{
+		width:100%;
+		@include fontTitlePopup;
+		text-align: center;
+	}
+
+	//contenteu du text de la popup
+	.contentText {
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: center;
+		width:100%;
+		background-color : #fff;
+	}
+
+	//texte de la popup
+	.textPopup{
+		width:80%;
+		@include fontTextPopup;
+		text-align: center;
+		padding-bottom: 10px;
+	}
+
+	//conteneur du boutton
+	.contentButton {
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: center;
+		width:100%;
+		background-color : #fff;
+		padding-bottom:20px;
+	}
+
+	//boutton de la popup
+	.buttonPopup{
+		height:20px;
+		width:60px;
+		border-radius: 4px;
+		border:0 none;
+		background-color:rgb(247, 159, 3);
+		color:rgb(252, 249, 240);
+		font-size:11px;
+		font-family:'BrandonBold';
+		letter-spacing:0.075em;
+		line-height: 11px !important;
+	}
+
+	///////////////////// createZonder /////////////////////
+
+	.fullSize{
+		width:100%;
+		height:100%;
+	}
+
+	.specDivFriends{
+		margin-top:4px;
+		left:13px;
+		padding:0;
+		position:relative;
+		height:66px;
+	}
+
+	.specDivAll{
+		position:relative;
+		height:100%;
+		margin:0 10px 0 0;
+	}
+
+	.specImg{
+		width:40px;
+		height:40px;
+		position:relative;
+	}
+
+	.specText{
+		color:#000000;
+		position:absolute;
+		top:40px;
+		left:0;
+		right:0;
+		text-align:center;
+		font-size: 8px;
+	}
+
+	.fontOptionCreateZonder{
+		font-size:14px ;
+		font-family: 'OpenSansRegular';
+		color:#adafbc !important;
+	}
+
+	.specNotFriends{
+		position:relative;
+		left:50%;
+		margin: 0 0 0 -100px;
+		width:200px;
+		height:50px;
+		color:#cccccc;
+		text-align:center;
+	}
+
+	.specDivFriends{
+		position:relative;
+		height:100%;
+		margin:0 2px 0 2px;
+	}
+
+	.divTargetAndFriends{
+		position:relative;
+		width:100%;
+		height:60px;
+		padding:0;
+		margin:0;
+	}
+
+	.specTarget{
+		position:absolute;
+	}
+
+	.specFriends{
+		position:absolute;
+		padding:4px 0 0 0;
+	}
+
+	.specButtonCreateZonder{
+		position:fixed;
+		top:85vh;
+	}
+
+	.borderNotSelected {
+		border-radius:100%;
+	}
+	.borderSelected {
+		border-radius:100%;
+		border:2px solid rgb(53,195,193);
+	}
+
+	.fontYourOption{
+		color:#ffffff;
+		font-size:7vw;
+		font-family:'BrandonBold';
+		line-height:1;
+		letter-spacing:-0.075em;
+		text-transform: uppercase;
+	}
+
+	#slideBoxCreateZonder{
+		position:absolute;
+		top:0;
+		width:100%;
+		height:100%;
+	} 
+
+	#closeCreateZonder{
+		position:absolute;
+		z-index: 16;
+		top:32px;
+		width:28px;
+		left:15px;
+	}
+
+	.closeCreateZonderPollModal{
+		position:absolute;
+		z-index: 16;
+		top:8px;
+		width:28px;
+		left:15px;
+	}
+
+	#backCreateZonder{
+		position:absolute;
+		z-index: 16;
+		top:32px;
+		width:16px;
+		left:15px;
+	}
+
+	#posDivCameraLeft{
+		position:absolute;
+		z-index: 16;
+		top:36%;
+		left:18%;
+	}
+
+	.textAreaNamePhotoCreateZonder{ 
+		color:#ffffff;
+		font-size:5vw;
+		font-family:'BrandonBold';
+		line-height:1;
+		letter-spacing:-0.075em;
+		text-transform: uppercase;
+	}
+
+	.textAreaNamePhotoCreateZonderPlaceholder::-webkit-input-placeholder { 
+		color:#ffffff;
+		font-size:5vw;
+		font-family:'BrandonBold';
+		line-height:1;
+		letter-spacing:-0.075em;
+		text-transform: uppercase;
+	}
+
+	#posDivNamePhotoLeft{
+		position:absolute;
+		z-index: 16;
+		top:36%;
+		left:-3%;
+		text-align:center;
+		background-color: transparent;
+	}
+
+	#posDivCameraRight{
+		position:absolute;
+		z-index: 16;
+		top:62%;
+		right:18%;
+	}
+
+	#posDivNamePhotoRight{
+		position:absolute;
+		z-index: 16;
+		top:63%;
+		right:-3%;
+		text-align:center;
+		background-color: transparent;
+	}
+
+	//font add picture
+	.addPictureFont{
+		color:#ffffff;
+		font-size:5vw;
+		font-family:'BrandonBold';
+		line-height:2.327;
+		letter-spacing:-0.075em;
+		text-transform: uppercase;
+	}
+
+	.sample-show-hide {
+	}
+
+	.sample-show-hide {
+		-webkit-transition:all linear 0.5s;
+		transition:all linear 0.5s;
+	}
+
+	.sample-show-hide.ng-hide {
+		opacity:0;
+	}
+
+	#contentTextAreaCreateZonder{
+		position:relative;
+		top:30%;
+		left:11%;
+	}
+
+	.questionCreateZonder{
+		background-color: transparent;
+		font-family:'BrandonBold';
+		font-size:6vw;
+		line-height:1;
+		letter-spacing:-0.075em;
+		text-transform: uppercase;
+		color:#fff;
+	}
+
+	#textAreaQuestionCreateZonder::-webkit-input-placeholder { 
+		color:#fff;
+		font-family:'BrandonBold';
+		font-size:8.5vw;
+		line-height:1;
+		letter-spacing:-0.075em;
+		text-transform: uppercase;
+	}
+
+	#contentCharactersLeftCreateZonder{
+		position:absolute;
+		top:0%;
+		right:12%;
+	}
+
+	.charactersLeftCreateZonder{
+		font-family:'BrandonLight';
+		font-size:14px;
+		font-size:5vw;
+		line-height:1.2;
+		color:#ffffff;
+	}
+
+	//font characters
+	.fontCharacters{
+		font-size:12px;
+		font-family:'OpenSansIt';
+		line-height: 1.338;
+		color: #ffffff;
+	}
+
+	/* /////////////////  test image triangle ////////////////////////*/
+
+	.pageOption {
+		overflow: hidden;
+		position: relative;
+		top:0%;
+		margin: 0 auto;
+		width: 100vw; height: 55vh;
+		border-top:1px solid #e8eaf1;
+		border-bottom:1px solid #e8eaf1;
+	}
+	.option, .option img {width: 100%; height: 100%; }
+	.option {
+		overflow: hidden;
+		position: absolute;  
+	}
+	.option:first-child {
+		-webkit-transform-origin: 100% 0;
+	}
+	.option:last-child {
+		border-left:2px solid #e8eaf1;
+		-webkit-transform-origin: 0 100%;
+	}
+	.option img { opacity: .65; transition: .5s; }
+	.option img:hover { opacity: 1; }
+	.option img, .option:after {
+		-webkit-transform-origin: inherit;
+	}
+
+
+	.nameTranslateLeft{
+		opacity:1;
+		-webkit-transform: translateX(20%); 
+		-webkit-transition: all 0.5s linear;
+	}
+
+	.nameTranslateRight{
+		opacity:1;
+		-webkit-transform: translateX(-19%); 
+		-webkit-transition: all 0.5s linear;
+	}
+
+	///////////////////// Target Picker /////////////////////
+	#overlayTargetPicker{
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:30 !important;
+		width:100vw;
+		height:100vh;
+		background-color: rgba(0, 0, 0, 0.6);
+	}
+
+
+	#closeTargetPicker {
+		position: absolute;
+		top:10px;
+		left:10px;
+	}
+
+	///////////////////// Time Picker /////////////////////
+	#overlayTimePicker{
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:30 !important;
+		width:100vw;
+		height:100vh;
+		background-color: rgba(0, 0, 0, 0.6);
+	}
+
+	.contentPickerHide{
+		position: absolute;
+		left:50vw;
+		top:-150px;
+		margin-left: -100px;
+		margin-top: -125px;
+		background-color: #FFF;
+		width: 200px;
+		height: 250px;
+	}
 
 .optionTranslateUp{
 	-webkit-transform: translateY(0%); 
@@ -1753,136 +1787,184 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	-webkit-transition: all 0.5s ease;
 }
 
+	#closeTimePicker {
+		position: absolute;
+		top:10px;
+		left:10px;
+	}
 
-#closeTimePicker {
-	position: absolute;
-	top:10px;
-	left:10px;
-}
+	.timePicker {
+		position: absolute;
+		border: 1px solid blue;
+		top:45px;
+		height: 170px;
+		width: 100%;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: center;
+		-webkit-flex-direction : column;
+	}
 
-.timePicker {
-	position: absolute;
-	border: 1px solid blue;
-	top:45px;
-	height: 170px;
-	width: 100%;
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-	-webkit-flex-direction : column;
-}
+	//conteneur du titre de la popup
+	.contentTitleTimePicker {
+		position: absolute;
+		width:100%;
+		top:17px;
+	}
 
-//conteneur du titre de la popup
-.contentTitleTimePicker {
-	position: absolute;
-	width:100%;
-	top:17px;
-}
+	//titre de la popup
+	.titlePopupTimePicker{
+		width:100%;
+		@include fontTitlePopup;
+		text-align: center;
+	}
 
-//titre de la popup
-.titlePopupTimePicker{
-	width:100%;
-	@include fontTitlePopup;
-	text-align: center;
-}
+	.contentButton {
+		position: absolute;
+		width:100%;
+		background-color : #fff;
+		top:235px;
+	}
 
-.contentButton {
-	position: absolute;
-	width:100%;
-	background-color : #fff;
-	top:235px;
-}
+	.contentPlus {
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: center;
+		width: 100%;
+	}
 
-.contentPlus {
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-	width: 100%;
-}
+	.contentMinus {
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: center;
+		width: 100%;
+	}
 
-.contentMinus {
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-	width: 100%;
-}
+	.contentTime {
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: center;
+		width: 100%;
+	}
 
-.contentTime {
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-	width: 100%;
-}
+	.fontTime{
+		font-size:30px;
+		font-family: 'BrandonBold';
+		color: #000;
+		line-height:30px;
+		letter-spacing:0.075em;
+	}
 
-.fontTime{
-	font-size:30px;
-	font-family: 'BrandonBold';
-	color: #000;
-	line-height:30px;
-	letter-spacing:0.075em;
-}
+	// content item question
+	.contentItemQuestionPollModal{
+		position:absolute;
+		width:84%;
+		top:30px;
+		left:14%;
+		height:48px;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		-webkit-justify-content: flex-start;
+	}
 
-// content item question
-.contentItemQuestionPollModal{
-	position:absolute;
-	width:84%;
-	top:30px;
-	left:14%;
-	height:48px;
-	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: flex-start;
-}
+	///////////////////// animation /////////////////////
+	#load{
+		position:absolute;
+		left:50%;
+		top:46%;
+		height:140px;
+		width:140px;
+		margin-left:-70px;
+	}
 
-///////////////////// animation /////////////////////
+	#load img{
+		-webkit-animation: loading 1.8s infinite alternate;
+		animation: loading 1.8s infinite alternate;
+	}
 
-.activeSliderCurrent{
-	opacity: 1;
-	-webkit-transition: all 0.4s ease;
-}
+	#load img:nth-of-type(2) {
+		-webkit-animation-delay: 0.5s;
+		animation-delay: 0.5s;
+	}
 
-.activeSliderOther{
-	opacity: 0.3;
-	-webkit-transition: all 0.4s ease;
-}
+	#load img:nth-of-type(3) {
+		-webkit-animation-delay: 1s;
+		animation-delay: 1s;
+	}
 
-.spinnerLoading svg {
-	width: 28px;
-	height: 28px;
-	stroke: #fff;
-	fill: #fff;
-}
+	#load img:nth-of-type(4) {
+		-webkit-animation-delay: 1.5s;
+		animation-delay: 1.5s;
+	}
 
-.spinnerLoadingBlack svg {
-	width: 28px;
-	height: 28px;
-}
+	#load img:nth-of-type(5) {
+		-webkit-animation-delay: 2s;
+		animation-delay: 2s;
+	}
 
-.photoLinePair2{
-	margin-left:4%;
-}
+	#load img:nth-of-type(6) {
+		-webkit-animation-delay: 2.5s;
+		animation-delay: 2.5s;
+	}
 
-.photoLineSpecific{
-	margin-left:12.5%;
-}
+	@-webkit-keyframes loading {
+		0% {
+			opacity: 0;
+		}
 
-.photoLineImpair{
-	margin-left:4%;
-}
+		100% {
+			opacity: 1;
+		}
+	}
 
-.custom-color-icon{
-	color:#f79f03;
-}
+	// animation des triangles du haut, translation vers le haut
+	.animateTrianglesLoading{
+		-webkit-animation: translateLoading 1.5s forwards ease;
+	}
 
-.opacityImage{
-	opacity: 0.6;
-	-webkit-transition: all 1s linear;
-}
+	@-webkit-keyframes translateLoading {
+		0% {
+			-webkit-transform: translateY(0vh);
+		}
 
-.opacityImageActif{
-	opacity: 0.8;
-	-webkit-transition: all 1s linear;
-}
+		100% {
+			-webkit-transform: translateY(-16vh);
+		}
+	}
+
+	.activeSliderCurrent{
+		opacity: 1;
+		-webkit-transition: all 0.4s ease;
+	}
+
+	.activeSliderOther{
+		opacity: 0.3;
+		-webkit-transition: all 0.4s ease;
+	}
+
+	.spinnerLoading svg {
+		width: 28px;
+		height: 28px;
+		stroke: #fff;
+		fill: #fff;
+	}
+
+	.spinnerLoadingBlack svg {
+		width: 28px;
+		height: 28px;
+	}
+
+	.photoLinePair2{
+		margin-left:4%;
+	}
+
+	.photoLineSpecific{
+		margin-left:12.5%;
+	}
+
+	.photoLineImpair{
+		margin-left:4%;
+	}
 
 .pourcentageTranslateUpFirst{
 	opacity:0;
@@ -1933,15 +2015,30 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	-webkit-transition: all 0.5s ease;
 }
 
-.scaleLoadingDown{
-	-webkit-transform: scale(0); 
-	-webkit-transition: all 0.2s ease;
-}
+	.custom-color-icon{
+		color:#f79f03;
+	}
 
-.scaleLoadingUp{
-	-webkit-transform: scale(1); 
-	-webkit-transition: all 0.5s ease 0.5s;
-}
+	.opacityImage{
+		opacity: 0.6;
+		-webkit-transition: all 1s linear;
+	}
+
+	.opacityImageActif{
+		opacity: 0.8;
+		-webkit-transition: all 1s linear;
+	}
+
+
+	.scaleLoadingDown{
+		-webkit-transform: scale(0); 
+		-webkit-transition: all 0.2s ease;
+	}
+
+	.scaleLoadingUp{
+		-webkit-transform: scale(1); 
+		-webkit-transition: all 0.5s ease 0.5s;
+	}
 
 
 /*.translate-down{
@@ -2230,13 +2327,20 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																		}
 
 																		.heightIonSlide{
-																			height:calc( 100vh - 180px );
+																			/*height:100vh;*/
+																			/*margin-top: -180px;*/
+																			/*padding-top: 180px;*/
+																			/*border:1px solid yellow;*/
+																			height:calc( 568px - 180px );
 																		}
 
 																		//position ion-scroll
 																		.heightIonScroll{
-																			margin:0;
-																			height:calc( 100vh - 180px );
+																			/*margin:0;*/
+																			/*height:60vh !important;*/
+																			/*margin-top: -180px;*/
+																			/*padding-top: 180px;*/
+																			height:calc( 568px - 180px );
 																		}
 
 																		//button parameter profile
@@ -2270,6 +2374,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 																		// animation des triangles dans la view splashscreen (que iphone 4)
 																		.animateTriangles{
+
 																			-webkit-transform: translateY(-44%);
 																			-webkit-transition: all 1s ease;
 																		}
@@ -2296,13 +2401,28 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																		}
 
 																		.heightIonSlide{
-																			height:calc( 100vh - 180px );
+																			/*height:100vh;
+																			margin-top: -180px;
+																			padding-top: 180px;*/
+																			/*border:1px solid blue;*/
+																			height:calc( 480px - 180px );
 																		}
 
 																		//position ion-scroll
 																		.heightIonScroll{
-																			height:calc( 100vh - 180px );
+																			/*height:100vh;
+																			margin-top: -180px;*/
+																			/*padding-top: 180px;*/
+																			/*border:1px solid red;*/
+																			height:calc( 480px - 180px );
 																		}
+
+																		#divTermsAndConditionButton{
+																			position:absolute;
+																			top:78%;
+																			width:100%;
+																		}
+
 																		//button parameter profile
 																		.posParameterProfile{
 																			z-index:26;
@@ -2333,6 +2453,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																			width:100%;
 																		}
 
+																		#load{
+																			position:absolute;
+																			left:50%;
+																			top:48%;
+																			height:140px;
+																			width:140px;
+																			margin-left:-70px;
+																		}
+
 																		// position de l'image de profil (que iphone 4)
 																		.profilImg{
 																			z-index:11;
@@ -2359,10 +2488,30 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																			margin-top: -19vh;
 																		}
 
+																		.posTriangleTopLoadingLogin{
+																			z-index:10;
+																			width:100%;
+																			margin-top:-19vh;
+																		}
 																		// animation des triangles dans la view splashscreen (que iphone 4)
 																		.animateTriangles{
 																			-webkit-transform: translateY(-44%);
 																			-webkit-transition: all 1s ease;
+																		}
+
+																		// animation des triangles du haut, translation vers le haut
+																		.animateTrianglesLoading{
+																			-webkit-animation: translateLoading 1.5s forwards ease;
+																		}
+
+																		@-webkit-keyframes translateLoading {
+																			0% {
+																				-webkit-transform: translateY(0vh);
+																			}
+
+																			100% {
+																				-webkit-transform: translateY(-19vh);
+																			}
 																		}
 
 																	}
