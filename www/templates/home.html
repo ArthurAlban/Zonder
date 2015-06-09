@@ -132,14 +132,14 @@
 
 	</div>
 
-	<div class="contentPhotos" id="share">
+	<div class="contentPhotos">
 		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'left')">
 			<img ng-style="{'width': imgPollUpLeftInfo.imgWidth + 'px', 'height': imgPollUpLeftInfo.imgHeight + 'px', 'margin-left': imgPollUpLeftInfo.positionLeft + 'px', 'margin-top': imgPollUpLeftInfo.positionTop + 'px'}" src="{{pollUp.photoLeft}}">
-			<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.firstName}}</p>
+			<p class="fontTitlePhotoZonder" ng-class="{titlePhoto : displayPhotoTitle}">{{pollUp.firstName}}</p>
 		</div>
 		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'right')">
 			<img ng-style="{'width': imgPollUpRightInfo.imgWidth + 'px', 'height': imgPollUpRightInfo.imgHeight + 'px', 'margin-left': imgPollUpRightInfo.positionLeft + 'px', 'margin-top': imgPollUpRightInfo.positionTop + 'px'}" src="{{pollUp.photoRight}}">
-			<p class="fontTitlePhotoZonder titlePhoto">{{pollUp.secondName}}</p>
+			<p class="fontTitlePhotoZonder" ng-class="{titlePhoto : displayPhotoTitle}">{{pollUp.secondName}}</p>
 		</div>
 	</div>
 
@@ -188,11 +188,11 @@
 	<div class="contentPhotos">
 		<div class="contentPhotoLeft" ng-click="votePollDown(pollDown.id, 'left')">
 			<img ng-style="{'width': imgPollDownLeftInfo.imgWidth + 'px', 'height': imgPollDownLeftInfo.imgHeight + 'px', 'margin-left': imgPollDownLeftInfo.positionLeft + 'px', 'margin-top': imgPollDownLeftInfo.positionTop + 'px'}" src="{{pollDown.photoLeft}}">
-			<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.firstName}}</p>
+			<p class="fontTitlePhotoZonder" ng-class="{titlePhoto : displayPhotoTitle}">{{pollDown.firstName}}</p>
 		</div>
 		<div class="contentPhotoLeft" ng-click="votePollDown(pollDown.id, 'right')">
 			<img ng-style="{'width': imgPollDownRightInfo.imgWidth + 'px', 'height': imgPollDownRightInfo.imgHeight + 'px', 'margin-left': imgPollDownRightInfo.positionLeft + 'px', 'margin-top': imgPollDownRightInfo.positionTop + 'px'}" src="{{pollDown.photoRight}}">
-			<p class="fontTitlePhotoZonder titlePhoto">{{pollDown.secondName}}</p>
+			<p class="fontTitlePhotoZonder" ng-class="{titlePhoto : displayPhotoTitle}">{{pollDown.secondName}}</p>
 		</div>
 	</div>
 

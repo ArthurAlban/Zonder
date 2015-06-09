@@ -1,6 +1,8 @@
 zonder.controller('answerZonderCtrl', function($scope, $state, $window, $ionicModal, CommentService, PollService, UserService, $ionicActionSheet, $cordovaSocialSharing, $cordovaStatusbar){
 
 ///////////////// Récupération des polls ////////////////////////////
+//boolean for css fix (max-width)
+$scope.displayPhotoTitle = false;
 
 $scope.pollsLoaded = new Array();
 $scope.pollsToBeLoaded = new Array();
@@ -216,6 +218,7 @@ $scope.firstLoadPoll = function(){
 
 $scope.getNextPollUp = function(callback){
 	$scope.pollUp = $scope.pollsLoaded.shift();
+	$scope.displayPhotoTitle = true;
 	$scope.imgPollUpLeftInfo = $scope.setPositionImageVoteAndZonder($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
 	$scope.imgPollUpRightInfo = $scope.setPositionImageVoteAndZonder($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
 	callback();

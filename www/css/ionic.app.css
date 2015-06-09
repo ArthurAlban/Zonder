@@ -8170,7 +8170,7 @@ a.button {
 .contentPhotoLeft {
   position: relative;
   width: 50%;
-  height: 100%;
+  height: 30vw;
   overflow: hidden; }
 
 .titlePhoto {
@@ -8180,7 +8180,6 @@ a.button {
   left: 6px;
   bottom: 6px;
   margin: 0;
-  width: auto;
   max-width: 70%;
   -webkit-hyphens: auto; }
 
