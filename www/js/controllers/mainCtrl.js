@@ -298,19 +298,22 @@ $scope.disableSwipeCreateZonder = function() {
   $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').enableSlide(false);
 };
 
+$scope.nothing = function(){
+  console.log("nothing");
+};
+
 $scope.nextStepPhoto = function(){
-  console.log("question" + $scope.createPoll.question);
-  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
+  console.log("nextStepPhoto" + $scope.createPoll.question);
   $scope.displayNextButtonQuestion = false;
+  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
 };
 
 $scope.nextStepOption = function(){
-  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
+  console.log("nextStepOption" + $scope.createPoll.question);
   $scope.displayNextButtonChoosePhoto = false;
+  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
 };
-/*
-$scope.createPoll = function(){
-};*/
+
 
 $scope.backStep = function(){
   $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').previous();

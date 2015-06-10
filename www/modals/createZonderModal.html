@@ -1,7 +1,21 @@
 <ion-modal-view class="background" style="width:100%">
-<img id="closeCreateZonder" ng-show="showCloseButton" class="imgClick" ng-click="closeAndClearCreateZonderModal()" src="img/close.png">
 
-<img id="backCreateZonder" ng-show="!showCloseButton" class="imgClick" ng-click="backStep()" src="img/arrowBack.png">
+<button style="border:1px solid red" ng-show="showCloseButton" id="closeCreateZonder" ng-class="{opacityTransitionOn : showCloseButton, opacityTransitionOff : !showCloseButton}" ng-click="closeAndClearCreateZonderModal()" class="button button-icon">
+<i> <img width="28" src="img/close.png" >
+</i>
+</button>
+
+<button style="border:1px solid red"
+ id="backCreateZonder" ng-show="!showCloseButton" ng-class="{opacityTransitionOn : !showCloseButton, opacityTransitionOff : showCloseButton}" ng-click="backStep()" class="button button-icon">
+<i> 
+  <img width="16" src="img/arrowBack.png" >
+</i>
+</button>
+
+<!-- <img id="closeCreateZonder" ng-class="{opacityTransitionOn : showCloseButton, opacityTransitionOff : !showCloseButton}" ng-click="closeAndClearCreateZonderModal()" src="img/close.png"> -->
+
+<!-- <img id="backCreateZonder" ng-class="{opacityTransitionOn : !showCloseButton, opacityTransitionOff : showCloseButton}" ng-click="backStep()" src="img/arrowBack.png"> -->
+
 
 <ion-slide-box on-slide-changed="slideHasChangedInCreateZonder(index)" delegate-handle="createZonderSlider" ng-init="disableSwipeCreateZonder()" show-pager="true" id="slideBoxCreateZonder">
 
@@ -16,7 +30,7 @@
   <div id="contentCharactersLeftCreateZonder">
     <span class="fontCharacters">Characters left: {{charLeft}}</span>
   </div>
-  <button ng-disabled="!showNextButtonForCreatePoll" class="button buttonZonder buttonRegister" style="position:relative;margin-top:50px" ng-click="nextStepPhoto()">
+  <button ng-disabled="!showNextButtonForCreatePoll||!displayNextButtonQuestion" class="button buttonZonder buttonRegister" style="position:relative;margin-top:50px" ng-click="nextStepPhoto()">
       NEXT
     </button>
 </div>
