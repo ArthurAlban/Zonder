@@ -3,10 +3,14 @@
 
 <img src="img/close2.png" ng-click="closeProfileModal()" class="imgClick posButtonClose">
 
-<img src="{{myPhoto}}" ng-click="showActionSheetPhotoSource()" class="profilImg">
+<img src="{{myPhoto}}" style="z-index:27;" ng-click="showActionSheetPhotoSource()" class="profilImg">
 <label class="fontBrandonBlack" id="posPseudoUser">{{myPseudo}}</label>
 
- <img width="26" class="posParameterProfile" src="img/parameterProfile.png" ng-click="showActionSheetParameters()">
+<button ng-click="showActionSheetParameters()" class="button button-icon posParameterProfile">
+      <i> <img width="26" src="img/parameterProfile.png" >
+      </i>
+    </button>
+ <!-- <img width="26" class="posParameterProfile" src="img/parameterProfile.png" ng-click="showActionSheetParameters()"> -->
 
 <div class="divTransparency"></div>
 

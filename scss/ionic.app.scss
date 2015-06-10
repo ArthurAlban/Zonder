@@ -995,8 +995,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 #posButtonMenu{
 	z-index:11;
 	position:absolute;
-	left:20px;
-	top:32px;
+	left:14px;
+	top:26px;
 }
 
 //Position du bouton Menu de la page home
@@ -1136,9 +1136,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .posParameterProfile{
 	z-index:26;
 	position:absolute;
-	padding:4px;
-	right:32px;
-	top:75px;
+	padding:0 !important;
+	height:33px;
+	right:31px;
+	top:58px;
 }
 
 ///////////////////// animation /////////////////////
@@ -2348,8 +2349,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																		.posParameterProfile{
 																			z-index:26;
 																			position:absolute;
+																			padding:0 !important;
+																			height:33px;
 																			right:22px;
-																			top:72px;
+																			top:52px;
 																		}
 
 																		//div transparente haut de view
@@ -2428,8 +2431,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																		.posParameterProfile{
 																			z-index:26;
 																			position:absolute;
+																			padding:0 !important;
+																			height:33px;
 																			right:22px;
-																			top:72px;
+																			top:52px;
 																		}
 
 																		//div transparente haut de view

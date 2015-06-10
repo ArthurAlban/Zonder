@@ -8,7 +8,8 @@ zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDeleg
 ///////////////////////////////  slide 1 ///////////////////////////
 $ionicModal.fromTemplateUrl('modals/pollModal.html', {
 	scope: $scope,
-	animation: 'slide-in-right'
+	animation: 'slide-in-right',
+	backdropClickToClose: false
 }).then(function(modal) {
 	$scope.pollModal = modal;
 });
@@ -47,13 +48,16 @@ $scope.closePollModal = function() {
 };
 
 $scope.$on('$destroy', function() {
+	console.log("destroy");
 	$scope.pollModal.remove();
 });
 
 $scope.$on('modal.hidden', function() {
+	console.log("hidden");
 });
 
 $scope.$on('modal.removed', function() {
+	console.log("remove");
 });
 
 $scope.calculateTimePoll = function(callback){

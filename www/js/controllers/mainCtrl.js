@@ -238,7 +238,8 @@ $scope.decreaseDecadePeopleRange = function(){
 
 $ionicModal.fromTemplateUrl('modals/createZonderModal.html', {
   scope: $scope,
-  animation: 'slide-in-right'
+  animation: 'slide-in-right',
+  backdropClickToClose: false
 }).then(function(modal) {
   $scope.createZonderModal = modal;
 });
@@ -264,9 +265,14 @@ $scope.closeCreateZonderModal = function() {
   console.log("close2");
 };
 
-
 $scope.$on('$destroy', function() {
   $scope.createZonderModal.remove();
+});
+
+$scope.$on('modal.hidden', function() {
+});
+
+$scope.$on('modal.removed', function() {
 });
 
 $scope.closeAndClearCreateZonderModal = function(){
@@ -1121,7 +1127,8 @@ $scope.initTabImageToInternet = function(){
 
 $ionicModal.fromTemplateUrl('modals/chooseGooglePhoto.html', {
   scope: $scope,
-  animation: 'slide-in-up'
+  animation: 'slide-in-up',
+  backdropClickToClose: false
 }).then(function(modal) {
   $scope.chooseGooglePhotoModal = modal;
 });

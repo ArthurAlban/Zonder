@@ -2901,8 +2901,8 @@ a.subdued {
 .action-sheet-wrapper {
   -webkit-transform: translate3d(0, 100%, 0);
   transform: translate3d(0, 100%, 0);
-  -webkit-transition: all cubic-bezier(.36, .66, .04, 1) 100ms;
-  transition: all cubic-bezier(.36, .66, .04, 1) 100ms;
+  -webkit-transition: all cubic-bezier(.36, .66, .04, 1) 500ms;
+  transition: all cubic-bezier(.36, .66, .04, 1) 500ms;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -8378,8 +8378,8 @@ a.button {
 #posButtonMenu {
   z-index: 11;
   position: absolute;
-  left: 20px;
-  top: 32px; }
+  left: 14px;
+  top: 26px; }
 
 #posPseudoUser {
   z-index: 11;
@@ -8487,9 +8487,10 @@ a.button {
 .posParameterProfile {
   z-index: 26;
   position: absolute;
-  padding: 4px;
-  right: 32px;
-  top: 75px; }
+  padding: 0 !important;
+  height: 33px;
+  right: 30px;
+  top: 58px; }
 
 .deletescalezonder.ng-leave.deletescalezonder.ng-leave-active {
   -webkit-transform: scaleY(0);
@@ -9469,8 +9470,10 @@ a.button {
   .posParameterProfile {
     z-index: 26;
     position: absolute;
+    padding: 0 !important;
+    height: 33px;
     right: 22px;
-    top: 72px; }
+    top: 52px; }
   .divTransparency {
     position: relative;
     width: 100%;
@@ -9519,8 +9522,10 @@ a.button {
   .posParameterProfile {
     z-index: 26;
     position: absolute;
+    padding: 0 !important;
+    height: 33px;
     right: 22px;
-    top: 72px; }
+    top: 52px; }
   .divTransparency {
     position: relative;
     width: 100%;

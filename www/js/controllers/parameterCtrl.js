@@ -22,7 +22,8 @@ zonder.controller('parameterCtrl', function($window, $scope, $rootScope, $state,
 
 $ionicModal.fromTemplateUrl('modals/profileModal.html', {
   scope: $scope,
-  animation: 'slide-in-right'
+  animation: 'slide-in-right',
+  backdropClickToClose: false
 }).then(function(modal) {
   $scope.profileModal = modal;
 });
@@ -71,7 +72,8 @@ $scope.showActionSheetParameters = function() {
 
 $ionicModal.fromTemplateUrl('modals/changePassword.html', {
   scope: $scope,
-  animation: 'slide-in-right'
+  animation: 'slide-in-right', 
+  backdropClickToClose: false
 }).then(function(modal) {
   $scope.changePassModal = modal;
 });

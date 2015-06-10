@@ -62,7 +62,14 @@
 
 <div id="triangles"> <img style="width:100%" src="img/splashTriangles.png" ></div>
 
-<img src="img/menu.png" menu-toggle="left" id="posButtonMenu" class="imgClick sizeButtonImage">
+  <button id="posButtonMenu" menu-toggle="left" class="button button-icon">
+    <i> <img width="22" src="img/menu.png" >
+    </i>
+  </button>
+
+<!-- <img src="img/menu.png" menu-toggle="left" id="posButtonMenu" class="imgClick sizeButtonImage"> -->
+
+
 <img src="{{myPhoto}}" ng-click="goToProfile()" class="profilImg">
 <label class="fontBrandonBlack" id="posPseudoUser">{{myPseudo}}</label>
 
@@ -127,7 +134,13 @@
 			<div class="contentHeaderFooter" >
 				<p class="fontQuestionZonder questionPosStyle">{{pollUp.question}}
 				</p>
-				<img width="13" class="posWheel imgClick" src="img/wheelOption.png" ng-click="showActionsheetAnswerZonderUp()">
+
+				<button ng-click="showActionsheetAnswerZonderUp()" class="button button-icon posWheel" style="padding-right:0">
+					<i> <img width="14" src="img/wheelOption.png" >
+					</i>
+				</button>
+
+				<!-- <img width="13" class="posWheel imgClick" src="img/wheelOption.png" ng-click="showActionsheetAnswerZonderUp()"> -->
 			</div>
 
 		</div>
@@ -150,9 +163,16 @@
 			<div class="fontVoteCommentsZonder">{{pollUp.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
 			<div class="fontVoteCommentsZonder marginComments">{{pollUp.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
-		<div class="contentIconFavouriteComments" ng-click="openCommentsModalUp()" > 
+
+
+		<button style="padding-right:0;" ng-click="openCommentsModalUp()" class="button button-icon contentIconFavouriteComments">
+			<i style="margin-top:-18px;"> <img width="20" src="img/commentsIcon.png" >
+			</i>
+		</button>
+
+		<!-- <div class="contentIconFavouriteComments" ng-click="openCommentsModalUp()" > 
 			<img width="20" class="marginIconComments" src="img/commentsIcon.png">
-		</div>
+		</div> -->
 
 	</div>
 
@@ -180,7 +200,10 @@
 			<div class="contentHeaderFooter">
 				<p class="fontQuestionZonder questionPosStyle">{{pollDown.question}}
 				</p>
-				<img width="13" class="posWheel imgClick" src="img/wheelOption.png" ng-click="showActionsheetAnswerZonderDown()">
+				<button ng-click="showActionsheetAnswerZonderDown()" class="button button-icon posWheel" style="padding-right:0">
+					<i> <img width="14" src="img/wheelOption.png" >
+					</i>
+				</button>
 			</div>
 
 		</div>
@@ -203,9 +226,15 @@
 			<div class="fontVoteCommentsZonder">{{pollDown.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
 			<div class="fontVoteCommentsZonder marginComments">{{pollDown.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
-		<div class="contentIconFavouriteComments" ng-click="openCommentsModalDown()"> 
+
+		<button style="padding-right:0;" ng-click="openCommentsModalDown()" class="button button-icon contentIconFavouriteComments">
+			<i style="margin-top:-18px;"> <img width="20" src="img/commentsIcon.png" >
+			</i>
+		</button>
+
+		<!-- <div class="contentIconFavouriteComments" ng-click="openCommentsModalDown()"> 
 			<img width="20" class="marginIconComments" src="img/commentsIcon.png" >
-		</div>
+		</div> -->
 
 	</div>
 
@@ -245,7 +274,13 @@
 			</div>
 			<div class="contentHeaderFooter">
 				<p ng-click="openPollModal(poll)" class="fontQuestionZonder questionPosStyle"> {{poll.question}}</p>
-				<img width="13" class="posWheel" ng-click="showActionSheetPollWheelChoiceChoice(poll.id)" src="img/wheelOption.png">
+
+				<button ng-click="showActionSheetPollWheelChoiceChoice(poll.id)" class="button button-icon posWheel" style="padding-right:0">
+					<i> <img width="14" src="img/wheelOption.png" >
+					</i>
+				</button>
+
+				<!-- <img width="13" class="posWheel" ng-click="showActionSheetPollWheelChoiceChoice(poll.id)" src="img/wheelOption.png"> -->
 			</div>
 		</div>
 

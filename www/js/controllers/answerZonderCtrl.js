@@ -391,7 +391,8 @@ $scope.displayComments = function(poll){
 
 $ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
     scope: $scope,
-    animation: 'slide-in-right'
+    animation: 'slide-in-right',
+    backdropClickToClose: false
   }).then(function(modal) {
     $scope.commentsModalUp = modal;
   });
@@ -434,7 +435,8 @@ $ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
 
 $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
     scope: $scope,
-    animation: 'slide-in-right'
+    animation: 'slide-in-right',
+    backdropClickToClose: false
   }).then(function(modal) {
     $scope.commentsModalDown = modal;
   });

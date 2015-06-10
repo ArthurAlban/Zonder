@@ -145,7 +145,8 @@ $scope.displayMailForgotPasswordPopup = function(){
 }
 $ionicModal.fromTemplateUrl('modals/forgotPassword.html', {
   scope: $scope,
-  animation: 'slide-in-right'
+  animation: 'slide-in-right',
+  backdropClickToClose: false
 }).then(function(modal) {
   $scope.forgotPassword = modal;
 });
@@ -240,7 +241,8 @@ $scope.closepopups = function() {
 
   $ionicModal.fromTemplateUrl('modals/registerModal.html', {
     scope: $scope,
-    animation: 'slide-in-right'
+    animation: 'slide-in-right',
+    backdropClickToClose: false
   }).then(function(modal) {
     $scope.registerModal = modal;
   });
