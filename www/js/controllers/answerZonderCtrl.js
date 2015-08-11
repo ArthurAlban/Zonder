@@ -22,8 +22,8 @@ $scope.queriesForPollsInfosPhotoAnswerZonder = new Array();
 
 $scope.getPollsToBeLoaded = function(callback){
 	// faire route server qui récupére 6 sondages lié à l'algo de distribution des polls
-	$scope.pollsToBeLoaded.push({id : "556701275abe6f8813000004"});
-	$scope.pollsToBeLoaded.push({id : "5567015f5abe6f8813000005"});
+	$scope.pollsToBeLoaded.push({id : "55784d3415ea09dc17000004"});
+	$scope.pollsToBeLoaded.push({id : "55784df315ea09dc17000005"});
 	callback();
 };
 
@@ -34,96 +34,101 @@ $scope.getInfosUsersAndPollPhotoAnswerZonder = function(pollArray, callback){
 };
 
 $scope.getPollsInfosAnswerZonder = function(pollArray, callback){
-  if(pollArray.length){
-    angular.forEach(pollArray, function(poll, key){ 
-      var q = function(callback){
-        PollService.getPollFromId(poll.id).then(function(d){
-          angular.forEach(pollArray, function(p, k){
-            if(p.id == poll.id){
-              p.authorId = d.author;
-              p.question = d.question;
-              p.photoLeft = d.photoLeft;
-              p.photoRight = d.photoRight;
-              p.gender = d.gender;
-              p.range = d.range;
-              p.votes = d.votes;
-              p.whoVotedWhat = d.whoVotedWhat;
-              p.progression = d.progression;
-              p.timePoll = d.timePoll;
-              p.startDate = d.startDate;
-              p.photoLeftVote = d.photoLeftVote;
-              p.photoRightVote = d.photoRightVote;
-              p.pourcentagePhotoLeft = d.pourcentagePhotoLeft;
-              p.pourcentagePhotoRight = d.pourcentagePhotoRight;
-              p.comments = d.comments;
-              p.firstName = d.firstName;
-              p.secondName = d.secondName;
-              p.friendsConcerned = d.friendsConcerned;
-              p.usersConcerned = d.usersConcerned;
-              p.isOver = d.isOver;
+	if(pollArray.length){
+		angular.forEach(pollArray, function(poll, key){ 
+			var q = function(callback){
+				PollService.getPollFromId(poll.id).then(function(d){
+					console.log("answerZonderCtrl DEBUG 4");
+					angular.forEach(pollArray, function(p, k){
+						if(p.id == poll.id){
+							console.log("answerZonderCtrl DEBUG 6" + JSON.stringify(d));
+							p.authorId = d.author;
 
-              var time = $scope.getTimeHoursMinutesFromPoll(p);
-              p.timeElapsedHours = time.hours;
-              p.timeElapsedMinutes = time.minutes;
-            }
-          });
-          callback();
-        }, function(status){
-          console.log("Impossible de récuperer les infos basic du sondage");
-          callback();
-        });
-      };
-      $scope.queriesForPollsInfosAnswerZonder.push(q);
-    });
-    callback();
-  }
-  else {
-    callback();
-  }
+							p.question = d.question;
+							p.photoLeft = d.photoLeft;
+
+							p.photoRight = d.photoRight;
+							p.gender = d.gender;
+							p.range = d.range;
+
+							p.votes = d.votes;
+							p.progression = d.progression;
+							p.timePoll = d.timePoll;
+							p.startDate = d.startDate;
+							p.photoLeftVote = d.photoLeftVote;
+							p.photoRightVote = d.photoRightVote;
+							p.pourcentagePhotoLeft = d.pourcentagePhotoLeft;
+							p.pourcentagePhotoRight = d.pourcentagePhotoRight;
+							p.comments = d.comments;
+							p.firstName = d.firstName;
+							p.secondName = d.secondName;
+							p.friendsConcerned = d.friendsConcerned;
+							p.usersConcerned = d.usersConcerned;
+							p.isOver = d.isOver;
+
+							var time = $scope.getTimeHoursMinutesFromPoll(p);
+							p.timeElapsedHours = time.hours;
+							p.timeElapsedMinutes = time.minutes;
+
+						}
+					});
+callback();
+}, function(status){
+	console.log("Impossible de récuperer les infos basic du sondage");
+	callback();
+});
+};
+$scope.queriesForPollsInfosAnswerZonder.push(q);
+});
+callback();
+}
+else {
+	callback();
+}
 };
 
 $scope.getInfoPhotoPollAnswerZonder = function(pollArray, callback){
-  if(pollArray.length){
-    angular.forEach(pollArray, function(poll, key){
-      var q = function(callback){
-        angular.forEach(pollArray, function(p, k){
-          if(p.id == poll.id){
-            var imageLeft = new Image();
-            imageLeft.src = p.photoLeft;
+	if(pollArray.length){
+		angular.forEach(pollArray, function(poll, key){
+			var q = function(callback){
+				angular.forEach(pollArray, function(p, k){
+					if(p.id == poll.id){
+						var imageLeft = new Image();
+						imageLeft.src = p.photoLeft;
 
-            var imageRight = new Image();
-            imageRight.src = p.photoRight;
-            async.parallel([function(callback){
-              imageLeft.onload = function(){
-                p.imageWidthLeft = imageLeft.width;
-                p.imageHeightLeft = imageLeft.height;
-                callback();
-              };
-            },function(callback){
-              imageRight.onload = function(){
-                p.imageWidthRight = imageRight.width;
-                p.imageHeightRight = imageRight.height;
-                callback();
-              };
-            }], function(err, res){
-              callback();
-            });
-          }
-        }); 
-      }
-      $scope.queriesForPollsInfosPhotoAnswerZonder.push(q);
-    });
-    callback();
-  }
-  else {
-    callback();
-  }
+						var imageRight = new Image();
+						imageRight.src = p.photoRight;
+						async.parallel([function(callback){
+							imageLeft.onload = function(){
+								p.imageWidthLeft = imageLeft.width;
+								p.imageHeightLeft = imageLeft.height;
+								callback();
+							};
+						},function(callback){
+							imageRight.onload = function(){
+								p.imageWidthRight = imageRight.width;
+								p.imageHeightRight = imageRight.height;
+								callback();
+							};
+						}], function(err, res){
+							callback();
+						});
+					}
+				}); 
+			}
+			$scope.queriesForPollsInfosPhotoAnswerZonder.push(q);
+		});
+		callback();
+	}
+	else {
+		callback();
+	}
 };
 
 $scope.queriesExecPollsInfosAnswerZonder = function(callback){
-  async.parallel($scope.queriesForPollsInfosAnswerZonder,function(err, res){
-    callback();
-  });
+	async.parallel($scope.queriesForPollsInfosAnswerZonder,function(err, res){
+		callback();
+	});
 };
 
 
@@ -173,21 +178,21 @@ $scope.queriesParallelInfosUsersAndPollPhotoAnswerZonder = function(callback) {
 };
 
 $scope.queriesExecUsersInfosAnswerZonder = function(callback){
-  async.parallel($scope.queriesForUserInfoAnswerZonder,function(err, res){
-    callback();
-  });
+	async.parallel($scope.queriesForUserInfoAnswerZonder,function(err, res){
+		callback();
+	});
 };
 
 $scope.queriesExecUsersPhotoAnswerZonder = function(callback){
-  async.parallel($scope.queriesForUserPhotoAnswerZonder,function(err, res){
-    callback();
-  });
+	async.parallel($scope.queriesForUserPhotoAnswerZonder,function(err, res){
+		callback();
+	});
 };
 
 $scope.queriesExecPollsInfosPhotoAnswerZonder = function(callback){
-  async.parallel($scope.queriesForPollsInfosPhotoAnswerZonder,function(err, res){
-    callback();
-  });
+	async.parallel($scope.queriesForPollsInfosPhotoAnswerZonder,function(err, res){
+		callback();
+	});
 };
 
 
@@ -388,20 +393,20 @@ $scope.displayComments = function(poll){
 				$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
 				$scope.$apply();
 			});
-};
+	};
 
 /////////////////////////  Comments modal Up ////////////////////////////////
 
 $ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
-    scope: $scope,
-    animation: 'slide-in-right'
-  }).then(function(modal) {
-    $scope.commentsModalUp = modal;
-  });
+	scope: $scope,
+	animation: 'slide-in-right'
+}).then(function(modal) {
+	$scope.commentsModalUp = modal;
+});
 
-  $scope.openCommentsModalUp = function() {
-  	console.log("comments" + JSON.stringify($scope.pollUp.comments));
-  	$scope.pollUp.writeComment = "";
+$scope.openCommentsModalUp = function() {
+	console.log("comments" + JSON.stringify($scope.pollUp.comments));
+	$scope.pollUp.writeComment = "";
 	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
 	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
 
@@ -409,41 +414,41 @@ $ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
 		$scope.displayComments($scope.pollUp);
 	}
 
-    $scope.commentsModalUp.show();
-    $cordovaStatusbar.hide();
-  };
+	$scope.commentsModalUp.show();
+	$cordovaStatusbar.hide();
+};
 
-  $scope.closeCommentsModalUp = function() {
-  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+$scope.closeCommentsModalUp = function() {
+	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
 	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
-  	$scope.pollUp.writeComment = "";
-    $scope.commentsModalUp.hide();
-    $cordovaStatusbar.show();
-    $scope.$apply();
-  };
+	$scope.pollUp.writeComment = "";
+	$scope.commentsModalUp.hide();
+	$cordovaStatusbar.show();
+	$scope.$apply();
+};
 
-  $scope.$on('$destroy', function() {
-    $scope.commentsModalUp.remove();
-  });
+$scope.$on('$destroy', function() {
+	$scope.commentsModalUp.remove();
+});
 
-  $scope.$on('modal.hidden', function() {
-  });
+$scope.$on('modal.hidden', function() {
+});
 
-  $scope.$on('modal.removed', function() {
-  });
+$scope.$on('modal.removed', function() {
+});
 
-  
+
 /////////////////////////  Comments modal Down ////////////////////////////////
 
 $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
-    scope: $scope,
-    animation: 'slide-in-right'
-  }).then(function(modal) {
-    $scope.commentsModalDown = modal;
-  });
+	scope: $scope,
+	animation: 'slide-in-right'
+}).then(function(modal) {
+	$scope.commentsModalDown = modal;
+});
 
-  $scope.openCommentsModalDown = function() {
-  	$scope.pollDown.writeComment = "";
+$scope.openCommentsModalDown = function() {
+	$scope.pollDown.writeComment = "";
 	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthLeft, $scope.pollDown.imageHeightLeft);
 	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthRight, $scope.pollDown.imageHeightRight);
 
@@ -451,28 +456,28 @@ $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
 		$scope.displayComments($scope.pollDown);
 	}
 	
-    $scope.commentsModalDown.show();
-    $cordovaStatusbar.hide();
-  };
+	$scope.commentsModalDown.show();
+	$cordovaStatusbar.hide();
+};
 
-  $scope.closeCommentsModalDown = function() {
-  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+$scope.closeCommentsModalDown = function() {
+	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
 	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
-  	$scope.pollDown.writeComment = "";
-    $scope.commentsModalDown.hide();
-    $cordovaStatusbar.show();
-    $scope.$apply();
-  };
+	$scope.pollDown.writeComment = "";
+	$scope.commentsModalDown.hide();
+	$cordovaStatusbar.show();
+	$scope.$apply();
+};
 
-  $scope.$on('$destroy', function() {
-    $scope.commentsModalDown.remove();
-  });
+$scope.$on('$destroy', function() {
+	$scope.commentsModalDown.remove();
+});
 
-  $scope.$on('modal.hidden', function() {
-  });
+$scope.$on('modal.hidden', function() {
+});
 
-  $scope.$on('modal.removed', function() {
-  });
+$scope.$on('modal.removed', function() {
+});
 
   ///////////////////////////////// send comment ////////////////////////////////////////////
 
@@ -492,7 +497,7 @@ $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
   	});
   };
 
-$scope.sendCommentDown = function(){
+  $scope.sendCommentDown = function(){
   	PollService.sendComment($scope.pollDown.id, $window.localStorage['pseudo'],$scope.pollDown.writeComment).then(function(d){
   		var pollTmp = {};
   		pollTmp.author = d.comment.author;
