@@ -1,7 +1,12 @@
 <ion-modal-view class="background">
 <div id="triangles"> <img style="width:100%" src="img/splashTriangles.png" ></div>
 
-<img src="img/close2.png" ng-click="closeProfileModal()" class="imgClick posButtonClose">
+<button ng-click="closeProfileModal()" class="button button-icon posButtonClose">
+  <i> <img width="28" src="img/close.png" >
+  </i>
+</button>
+
+<!-- <img src="img/close2.png" ng-click="closeProfileModal()" class="imgClick posButtonClose"> -->
 
 <img src="{{myPhoto}}" style="z-index:27;" ng-click="showActionSheetPhotoSource()" class="profilImg">
 <label class="fontBrandonBlack" id="posPseudoUser">{{myPseudo}}</label>

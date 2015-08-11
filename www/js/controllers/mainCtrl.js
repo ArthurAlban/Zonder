@@ -1,6 +1,6 @@
 zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ionicModal, $ionicSlideBoxDelegate, $ionicActionSheet, $cordovaCamera, UserService, PollService, $ionicLoading, $ionicPlatform, $cordovaKeyboard) {
 
- $scope.testtoto = function(){
+ $scope.startDifferentLoadingLogIn = function(){
   if(!$rootScope.loadingLogIn) {
     console.log("$rootScope.showHome" + $rootScope.showHome);
     $rootScope.loadingIndicator = $ionicLoading.show({
@@ -11,7 +11,11 @@ zonder.controller('mainCtrl', function($window, $scope, $state, $rootScope, $ion
   }
 };
 
-$scope.testtoto();
+$scope.loadingCreateZonder = false;
+$scope.showInfoCreateZonder = false;
+$scope.showInfoErrorCreateZonder = false;
+
+$scope.startDifferentLoadingLogIn();
 
 $scope.goToProfile = function(){
   $state.go('showProfile');
@@ -250,30 +254,29 @@ $scope.preloadModal = function(){
    $scope.closeCreateZonderModal();
    $scope.$apply();
  }, 200);
-  
 };
 
 $scope.openCreateZonderModal = function() {
-  console.log("open");
   $scope.createZonderModal.show();
-  console.log("open2");
+  $scope.initGoogleModal();
 };
 
 $scope.closeCreateZonderModal = function() {
-  console.log("close");
   $scope.createZonderModal.hide();
-  console.log("close2");
+  $scope.removeGoogleModal();
 };
 
 $scope.$on('$destroy', function() {
   $scope.createZonderModal.remove();
 });
 
-$scope.$on('modal.hidden', function() {
-});
+// $scope.$on('modal.hidden', function() {
+//    console.log("hidden create zonder");
+// });
 
-$scope.$on('modal.removed', function() {
-});
+// $scope.$on('modal.removed', function() {
+//    console.log("remove create zonder");
+// });
 
 $scope.closeAndClearCreateZonderModal = function(){
   $scope.closeCreateZonderModal();
@@ -304,19 +307,21 @@ $scope.disableSwipeCreateZonder = function() {
   $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').enableSlide(false);
 };
 
+$scope.nothing = function(){
+  console.log("nothing");
+};
+
 $scope.nextStepPhoto = function(){
-  console.log("question" + $scope.createPoll.question);
-  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
+  console.log("nextStepPhoto" + $scope.createPoll.question);
   $scope.displayNextButtonQuestion = false;
+  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
 };
 
 $scope.nextStepOption = function(){
-  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
+  console.log("nextStepOption" + $scope.createPoll.question);
   $scope.displayNextButtonChoosePhoto = false;
+  $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').next();
 };
-/*
-$scope.createPoll = function(){
-};*/
 
 $scope.backStep = function(){
   $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').previous();
@@ -354,7 +359,11 @@ $scope.clearModal = function(){
   $scope.targetIsSelected = false;
   $scope.charLeft = 90;
   $scope.showSliderPhoto = false;
+  $scope.loadingSondrFriends = false;
+  $scope.friendsAreLoaded = false;
 };
+
+$scope.loadingSondrFriends = false;
 
 $scope.showCloseButton = true;
 $scope.displayNextButtonQuestion = true;
@@ -624,7 +633,7 @@ $scope.setWorldPoll  = function() {
   $scope.animateFriends = false;
   $scope.animateTarget = true;
   $scope.createPoll.range = "Monde";
-  $scope.updateFriendsCreatePoll();
+  // $scope.updateFriendsCreatePoll();
   $scope.checkOptionInCreatePoll();
 };
 
@@ -637,9 +646,10 @@ $scope.sendNotif = function(){
 };
 
 $scope.getFriendsCreatePoll = function(callback){
+  console.log("jy suis");
   UserService.getAllFriends().then(function(data){
     $scope.friends = data.friends;
-    console.log("JSON.stringify(friends)" + JSON.stringify(data.friends));
+    console.log("friends" + JSON.stringify(data.friends));
     angular.forEach($scope.friends, function(f, k){
       if(!f.gender){
         f.photo = "img/profilTest.png";
@@ -721,6 +731,7 @@ $scope.queriesParallelCreatePoll = function(callback) {
 
 
 $scope.updateFriendsCreatePoll = function(){
+  console.log("loadFriends" + $scope.loadingSondrFriends);
   if(!$scope.loadingSondrFriends && !$scope.friendsAreLoaded){
     $scope.loadingSondrFriends = true;
     $scope.queriesForFriendPhotoCreatePoll.splice(0, $scope.queriesForFriendPhotoCreatePoll.length);
@@ -728,6 +739,7 @@ $scope.updateFriendsCreatePoll = function(){
     $scope.queriesForDeleteFriends.splice(0, $scope.queriesForDeleteFriends.length);
 
     $scope.friends.splice(0, $scope.friends.length);
+    console.log("2");
     async.series([$scope.fillQueriesforDeleteFriends, $scope.queriesExecDeleteFriends, $scope.getFriendsCreatePoll, $scope.queriesParallelCreatePoll], 
       function(err, result){
         $scope.queriesForFriendPhotoCreatePoll.splice(0, $scope.queriesForFriendPhotoCreatePoll.length);
@@ -1036,12 +1048,31 @@ $scope.createPollFunction = function() {
   $scope.createPoll.namePhotoLeft = $scope.createPoll.namePhotoLeft.toUpperCase();
   $scope.createPoll.namePhotoRight = $scope.createPoll.namePhotoRight.toUpperCase();
   $scope.createPoll.question = $scope.createPoll.question.charAt(0).toUpperCase() + $scope.createPoll.question.slice(1);
+  $scope.loadingCreateZonder = true;
+  $scope.$apply();
   $scope.closeCreateZonderModal();
   PollService.createPoll($scope.createPoll).then(function(data) {
     $ionicSlideBoxDelegate.$getByHandle('createZonderSlider').slide(0);
     $scope.clearModal();
-    
+    window.setTimeout(function() {
+      $scope.showInfoCreateZonder = true;
+      $scope.loadingCreateZonder = false;
+      window.setTimeout(function() {
+        $scope.showInfoCreateZonder = false;
+        $scope.$apply();
+      }, 3000);
+      $scope.$apply();
+    }, 3000);
   },function(status) {
+    window.setTimeout(function() {
+      $scope.showInfoErrorCreateZonder = true;
+      $scope.loadingCreateZonder = false;
+      window.setTimeout(function() {
+        $scope.showInfoErrorCreateZonder = false;
+        $scope.$apply();
+      }, 3000);
+      $scope.$apply();
+    }, 3000);
     console.log("Impossible de creer le sondage");
   });
 };
@@ -1125,13 +1156,15 @@ $scope.initTabImageToInternet = function(){
   }
 };
 
-$ionicModal.fromTemplateUrl('modals/chooseGooglePhoto.html', {
-  scope: $scope,
-  animation: 'slide-in-up',
-  backdropClickToClose: false
-}).then(function(modal) {
-  $scope.chooseGooglePhotoModal = modal;
-});
+$scope.initGoogleModal = function(){
+  $ionicModal.fromTemplateUrl('modals/chooseGooglePhoto.html', {
+    scope: $scope,
+    animation: 'slide-in-up',
+    backdropClickToClose: false
+  }).then(function(modal) {
+    $scope.chooseGooglePhotoModal = modal;
+  });
+};
 
 $scope.openChooseGooglePhotoModal = function() {
   $scope.chooseGooglePhotoModal.show();
@@ -1141,10 +1174,13 @@ $scope.closeChooseGooglePhotoModal = function() {
   $scope.chooseGooglePhotoModal.hide();
 };
 
+$scope.removeGoogleModal = function() {
+  $scope.chooseGooglePhotoModal.remove();
+};
+
 $scope.$on('$destroy', function() {
   $scope.chooseGooglePhotoModal.remove();
 });
-
 
 $scope.queriesForInfosAndResizeImage = new Array();
 
@@ -1357,7 +1393,7 @@ $scope.getPollsInfos = function(pollArray, callback){
               p.gender = d.gender;
               p.range = d.range;
               p.votes = d.votes;
-              p.whoVotedWhat = d.whoVotedWhat;
+              // p.whoVotedWhat = d.whoVotedWhat;
               p.progression = d.progression;
               p.timePoll = d.timePoll;
               p.startDate = d.startDate;
@@ -1519,9 +1555,6 @@ $scope.retrievePollsForRootScope = function(){
       $scope.queriesForInfoPhoto.splice(0, $scope.queriesForInfoPhoto.length);
       $scope.queriesForUserPhoto.splice(0, $scope.queriesForUserPhoto.length);
       $scope.queriesForUserInfo.splice(0, $scope.queriesForUserInfo.length);
-      console.log("finloading");
-
-      // $rootScope.loadingIndicator.hide();
       window.setTimeout(function(){
         $ionicPlatform.ready(function() {
           $rootScope.loadingIndicator.hide();
@@ -1569,6 +1602,7 @@ $scope.getRequestFriends = function(callback){
 
 $scope.getFriends = function(callback){
   UserService.getFriends(0).then(function(data){
+    console.log("getFriends" + JSON.stringify(data.friend));
     if(data.friend != "allFriendsLoaded"){
       $rootScope.friends = data.friend;
       callback();
@@ -1706,10 +1740,14 @@ $scope.fillAllQueries = function(callback){
 
 $scope.fillQueriesforDeleteFriends = function(callback){
   UserService.getFriendsToDelete().then(function(data){
-    if(data.friendsToDelete){
+    console.log("data toto" + JSON.stringify(data.friendsToDelete));
+    if(data.friendsToDelete.length){
+      console.log("1 bis");
       $rootScope.friendsHaveChanged = true;
+      console.log("2 bis");
       angular.forEach(data.friendsToDelete, function(f, k){
         var q = function(callback){
+          console.log("id" + f.id);
           UserService.deleteFriendToDelete(f.id).then(function(d){
             callback();
           },function(s){

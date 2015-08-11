@@ -63,7 +63,6 @@ UserService.logIn(mail, password).then(function(d){
     //   UserService.registerDevice({device: result}).then(function(){
 
        UserService.getUserInfoForLocalStorage().then(function(data){
-
         $window.localStorage['pseudo'] = data.pseudo;
         $window.localStorage['email'] = data.email;
         $window.localStorage['gender'] = data.gender;
@@ -80,12 +79,8 @@ UserService.logIn(mail, password).then(function(d){
         else {
           $window.localStorage['notifPolls'] = "false";
         }
-        // window.setTimeout(function(){
-        //   $scope.toHome();
-        // }, 1000);
 
         $scope.toHome();
-        //$rootScope.loadingIndicator.hide();
       }, function(m){
 
       });
@@ -143,17 +138,24 @@ $scope.mailForgotPasswordPopup = false;
 $scope.displayMailForgotPasswordPopup = function(){
   $scope.mailForgotPasswordPopup = true;
 }
-$ionicModal.fromTemplateUrl('modals/forgotPassword.html', {
+
+$scope.openForgotPasswordModal = function() {
+  $ionicModal.fromTemplateUrl('modals/forgotPassword.html', {
   scope: $scope,
   animation: 'slide-in-right',
   backdropClickToClose: false
 }).then(function(modal) {
   $scope.forgotPassword = modal;
-});
-
-$scope.openForgotPasswordModal = function() {
   $scope.forgotPassword.show();
+});
 };
+
+$scope.closeForgotPasswordModalWithRemove = function() {
+  console.log("remove forgotPassword modal");
+    $scope.forgotPassword.remove();
+    $scope.clearForgotPasswordModal();
+     console.log("remove2 forgotPassword modal");
+  };
 
 $scope.closeForgotPasswordModal = function() {
   $scope.forgotPassword.hide();
@@ -161,14 +163,17 @@ $scope.closeForgotPasswordModal = function() {
 };
 
 $scope.$on('$destroy', function() {
+  console.log("destroy forgot modal");
   $scope.forgotPassword.remove();
 });
 
-$scope.$on('modal.hidden', function() {
-});
+// $scope.$on('modal.hidden', function() {
+//   console.log("hidden forgot modal");
+// });
 
-$scope.$on('modal.removed', function() {
-});
+// $scope.$on('modal.removed', function() {
+//   console.log("removed forgot modal");
+// });
 
 $scope.clearForgotPasswordModal = function(){
   $scope.data.mail = "";
@@ -185,23 +190,41 @@ $scope.setDisplayMailErrorFalse = function(){
 };
 
 $scope.sendNewPassword = function(){
-  var mail = $scope.data.mail;
-  UserService.checkEmail(mail).then(function(data){
-    if(data.result == "notFound")  {
-      $scope.displayMailerror = true;
-    }
-    if(data.result == "found"){ 
-      UserService.resetPassword(mail).then(function(data){
-        $scope.closeForgotPasswordModal();
-      }, function(msg){
-        $scope.displayMailerror = true;
-        console.log("msg " + msg);
-      });
-    }
-  },function(status) {
-    $scope.displayMailerror = true;
-    console.log("impossible de vérifier l'email");
-  });
+ $scope.loadingforgot = $ionicLoading.show({
+  template:'<ion-spinner class="spinnerLoading" icon="spiral"></ion-spinner>',
+  animation: 'fade-in',
+  showBackdrop: true
+});
+ console.log("$scope.loadingforgot" + $scope.loadingforgot);
+ var mail = $scope.data.mail;
+ UserService.checkEmail(mail).then(function(data){
+  if(data.result == "notFound")  {
+    window.setTimeout(function(){
+     $scope.loadingforgot.hide();
+     $scope.displayMailerror = true;
+   }, 500);
+  }
+  if(data.result == "found"){ 
+    UserService.resetPassword(mail).then(function(data){
+     window.setTimeout(function(){
+       $scope.loadingforgot.hide();
+       $scope.closeForgotPasswordModal();
+     }, 500);
+
+   }, function(msg){
+     window.setTimeout(function(){
+       $scope.loadingforgot.hide();
+       $scope.displayMailerror = true;
+     }, 500);
+   });
+  }
+},function(status) {
+  window.setTimeout(function(){
+   $scope.loadingforgot.hide();
+   $scope.displayMailerror = true;
+ }, 500);
+  console.log("impossible de vérifier l'email");
+});
 };
 
 
@@ -239,34 +262,41 @@ $scope.closepopups = function() {
   $scope.passwordIdenticalPopup = false;
 };
 
-  $ionicModal.fromTemplateUrl('modals/registerModal.html', {
-    scope: $scope,
-    animation: 'slide-in-right',
-    backdropClickToClose: false
-  }).then(function(modal) {
-    $scope.registerModal = modal;
-  });
-
 $scope.openRegisterModal = function() {
+  $ionicModal.fromTemplateUrl('modals/registerModal.html', {
+  scope: $scope,
+  animation: 'slide-in-right',
+  backdropClickToClose: false
+}).then(function(modal) {
+  console.log("init register modal");
+  $scope.registerModal = modal;
   $scope.registerModal.show();
+});
 };
 
+$scope.closeRegisterModalWithRemove = function() {
+  console.log("remove register modal");
+  $scope.clearRegisterModal();
+    $scope.registerModal.remove();
+     console.log("remove2 register modal");
+  };
+
 $scope.closeRegisterModal = function() {
-  console.log("close");
   $scope.clearRegisterModal();
   $scope.registerModal.hide();
   console.log("close2");
 };
 
 $scope.$on('$destroy', function() {
+  console.log("destroy register modal");
   $scope.registerModal.remove();
 });
 
-$scope.$on('modal.hidden', function() {
-});
+// $scope.$on('modal.hidden', function() {
+// });
 
-$scope.$on('modal.removed', function() {
-});
+// $scope.$on('modal.removed', function() {
+// });
 
 $scope.clearRegisterModal = function(){
   $scope.userData.email = "";
@@ -539,6 +569,7 @@ $scope.signUp = function() {
           // $cordovaPush.register({badge: true, sound: true, alert: true}).then(function (result) {
           // UserService.registerDevice({device: result}).then(function(){
             UserService.getUserInfoForLocalStorage().then(function(data){
+              $scope.closeRegisterModalWithRemove();
               $window.localStorage['pseudo'] = data.pseudo;
               $window.localStorage['email'] = data.email;
               $window.localStorage['gender'] = data.gender;

@@ -1,4 +1,4 @@
-zonder.controller('parameterCtrl', function($window, $scope, $rootScope, $state, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, UserService, $ionicPlatform, $cordovaPush) {
+zonder.controller('parameterCtrl', function($window, $scope, $rootScope, $state, $ionicSlideBoxDelegate, $ionicModal, $ionicActionSheet, UserService, $ionicPlatform, $cordovaPush, $ionicLoading) {
 	
 	$scope.sliderPollsProfile = true;
 	$scope.sliderFriendsProfile = false;
@@ -41,9 +41,11 @@ $scope.$on('$destroy', function() {
 });
 
 $scope.$on('modal.hidden', function() {
+   console.log("hidden profile modal");
 });
 
 $scope.$on('modal.removed', function() {
+   console.log("hidden profile modal");
 });
 
 
@@ -69,22 +71,31 @@ $scope.showActionSheetParameters = function() {
 
 
 //////////////////////// Change Pass Modal ////////////////////////////////
-
+$scope.openChangePassModal = function() {
 $ionicModal.fromTemplateUrl('modals/changePassword.html', {
   scope: $scope,
   animation: 'slide-in-right', 
   backdropClickToClose: false
 }).then(function(modal) {
   $scope.changePassModal = modal;
+   $scope.changePassModal.show();
 });
-
-$scope.openChangePassModal = function() {
-  $scope.changePassModal.show();
 };
 
 $scope.closeChangePassModal = function() {
-  $scope.changePassModal.hide();
-};
+  console.log("remove changePass modal");
+    $scope.changePassModal.remove();
+    $scope.clearAndClose();
+     console.log("remove changePass modal");
+  };
+
+// $scope.openChangePassModal = function() {
+//   $scope.changePassModal.show();
+// };
+
+// $scope.closeChangePassModal = function() {
+//   $scope.changePassModal.hide();
+// };
 
 $scope.$on('$destroy', function() {
   $scope.changePassModal.remove();
@@ -162,9 +173,7 @@ $scope.clearAndClose = function() {
   $scope.passs.oldPassword = "";
   $scope.passs.newPassword = "";
   $scope.passs.repeatPassword = "";
-  // $scope.formIsValid = true;
-  // $scope.formIsValid2 = true;
-  // $scope.closeChangePassModal();
+
   $scope.oldPasswordPopup = false;
   $scope.newPasswordPopup = false;
   $scope.confirmChangePasswordPopup = false;
@@ -174,65 +183,8 @@ $scope.clearAndClose = function() {
   $scope.newPassValidDirty = false;
   $scope.repeatPassValid = true;
 
-  $scope.closeChangePassModal();
+  // $scope.closeChangePassModal();
 };
-
-// $scope.checkValidity = function(isValid) {
-//   $scope.formIsValid = isValid;
-//   $scope.oldPassMsg = false;
-//   $scope.newPassMsg = false;
-//   $scope.okPassMsg = false;
-//   $scope.passEmpty = false;
-//   $scope.passNotEqual = false;
-// };
-
-// $scope.checkValidity2 = function(isValid2) {
-//   $scope.formIsValid2 = isValid2;
-//   $scope.oldPassMsg = false;
-//   $scope.newPassMsg = false;
-//   $scope.okPassMsg = false;
-//   $scope.passEmpty = false;
-//   $scope.passNotEqual = false;
-// };
-
-// $scope.confirmChange = function() {
-//   if($scope.checkPass()) {
-//     $scope.loadingChangePassword= true;
-//     UserService.newPassword($scope.passs.oldPassword, $scope.passs.newPassword, $scope.passs.repeatPassword).then(function(data){
-//       if(data.result == "oldPass"){
-//         $scope.oldPassMsg = true;
-
-//         $scope.newPassMsg = false;
-//         $scope.okPassMsg = false;
-//         $scope.passEmpty = false;
-//         $scope.passNotEqual = false;
-
-//       } 
-//       else if(data.result == "newPass"){
-//         $scope.newPassMsg = true;
-
-//         $scope.oldPassMsg = false;
-//         $scope.okPassMsg = false;
-//         $scope.passEmpty = false;
-//         $scope.passNotEqual = false;
-//       }
-//       else if(data.result == "passChanged"){
-//         $scope.okPassMsg = true;
-
-//         $scope.oldPassMsg = false;
-//         $scope.newPassMsg = false;
-//         $scope.passEmpty = false;
-//         $scope.passNotEqual = false;
-
-//         $scope.clearAndClose();
-//       }
-//       $scope.loadingChangePassword = false;
-//     },function(status) {
-//       console.log("impossible de changer le mot de pass");
-//       $scope.loadingChangePassword = false;
-//     });
-//   }
-// };
 
 $scope.oldPassValid = true;
 $scope.newPassValid = true;
@@ -245,7 +197,6 @@ $scope.setOldPassValid = function(){
 };
 
 $scope.checkEmptyFields = function(){
-  console.log("checkEmptyFields");
   if($scope.passs.oldPassword == ""){
     $scope.oldPassValid = false;
   }
@@ -258,7 +209,6 @@ $scope.checkEmptyFields = function(){
 };
 
 $scope.checkIdenticPassword = function(){
-  console.log("checkIdenticPassword");
   if($scope.passs.newPassword.length > 5 && $scope.passs.repeatPassword.length > 5){
     if($scope.passs.newPassword == $scope.passs.repeatPassword){
       $scope.repeatPassValid = true;
@@ -273,70 +223,70 @@ $scope.checkIdenticPassword = function(){
 };
 
 $scope.checkChangePassServer = function(){
- console.log("checkChangePassServer");
- console.log("$scope.passs.oldPassword" + $scope.passs.oldPassword);
- console.log("$scope.passs.newPassword" + $scope.passs.newPassword);
- console.log("$scope.passs.repeatPassword" + $scope.passs.repeatPassword);
-
  UserService.newPassword($scope.passs.oldPassword, $scope.passs.newPassword, $scope.passs.repeatPassword).then(function(data){
-  console.log("befort");
   if(data.result == "oldPass"){
-    console.log("oldPass");
-    $scope.oldPassValid = false;
+    window.setTimeout(function(){
+      console.log("oldPass");
+      $scope.loadingChangePass.hide();
+      $scope.oldPassValid = false;
+    }, 500);
   } 
   else if(data.result == "newPass"){
+   window.setTimeout(function(){
     console.log("newPass");
+    $scope.loadingChangePass.hide();
     $scope.newPassValid = false;
-  }
-  else if(data.result == "passChanged"){
+  }, 500);
+ }
+ else if(data.result == "passChanged"){
+  window.setTimeout(function(){
     console.log("passChanged");
-    $scope.clearAndClose();
-  }
-  console.log("aftert");
+    $scope.loadingChangePass.hide();
+    $scope.closeChangePassModal();
+  }, 500);
+}
 },function(status) {
-  console.log("impossible de changer le mot de pass");
+ window.setTimeout(function(){
+   $scope.loadingChangePass.hide();
+ }, 500);
+ console.log("impossible de changer le mot de pass");
 });
 };
 
 
 $scope.checkPasswordIsValid = function(){
-  console.log("checkPasswordIsValid");
   var rePass = new RegExp("^[a-zA-Z0-9]{5,50}$");
   if($scope.passs.newPassword.length > 5){
-    console.log("aaa");
     if(rePass.test($scope.passs.newPassword)){
-      console.log("bbbb");
       $scope.newPassValid = true;
       $scope.newPassValidDirty = true;
     }
     else{
-      console.log("cccccc");
       $scope.newPassValid = false;
       $scope.newPassValidDirty = false;
     }
   }
   else{
-    console.log("ddddd");
     $scope.newPassValid = false;
     $scope.newPassValidDirty = false;
   }
 };
 
 $scope.changePass = function(){
+  console.log("testchange pass");
   $scope.checkEmptyFields();
-  console.log("1");
   $scope.checkIdenticPassword();
-  console.log("2");
   $scope.checkPasswordIsValid();
-  console.log("3");
   if(!$scope.oldPassValid || !$scope.newPassValid || !$scope.repeatPassValid){
-    console.log("4");
   }
   else{
-    console.log("5");
-    $scope.checkChangePassServer();
-    console.log("6");
-  }
+   $scope.loadingChangePass = $ionicLoading.show({
+    template:'<ion-spinner class="spinnerLoading" icon="spiral"></ion-spinner>',
+    animation: 'fade-in',
+    showBackdrop: true
+  });
+   $scope.checkChangePassServer();
+ }
 };
 
 ////////////// log out /////////////////

@@ -1,6 +1,8 @@
 zonder.controller('answerZonderCtrl', function($scope, $state, $window, $ionicModal, CommentService, PollService, UserService, $ionicActionSheet, $cordovaSocialSharing, $cordovaStatusbar){
 
 ///////////////// Récupération des polls ////////////////////////////
+//boolean for css fix (max-width)
+$scope.displayPhotoTitle = false;
 
 $scope.pollsLoaded = new Array();
 $scope.pollsToBeLoaded = new Array();
@@ -20,8 +22,8 @@ $scope.queriesForPollsInfosPhotoAnswerZonder = new Array();
 
 $scope.getPollsToBeLoaded = function(callback){
 	// faire route server qui récupére 6 sondages lié à l'algo de distribution des polls
-	$scope.pollsToBeLoaded.push({id : "556701275abe6f8813000004"});
-	$scope.pollsToBeLoaded.push({id : "5567015f5abe6f8813000005"});
+	$scope.pollsToBeLoaded.push({id : "55c899c1f786b8f80e000004"});
+	$scope.pollsToBeLoaded.push({id : "55c899c1f786b8f80e000004"});
 	callback();
 };
 
@@ -41,11 +43,12 @@ $scope.getPollsInfosAnswerZonder = function(pollArray, callback){
               p.authorId = d.author;
               p.question = d.question;
               p.photoLeft = d.photoLeft;
+        
               p.photoRight = d.photoRight;
               p.gender = d.gender;
               p.range = d.range;
               p.votes = d.votes;
-              p.whoVotedWhat = d.whoVotedWhat;
+              // p.whoVotedWhat = d.whoVotedWhat;
               p.progression = d.progression;
               p.timePoll = d.timePoll;
               p.startDate = d.startDate;
@@ -123,8 +126,6 @@ $scope.queriesExecPollsInfosAnswerZonder = function(callback){
     callback();
   });
 };
-
-
 
 $scope.getUsersInfosAnswerZonder = function(pollArray, callback){
 	angular.forEach(pollArray, function(poll, key){
@@ -204,7 +205,6 @@ $scope.updateInformationsPolls = function(callback){
 			$scope.queriesForUserPhoto.splice(0,$scope.queriesForUserPhoto.length);
 			$scope.queriesForPollsInfosAnswerZonder.splice(0,$scope.queriesForPollsInfosAnswerZonder.length);
 			$scope.queriesForPollsInfosPhotoAnswerZonder.splice(0,$scope.queriesForPollsInfosPhotoAnswerZonder.length);
-			// $scope.htmlToImage();
 			callback();
 		});
 };
@@ -212,11 +212,13 @@ $scope.updateInformationsPolls = function(callback){
 $scope.firstLoadPoll = function(){
 	async.series([$scope.updateInformationsPolls,$scope.getNextPollUp,$scope.getNextPollDown],
 		function(err, result){
+			console.log("fin load answer poll");
 		});
 };
 
 $scope.getNextPollUp = function(callback){
 	$scope.pollUp = $scope.pollsLoaded.shift();
+	$scope.displayPhotoTitle = true;
 	$scope.imgPollUpLeftInfo = $scope.setPositionImageVoteAndZonder($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
 	$scope.imgPollUpRightInfo = $scope.setPositionImageVoteAndZonder($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
 	callback();
@@ -235,7 +237,11 @@ $scope.checkLengthAndGetMorePoll = function(){
 	}
 };
 
-$scope.firstLoadPoll();
+ $scope.firstLoadPoll();
+
+// window.setTimeout(function(){
+//   console.log("je lance answer poll");
+// }, 1000);
 
 ///////////// Action sheet option poll ////////////
 $scope.showActionsheetAnswerZonderUp = function() {
@@ -389,88 +395,149 @@ $scope.displayComments = function(poll){
 
 /////////////////////////  Comments modal Up ////////////////////////////////
 
-$ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
-    scope: $scope,
-    animation: 'slide-in-right',
-    backdropClickToClose: false
-  }).then(function(modal) {
-    $scope.commentsModalUp = modal;
-  });
 
-  $scope.openCommentsModalUp = function() {
-  	console.log("comments" + JSON.stringify($scope.pollUp.comments));
-  	$scope.pollUp.writeComment = "";
-	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
-	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
+$scope.openCommentsModalUp = function() {
+	$ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
+		scope: $scope,
+		animation: 'slide-in-right',
+		backdropClickToClose: false
+	}).then(function(modal) {
+		console.log("open comments modal up");
+		$scope.commentsModalUp = modal;
+		$scope.pollUp.writeComment = "";
+		$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
+		$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
 
-	if($scope.pollUp.comments.length){
-		$scope.displayComments($scope.pollUp);
-	}
+		if($scope.pollUp.comments.length){
+			$scope.displayComments($scope.pollUp);
+		}
 
-    $scope.commentsModalUp.show();
-    $cordovaStatusbar.hide();
-  };
+		$scope.commentsModalUp.show();
+		$cordovaStatusbar.hide();
+	});
+};
 
-  $scope.closeCommentsModalUp = function() {
-  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+$scope.closeCommentsModalUp = function() {
+	console.log("remove comments modal up");
+	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
 	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
   	$scope.pollUp.writeComment = "";
     $scope.commentsModalUp.hide();
-    $cordovaStatusbar.show();
-    $scope.$apply();
-  };
+	$scope.commentsModalDown.remove();
+	$cordovaStatusbar.show();
+	console.log("remove2 comments modal up");
+};
+
+
+ //  $scope.openCommentsModalUp = function() {
+ //  	console.log("comments" + JSON.stringify($scope.pollUp.comments));
+ //  	$scope.pollUp.writeComment = "";
+	// $scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
+	// $scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
+
+	// if($scope.pollUp.comments.length){
+	// 	$scope.displayComments($scope.pollUp);
+	// }
+
+ //    $scope.commentsModalUp.show();
+ //    $cordovaStatusbar.hide();
+ //  };
+
+ //  $scope.closeCommentsModalUp = function() {
+ //  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+	// $scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
+ //  	$scope.pollUp.writeComment = "";
+ //    $scope.commentsModalUp.hide();
+ //    $cordovaStatusbar.show();
+ //    $scope.$apply();
+ //  };
 
   $scope.$on('$destroy', function() {
     $scope.commentsModalUp.remove();
   });
 
-  $scope.$on('modal.hidden', function() {
-  });
+  // $scope.$on('modal.hidden', function() {
+  // 	 console.log("hidden comment modal up");
+  // });
 
-  $scope.$on('modal.removed', function() {
-  });
+  // $scope.$on('modal.removed', function() {
+  // 	 console.log("removed comment modal up");
+  // });
 
   
 /////////////////////////  Comments modal Down ////////////////////////////////
 
-$ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
-    scope: $scope,
-    animation: 'slide-in-right',
-    backdropClickToClose: false
-  }).then(function(modal) {
-    $scope.commentsModalDown = modal;
-  });
+$scope.openCommentsModalDown = function() {
+	$ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
+		scope: $scope,
+		animation: 'slide-in-right',
+		backdropClickToClose: false
+	}).then(function(modal) {
+		$scope.commentsModalDown = modal;
+		$scope.pollDown.writeComment = "";
+		$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthLeft, $scope.pollDown.imageHeightLeft);
+		$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthRight, $scope.pollDown.imageHeightRight);
 
-  $scope.openCommentsModalDown = function() {
-  	$scope.pollDown.writeComment = "";
-	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthLeft, $scope.pollDown.imageHeightLeft);
-	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthRight, $scope.pollDown.imageHeightRight);
+		if($scope.pollDown.comments.length){
+			$scope.displayComments($scope.pollDown);
+		}
 
-	if($scope.pollDown.comments.length){
-		$scope.displayComments($scope.pollDown);
-	}
-	
-    $scope.commentsModalDown.show();
-    $cordovaStatusbar.hide();
-  };
+		console.log("open comments modal down");
+		$scope.commentsModalDown.show();
+		$cordovaStatusbar.hide();
+	});
+};
 
-  $scope.closeCommentsModalDown = function() {
-  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+$scope.closeCommentsModalDown = function() {
+	console.log("remove comments modal down");
+	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
 	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
-  	$scope.pollDown.writeComment = "";
-    $scope.commentsModalDown.hide();
-    $cordovaStatusbar.show();
-    $scope.$apply();
-  };
+	$scope.pollDown.writeComment = "";
+	$scope.commentsModalDown.remove();
+	$cordovaStatusbar.show();
+	console.log("remove2 comments modal down");
+};
+
+// $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
+//     scope: $scope,
+//     animation: 'slide-in-right',
+//     backdropClickToClose: false
+//   }).then(function(modal) {
+//     $scope.commentsModalDown = modal;
+//   });
+
+//   $scope.openCommentsModalDown = function() {
+//   	$scope.pollDown.writeComment = "";
+// 	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthLeft, $scope.pollDown.imageHeightLeft);
+// 	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthRight, $scope.pollDown.imageHeightRight);
+
+// 	if($scope.pollDown.comments.length){
+// 		$scope.displayComments($scope.pollDown);
+// 	}
+	
+//     $scope.commentsModalDown.show();
+//     $cordovaStatusbar.hide();
+//   };
+
+ //  $scope.closeCommentsModalDown = function() {
+ //  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+	// $scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
+ //  	$scope.pollDown.writeComment = "";
+ //    $scope.commentsModalDown.hide();
+ //    $cordovaStatusbar.show();
+ //    $scope.$apply();
+ //  };
 
   $scope.$on('$destroy', function() {
     $scope.commentsModalDown.remove();
   });
 
   $scope.$on('modal.hidden', function() {
+  	 console.log("hidden comments modal down");
   });
 
   $scope.$on('modal.removed', function() {
+  	 console.log("hidden comments modal down");
   });
 
   ///////////////////////////////// send comment ////////////////////////////////////////////

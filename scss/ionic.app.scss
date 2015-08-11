@@ -331,11 +331,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 ///////////////////// forgotPassword /////////////////////
 #imgCloseForgotPassword{
-	width:28px;
+	/*width:28px;*/
 	z-index:11;
 	position:absolute;
 	left:12px;
-	top:36px;
+	top:32px;
 }
 
 #contentForgotPassword{
@@ -620,12 +620,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 //position ion slide
 .heightIonSlide{
-	height:calc( 667px - 200px );
+	height:calc( 668px - 200px );
 }
 
 //position ion-scroll
 .heightIonScroll{
-	height:calc( 667px - 200px );
+	height:calc( 668px - 200px );
 }
 
 ///////////////////  CSS d'un Zonder //////////////////
@@ -766,7 +766,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .contentPhotoLeft{
 	position:relative;
 	width:50%;
-	height:100%;
+	height:30vw;
 	overflow:hidden;
 }
 
@@ -781,7 +781,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	left:6px;
 	bottom:7px;
 	margin:0;
-	//min-width:40px;
 	max-width:80px;
 	-webkit-hyphens: auto;
 }
@@ -1127,9 +1126,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .posButtonClose{
 	z-index:26;
 	position:absolute;
-	width:28px;
+	/*width:28px;*/
 	left:12px;
-	top:36px;
+	top:32px;
 }
 
 //button parameter profile
@@ -1142,67 +1141,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	top:58px;
 }
 
-///////////////////// animation /////////////////////
-
-// animation suppression sondages
-
-
-.deletescalezonder.ng-leave.deletescalezonder.ng-leave-active,{
-	-webkit-transform: scaleY(0);
-	-moz-transform: scaleY(0);
-	-ms-transform: scaleY(0);
-	-o-transform: scaleY(0);
-	transform: scaleY(0);
-	height: 0px;
-	opacity: 0;
-}
-
-.deletescalezonder.ng-leave {
-	-webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	-moz-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	-ms-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	-o-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	-webkit-transform: scaleY(1);
-	-moz-transform: scaleY(1);
-	-ms-transform: scaleY(1);
-	-o-transform: scaleY(1);
-	transform: scaleY(1);
-	height: 200px;
-	opacity: 1;
-}
-
-
-.deletescalefriend.ng-leave.deletescalefriend.ng-leave-active,{
-	-webkit-transform: scaleY(0);
-	-moz-transform: scaleY(0);
-	-ms-transform: scaleY(0);
-	-o-transform: scaleY(0);
-	transform: scaleY(0);
-	height: 0px;
-	opacity: 0;
-}
-
-.deletescalefriend.ng-leave {
-	-webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	-moz-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	-ms-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	-o-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-	-webkit-transform: scaleY(1);
-	-moz-transform: scaleY(1);
-	-ms-transform: scaleY(1);
-	-o-transform: scaleY(1);
-	transform: scaleY(1);
-	height: 50px;
-	opacity: 1;
-}
-
-// animation des triangles du haut, translation vers le haut
-.animateTriangles{
-	-webkit-transform: translateY(-16%);
-	-webkit-transition: all 1s ease;
-}
 
 	////////////////////// Side Menu ////////////////////////
 	//div contenant les options du sidemenu
@@ -1223,7 +1161,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	#closeSideMenu{
 		position:absolute;
 		top:32px;
-		width:28px;
+		/*width:28px;*/
 		left:15px;
 	}
 
@@ -1558,7 +1496,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		position:absolute;
 		z-index: 16;
 		top:32px;
-		width:28px;
 		left:15px;
 	}
 
@@ -1574,7 +1511,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		position:absolute;
 		z-index: 16;
 		top:32px;
-		width:16px;
 		left:15px;
 	}
 
@@ -1870,6 +1806,98 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	}
 
 	///////////////////// animation /////////////////////
+
+/////////// test loading create Zonder //////////////
+
+.colorJaunePale{
+	background-color:#fcdd86;
+}
+.colorJaunePoussin{
+	background-color:#f9cc3d;
+}
+.colorJauneOrange{
+	background-color:#e8b000;
+}
+
+.infoCreateZonderTranslateUp{
+	-webkit-transform: translateY(0%); 
+	-webkit-transition: all 0.5s ease;
+}
+
+.infoCreateZonderTranslateDown{
+	-webkit-transform: translateY(46px); 
+	-webkit-transition: all 0.5s ease;
+}
+
+.jaunePaleLoad { background-color: #fcdd86 }
+.jaunePoussinLoad { background-color: #f9cc3d }
+.jauneOrangeLoad { background-color: #e8b000 }
+/*.blueLoad { background-color: #3369E8 }*/
+
+.loader {
+  position: relative;
+  /*margin: 0 auto;*/
+  width:100%;
+  height: 7px;
+  overflow: hidden;
+}
+.loader-element { 
+  position: absolute;
+  top: 0; left: 0;
+  height: 7px !important;
+  width: 100%;
+}
+
+.loader.go > div{
+  -webkit-animation: loading-bar 1.5s infinite backwards ease-out;
+}
+
+.loader.go div:nth-child(1) {
+  -webkit-animation-delay: -1.5s;
+}
+.loader.go div:nth-child(2) {
+  -webkit-animation-delay: -1s;
+}
+.loader.go div:nth-child(3) {
+  -webkit-animation-delay: -.5s;
+}
+
+@-webkit-keyframes loading-bar {
+  0% { 
+    -webkit-transform: scaleX(0);
+    z-index: 15;
+  }
+  22% { 
+    -webkit-transform: scaleX(0);
+    z-index: 15;
+  }
+  50% { 
+    -webkit-transform: scaleX(1);
+  }
+  90% { 
+    -webkit-transform: scaleX(1);
+    z-index: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    z-index: 0;
+  }
+}
+
+//////////////////////////////////
+
+
+	//Transition modal Create Zonder
+	.opacityTransitionOn{
+		opacity: 1;
+		-webkit-transition: all 0.1s ease-in;
+	}
+
+	.opacityTransitionOff{
+		opacity: 0;
+		-webkit-transition: all 0.1s linear;	
+	}
+
 	#load{
 		position:absolute;
 		left:50%;
@@ -1993,7 +2021,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 .translateNamePhotoHide{
-	-webkit-transform: translateX(-110%); 
+	-webkit-transform: translateX(-130%); 
 	-webkit-transition: all 0.5s ease;
 }
 
@@ -2042,6 +2070,66 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		-webkit-transition: all 0.5s ease 0.5s;
 	}
 
+
+// animation suppression sondages
+
+
+.deletescalezonder.ng-leave.deletescalezonder.ng-leave-active,{
+	-webkit-transform: scaleY(0);
+	-moz-transform: scaleY(0);
+	-ms-transform: scaleY(0);
+	-o-transform: scaleY(0);
+	transform: scaleY(0);
+	height: 0px;
+	opacity: 0;
+}
+
+.deletescalezonder.ng-leave {
+	-webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-moz-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-ms-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-o-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-webkit-transform: scaleY(1);
+	-moz-transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	-o-transform: scaleY(1);
+	transform: scaleY(1);
+	height: 200px;
+	opacity: 1;
+}
+
+
+.deletescalefriend.ng-leave.deletescalefriend.ng-leave-active,{
+	-webkit-transform: scaleY(0);
+	-moz-transform: scaleY(0);
+	-ms-transform: scaleY(0);
+	-o-transform: scaleY(0);
+	transform: scaleY(0);
+	height: 0px;
+	opacity: 0;
+}
+
+.deletescalefriend.ng-leave {
+	-webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-moz-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-ms-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-o-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+	-webkit-transform: scaleY(1);
+	-moz-transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	-o-transform: scaleY(1);
+	transform: scaleY(1);
+	height: 50px;
+	opacity: 1;
+}
+
+// animation des triangles du haut, translation vers le haut
+.animateTriangles{
+	-webkit-transform: translateY(-16%);
+	-webkit-transition: all 1s ease;
+}
 
 /*.translate-down{
 -webkit-animation-delay: 0.5s;
@@ -2333,7 +2421,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																			/*margin-top: -180px;*/
 																			/*padding-top: 180px;*/
 																			/*border:1px solid yellow;*/
-																			height:calc( 568px - 180px );
+																			height:calc( 569px - 180px );
 																		}
 
 																		//position ion-scroll
@@ -2342,7 +2430,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																			/*height:60vh !important;*/
 																			/*margin-top: -180px;*/
 																			/*padding-top: 180px;*/
-																			height:calc( 568px - 180px );
+																			height:calc( 569px - 180px );
 																		}
 
 																		//button parameter profile
@@ -2409,7 +2497,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																			margin-top: -180px;
 																			padding-top: 180px;*/
 																			/*border:1px solid blue;*/
-																			height:calc( 480px - 180px );
+																			height:calc( 481px - 180px );
 																		}
 
 																		//position ion-scroll
@@ -2418,7 +2506,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																			margin-top: -180px;*/
 																			/*padding-top: 180px;*/
 																			/*border:1px solid red;*/
-																			height:calc( 480px - 180px );
+																			height:calc( 481px - 180px );
 																		}
 
 																		#divTermsAndConditionButton{
@@ -2530,12 +2618,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 																		}
 																		//position ion slide
 																		.heightIonSlide{
-																			height:calc( 736px - 200px );
+																			height:calc( 737px - 200px );
 																		}
 
 																		//position ion-scroll
 																		.heightIonScroll{
-																			height:calc( 736px - 200px );
+																			height:calc( 737px - 200px );
 																		}
 																	}
 

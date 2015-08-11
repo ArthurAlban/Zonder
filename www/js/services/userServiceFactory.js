@@ -3,7 +3,7 @@ zonder.factory('UserService', function($http, $q) {
         logIn: function(mail, pass) {
             console.log("login");
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/login', {email : mail, password : pass})
+            $http.post("http://90.11.6.61" + '/user/login', {email : mail, password : pass})
             .success(function(data){
                 console.log("login OK "+ data);
                 deferred.resolve(data);
@@ -16,7 +16,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getUserInfoForLocalStorage: function() {
             var deferred = $q.defer();
-            $http.get("http://192.168.240.9" + '/user/getUserInfoForLocalStorage')
+            $http.get("http://90.11.6.61" + '/user/getUserInfoForLocalStorage')
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -28,7 +28,7 @@ zonder.factory('UserService', function($http, $q) {
             var deferred = $q.defer();
             console.log("user" + JSON.stringify(userInfo));
             console.log("user" + userInfo);
-            $http.post("http://192.168.240.9" + '/user/signup', {user : userInfo})
+            $http.post("http://90.11.6.61" + '/user/signup', {user : userInfo})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -38,7 +38,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         registerDevice: function(device){
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/registerDevice', {device : device})
+            $http.post("http://90.11.6.61" + '/user/registerDevice', {device : device})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -48,7 +48,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         logOut: function() {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/logout')
+            $http.post("http://90.11.6.61" + '/user/logout')
             .success(function(data){
                 deferred.resolve();
             }).error(function(data, status){
@@ -58,7 +58,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getUsers: function(data) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/getUsers', {search : data})
+            $http.post("http://90.11.6.61" + '/user/getUsers', {search : data})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -68,7 +68,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         addFriend: function(id) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/addFriend', {id : id})
+            $http.post("http://90.11.6.61" + '/user/addFriend', {id : id})
             .success(function(data){
                 console.log("AddfriendData  " +  data);
                 deferred.resolve(data);
@@ -81,7 +81,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         confirmationFriend: function(id) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/confirmationFriend', {id : id})
+            $http.post("http://90.11.6.61" + '/user/confirmationFriend', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -91,7 +91,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         deleteFriend: function(id) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/deleteFriend', {id : id})
+            $http.post("http://90.11.6.61" + '/user/deleteFriend', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -101,7 +101,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         deleteFriendToDelete: function(id) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/deleteFriendToDelete', {id : id})
+            $http.post("http://90.11.6.61" + '/user/deleteFriendToDelete', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -111,7 +111,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getFriendsToDelete: function() {
             var deferred = $q.defer();
-            $http.get("http://192.168.240.9" + '/user/getFriendsToDelete')
+            $http.get("http://90.11.6.61" + '/user/getFriendsToDelete')
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -121,7 +121,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         refuseFriend: function(id) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/refuseFriend', {id : id})
+            $http.post("http://90.11.6.61" + '/user/refuseFriend', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -131,7 +131,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getFriendInfoFromId: function(id) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/getFriendInfoFromId', {id : id})
+            $http.post("http://90.11.6.61" + '/user/getFriendInfoFromId', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -141,7 +141,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getFriendPhotoFromId: function(id) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/getFriendPhotoFromId', {id : id})
+            $http.post("http://90.11.6.61" + '/user/getFriendPhotoFromId', {id : id})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -151,7 +151,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         newPassword: function(oldPassword, newPassword, repeatPassword) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/newPassword', {oldPassword : oldPassword, newPassword : newPassword, repeatPassword : repeatPassword})
+            $http.post("http://90.11.6.61" + '/user/newPassword', {oldPassword : oldPassword, newPassword : newPassword, repeatPassword : repeatPassword})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -161,7 +161,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         notificationFriends: function(bool) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/notificationFriends', {acceptNotificationFriends : bool})
+            $http.post("http://90.11.6.61" + '/user/notificationFriends', {acceptNotificationFriends : bool})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -171,7 +171,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         notificationPolls: function(bool) {
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/notificationPolls', {acceptNotificationPolls : bool})
+            $http.post("http://90.11.6.61" + '/user/notificationPolls', {acceptNotificationPolls : bool})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -181,7 +181,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getFriends: function(index){
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/getFriends', {index : index})
+            $http.post("http://90.11.6.61" + '/user/getFriends', {index : index})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -191,7 +191,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getAllFriends: function(){
             var deferred = $q.defer();
-            $http.get("http://192.168.240.9" + '/user/getAllFriends')
+            $http.get("http://90.11.6.61" + '/user/getAllFriends')
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -201,7 +201,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getRequestFriends: function(){
             var deferred = $q.defer();
-            $http.get("http://192.168.240.9" + '/user/getRequestFriends')
+            $http.get("http://90.11.6.61" + '/user/getRequestFriends')
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -211,7 +211,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getAddFriends: function(){
             var deferred = $q.defer();
-            $http.get("http://192.168.240.9" + '/user/getAddFriends')
+            $http.get("http://90.11.6.61" + '/user/getAddFriends')
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -221,7 +221,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         setPhotoUser: function(photo){
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/setPhotoUser', {photo: photo})
+            $http.post("http://90.11.6.61" + '/user/setPhotoUser', {photo: photo})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -231,7 +231,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getNotificationFriends: function(){
             var deferred = $q.defer();
-            $http.get("http://192.168.240.9" + '/user/getNotificationFriends')
+            $http.get("http://90.11.6.61" + '/user/getNotificationFriends')
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -241,7 +241,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getNotificationPolls: function(){
             var deferred = $q.defer();
-            $http.get("http://192.168.240.9" + '/user/getNotificationPolls')
+            $http.get("http://90.11.6.61" + '/user/getNotificationPolls')
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -251,7 +251,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         checkEmail: function(email){
             var deferred = $q.defer();
-            $http.post("http://192.168.240.9" + '/user/checkEmail', {email : email})
+            $http.post("http://90.11.6.61" + '/user/checkEmail', {email : email})
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -261,7 +261,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         getMyId: function(){
             var deferred = $q.defer();
-            $http.get("http://192.168.240.9" + '/user/getMyId')
+            $http.get("http://90.11.6.61" + '/user/getMyId')
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -271,7 +271,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         // getJetons: function(){
         //     var deferred = $q.defer();
-        //     $http.get("http://192.168.240.9" + '/user/getJetons')
+        //     $http.get("http://90.11.6.61" + '/user/getJetons')
         //     .success(function(data){
         //         deferred.resolve(data);
         //     }).error(function(data, status){
@@ -281,7 +281,7 @@ zonder.factory('UserService', function($http, $q) {
         // },
         // changeJetons: function(jetons){
         //     var deferred = $q.defer();
-        //     $http.post("http://192.168.240.9" + '/user/changeJetons', {jetons : jetons})
+        //     $http.post("http://90.11.6.61" + '/user/changeJetons', {jetons : jetons})
         //     .success(function(data){
         //         deferred.resolve(data);
         //     }).error(function(data, status){
@@ -291,7 +291,7 @@ zonder.factory('UserService', function($http, $q) {
         // },
         isTokenValid: function(){
             var deferred = $q.defer();
-            $http.get("http://192.168.240.9" + '/user/isTokenValid')
+            $http.get("http://90.11.6.61" + '/user/isTokenValid')
             .success(function(data){
                 deferred.resolve(data);
             }).error(function(data, status){
@@ -301,7 +301,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         resetPassword: function(mail){
          var deferred = $q.defer();
-         $http.post("http://192.168.240.9" + '/user/resetPassword', {mail : mail})
+         $http.post("http://90.11.6.61" + '/user/resetPassword', {mail : mail})
          .success(function(data){
             deferred.resolve(data);
         }).error(function(data, status){
@@ -311,7 +311,7 @@ zonder.factory('UserService', function($http, $q) {
     },
     sendSignUpMail: function(mail, password){
      var deferred = $q.defer();
-     $http.post("http://192.168.240.9" + '/user/sendSignUpMail', {mail : mail, password: password})
+     $http.post("http://90.11.6.61" + '/user/sendSignUpMail', {mail : mail, password: password})
      .success(function(data){
         deferred.resolve(data);
     }).error(function(data, status){
@@ -321,7 +321,7 @@ zonder.factory('UserService', function($http, $q) {
 },
 deleteAccount: function(){
  var deferred = $q.defer();
- $http.post("http://192.168.240.9" + '/user/deleteAccount')
+ $http.post("http://90.11.6.61" + '/user/deleteAccount')
  .success(function(data){
     deferred.resolve(data);
 }).error(function(data, status){
@@ -331,7 +331,7 @@ return deferred.promise;
 },
 checkPseudo: function(pseudo){
     var deferred = $q.defer();
-    $http.post("http://192.168.240.9" + '/user/checkPseudo', {pseudo : pseudo})
+    $http.post("http://90.11.6.61" + '/user/checkPseudo', {pseudo : pseudo})
     .success(function(data){
         deferred.resolve(data);
     }).error(function(data, status){
@@ -341,7 +341,7 @@ checkPseudo: function(pseudo){
 },
 getImageFromGoogle: function(query){
     var deferred = $q.defer();
-    $http.post("http://192.168.240.9" + '/user/getImageFromGoogle', {query : query})
+    $http.post("http://90.11.6.61" + '/user/getImageFromGoogle', {query : query})
     .success(function(data){
         deferred.resolve(data);
     }).error(function(data, status){
@@ -351,7 +351,7 @@ getImageFromGoogle: function(query){
 },
 sendNotif: function(){
     var deferred = $q.defer();
-    $http.post("http://192.168.240.9" + '/user/sendNotifToAlban')
+    $http.post("http://90.11.6.61" + '/user/sendNotifToAlban')
     .success(function(data){
         deferred.resolve(data);
     }).error(function(data, status){
@@ -361,7 +361,7 @@ sendNotif: function(){
 },
 unregisterDevice: function(device){
     var deferred = $q.defer();
-    $http.post("http://192.168.240.9" + '/user/unregisterDevice', {device : device})
+    $http.post("http://90.11.6.61" + '/user/unregisterDevice', {device : device})
     .success(function(data){
         deferred.resolve(data);
     }).error(function(data, status){
@@ -371,7 +371,7 @@ unregisterDevice: function(device){
 },
 serverEvents: function(){
     var deferred = $q.defer();
-    $http.get("http://192.168.240.9" + '/user/serverEvents')
+    $http.get("http://90.11.6.61" + '/user/serverEvents')
     .success(function(data){
         deferred.resolve(data);
     }).error(function(data, status){

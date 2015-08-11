@@ -1,4 +1,4 @@
-zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, UserService, CommentService, PollService, $rootScope, $window, $ionicActionSheet, $cordovaStatusbar, $state){
+zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDelegate, UserService, CommentService, PollService, $rootScope, $window, $ionicActionSheet, $cordovaStatusbar, $state, $ionicLoading){
 
 	$scope.commentToDisplay = new Array();
 
@@ -6,43 +6,96 @@ zonder.controller('pollsCtrl', function($scope, $ionicModal, $ionicSlideBoxDeleg
 	$scope.imgRightInfoPollModal = new Array();
 
 ///////////////////////////////  slide 1 ///////////////////////////
-$ionicModal.fromTemplateUrl('modals/pollModal.html', {
-	scope: $scope,
-	animation: 'slide-in-right',
-	backdropClickToClose: false
-}).then(function(modal) {
-	$scope.pollModal = modal;
-});
-
 $scope.openPollModal = function(poll) {
+	$scope.loadingPollModal = $ionicLoading.show({
+			template:'<ion-spinner class="spinnerLoading" icon="spiral"></ion-spinner>',
+			animation: 'fade-in',
+			showBackdrop: true
+		});
+
+	$ionicModal.fromTemplateUrl('modals/pollModal.html', {
+		scope: $scope,
+		animation: 'slide-in-right',
+		backdropClickToClose: false
+	}).then(function(modal) {
+		$scope.pollModal = modal;
+		$scope.openPollModalFunction(poll);
+	});
+};
+
+$scope.openPollModalFunction = function(poll) {
 	$scope.displaySectionComments = false;
 	$scope.displaySectionVotes = false;
-	$scope.loadingVote = false;
-	$scope.loadVote = true;
+	$scope.loadWhoVotedWhatLeft = false;
+	$scope.loadWhoVotedWhatRight = false;
 	$scope.displayPourcentageAndOpacity = true;
+	$scope.$apply();
+
+	$scope.cptLeft = 0;
+	$scope.nbLoadsLeft = 0;
+	$scope.ligneImpairLeft = true;
+	$scope.positionLeft = false;
+	$scope.firstPositionPairLeft = false;
+
+	$scope.cptRight = 0;
+	$scope.nbLoadsRight = 0;
+	$scope.ligneImpairRight = true;
+	$scope.positionRight = false;
+	$scope.firstPositionPairRight = false;
+
+	$scope.displayInfiniteScrollVotedLeft = false;
+	$scope.bufferVotedLeft = new Array();
+
+	$scope.displayInfiniteScrollVotedRight = false;
+	$scope.bufferVotedRight = new Array();
+
+	// $scope.loadingVote = false;
+	// $scope.loadVote = true;
+
 	$scope.pollToDisplay = angular.copy(poll);
-	$scope.pollToDisplay.gender = "female";
-	$scope.pollToDisplay.range = "Monde";
+
 	$scope.imgLeftInfoPollModal = $scope.setPositionImageInCommentsAndPollModal($scope.pollToDisplay.imageWidthLeft, $scope.pollToDisplay.imageHeightLeft);
 	$scope.imgRightInfoPollModal = $scope.setPositionImageInCommentsAndPollModal($scope.pollToDisplay.imageWidthRight, $scope.pollToDisplay.imageHeightRight);
 	$scope.refreshPoll($scope.pollToDisplay);
+
 	$scope.pollModal.show();
 
-	$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
-	$scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
-	$scope.displayVoteFriends($scope.pollToDisplay);
-
+	// $scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
+	// $scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
+	// $scope.displayVoteFriends($scope.pollToDisplay);
 	$cordovaStatusbar.hide();
+	$scope.$apply();
 };
 
-$scope.closePollModal = function() {
-	$scope.loadVote = true;
-	$scope.loadingVote = false;
+$scope.closePollModal = function(){
+    $scope.pollModal.remove();
+    $scope.clearPollModal();
+    console.log("remove poll modal");
+};
+
+$scope.clearPollModal = function() {
+	$scope.cptLeft = 0;
+	$scope.nbLoadsLeft = 0;
+	$scope.ligneImpairLeft = true;
+	$scope.positionLeft = false;
+	$scope.firstPositionPairLeft = false;
+
+	$scope.cptRight = 0;
+	$scope.nbLoadsRight = 0;
+	$scope.ligneImpairRight = true;
+	$scope.positionRight = false;
+	$scope.firstPositionPairRight = false;
+
+	$scope.displayInfiniteScrollVotedLeft = false;
+	$scope.displayInfiniteScrollVotedRight = false;
+
 	$scope.displaySectionComments = false;
 	$scope.displaySectionVotes = false;
+	// $scope.loadingVote = false;
+	// $scope.loadVote = true;
+
 	$scope.displayPourcentageAndOpacity = true;
 	$scope.pollToDisplay.writeComment = "";
-	$scope.pollModal.hide();
 	$scope.pollToDisplay = {};
 	$cordovaStatusbar.show();
 };
@@ -53,11 +106,11 @@ $scope.$on('$destroy', function() {
 });
 
 $scope.$on('modal.hidden', function() {
-	console.log("hidden");
+	console.log("hidden poll modal");
 });
 
 $scope.$on('modal.removed', function() {
-	console.log("remove");
+	console.log("remove poll modal");
 });
 
 $scope.calculateTimePoll = function(callback){
@@ -97,12 +150,12 @@ $scope.calculateTimePoll = function(callback){
 	callback();
 };
 
-
-
 $scope.getPollsInfos = function(poll, callback){
 	PollService.getPollFromId(poll.id).then(function(d){
 		poll.votes = d.votes;
-		poll.whoVotedWhat = d.whoVotedWhat;
+		// poll.whoVotedWhat = d.whoVotedWhat;
+		poll.whoVotedLeft = new Array();
+		poll.whoVotedRight = new Array();
 		poll.progression = d.progression;
 		poll.timePoll = d.timePoll;
 		poll.startDate = d.startDate;
@@ -127,11 +180,14 @@ $scope.getPollsInfos = function(poll, callback){
 	});
 };
 
-
 $scope.refreshPoll = function(poll){
 	async.series([function(callback){$scope.getPollsInfos(poll, callback);},
 		$scope.calculateTimePoll],
 		function(err, res){
+			window.setTimeout(function(){
+				$scope.loadingPollModal.hide();
+				$scope.$apply();
+			}, 150);
 			console.log("fin refreshPoll");
 		});
 };
@@ -198,7 +254,6 @@ $scope.getCommentsPhotoUser = function(poll, callback){
 	callback();
 };
 
-
 $scope.queriesExecInfoComment = function(callback){
 	async.parallel($scope.queriesForCommentInfo,function(err, res){
 		callback();
@@ -216,7 +271,6 @@ $scope.queriesParallel = function(callback) {
 		callback();
 	});
 };
-
 
 $scope.displayComments = function(poll){
 		$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
@@ -266,11 +320,12 @@ $scope.getPhotoForFriends = function(poll, callback){
 	});
 };
 
-$scope.getPhotoForFriendsLeft = function(poll, callback){
-	angular.forEach(poll.whoVotedLeft, function(friend, key){
+$scope.getPhotoForFriendsLeft = function(votedLeft, callback){
+	console.log("getPhotoForFriendsLeft");
+	angular.forEach(votedLeft, function(friend, key){
 		var q = function(callback){
 			UserService.getFriendPhotoFromId(friend.id).then(function(d){
-				angular.forEach(poll.whoVotedLeft, function(f, k){
+				angular.forEach(votedLeft, function(f, k){
 					if(f.id == friend.id){
 						f.photo = d.photo;
 						callback();
@@ -285,11 +340,11 @@ $scope.getPhotoForFriendsLeft = function(poll, callback){
 	callback();
 };
 
-$scope.getPhotoForFriendsRight = function(poll, callback){
-	angular.forEach(poll.whoVotedRight, function(friend, key){
+$scope.getPhotoForFriendsRight = function(votedRight, callback){
+	angular.forEach(votedRight, function(friend, key){
 		var q = function(callback){
 			UserService.getFriendPhotoFromId(friend.id).then(function(d){
-				angular.forEach(poll.whoVotedRight, function(f, k){
+				angular.forEach(votedRight, function(f, k){
 					if(f.id == friend.id){
 						f.photo = d.photo;
 						callback();
@@ -304,137 +359,345 @@ $scope.getPhotoForFriendsRight = function(poll, callback){
 	callback();
 };
 
-
 $scope.queriesExecPhotoFriendsLeft = function(callback){
+	console.log("execLEft");
 	async.parallel($scope.queriesForPhotoFriendsLeft,function(err, res){
+		console.log("fin execLEft");
 		callback();
 	});
 };
 
 $scope.queriesExecPhotoFriendsRight= function(callback){
+	console.log("execRight");
 	async.parallel($scope.queriesForPhotoFriendsRight,function(err, res){
+		console.log("fin execRight");
 		callback();
 	});
 };
 
-$scope.queriesParallelPhotoFriends = function(callback) {
-	async.parallel([$scope.queriesExecPhotoFriendsLeft, $scope.queriesExecPhotoFriendsRight], function(err, res){
-		callback();
-	});
-};
+// $scope.queriesParallelPhotoFriends = function(callback) {
+// 	async.parallel([$scope.queriesExecPhotoFriendsLeft, $scope.queriesExecPhotoFriendsRight], function(err, res){
+// 		callback();
+// 	});
+// };
 
-$scope.displayVoteFriends = function(poll){
-	$scope.loadingVote = true;
 
-	var ligneImpairLeft = true;
-	var positionLeft = false;
-
-	var ligneImpairRight = true;
-	var positionRight = false;
-
-	var cptLeft = 0;
-	var cptRight = 0;
-
-	var firstPositionPairLeft = false;
-	var firstPositionPairRight = false;
-
-	poll.whoVotedLeft = new Array();
-	poll.whoVotedRight = new Array();
-
-	for(who in poll.whoVotedWhat){
-		if(poll.whoVotedWhat[who].choice == "left"){
-			if(cptLeft == 5 && ligneImpairLeft == false){
-				cptLeft = 0;
-				ligneImpairLeft = true;
-			}
-			if(cptLeft == 6 && ligneImpairLeft == true){
-				cptLeft = 0;
-				ligneImpairLeft = false;
-			}
-			if(cptLeft == 1 && ligneImpairLeft == false){
-				positionLeft = true;
-			}
-
-			if(positionLeft == false && ligneImpairLeft == false){
-				firstPositionPairLeft = true;
-			}
-
-			
-			poll.whoVotedLeft.push({id : poll.whoVotedWhat[who].id, firstPositionPair : firstPositionPairLeft, photo : "img/louis.png", ligneImpair: ligneImpairLeft, position : positionLeft, isClicked : false});
-			cptLeft++;
-			firstPositionPairLeft = false;
-			if(positionLeft && cptLeft == 5){
-				positionLeft = false;
-			}
-
+$scope.positionWhoVotedLeft = function(votedLeft, callback){
+	for(who in votedLeft){
+		if($scope.cptLeft == 5 && $scope.ligneImpairLeft == false){
+			$scope.cptLeft = 0;
+			$scope.ligneImpairLeft = true;
 		}
-		else if(poll.whoVotedWhat[who].choice == "right"){
-			if(cptRight == 5 && ligneImpairRight == false){
-				cptRight = 0;
-				ligneImpairRight = true;
-			}
-			if(cptRight == 6 && ligneImpairRight == true){
-				cptRight = 0;
-				ligneImpairRight = false;
-			}
-			if(cptRight == 1 && ligneImpairRight == false){
-				positionRight = true;
-			}
+		if($scope.cptLeft == 6 && $scope.ligneImpairLeft == true){
+			$scope.cptLeft = 0;
+			$scope.ligneImpairLeft = false;
+		}
+		if($scope.cptLeft == 1 && $scope.ligneImpairLeft == false){
+			$scope.positionLeft = true;
+		}
 
-			if(positionRight == false && ligneImpairRight == false){
-				firstPositionPairRight = true;
-			}
+		if($scope.positionLeft == false && $scope.ligneImpairLeft == false){
+			$scope.firstPositionPairLeft = true;
+		}
 
-			poll.whoVotedRight.push({id : poll.whoVotedWhat[who].id, firstPositionPair : firstPositionPairRight, photo : "img/louis.png", ligneImpair : ligneImpairRight, position : positionRight, isClicked : false});
-			cptRight++;
-			firstPositionPairRight = false;
-			if(positionRight && cptRight == 5){
-				positionRight = false;
-			}
+		$scope.bufferVotedLeft.push({id : votedLeft[who].id, firstPositionPair : $scope.firstPositionPairLeft, photo : "img/louis.png", ligneImpair: $scope.ligneImpairLeft, position : $scope.positionLeft, isClicked : false});
+		$scope.cptLeft++;
+		$scope.firstPositionPairLeft = false;
+		if($scope.positionLeft && $scope.cptLeft == 5){
+			$scope.positionLeft = false;
 		}
 	}
-	$scope.loadingVote = false;
-	$scope.loadVote = false;
-	async.series([function(callback){$scope.getPhotoForFriends(poll,callback)}, $scope.queriesParallelPhotoFriends], 
-		function(err, result){
-			$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
-			$scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
-			console.log("finloading");
-			$scope.$apply();
-		});
+	callback();
 };
 
+$scope.loadWhoVotedLeft = function(callback){
+	console.log("loads" + $scope.nbLoadsLeft);
+	PollService.getNextVotesLeft($scope.nbLoadsLeft, $scope.pollToDisplay.id).then(function(data){
+	console.log("data" + JSON.stringify(data));
+		if(data.votesLeft != "allVotesLeftLoaded"){
+			$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
+			async.series([function(callback){$scope.positionWhoVotedLeft(data.votesLeft, callback);}, 
+				function(callback){$scope.getPhotoForFriendsLeft($scope.bufferVotedLeft, callback)},
+				$scope.queriesExecPhotoFriendsLeft
+				],
+				function(err, res){
+					angular.forEach($scope.bufferVotedLeft, function(p, k){
+						$scope.pollToDisplay.whoVotedLeft.push(p);
+					});
+					
+					$scope.bufferVotedLeft.splice(0, $scope.bufferVotedLeft.length);
+					$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
+					console.log("fin load voted left");
+					callback();
+				});
+		}
+		else {
+			console.log("lol allVotesLeftLoaded");
+			$scope.displayInfiniteScrollVotedLeft = false;
+			callback();
+		}
+	}, function(status){
+		callback();
+	});
+};
 
-$scope.votesTest = function(){
-	console.log("debut")
-	$scope.displaySectionComments = false;
-	console.log("debut 1");
-	$scope.displaySectionVotes = !$scope.displaySectionVotes;
-	console.log("$scope.displaySectionVotes" + $scope.displaySectionVotes);
-	
-	if($scope.displaySectionVotes){
-		$scope.displayPourcentageAndOpacity = false;
-		console.log("falssssssssse");
+$scope.getStatusForWhoVotedLeft = function(data){
+	console.log("data.lengthGlobal" + data.lengthGlobal);
+	console.log("$scope.pollToDisplay.whoVotedLeft.length" + $scope.pollToDisplay.whoVotedLeft.length);
+	var modulo33 = $scope.pollToDisplay.whoVotedLeft.length % 33;
+	if($scope.pollToDisplay.whoVotedLeft.length == 0 && data.lengthGlobal > 0){
+		return true;
+	}
+	else if(data.lengthGlobal != $scope.pollToDisplay.whoVotedLeft.length){
+		if(data.lengthGlobal < 34){
+			return true;
+		}
+		else if(modulo33 != 0)
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	else{
-		$scope.displayPourcentageAndOpacity = true;
-		console.log("true");
+		return false;
 	}
+};
 
-	// $scope.displayPourcentageFunction();
+$scope.firstLoadWhoVotedLeft = function(callback){
+	var nbLoadsLeft = 0;
+	PollService.getNextVotesLeft(nbLoadsLeft, $scope.pollToDisplay.id).then(function(data){
+		$scope.statVoted = $scope.getStatusForWhoVotedLeft(data);
+		if($scope.statVoted){
+			if(data.votesLeft != "allVotesLeftLoaded"){
+				$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
+				async.series([function(callback){$scope.positionWhoVotedLeft(data.votesLeft, callback);}, 
+					function(callback){$scope.getPhotoForFriendsLeft($scope.bufferVotedLeft, callback)},
+					$scope.queriesExecPhotoFriendsLeft
+					],
+					function(err, res){
+						console.log("fin load voted left");
+						$scope.pollToDisplay.whoVotedLeft = angular.copy($scope.bufferVotedLeft);
+						$scope.bufferVotedLeft.splice(0, $scope.bufferVotedLeft.length);
+						$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
 
+						if($scope.pollToDisplay.whoVotedLeft.length > 32){
+							console.log("yes");
+							$scope.displayInfiniteScrollVotedLeft = true;
+						}
+						else{
+							$scope.displayInfiniteScrollVotedLeft = false;
+						}
+						callback();
+					});
+			}
+			else {
+				console.log("lol allVotesLeftLoaded");
+				$scope.displayInfiniteScrollVotedLeft = false;
+				callback();
+			}
+		}
+		else if(!$scope.statVoted){
+			callback();
+		}
+	}, function(status){
+		callback();
+	});
+};
+
+$scope.retrieveWhoVotedLeft = function(loadMoreWhoVoted){
+	if(loadMoreWhoVoted){
+		if($scope.displayInfiniteScrollVotedLeft){
+			$scope.nbLoadsLeft++;
+			console.log("go retrieve voted left");
+			async.series([$scope.loadWhoVotedLeft],
+				function(err, res){
+					console.log("fin fin fin fin who voted left load more");
+					$scope.$broadcast('scroll.infiniteScrollComplete');
+					$scope.$apply();
+				});
+		}
+	}
+	else{
+		console.log("go retrieve voted left");
+		async.series([$scope.firstLoadWhoVotedLeft],
+			function(err, res){
+				$scope.loadWhoVotedWhatLeft = false;
+				$scope.$apply();
+		});
+	}
+};
+
+$scope.positionWhoVotedRight = function(votedRight, callback){
+	for(who in votedRight){
+		if($scope.cptRight == 5 && $scope.ligneImpairRight == false){
+			$scope.cptRight = 0;
+			$scope.ligneImpairRight = true;
+		}
+		if($scope.cptRight == 6 && $scope.ligneImpairRight == true){
+			$scope.cptRight = 0;
+			$scope.ligneImpairRight = false;
+		}
+		if($scope.cptRight == 1 && $scope.ligneImpairRight == false){
+			$scope.positionRight = true;
+		}
+
+		if($scope.positionRight == false && $scope.ligneImpairRight == false){
+			$scope.firstPositionPairRight = true;
+		}
+
+		$scope.bufferVotedRight.push({id :  votedRight[who].id, firstPositionPair : $scope.firstPositionPairRight, photo : "img/louis.png", ligneImpair: $scope.ligneImpairRight, position : $scope.positionRight, isClicked : false});
+		$scope.cptRight++;
+		$scope.firstPositionPairRight = false;
+		if($scope.positionRight && $scope.cptRight == 5){
+			$scope.positionRight = false;
+		}
+	}
+	callback();
+};
+
+$scope.loadWhoVotedRight = function(callback){
+	console.log("loads" + $scope.nbLoadsRight);
+	PollService.getNextVotesRight($scope.nbLoadsRight, $scope.pollToDisplay.id).then(function(data){
+	console.log("data" + JSON.stringify(data));
+		if(data.votesRight != "allVotesRightLoaded"){
+			$scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
+			async.series([function(callback){$scope.positionWhoVotedRight(data.votesRight, callback);}, 
+				function(callback){$scope.getPhotoForFriendsRight($scope.bufferVotedRight, callback)},
+				$scope.queriesExecPhotoFriendsRight
+				],
+				function(err, res){
+					angular.forEach($scope.bufferVotedRight, function(p, k){
+						$scope.pollToDisplay.whoVotedRight.push(p);
+					});
+					
+					$scope.bufferVotedRight.splice(0, $scope.bufferVotedRight.length);
+					$scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
+					console.log("fin load voted right");
+					callback();
+				});
+		}
+		else {
+			console.log("lol allVotesRightLoaded");
+			$scope.displayInfiniteScrollVotedRight = false;
+			callback();
+		}
+	}, function(status){
+		callback();
+	});
+};
+
+$scope.getStatusForWhoVotedRight = function(data){
+	var modulo33 = $scope.pollToDisplay.whoVotedRight.length % 33;
+	if($scope.pollToDisplay.whoVotedRight.length == 0 && data.lengthGlobal > 0){
+		return true;
+	}
+	else if(data.lengthGlobal != $scope.pollToDisplay.whoVotedRight.length){
+		if(data.lengthGlobal < 34){
+			return true;
+		}
+		else if(modulo33 != 0)
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	else{
+		return false;
+	}
+};
+
+$scope.firstLoadWhoVotedRight = function(callback){
+	var nbLoadsRight = 0;
+	PollService.getNextVotesRight(nbLoadsRight, $scope.pollToDisplay.id).then(function(data){
+		$scope.statVotedRight = $scope.getStatusForWhoVotedRight(data);
+		if($scope.statVotedRight){
+			console.log("load right");
+			if(data.votesRight != "allVotesRightLoaded"){
+				console.log("load 2 right");
+				$scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
+				async.series([function(callback){$scope.positionWhoVotedRight(data.votesRight, callback);}, 
+					function(callback){$scope.getPhotoForFriendsRight($scope.bufferVotedRight, callback)},
+					$scope.queriesExecPhotoFriendsRight
+					],
+					function(err, res){
+						console.log("fin load voted right");
+						console.log("bufferVotedRight" + JSON.stringify($scope.bufferVotedRight));
+						$scope.pollToDisplay.whoVotedRight = angular.copy($scope.bufferVotedRight);
+						$scope.bufferVotedRight.splice(0, $scope.bufferVotedRight.length);
+						$scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
+
+						if($scope.pollToDisplay.whoVotedRight.length > 32){
+							console.log("yes");
+							$scope.displayInfiniteScrollVotedRight = true;
+						}
+						else{
+							$scope.displayInfiniteScrollVotedRight = false;
+						}
+						callback();
+					});
+			}
+			else {
+				console.log("lol allVotesRightLoaded");
+				$scope.displayInfiniteScrollVotedRight = false;
+				callback();
+			}
+		}
+		else if(!$scope.statVotedRight){
+			callback();
+		}
+	}, function(status){
+		callback();
+	});
+};
+
+$scope.retrieveWhoVotedRight = function(loadMoreWhoVoted, callback){
+	if(loadMoreWhoVoted){
+		if($scope.displayInfiniteScrollVotedRight){
+			$scope.nbLoadsRight++;
+			console.log("go retrieve voted Right");
+			async.series([$scope.loadWhoVotedRight],
+				function(err, res){
+					console.log("fin fin fin fin who voted right load more");
+					$scope.$broadcast('scroll.infiniteScrollComplete');
+					$scope.$apply();
+					callback();
+				});
+		}
+	}
+	else{
+		console.log("go firstLoadWhoVotedRight");
+		async.series([$scope.firstLoadWhoVotedRight],
+			function(err, res){
+				$scope.loadWhoVotedWhatRight = false;
+				$scope.$apply();
+				callback();
+		});
+	}
+};
+
+$scope.displayWhoVoted = function(){
+	console.log("debut")
+	$scope.displaySectionComments = false;
+	$scope.displaySectionVotes = !$scope.displaySectionVotes;
+	$scope.displayPourcentageFunction();
 	// $scope.$apply();
-
-	// $scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
+	$scope.queriesForPhotoFriendsLeft.splice(0, $scope.queriesForPhotoFriendsLeft.length);
 	// $scope.queriesForPhotoFriendsRight.splice(0, $scope.queriesForPhotoFriendsRight.length);
-	// if($scope.displaySectionVotes && $scope.pollToDisplay.whoVotedWhat.length && $scope.loadVote && !$scope.loadingVote){ 
-	// 	console.log("Loading");
-	// 	$scope.loadingVote = true;
-	// 	$window.setTimeout(function() {
-	// 		console.log("StartTimeOut");
-	// 		$scope.displayVoteFriends($scope.pollToDisplay);
-	// 	}, 3000);
-	// }
-}; 	
+	if($scope.displaySectionVotes){ 
+		$scope.loadWhoVotedWhatLeft = true;
+		$scope.loadWhoVotedWhatRight = true;
+		async.parallel([function(callback){$scope.retrieveWhoVotedLeft(false, callback);},
+			function(callback){$scope.retrieveWhoVotedRight(false, callback);}
+			],
+			function(err, res){
+		});
+	}
+};
+
+
 
 });

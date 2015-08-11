@@ -44,10 +44,6 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   .state('home', {
     url: "/home",
     templateUrl: "templates/home.html"
-  })
-  .state('pollInfo', {
-    url: "/pollInfo",
-    templateUrl: "templates/pollInfo.html"
   });
   // if none of the above states are matched, use this as the fallback
 

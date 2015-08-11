@@ -2,7 +2,7 @@ zonder.factory('CommentService', function($http, $q) {
 	var factory = {
 		getCommentsInfoById: function(id){
 			var deferred = $q.defer();
-			$http.post("http://192.168.240.9" + '/comment/getCommentsInfoById', {id : id})     
+			$http.post("http://90.11.6.61" + '/comment/getCommentsInfoById', {id : id})     
 			.success(function(data){
 				deferred.resolve(data);
 			}).error(function(data, status){
@@ -13,4 +13,5 @@ zonder.factory('CommentService', function($http, $q) {
 	};
 
 	return factory;
+	
 });
