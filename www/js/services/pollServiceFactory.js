@@ -100,6 +100,26 @@ zonder.factory('PollService', function($http, $q) {
             });
             return deferred.promise;
         },
+         getNextVotesLeft: function(index, id){
+            var deferred = $q.defer();
+            $http.post("http://90.11.6.61" + '/poll/getNextVotesLeft', {index : index, id : id})     
+            .success(function(data){
+                deferred.resolve(data);
+            }).error(function(data, status){
+                deferred.reject(status);
+            });
+            return deferred.promise;
+        },
+         getNextVotesRight: function(index, id){
+            var deferred = $q.defer();
+            $http.post("http://90.11.6.61" + '/poll/getNextVotesRight', {index : index, id : id})     
+            .success(function(data){
+                deferred.resolve(data);
+            }).error(function(data, status){
+                deferred.reject(status);
+            });
+            return deferred.promise;
+        },
         voteAndUpdatePoll: function(idPoll, choice){
          var deferred = $q.defer();
          $http.post("http://90.11.6.61" + '/poll/voteAndUpdatePoll', {idPoll : idPoll, choice : choice})     

@@ -4624,7 +4624,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   .loading-container.active {
     opacity: 1; }
   .loading-container .loading {
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
@@ -7847,11 +7847,11 @@ a.button {
   top: 81%; }
 
 #imgCloseForgotPassword {
-  width: 28px;
+  /*width:28px;*/
   z-index: 11;
   position: absolute;
   left: 12px;
-  top: 36px; }
+  top: 32px; }
 
 #contentForgotPassword {
   position: absolute;
@@ -8083,10 +8083,10 @@ a.button {
   height: 7px; }
 
 .heightIonSlide {
-  height: calc( 667px - 200px); }
+  height: calc( 668px - 200px); }
 
 .heightIonScroll {
-  height: calc( 667px - 200px); }
+  height: calc( 668px - 200px); }
 
 .divContentZonder {
   position: relative;
@@ -8378,8 +8378,8 @@ a.button {
 #posButtonMenu {
   z-index: 11;
   position: absolute;
-  left: 20px;
-  top: 32px; }
+  left: 14px;
+  top: 26px; }
 
 #posPseudoUser {
   z-index: 11;
@@ -8480,16 +8480,17 @@ a.button {
 .posButtonClose {
   z-index: 26;
   position: absolute;
-  width: 28px;
+  /*width:28px;*/
   left: 12px;
-  top: 36px; }
+  top: 32px; }
 
 .posParameterProfile {
   z-index: 26;
   position: absolute;
-  padding: 4px;
-  right: 32px;
-  top: 75px; }
+  padding: 0 !important;
+  height: 33px;
+  right: 31px;
+  top: 58px; }
 
 #divMenusSideMenu {
   position: absolute;
@@ -8504,7 +8505,7 @@ a.button {
 #closeSideMenu {
   position: absolute;
   top: 32px;
-  width: 28px;
+  /*width:28px;*/
   left: 15px; }
 
 #textMenuSideMenu {
@@ -9024,6 +9025,79 @@ a.button {
   -webkit-align-items: center;
   -webkit-justify-content: flex-start; }
 
+.colorJaunePale {
+  background-color: #fcdd86; }
+
+.colorJaunePoussin {
+  background-color: #f9cc3d; }
+
+.colorJauneOrange {
+  background-color: #e8b000; }
+
+.infoCreateZonderTranslateUp {
+  -webkit-transform: translateY(0%);
+  -webkit-transition: all 0.5s ease; }
+
+.infoCreateZonderTranslateDown {
+  -webkit-transform: translateY(46px);
+  -webkit-transition: all 0.5s ease; }
+
+.jaunePaleLoad {
+  background-color: #fcdd86; }
+
+.jaunePoussinLoad {
+  background-color: #f9cc3d; }
+
+.jauneOrangeLoad {
+  background-color: #e8b000; }
+
+/*.blueLoad { background-color: #3369E8 }*/
+.loader {
+  position: relative;
+  /*margin: 0 auto;*/
+  width: 100%;
+  height: 7px;
+  overflow: hidden; }
+
+.loader-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 7px !important;
+  width: 100%; }
+
+.loader.go > div {
+  -webkit-animation: loading-bar 1.5s infinite backwards ease-out; }
+
+.loader.go div:nth-child(1) {
+  -webkit-animation-delay: -1.5s; }
+
+.loader.go div:nth-child(2) {
+  -webkit-animation-delay: -1s; }
+
+.loader.go div:nth-child(3) {
+  -webkit-animation-delay: -.5s; }
+
+@-webkit-keyframes loading-bar {
+  0% {
+    -webkit-transform: scaleX(0);
+    z-index: 15; }
+
+  22% {
+    -webkit-transform: scaleX(0);
+    z-index: 15; }
+
+  50% {
+    -webkit-transform: scaleX(1); }
+
+  90% {
+    -webkit-transform: scaleX(1);
+    z-index: 1; }
+
+  100% {
+    -webkit-transform: scaleX(1);
+    z-index: 0; } }
+
 .opacityTransitionOn {
   opacity: 1;
   -webkit-transition: all 0.1s ease-in; }
@@ -9129,7 +9203,7 @@ a.button {
   -webkit-transition: all 0.6s linear; }
 
 .translateNamePhotoHide {
-  -webkit-transform: translateX(-110%);
+  -webkit-transform: translateX(-130%);
   -webkit-transition: all 0.5s ease; }
 
 .translateNamePhotoShow {
@@ -9465,18 +9539,20 @@ a.button {
     /*margin-top: -180px;*/
     /*padding-top: 180px;*/
     /*border:1px solid yellow;*/
-    height: calc( 568px - 180px); }
+    height: calc( 569px - 180px); }
   .heightIonScroll {
     /*margin:0;*/
     /*height:60vh !important;*/
     /*margin-top: -180px;*/
     /*padding-top: 180px;*/
-    height: calc( 568px - 180px); }
+    height: calc( 569px - 180px); }
   .posParameterProfile {
     z-index: 26;
     position: absolute;
+    padding: 0 !important;
+    height: 33px;
     right: 22px;
-    top: 72px; }
+    top: 52px; }
   .divTransparency {
     position: relative;
     width: 100%;
@@ -9511,13 +9587,13 @@ a.button {
 																			margin-top: -180px;
 																			padding-top: 180px;*/
     /*border:1px solid blue;*/
-    height: calc( 480px - 180px); }
+    height: calc( 481px - 180px); }
   .heightIonScroll {
     /*height:100vh;
 																			margin-top: -180px;*/
     /*padding-top: 180px;*/
     /*border:1px solid red;*/
-    height: calc( 480px - 180px); }
+    height: calc( 481px - 180px); }
   #divTermsAndConditionButton {
     position: absolute;
     top: 78%;
@@ -9525,8 +9601,10 @@ a.button {
   .posParameterProfile {
     z-index: 26;
     position: absolute;
+    padding: 0 !important;
+    height: 33px;
     right: 22px;
-    top: 72px; }
+    top: 52px; }
   .divTransparency {
     position: relative;
     width: 100%;
@@ -9587,6 +9665,6 @@ a.button {
     -webkit-transform: translateY(493px);
     -webkit-transition: all 0.5s ease; }
   .heightIonSlide {
-    height: calc( 736px - 200px); }
+    height: calc( 737px - 200px); }
   .heightIonScroll {
-    height: calc( 736px - 200px); } }
+    height: calc( 737px - 200px); } }

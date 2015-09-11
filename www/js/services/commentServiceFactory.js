@@ -13,4 +13,5 @@ zonder.factory('CommentService', function($http, $q) {
 	};
 
 	return factory;
+	
 });

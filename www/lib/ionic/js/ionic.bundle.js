@@ -41703,6 +41703,7 @@ function($rootScope, $compile, $animate, $timeout, $ionicTemplateLoader, $ionicP
       stateChangeListenDone();
 
       $animate.removeClass(element, 'active').then(function() {
+        console.log("removeclass");
         scope.$destroy();
         element.remove();
         // scope.cancel.$scope is defined near the bottom
@@ -41737,6 +41738,7 @@ function($rootScope, $compile, $animate, $timeout, $ionicTemplateLoader, $ionicP
 
     // called when the user presses the cancel button
     scope.cancel = function() {
+      console.log("cancel");
       // after the animation is out, call the cancel callback
       scope.removeSheet(opts.cancel);
     };
@@ -41744,7 +41746,9 @@ function($rootScope, $compile, $animate, $timeout, $ionicTemplateLoader, $ionicP
     scope.buttonClicked = function(index) {
       // Check if the button click event returned true, which means
       // we can close the action sheet
+      console.log("buttonclick1");
       if (opts.buttonClicked(index, opts.buttons[index]) === true) {
+        console.log("buttonclick2");
         scope.removeSheet();
       }
     };
@@ -41752,7 +41756,9 @@ function($rootScope, $compile, $animate, $timeout, $ionicTemplateLoader, $ionicP
     scope.destructiveButtonClicked = function() {
       // Check if the destructive button click event returned true, which means
       // we can close the action sheet
+      console.log("destructiveclick1");
       if (opts.destructiveButtonClicked() === true) {
+        console.log("destructiveclick2");
         scope.removeSheet();
       }
     };

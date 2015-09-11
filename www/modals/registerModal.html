@@ -12,7 +12,7 @@
 
 <ion-slide-box delegate-handle="registerSlider" on-slide-changed="slideHasChangedInRegister($index)" ng-init="disableSwipe()" show-pager="true" id="registerSlideBox">
 
-<ion-slide style="width:100vw;height:100vh">
+<ion-slide>
 
 <form name="registerFirstStepForm" ng-submit="nextStepRegister()" novalidate>
   <div id="divRegisterFirstStep">
@@ -60,10 +60,10 @@
         <img ng-if="!pseudoIsValid" src="img/error.png" width="20" ng-click="displayPseudoPopup()">
       </i>
     </div>
-    
+
   </div>
 
-  <div id="divTermsAndConditionButton">
+   <div id="divTermsAndConditionButton">
     <p class="termsAndConditions">
       I accept <a href="#">«Terms and Conditions»</a>
     </p>
@@ -71,6 +71,7 @@
       NEXT STEP
     </button>
   </div>
+  
 </form>
 
 </ion-slide>
@@ -128,7 +129,7 @@
 
 </ion-slide-box>
 
-<p ng-click="closeRegisterModal()" class="footerRegister">
+<p ng-click="closeRegisterModalWithRemove()" class="footerRegister">
   ALREADY HAVE AN ACCOUNT ?
 </p>
 

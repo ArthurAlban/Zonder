@@ -22,8 +22,9 @@ $scope.queriesForPollsInfosPhotoAnswerZonder = new Array();
 
 $scope.getPollsToBeLoaded = function(callback){
 	// faire route server qui récupére 6 sondages lié à l'algo de distribution des polls
-	$scope.pollsToBeLoaded.push({id : "55784d3415ea09dc17000004"});
-	$scope.pollsToBeLoaded.push({id : "55784df315ea09dc17000005"});
+
+	$scope.pollsToBeLoaded.push({id : "55c9facdf786b8f80e000005"});
+	$scope.pollsToBeLoaded.push({id : "55c9facdf786b8f80e000005"});
 	callback();
 };
 
@@ -34,57 +35,54 @@ $scope.getInfosUsersAndPollPhotoAnswerZonder = function(pollArray, callback){
 };
 
 $scope.getPollsInfosAnswerZonder = function(pollArray, callback){
-	if(pollArray.length){
-		angular.forEach(pollArray, function(poll, key){ 
-			var q = function(callback){
-				PollService.getPollFromId(poll.id).then(function(d){
-					console.log("answerZonderCtrl DEBUG 4");
-					angular.forEach(pollArray, function(p, k){
-						if(p.id == poll.id){
-							console.log("answerZonderCtrl DEBUG 6" + JSON.stringify(d));
-							p.authorId = d.author;
 
-							p.question = d.question;
-							p.photoLeft = d.photoLeft;
+  if(pollArray.length){
+    angular.forEach(pollArray, function(poll, key){ 
+      var q = function(callback){
+        PollService.getPollFromId(poll.id).then(function(d){
+          angular.forEach(pollArray, function(p, k){
+            if(p.id == poll.id){
+              p.authorId = d.author;
+              p.question = d.question;
+              p.photoLeft = d.photoLeft;
+        
+              p.photoRight = d.photoRight;
+              p.gender = d.gender;
+              p.range = d.range;
+              p.votes = d.votes;
+              // p.whoVotedWhat = d.whoVotedWhat;
+              p.progression = d.progression;
+              p.timePoll = d.timePoll;
+              p.startDate = d.startDate;
+              p.photoLeftVote = d.photoLeftVote;
+              p.photoRightVote = d.photoRightVote;
+              p.pourcentagePhotoLeft = d.pourcentagePhotoLeft;
+              p.pourcentagePhotoRight = d.pourcentagePhotoRight;
+              p.comments = d.comments;
+              p.firstName = d.firstName;
+              p.secondName = d.secondName;
+              p.friendsConcerned = d.friendsConcerned;
+              p.usersConcerned = d.usersConcerned;
+              p.isOver = d.isOver;
 
-							p.photoRight = d.photoRight;
-							p.gender = d.gender;
-							p.range = d.range;
-
-							p.votes = d.votes;
-							p.progression = d.progression;
-							p.timePoll = d.timePoll;
-							p.startDate = d.startDate;
-							p.photoLeftVote = d.photoLeftVote;
-							p.photoRightVote = d.photoRightVote;
-							p.pourcentagePhotoLeft = d.pourcentagePhotoLeft;
-							p.pourcentagePhotoRight = d.pourcentagePhotoRight;
-							p.comments = d.comments;
-							p.firstName = d.firstName;
-							p.secondName = d.secondName;
-							p.friendsConcerned = d.friendsConcerned;
-							p.usersConcerned = d.usersConcerned;
-							p.isOver = d.isOver;
-
-							var time = $scope.getTimeHoursMinutesFromPoll(p);
-							p.timeElapsedHours = time.hours;
-							p.timeElapsedMinutes = time.minutes;
-
-						}
-					});
-callback();
-}, function(status){
-	console.log("Impossible de récuperer les infos basic du sondage");
-	callback();
-});
-};
-$scope.queriesForPollsInfosAnswerZonder.push(q);
-});
-callback();
-}
-else {
-	callback();
-}
+              var time = $scope.getTimeHoursMinutesFromPoll(p);
+              p.timeElapsedHours = time.hours;
+              p.timeElapsedMinutes = time.minutes;
+            }
+          });
+          callback();
+        }, function(status){
+          console.log("Impossible de récuperer les infos basic du sondage");
+          callback();
+        });
+      };
+      $scope.queriesForPollsInfosAnswerZonder.push(q);
+    });
+    callback();
+  }
+  else {
+    callback();
+  }
 };
 
 $scope.getInfoPhotoPollAnswerZonder = function(pollArray, callback){
@@ -130,8 +128,6 @@ $scope.queriesExecPollsInfosAnswerZonder = function(callback){
 		callback();
 	});
 };
-
-
 
 $scope.getUsersInfosAnswerZonder = function(pollArray, callback){
 	angular.forEach(pollArray, function(poll, key){
@@ -211,7 +207,6 @@ $scope.updateInformationsPolls = function(callback){
 			$scope.queriesForUserPhoto.splice(0,$scope.queriesForUserPhoto.length);
 			$scope.queriesForPollsInfosAnswerZonder.splice(0,$scope.queriesForPollsInfosAnswerZonder.length);
 			$scope.queriesForPollsInfosPhotoAnswerZonder.splice(0,$scope.queriesForPollsInfosPhotoAnswerZonder.length);
-			// $scope.htmlToImage();
 			callback();
 		});
 };
@@ -219,6 +214,7 @@ $scope.updateInformationsPolls = function(callback){
 $scope.firstLoadPoll = function(){
 	async.series([$scope.updateInformationsPolls,$scope.getNextPollUp,$scope.getNextPollDown],
 		function(err, result){
+			console.log("fin load answer poll");
 		});
 };
 
@@ -243,7 +239,11 @@ $scope.checkLengthAndGetMorePoll = function(){
 	}
 };
 
-$scope.firstLoadPoll();
+ $scope.firstLoadPoll();
+
+// window.setTimeout(function(){
+//   console.log("je lance answer poll");
+// }, 1000);
 
 ///////////// Action sheet option poll ////////////
 $scope.showActionsheetAnswerZonderUp = function() {
@@ -397,87 +397,151 @@ $scope.displayComments = function(poll){
 
 /////////////////////////  Comments modal Up ////////////////////////////////
 
-$ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
-	scope: $scope,
-	animation: 'slide-in-right'
-}).then(function(modal) {
-	$scope.commentsModalUp = modal;
-});
 
 $scope.openCommentsModalUp = function() {
-	console.log("comments" + JSON.stringify($scope.pollUp.comments));
-	$scope.pollUp.writeComment = "";
-	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
-	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
+	$ionicModal.fromTemplateUrl('modals/commentsModalUp.html', {
+		scope: $scope,
+		animation: 'slide-in-right',
+		backdropClickToClose: false
+	}).then(function(modal) {
+		console.log("open comments modal up");
+		$scope.commentsModalUp = modal;
+		$scope.pollUp.writeComment = "";
+		$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
+		$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
 
-	if($scope.pollUp.comments.length){
-		$scope.displayComments($scope.pollUp);
-	}
+		if($scope.pollUp.comments.length){
+			$scope.displayComments($scope.pollUp);
+		}
 
-	$scope.commentsModalUp.show();
-	$cordovaStatusbar.hide();
+		$scope.commentsModalUp.show();
+		$cordovaStatusbar.hide();
+	});
 };
 
 $scope.closeCommentsModalUp = function() {
+	console.log("remove comments modal up");
 	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
 	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
-	$scope.pollUp.writeComment = "";
-	$scope.commentsModalUp.hide();
+  	$scope.pollUp.writeComment = "";
+    $scope.commentsModalUp.hide();
+	$scope.commentsModalDown.remove();
 	$cordovaStatusbar.show();
-	$scope.$apply();
+	console.log("remove2 comments modal up");
 };
+
+
+ //  $scope.openCommentsModalUp = function() {
+ //  	console.log("comments" + JSON.stringify($scope.pollUp.comments));
+ //  	$scope.pollUp.writeComment = "";
+	// $scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthLeft, $scope.pollUp.imageHeightLeft);
+	// $scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollUp.imageWidthRight, $scope.pollUp.imageHeightRight);
+
+	// if($scope.pollUp.comments.length){
+	// 	$scope.displayComments($scope.pollUp);
+	// }
+
+ //    $scope.commentsModalUp.show();
+ //    $cordovaStatusbar.hide();
+ //  };
+
+ //  $scope.closeCommentsModalUp = function() {
+ //  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+	// $scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
+ //  	$scope.pollUp.writeComment = "";
+ //    $scope.commentsModalUp.hide();
+ //    $cordovaStatusbar.show();
+ //    $scope.$apply();
+ //  };
 
 $scope.$on('$destroy', function() {
 	$scope.commentsModalUp.remove();
 });
 
-$scope.$on('modal.hidden', function() {
-});
+  // $scope.$on('modal.hidden', function() {
+  // 	 console.log("hidden comment modal up");
+  // });
 
-$scope.$on('modal.removed', function() {
-});
-
+  // $scope.$on('modal.removed', function() {
+  // 	 console.log("removed comment modal up");
+  // });
 
 /////////////////////////  Comments modal Down ////////////////////////////////
 
-$ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
-	scope: $scope,
-	animation: 'slide-in-right'
-}).then(function(modal) {
-	$scope.commentsModalDown = modal;
-});
-
 $scope.openCommentsModalDown = function() {
-	$scope.pollDown.writeComment = "";
-	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthLeft, $scope.pollDown.imageHeightLeft);
-	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthRight, $scope.pollDown.imageHeightRight);
+	$ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
+		scope: $scope,
+		animation: 'slide-in-right',
+		backdropClickToClose: false
+	}).then(function(modal) {
+		$scope.commentsModalDown = modal;
+		$scope.pollDown.writeComment = "";
+		$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthLeft, $scope.pollDown.imageHeightLeft);
+		$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthRight, $scope.pollDown.imageHeightRight);
 
-	if($scope.pollDown.comments.length){
-		$scope.displayComments($scope.pollDown);
-	}
-	
-	$scope.commentsModalDown.show();
-	$cordovaStatusbar.hide();
+		if($scope.pollDown.comments.length){
+			$scope.displayComments($scope.pollDown);
+		}
+
+		console.log("open comments modal down");
+		$scope.commentsModalDown.show();
+		$cordovaStatusbar.hide();
+	});
 };
 
 $scope.closeCommentsModalDown = function() {
+	console.log("remove comments modal down");
 	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
 	$scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
 	$scope.pollDown.writeComment = "";
-	$scope.commentsModalDown.hide();
+	$scope.commentsModalDown.remove();
 	$cordovaStatusbar.show();
-	$scope.$apply();
+	console.log("remove2 comments modal down");
 };
+
+// $ionicModal.fromTemplateUrl('modals/commentsModalDown.html', {
+//     scope: $scope,
+//     animation: 'slide-in-right',
+//     backdropClickToClose: false
+//   }).then(function(modal) {
+//     $scope.commentsModalDown = modal;
+//   });
+
+//   $scope.openCommentsModalDown = function() {
+//   	$scope.pollDown.writeComment = "";
+// 	$scope.imgLeftInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthLeft, $scope.pollDown.imageHeightLeft);
+// 	$scope.imgRightInfoComments = $scope.setPositionImageInCommentsAndPollModal($scope.pollDown.imageWidthRight, $scope.pollDown.imageHeightRight);
+
+// 	if($scope.pollDown.comments.length){
+// 		$scope.displayComments($scope.pollDown);
+// 	}
+	
+//     $scope.commentsModalDown.show();
+//     $cordovaStatusbar.hide();
+//   };
+
+ //  $scope.closeCommentsModalDown = function() {
+ //  	$scope.queriesForCommentInfo.splice(0, $scope.queriesForCommentInfo.length);
+	// $scope.queriesForCommentphotoUser.splice(0, $scope.queriesForCommentphotoUser.length);
+ //  	$scope.pollDown.writeComment = "";
+ //    $scope.commentsModalDown.hide();
+ //    $cordovaStatusbar.show();
+ //    $scope.$apply();
+ //  };
+
 
 $scope.$on('$destroy', function() {
 	$scope.commentsModalDown.remove();
 });
 
-$scope.$on('modal.hidden', function() {
-});
 
-$scope.$on('modal.removed', function() {
-});
+  $scope.$on('modal.hidden', function() {
+  	 console.log("hidden comments modal down");
+  });
+
+  $scope.$on('modal.removed', function() {
+  	 console.log("hidden comments modal down");
+  });
 
   ///////////////////////////////// send comment ////////////////////////////////////////////
 

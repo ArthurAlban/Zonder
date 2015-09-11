@@ -426,7 +426,13 @@ $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
 
 
   	if($scope.confirmFriend){
+  		console.log("confirmFriend");
   		if(lengthToString.slice(-1) != "0"){
+  			console.log("true");
+  			return true;
+  		}
+  		else if(!$scope.displayFriends.length){
+  			console.log("load friends when displayfriends vide");
   			return true;
   		}
   		else if($scope.nbLoadsFriends == nbLoadsMax) {
@@ -435,6 +441,7 @@ $scope.firstBufferFriends = function(isLoadMoreFriends, callback){
   	}
 
   	if(!$scope.confirmFriend){
+  		console.log("not confirmFriend");
   		if(lengthToString.slice(-1) != "0"){
   			if(data.lengthGlobal != $scope.displayFriends.length){
   				return true;
@@ -519,7 +526,9 @@ $scope.fillQueriesAllFriends = function(pollArray, callback){
 /// comparer id toppolls et id data && vérifier meme taille si pareil alors 304 si un différent alors 200
 $scope.checkAndLoadFriends = function(callback){
 	UserService.getFriends(0).then(function(data){
+		console.log("getFriends" + JSON.stringify(data.friend));
 		$scope.friendStatus = $scope.getStatusForFriends(data);
+		console.log("status" + $scope.friendStatus);
 		if($scope.friendStatus){
 			if(data.friend != "allFriendsLoaded"){
 				$scope.nbLoadsFriends = 0;
@@ -528,6 +537,7 @@ $scope.checkAndLoadFriends = function(callback){
 				$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
 				async.series([function(callback){$scope.fillQueriesAllFriends($scope.bufferFriends, callback);}],
 					function(err, res){
+						console.log("copyDisplayFriends");
 						$scope.displayFriends = angular.copy($scope.bufferFriends);
 						$scope.queriesForRequestFriendInfo.splice(0, $scope.queriesForRequestFriendInfo.length);
 						$scope.queriesForRequestFriendPhoto.splice(0, $scope.queriesForRequestFriendPhoto.length);
@@ -599,6 +609,7 @@ $scope.checkAndLoadRequestFriends = function(callback){
 };
 
 $scope.loadFriendsCtrl = function(isLoadMoreFriends){
+	console.log("loadFriends");
 	if(isLoadMoreFriends){
 		$scope.nbLoadsFriends++;
 		async.series([$scope.loadMoreFriends],
@@ -627,7 +638,7 @@ $scope.loadFriendsCtrl = function(isLoadMoreFriends){
 			$scope.confirmFriend = false;
 
 			window.setTimeout(function(){
-				console.log("loading friends");
+				console.log("loading friends" + JSON.stringify($scope.displayFriends));
 				$scope.loadingFriends = false;
 				$scope.$apply();
 			}, 2000);
@@ -685,6 +696,7 @@ $scope.confirmationFriend = function(id) {
 	UserService.confirmationFriend(id).then(function(data){
 		$scope.deleteRequestFriendInRequestFriendInApp(id);
 		$scope.confirmFriend = true;
+		console.log("ok confirm friends");
 		$scope.loadFriendsCtrl(false);
 		$scope.$apply();
 	},function(status){
@@ -714,6 +726,7 @@ $scope.refuseFriend = function(id){
 };
 
 $scope.deleteFriend = function(id){
+	console.log("deleteFriend");
 	UserService.deleteFriend(id).then(function(data){
 		var ind = "";
 		for(var i=0; i < $scope.displayFriends.length ; i++){

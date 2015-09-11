@@ -1,21 +1,15 @@
 <ion-modal-view class="background" style="width:100%">
 
-<button style="border:1px solid red" ng-show="showCloseButton" id="closeCreateZonder" ng-class="{opacityTransitionOn : showCloseButton, opacityTransitionOff : !showCloseButton}" ng-click="closeAndClearCreateZonderModal()" class="button button-icon">
+<button ng-show="showCloseButton" id="closeCreateZonder" ng-class="{opacityTransitionOn : showCloseButton, opacityTransitionOff : !showCloseButton}" ng-click="closeAndClearCreateZonderModal()" class="button button-icon">
 <i> <img width="28" src="img/close.png" >
 </i>
 </button>
 
-<button style="border:1px solid red"
- id="backCreateZonder" ng-show="!showCloseButton" ng-class="{opacityTransitionOn : !showCloseButton, opacityTransitionOff : showCloseButton}" ng-click="backStep()" class="button button-icon">
+<button id="backCreateZonder" ng-show="!showCloseButton" ng-class="{opacityTransitionOn : !showCloseButton, opacityTransitionOff : showCloseButton}" ng-click="backStep()" class="button button-icon">
 <i> 
   <img width="16" src="img/arrowBack.png" >
 </i>
 </button>
-
-<!-- <img id="closeCreateZonder" ng-class="{opacityTransitionOn : showCloseButton, opacityTransitionOff : !showCloseButton}" ng-click="closeAndClearCreateZonderModal()" src="img/close.png"> -->
-
-<!-- <img id="backCreateZonder" ng-class="{opacityTransitionOn : !showCloseButton, opacityTransitionOff : showCloseButton}" ng-click="backStep()" src="img/arrowBack.png"> -->
-
 
 <ion-slide-box on-slide-changed="slideHasChangedInCreateZonder(index)" delegate-handle="createZonderSlider" ng-init="disableSwipeCreateZonder()" show-pager="true" id="slideBoxCreateZonder">
 
@@ -30,9 +24,9 @@
   <div id="contentCharactersLeftCreateZonder">
     <span class="fontCharacters">Characters left: {{charLeft}}</span>
   </div>
-  <button ng-disabled="!showNextButtonForCreatePoll||!displayNextButtonQuestion" class="button buttonZonder buttonRegister" style="position:relative;margin-top:50px" ng-click="nextStepPhoto()">
-      NEXT
-    </button>
+
+  <button ng-disabled="!showNextButtonForCreatePoll||!displayNextButtonQuestion" class="button buttonZonder buttonRegister" style="position:relative;margin-top:25%" ng-click="nextStepPhoto()">NEXT</button>
+
 </div>
 
 <!-- <button ng-disabled="!showNextButtonForCreatePoll" class="button buttonZonder buttonRegister specButtonCreateZonder" ng-click="nextStepPhoto()">
@@ -70,7 +64,7 @@
   </a>
 </div>
 
-<button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister" style="position:relative;margin-top:30px" ng-click="nextStepOption()">
+<button ng-disabled="!showNextButtonForChoosePhoto" ng-show="displayNextButtonChoosePhoto" class="button buttonZonder buttonRegister" style="position:relative;margin-top:6%" ng-click="nextStepOption()">
     NEXT
  </button>
 
@@ -160,9 +154,11 @@
 
       <ion-scroll direction="x" zooming="false" delegate-handle="horizontal" class="fullSize">
 
-    <div ng-show="loadingSondrFriends" class="card centeredContent" style="background:#ECF0F1;position:relative;left:50%;margin: 10px 0 0 -25px;width:50px;height:50px;"><i style="font-size:26px;" class="icon ion-loading-c"></i></div>
+      <div ng-show="loadingSondrFriends" class=" centeredContent" style="position:relative;left:0;top:10px;width:100%;height:100%;">
+        <ion-spinner class="spinnerLoadingBlack" icon="spiral"></ion-spinner>
+      </div>
 
-    <div ng-if="!friends.length" ng-hide="loadingSondrFriends"class="centeredContent fontOptionCreateZonder specNotFriends">You don't have any friends yet !</div>
+    <div ng-if="!friends.length" ng-hide="loadingSondrFriends" class="centeredContent fontOptionCreateZonder specNotFriends">You don't have any friends yet !</div>
 
     <div ng-hide="loadingSondrFriends" class="row specDivFriends" ng-style="{'width': ((friends.length + 1) * 58) + 'px' }" >
       <div class="specDivAll">

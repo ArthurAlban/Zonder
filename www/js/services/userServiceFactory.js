@@ -271,7 +271,7 @@ zonder.factory('UserService', function($http, $q) {
         },
         // getJetons: function(){
         //     var deferred = $q.defer();
-        //     $http.get("http://192.168.240.13" + '/user/getJetons')
+        //     $http.get("http://90.11.6.61" + '/user/getJetons')
         //     .success(function(data){
         //         deferred.resolve(data);
         //     }).error(function(data, status){
@@ -281,7 +281,7 @@ zonder.factory('UserService', function($http, $q) {
         // },
         // changeJetons: function(jetons){
         //     var deferred = $q.defer();
-        //     $http.post("http://192.168.240.13" + '/user/changeJetons', {jetons : jetons})
+        //     $http.post("http://90.11.6.61" + '/user/changeJetons', {jetons : jetons})
         //     .success(function(data){
         //         deferred.resolve(data);
         //     }).error(function(data, status){

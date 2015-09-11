@@ -4,7 +4,7 @@
 // 'starter.controllers' is found in controllers.js
 var zonder = angular.module('zonder', ['ionic', 'ngCordova'])
 
-zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen, $cordovaStatusbar) {
+zonder.run(function($ionicPlatform, $rootScope, $cordovaSplashscreen, $cordovaStatusbar,$ionicGesture) {
   $rootScope.animateTooltip = false;
 
   $ionicPlatform.ready(function() {
@@ -44,10 +44,6 @@ zonder.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   .state('home', {
     url: "/home",
     templateUrl: "templates/home.html"
-  })
-  .state('pollInfo', {
-    url: "/pollInfo",
-    templateUrl: "templates/pollInfo.html"
   });
   // if none of the above states are matched, use this as the fallback
 

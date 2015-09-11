@@ -2,7 +2,11 @@
 
 <ion-side-menu width="250" class="backgroundSideMenu" side="left" ng-controller="parameterCtrl">
 
-<img id="closeSideMenu" class="imgClick" menu-close src="img/close.png">
+<button menu-close id="closeSideMenu" class="button button-icon">
+  <i> <img width="28" src="img/close.png" >
+  </i>
+</button>
+
 <p id="textMenuSideMenu" class="fontOpenSansExtraBoldSideMenu">MENU</p>
 
 <div id="divMenusSideMenu">
@@ -60,9 +64,25 @@
 
 <div ng-if="showHome">
 
+<div ng-class="{infoCreateZonderTranslateUp:!showInfoCreateZonder,infoCreateZonderTranslateDown:showInfoCreateZonder}" style="z-index:2000;position:absolute;top:-46px;left:0px;height:46px;width:100%;background-color: #00B0B9;text-align:center" class="brandonBold">
+	<br>
+	<br>
+Your zonder has been created, well done !!
+</div>
+
+<div ng-class="{infoCreateZonderTranslateUp:!showInfoErrorCreateZonder,infoCreateZonderTranslateDown:showInfoErrorCreateZonder}" style="z-index:2000;position:absolute;top:-46px;left:0px;height:46px;width:100%;background-color: #E04E39;text-align:center" class="brandonBold">
+	<br>
+	<br>
+Oups your zonder is lost, try again !!
+</div>
+
 <div id="triangles"> <img style="width:100%" src="img/splashTriangles.png" ></div>
 
-<img src="img/menu.png" menu-toggle="left" id="posButtonMenu" class="imgClick sizeButtonImage">
+  <button id="posButtonMenu" menu-toggle="left" class="button button-icon">
+    <i> <img width="22" src="img/menu.png" >
+    </i>
+  </button>
+
 <img src="{{myPhoto}}" ng-click="goToProfile()" class="profilImg">
 <label class="fontBrandonBlack" id="posPseudoUser">{{myPseudo}}</label>
 
@@ -103,7 +123,16 @@
 	</div>
 </div>
 
-<div class="divSelectorTab" ng-class="{colorJaunePale:sliderVote, colorJaunePoussin:sliderPolls, colorJauneOrange:sliderFriends}"></div>
+
+<div ng-switch on="loadingCreateZonder" class="divSelectorTab">
+	<div ng-switch-when="false" style="position:relative;height:100%;width:100%" ng-class="{colorJaunePale:sliderVote, colorJaunePoussin:sliderPolls, colorJauneOrange:sliderFriends}"></div>
+
+	<div ng-switch-when="true" class="loader go">
+		<div class="loader-element jaunePaleLoad"></div>
+		<div class="loader-element jaunePoussinLoad"></div>
+		<div class="loader-element jauneOrangeLoad"></div>
+	</div>
+</div>
 
 <ion-slide-box id="sliderBoxHome" delegate-handle="homeSlider" show-pager="false" on-slide-changed="slideHasChangedInHomeSlider($index)">
 
@@ -127,7 +156,11 @@
 			<div class="contentHeaderFooter" >
 				<p class="fontQuestionZonder questionPosStyle">{{pollUp.question}}
 				</p>
-				<img width="13" class="posWheel imgClick" src="img/wheelOption.png" ng-click="showActionsheetAnswerZonderUp()">
+
+				<button ng-click="showActionsheetAnswerZonderUp()" class="button button-icon posWheel" style="padding-right:0">
+					<i> <img width="14" src="img/wheelOption.png" >
+					</i>
+				</button>
 			</div>
 
 		</div>
@@ -135,11 +168,11 @@
 	</div>
 
 	<div class="contentPhotos">
-		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'left')">
+		<div class="contentPhotoLeft" on-double-tap="votePollUp(pollUp.id, 'left')">
 			<img ng-style="{'width': imgPollUpLeftInfo.imgWidth + 'px', 'height': imgPollUpLeftInfo.imgHeight + 'px', 'margin-left': imgPollUpLeftInfo.positionLeft + 'px', 'margin-top': imgPollUpLeftInfo.positionTop + 'px'}" src="{{pollUp.photoLeft}}">
 			<p class="fontTitlePhotoZonder" ng-class="{titlePhoto : displayPhotoTitle}">{{pollUp.firstName}}</p>
 		</div>
-		<div class="contentPhotoLeft" ng-click="votePollUp(pollUp.id, 'right')">
+		<div class="contentPhotoLeft" on-double-tap="votePollUp(pollUp.id, 'right')">
 			<img ng-style="{'width': imgPollUpRightInfo.imgWidth + 'px', 'height': imgPollUpRightInfo.imgHeight + 'px', 'margin-left': imgPollUpRightInfo.positionLeft + 'px', 'margin-top': imgPollUpRightInfo.positionTop + 'px'}" src="{{pollUp.photoRight}}">
 			<p class="fontTitlePhotoZonder" ng-class="{titlePhoto : displayPhotoTitle}">{{pollUp.secondName}}</p>
 		</div>
@@ -150,10 +183,12 @@
 			<div class="fontVoteCommentsZonder">{{pollUp.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
 			<div class="fontVoteCommentsZonder marginComments">{{pollUp.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
-		<div class="contentIconFavouriteComments" ng-click="openCommentsModalUp()" > 
-			<img width="20" class="marginIconComments" src="img/commentsIcon.png">
-		</div>
 
+
+		<button style="padding-right:0;" ng-click="openCommentsModalUp()" class="button button-icon contentIconFavouriteComments">
+			<i style="margin-top:-18px;"> <img width="20" src="img/commentsIcon.png" >
+			</i>
+		</button>
 	</div>
 
 </div>
@@ -180,7 +215,10 @@
 			<div class="contentHeaderFooter">
 				<p class="fontQuestionZonder questionPosStyle">{{pollDown.question}}
 				</p>
-				<img width="13" class="posWheel imgClick" src="img/wheelOption.png" ng-click="showActionsheetAnswerZonderDown()">
+				<button ng-click="showActionsheetAnswerZonderDown()" class="button button-icon posWheel" style="padding-right:0">
+					<i> <img width="14" src="img/wheelOption.png" >
+					</i>
+				</button>
 			</div>
 
 		</div>
@@ -188,11 +226,11 @@
 	</div>
 
 	<div class="contentPhotos">
-		<div class="contentPhotoLeft" ng-click="votePollDown(pollDown.id, 'left')">
+		<div class="contentPhotoLeft" on-double-tap="votePollDown(pollDown.id, 'left')">
 			<img ng-style="{'width': imgPollDownLeftInfo.imgWidth + 'px', 'height': imgPollDownLeftInfo.imgHeight + 'px', 'margin-left': imgPollDownLeftInfo.positionLeft + 'px', 'margin-top': imgPollDownLeftInfo.positionTop + 'px'}" src="{{pollDown.photoLeft}}">
 			<p class="fontTitlePhotoZonder" ng-class="{titlePhoto : displayPhotoTitle}">{{pollDown.firstName}}</p>
 		</div>
-		<div class="contentPhotoLeft" ng-click="votePollDown(pollDown.id, 'right')">
+		<div class="contentPhotoLeft" on-double-tap="votePollDown(pollDown.id, 'right')">
 			<img ng-style="{'width': imgPollDownRightInfo.imgWidth + 'px', 'height': imgPollDownRightInfo.imgHeight + 'px', 'margin-left': imgPollDownRightInfo.positionLeft + 'px', 'margin-top': imgPollDownRightInfo.positionTop + 'px'}" src="{{pollDown.photoRight}}">
 			<p class="fontTitlePhotoZonder" ng-class="{titlePhoto : displayPhotoTitle}">{{pollDown.secondName}}</p>
 		</div>
@@ -203,10 +241,11 @@
 			<div class="fontVoteCommentsZonder">{{pollDown.votes}} <span class="fontVoteCommentsTextZonder">votes</span></div>
 			<div class="fontVoteCommentsZonder marginComments">{{pollDown.comments.length}} <span class="fontVoteCommentsTextZonder">comments</span></div>
 		</div>
-		<div class="contentIconFavouriteComments" ng-click="openCommentsModalDown()"> 
-			<img width="20" class="marginIconComments" src="img/commentsIcon.png" >
-		</div>
 
+		<button style="padding-right:0;" ng-click="openCommentsModalDown()" class="button button-icon contentIconFavouriteComments">
+			<i style="margin-top:-18px;"> <img width="20" src="img/commentsIcon.png" >
+			</i>
+		</button>
 	</div>
 
 </div>
@@ -245,7 +284,11 @@
 			</div>
 			<div class="contentHeaderFooter">
 				<p ng-click="openPollModal(poll)" class="fontQuestionZonder questionPosStyle"> {{poll.question}}</p>
-				<img width="13" class="posWheel" ng-click="showActionSheetPollWheelChoiceChoice(poll.id)" src="img/wheelOption.png">
+
+				<button ng-click="showActionSheetPollWheelChoiceChoice(poll.id)" class="button button-icon posWheel" style="padding-right:0">
+					<i> <img width="14" src="img/wheelOption.png" >
+					</i>
+				</button>
 			</div>
 		</div>
 
@@ -255,8 +298,8 @@
 
 		<div class="contentProgressionBar">
 			<div class="contentBarPhotoLeft" ng-style="{'width' : poll.pourcentagePhotoLeft + '%'}">
-				<p ng-if="poll.pourcentagePhotoLeft>0&&poll.pourcentagePhotoLeft<=15" class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
-				<p ng-if="poll.pourcentagePhotoLeft>15&&poll.pourcentagePhotoLeft<=40" class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
+				<p ng-if="poll.pourcentagePhotoLeft>0 && poll.pourcentagePhotoLeft<=15" class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
+				<p ng-if="poll.pourcentagePhotoLeft>15 && poll.pourcentagePhotoLeft<=40" class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
 				<p ng-if="poll.pourcentagePhotoLeft>40" class="fontVotePhotoZonder">{{poll.photoLeftVote}} votes</p>
 
 			</div>
@@ -264,8 +307,8 @@
 
 		<div class="contentProgressionBar" ng-click="openPollModal(poll)"> 
 			<div class="contentBarPhotoRight" ng-style="{'width' : poll.pourcentagePhotoRight + '%'}">
-				<p ng-if="poll.pourcentagePhotoRight>0&&poll.pourcentagePhotoRight<=15" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
-				<p ng-if="poll.pourcentagePhotoRight>15&&poll.pourcentagePhotoRight<=40" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
+				<p ng-if="poll.pourcentagePhotoRight>0 && poll.pourcentagePhotoRight<=15" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
+				<p ng-if="poll.pourcentagePhotoRight>15 && poll.pourcentagePhotoRight<=40" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
 				<p ng-if="poll.pourcentagePhotoRight>40" class="fontVotePhotoZonder">{{poll.photoRightVote}} votes</p>
 			</div>
 		</div>

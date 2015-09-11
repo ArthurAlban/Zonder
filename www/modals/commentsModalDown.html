@@ -6,7 +6,12 @@
   <i class="icon ion-close-circled light"></i>
 </button> -->
 
-<img id="closeCreateZonder" class="imgClick" ng-click="closeCommentsModalDown()" src="img/close.png">
+<button ng-click="closeCommentsModalDown()" id="closeCreateZonder" class="button button-icon">
+  <i> <img width="28" src="img/close.png" >
+  </i>
+</button>
+
+<!-- <img id="closeCreateZonder" class="imgClick" ng-click="closeCommentsModalDown()" src="img/close.png"> -->
 
 <div style="position:relative;overflow:hidden;height:50vh;width:100%;">
 	 <img src='{{pollDown.photoLeft}}' ng-class="{opacityImage:true}" ng-style="{'width': imgLeftInfoComments.imgWidth + 'px', 'height': imgLeftInfoComments.imgHeight + 'px', 'margin-left': imgLeftInfoComments.positionLeft + 'px', 'margin-top': imgLeftInfoComments.positionTop + 'px'}">
